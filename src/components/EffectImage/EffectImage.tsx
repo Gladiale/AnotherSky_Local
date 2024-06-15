@@ -22,8 +22,9 @@ const EffectImage = () => {
           ? effectState.imageEF.blendKind
           : undefined,
         objectFit: effectState.imageEF.size,
-        height: effectState.imageEF.size === "cover" ? "100%" : undefined,
-        width: effectState.imageEF.size === "none" ? "auto" : undefined,
+        height: effectState.imageEF.size === "cover" ? "100%" : "auto",
+        width: effectState.imageEF.size === "none" ? "auto" : "100%",
+        maxHeight: effectState.imageEF.size === "contain" ? "120%" : undefined,
         transform: rotateYState.effectRotateY ? "rotateY(180deg)" : undefined,
       }}
     />

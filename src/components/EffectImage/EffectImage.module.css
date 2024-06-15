@@ -1,7 +1,7 @@
 .effect-img {
   position: absolute;
-  width: 100%;
   transition: 0.5s;
+  user-select: none;
 }
 
 /* .effect-img.center {

@@ -49,6 +49,7 @@ const Video = () => {
         <video
           loop
           autoPlay
+          playsInline
           style={{
             transform: `rotateY(${rotateYState.videoRotateY ? 180 : 0}deg)`,
             filter: effectState.filterEffect.targetVideo

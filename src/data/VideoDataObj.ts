@@ -1,1 +1,1 @@
-export const VideoDataObj = {"sample":["001.mp4"]}
+export const VideoDataObj = {"sample":["001.mp4","あたしの裸よ.mp4"]}

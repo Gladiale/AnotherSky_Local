@@ -22,10 +22,10 @@ const AutoNext = () => {
   const handleAutoSpeed = (condition: string) => {
     switch (condition) {
       case "plus":
-        setAutoSpeed((prev) => prev + 200);
+        setAutoSpeed((prev) => prev + 50);
         break;
       case "minus":
-        setAutoSpeed((prev) => prev - 200);
+        setAutoSpeed((prev) => prev - 50);
         break;
       default:
         setAutoSpeed(40);
