@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200;300;400;500;600;700;800;900&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  /* background: transparent; */
+  background: #061206;
+  overflow: hidden;
+}
+
+/* スクロールバー非表示（Chrome・Safari） */
+/* body::-webkit-scrollbar {
+  display: none;
+} */

@@ -1,0 +1,47 @@
+.clip {
+  position: absolute;
+  inset: 5px;
+  box-shadow: 0 0 0 2px #061206;
+}
+
+.clip span {
+  position: absolute;
+  inset: 0;
+  background: #020d1e;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.clip span:hover {
+  background-color: #790090;
+}
+
+.clip span:nth-child(1) {
+  clip-path: polygon(0 5%, 0 95%, 50% 50%);
+}
+.clip span:nth-child(2) {
+  clip-path: polygon(95% 0, 5% 0, 50% 50%);
+}
+.clip span:nth-child(3) {
+  clip-path: polygon(100% 95%, 100% 5%, 50% 50%);
+}
+.clip span:nth-child(4) {
+  clip-path: polygon(5% 100%, 95% 100%, 50% 50%);
+}
+
+/* 左 */
+.clip.clipHover span:nth-child(1) {
+  clip-path: polygon(0 0%, 0 100%, 10% 50%);
+}
+/* 上 */
+.clip.clipHover span:nth-child(2) {
+  clip-path: polygon(100% 0, 0 0, 50% 5%);
+}
+/* 右 */
+.clip.clipHover span:nth-child(3) {
+  clip-path: polygon(100% 100%, 100% 0, 90% 50%);
+}
+/* 下 */
+.clip.clipHover span:nth-child(4) {
+  clip-path: polygon(0 100%, 100% 100%, 50% 93%);
+}

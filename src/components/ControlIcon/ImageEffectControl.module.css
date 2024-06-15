@@ -1,0 +1,82 @@
+.EF-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.EF-container .icon {
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 50%;
+  color: #ffa9ec;
+  font-size: 2.2rem;
+  transition: 0.25s;
+}
+
+.EF-container .icon:hover {
+  border: 1px dashed #ffa9ec;
+  background-color: #fff;
+  color: rgb(200, 0, 15);
+  animation: 0.2s linear 0s flashAni;
+}
+
+.EF-container .icon:active {
+  color: #eb00e7;
+  border: 1px dashed #eb004e;
+  scale: 1.5;
+}
+
+.EF-container .icon.toggleState {
+  animation: change-color 1s linear infinite alternate;
+}
+
+.EF-container .EF-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem;
+  transform: translateY(200%);
+  transition: 0.5s;
+  /* scale: 0; */
+}
+
+.EF-container:hover .EF-wrapper {
+  /* scale: 1; */
+  transform: translateY(-60%);
+}
+
+.EF-container:hover .EF-wrapper .radio-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1rem;
+}
+
+@keyframes flashAni {
+  0%,
+  35%,
+  50%,
+  85% {
+    opacity: 0;
+  }
+  20%,
+  65%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes change-color {
+  0% {
+    color: #ff99fd;
+  }
+  100% {
+    color: #ebd000;
+  }
+}

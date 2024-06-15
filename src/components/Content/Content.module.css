@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: 0.5s;
+  /* StandImage(max-width 25dvw * 2) + Card(100dvw) ゆえに150dvwに設置 */
+  width: 150dvw;
+}
+
+.content.mirror {
+  -webkit-box-reflect: right 0;
+  justify-content: flex-end;
+  position: absolute;
+  left: 0;
+  width: 50%;
+}

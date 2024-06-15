@@ -1,0 +1,112 @@
+.img-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.img-box.shakeLow {
+  animation: shakeLowAni 0.1s linear infinite;
+}
+
+.img-box.shakeNormal {
+  animation: shakeNormalAni 0.12s linear infinite;
+}
+
+.img-box.shakeHigh {
+  animation: shakeHighAni 0.15s linear infinite;
+}
+
+.img-box .blendMode {
+  height: 100%;
+  width: fit-content;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: crosshair;
+  transition: 0.5s;
+  animation: cg_picture 7.5s linear infinite;
+}
+
+.img-box.shakeHigh .blendMode:hover {
+  animation: shakeHighAni 0.15s linear infinite;
+}
+
+.img-box .blendMode .cg-img {
+  transition: 0.5s;
+}
+
+.img-box .blendMode .texture-img {
+  transition: 0.5s;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  mix-blend-mode: exclusion;
+}
+
+@keyframes cg_picture {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(25px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-25px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes shakeLowAni {
+  0% {
+    transform: skew(0deg, 0deg);
+  }
+  25% {
+    transform: skew(0.3deg, 0.3deg);
+  }
+  75% {
+    transform: skew(-0.3deg, -0.3deg);
+  }
+  100% {
+    transform: skew(0deg, 0deg);
+  }
+}
+
+@keyframes shakeNormalAni {
+  0% {
+    transform: skew(0deg, 0deg);
+  }
+  25% {
+    transform: skew(0.6deg, 0.6deg);
+  }
+  75% {
+    transform: skew(-0.6deg, -0.6deg);
+  }
+  100% {
+    transform: skew(0deg, 0deg);
+  }
+}
+
+@keyframes shakeHighAni {
+  0% {
+    transform: skew(0deg, 0deg);
+  }
+  25% {
+    transform: skew(1deg, 1deg);
+  }
+  75% {
+    transform: skew(-1deg, -1deg);
+  }
+  100% {
+    transform: skew(0deg, 0deg);
+  }
+}

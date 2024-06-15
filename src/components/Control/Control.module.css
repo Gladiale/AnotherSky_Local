@@ -1,0 +1,14 @@
+.control-container {
+  position: absolute;
+  bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 999;
+  filter: drop-shadow(0 0 5px #5cff95) drop-shadow(0 0 15px #ff34dd);
+}
+
+.control-container:hover {
+  filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+}

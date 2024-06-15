@@ -1,0 +1,1 @@
+export const CGDataObj = {"sample":["000.jpg","sky.png"]}

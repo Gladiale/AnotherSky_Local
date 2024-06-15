@@ -1,0 +1,46 @@
+:root {
+  --clr1: #ff1d1d;
+  --clr2: #ff3be2;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--clr1);
+  box-shadow: 0 0 0 5px #0009, 0 10px 65px var(--clr1);
+  user-select: none;
+  /* cursor: pointer; */
+  z-index: 10;
+  transition: 0.5s;
+
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  height: 100%;
+}
+
+.card.cardMode {
+  width: 612px;
+}
+.card.cgMode {
+  width: 40dvw;
+}
+
+.card:hover {
+  background: var(--clr2);
+  box-shadow: 0 0 0 5px #0009, 0 10px 65px var(--clr2), 0 10px 95px var(--clr2);
+}
+
+.card.sceneCG {
+  background: none;
+  box-shadow: none;
+
+  width: auto;
+  filter: drop-shadow(0 0 5px #5cff95) drop-shadow(0 0 15px #ff34dd);
+}
+
+.card.sceneCG:hover {
+  filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+}

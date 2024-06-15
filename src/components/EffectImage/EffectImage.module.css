@@ -1,0 +1,30 @@
+.effect-img {
+  position: absolute;
+  width: 100%;
+  transition: 0.5s;
+}
+
+/* .effect-img.center {
+  inset: 0;
+  margin: auto;
+} */
+
+.effect-img.topLeft {
+  top: 0;
+  left: 0;
+}
+
+.effect-img.topRight {
+  top: 0;
+  right: 0;
+}
+
+.effect-img.bottomLeft {
+  bottom: 0;
+  left: 0;
+}
+
+.effect-img.bottomRight {
+  bottom: 0;
+  right: 0;
+}

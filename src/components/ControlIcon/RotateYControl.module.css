@@ -1,0 +1,63 @@
+.rotateY-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  transition: 0.5s;
+}
+
+.rotateY-container .icon {
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 50%;
+  color: #ffa9ec;
+  font-size: 2.2rem;
+  transition: 0.25s;
+}
+
+.rotateY-container .icon:hover {
+  border: 1px dashed #ffa9ec;
+  background-color: #fff;
+  color: rgb(200, 0, 15);
+  animation: 0.2s linear 0s flashAni;
+}
+
+.rotateY-container .icon:active {
+  color: #eb00e7;
+  border: 1px dashed #eb004e;
+  scale: 1.5;
+}
+
+.rotateY-container .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  transform: translateY(-165%);
+
+  font-size: 1rem;
+  transition: 0.5s;
+  scale: 0;
+}
+
+.rotateY-container:hover .wrapper {
+  scale: 1;
+}
+
+@keyframes flashAni {
+  0%,
+  35%,
+  50%,
+  85% {
+    opacity: 0;
+  }
+  20%,
+  65%,
+  100% {
+    opacity: 1;
+  }
+}

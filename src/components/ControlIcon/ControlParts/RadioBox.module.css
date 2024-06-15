@@ -1,0 +1,51 @@
+.radio-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: #ff84fb;
+}
+
+.radio-box label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 0.1rem;
+  font-size: 0.9rem;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.radio-box label:hover {
+  color: #d9ff2f;
+}
+.radio-box label:hover input[type="radio"] {
+  border-color: #09ff00;
+}
+
+/* radioカスタマイズ */
+.radio-box input[type="radio"] {
+  appearance: none;
+  cursor: pointer;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1px solid #ed8be9;
+  border-radius: 50%;
+  transition: all 0.12s;
+  position: relative;
+}
+.radio-box input[type="radio"]:checked {
+  border-color: #09ff00;
+  /* background: #ff7cf4; */
+}
+.radio-box input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #ff7cf4;
+}

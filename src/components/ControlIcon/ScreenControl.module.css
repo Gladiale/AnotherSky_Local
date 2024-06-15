@@ -1,0 +1,104 @@
+.screen-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  white-space: nowrap;
+}
+
+.screen-container .icon {
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 50%;
+  color: #ffa9ec;
+  font-size: 2.2rem;
+  transition: 0.25s;
+}
+
+.screen-container .icon:hover {
+  border: 1px dashed #ffa9ec;
+  background-color: #fff;
+  color: rgb(200, 0, 15);
+  animation: 0.2s linear 0s flashAni;
+}
+
+.screen-container .icon:active {
+  color: #eb00e7;
+  border: 1px dashed #eb004e;
+  scale: 1.5;
+}
+
+/* .screen-container .icon.sizeNone {
+  color: #e1ff00;
+}
+.screen-container .icon.sizeCustom {
+  color: #00eeff;
+} */
+
+.screen-container .sizeSelect {
+  position: absolute;
+  transform: translateY(-140%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  scale: 0;
+  transition: 0.5s;
+}
+
+.screen-container:hover .sizeSelect {
+  scale: 1;
+}
+
+.screen-container .sizeSelect label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  color: #ff84fb;
+  font-size: 0.9rem;
+}
+
+/* radioカスタマイズ */
+.screen-container .sizeSelect label input[type="radio"] {
+  appearance: none;
+  cursor: pointer;
+
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid #8e0063;
+  /* border-radius: 50%; */
+  transition: all 0.12s;
+
+  position: relative;
+}
+
+.screen-container .sizeSelect label input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  border-color: #93ffeb;
+  background: #ed8be9;
+}
+
+@keyframes flashAni {
+  0%,
+  35%,
+  50%,
+  85% {
+    opacity: 0;
+  }
+  20%,
+  65%,
+  100% {
+    opacity: 1;
+  }
+}

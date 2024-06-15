@@ -1,0 +1,22 @@
+.information {
+  position: absolute;
+  top: 0.3rem;
+  color: #e789ff;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  user-select: none;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #96008c4e;
+  /* border-top-left-radius: 50%;
+  border-top-right-radius: 50%; */
+  border: 1px solid #e789ff;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.information.Info-hovered {
+  opacity: 1;
+  z-index: 20;
+  filter: drop-shadow(0 0 3px #ff63ff) drop-shadow(0 0 15px #a20072);
+}

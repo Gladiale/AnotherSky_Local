@@ -1,0 +1,110 @@
+.EF-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1rem;
+  gap: 0.1rem;
+}
+
+.EF-box label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  user-select: none;
+  color: #ff84fb;
+  transition: 0.25s;
+}
+
+.EF-box label:hover {
+  color: #d9ff2f;
+}
+
+.EF-box .controlEF {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EF-box .controlEF .iconSmall {
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 2px;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  color: #ff57b6;
+  background-color: #37fffc;
+}
+
+.EF-box .controlEF .iconSmall:hover {
+  color: #e57dff;
+  background-color: #89ffd4;
+  animation: 0.2s linear 0s flashAni;
+}
+
+.EF-box .controlEF .iconSmall:active {
+  background-color: #ba0091;
+}
+
+.EF-box .controlEF p {
+  font-size: 1.05rem;
+  line-height: 1rem;
+  width: 6rem;
+  text-align: center;
+  padding: 1px 3px;
+  color: #b90097;
+  background-color: #f6afff;
+  border: 1px dashed #ec60ff;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.EF-box .controlEF p:hover {
+  animation: 0.2s linear 0s flashAni;
+  color: #590072;
+  background-color: #89ffd4;
+  border: 1px dashed #ffa9ec;
+}
+
+/* checkboxカスタマイズ */
+.EF-box input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid #ed8be9;
+  transition: all 0.12s, border-color 0.08s;
+  position: relative;
+}
+
+.EF-box input[type="checkbox"]:checked {
+  width: 0.4rem;
+  top: -0.2rem;
+  left: 0.2rem;
+  border-color: #93ffeb;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(45deg);
+}
+
+.EF-box label:hover input[type="checkbox"]:not(:checked) {
+  border-color: #09ff00;
+}
+
+@keyframes flashAni {
+  0%,
+  35%,
+  50%,
+  85% {
+    opacity: 0;
+  }
+  20%,
+  65%,
+  100% {
+    opacity: 1;
+  }
+}

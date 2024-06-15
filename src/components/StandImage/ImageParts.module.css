@@ -1,0 +1,47 @@
+.stand-box {
+  user-select: none;
+  height: 100%;
+  cursor: pointer;
+  transition: 0.25s;
+  animation: character_show 1s 0s;
+  animation-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1, 0.1);
+}
+
+.stand-box:active {
+  animation: bounce 0.5s ease;
+}
+
+.stand-box .stand-img {
+  height: 100%;
+}
+
+.stand-box .stand-img.texture {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  mix-blend-mode: exclusion;
+}
+
+@keyframes character_show {
+  0% {
+    /* opacity: 0; */
+    transform: scale(1.25);
+  }
+  100% {
+    /* opacity: 1; */
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    translate: 0px 0px;
+    scale: 1;
+    /* transform: translateY(0px) scale(1); */
+  }
+  100% {
+    translate: 0px -15px;
+    scale: 0.95 1;
+    /* transform: translateY(-15px) scale(0.95, 1); */
+  }
+}

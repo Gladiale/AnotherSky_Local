@@ -1,0 +1,1 @@
+node .\initialData\initialAllData.mjs

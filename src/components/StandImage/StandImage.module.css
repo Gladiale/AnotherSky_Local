@@ -1,0 +1,44 @@
+.stand-container {
+  height: 100%;
+  max-width: 25dvw;
+  transition: 0.5s;
+  /* z-indexを効くために */
+  position: relative;
+}
+
+.stand-container:hover {
+  max-width: 50dvw;
+  z-index: 99;
+}
+
+.stand-container.mirror {
+  max-width: none;
+  position: absolute;
+  left: 0;
+  /* transform: translateX(-22%); */
+  z-index: 99;
+}
+
+.stand-container .stand-wrapper {
+  height: 100%;
+  transition: 0.4s;
+  /* filter: drop-shadow(0 0 5px #5cff95) drop-shadow(0 0 15px #ff34dd); */
+}
+
+.stand-container .stand-wrapper:hover {
+  animation: bounce 0.5s ease alternate infinite;
+  /* filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff); */
+}
+
+@keyframes bounce {
+  0% {
+    translate: 0px 0px;
+    scale: 1;
+    /* transform: translateY(0px) scale(1); */
+  }
+  100% {
+    translate: 0px -15px;
+    scale: 0.95 1;
+    /* transform: translateY(-15px) scale(0.95, 1); */
+  }
+}
