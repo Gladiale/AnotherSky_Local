@@ -27,9 +27,8 @@ const CardImage = (props: PropsType) => {
       className={styles["cg-wrapper"]}
       style={{
         scale: isPictureMode ? String(pictureScale) : "1",
-        transform: `translate(${picturePosition.x}px, ${
-          picturePosition.y
-        }px) rotateY(${rotateYState.cgRotateY ? 180 : 0}deg)`,
+        transform: `translate(${picturePosition.x}px, ${picturePosition.y}px)
+                    rotateY(${rotateYState.cgRotateY ? 180 : 0}deg)`,
       }}
     >
       {scene === "card-stand" ? (

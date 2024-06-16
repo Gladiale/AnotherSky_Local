@@ -42,7 +42,8 @@ const Video = () => {
         ${screenMode === "cardMode" && styles.cardMode}
         ${screenMode === "cgMode" && styles.cgMode}`}
         style={{
-          transform: `rotate(${rotateVideoDeg}deg)`,
+          transform: `rotate(${rotateVideoDeg}deg) 
+                      rotateY(${rotateYState.videoRotateY ? 180 : 0}deg)`,
           height: mediaSize === "contain" ? undefined : "fit-content",
         }}
       >
@@ -51,7 +52,6 @@ const Video = () => {
           autoPlay
           playsInline
           style={{
-            transform: `rotateY(${rotateYState.videoRotateY ? 180 : 0}deg)`,
             filter: effectState.filterEffect.targetVideo
               ? `opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
               : undefined,

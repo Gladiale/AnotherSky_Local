@@ -4,6 +4,9 @@
   transition: 0.5s;
   /* z-indexを効くために */
   position: relative;
+
+  transform-style: preserve-3d;
+  perspective: 1500px;
 }
 
 .stand-container:hover {

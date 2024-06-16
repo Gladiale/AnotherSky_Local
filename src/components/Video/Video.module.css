@@ -5,12 +5,13 @@
   filter: drop-shadow(0 0 5px #ff00d4) drop-shadow(0 0 15px #ff00d4);
   position: relative;
   z-index: 9;
+
+  /* *** rotateYの親要素に当たれば3Dは実現できる *** */
+  transform-style: preserve-3d;
+  perspective: 1500px;
 }
 
 .video-content .video-box {
-  transform-style: preserve-3d;
-  perspective: 1500px;
-
   display: flex;
   justify-content: center;
   align-items: center;
