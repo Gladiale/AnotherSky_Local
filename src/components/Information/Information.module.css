@@ -7,10 +7,7 @@
   user-select: none;
   text-align: center;
   white-space: nowrap;
-  background-color: #96008c4e;
-  /* border-top-left-radius: 50%;
-  border-top-right-radius: 50%; */
-  border: 1px solid #e789ff;
+  mix-blend-mode: exclusion;
   transition: 0.5s;
   opacity: 0;
 }
