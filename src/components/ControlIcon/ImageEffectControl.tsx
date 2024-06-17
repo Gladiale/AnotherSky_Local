@@ -6,6 +6,7 @@ import EffectBox from "./ControlParts/EffectBox";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import RadioBox from "./ControlParts/RadioBox";
 import { EffectStateType } from "../../context/EffectState/effectStateInit";
+import CheckBox from "./ControlParts/CheckBox";
 
 const ImageEffectControl = () => {
   const { effectState, effectStateDispatch } = useEffectState();
@@ -17,6 +18,13 @@ const ImageEffectControl = () => {
     effectState.filterEffect.dropShadow ||
     effectState.pixelEffect ||
     effectState.shakeEffect.active;
+
+  const containState = {
+    radioSpanList: effectState.imageEF.maxHeightFull
+      ? ["左", "中", "右"]
+      : ["上", "中", "下"],
+    checkedList: effectState.imageEF.maxHeightFull ? [true] : [false],
+  };
 
   const openCloseImgEF = () => {
     if (condition) {
@@ -87,20 +95,30 @@ const ImageEffectControl = () => {
 
           <div className={styles["radio-content"]}>
             {radioSizeChecked.contain && (
-              <RadioBox
-                radioName="position"
-                radioSpanList={["上", "中", "下"]}
-                radioCheckList={[
-                  radioPosiChecked.topLeft,
-                  radioPosiChecked.center,
-                  radioPosiChecked.bottomRight,
-                ]}
-                radioChangeFuncList={[
-                  () => changeImgEfPosi("top-left"),
-                  () => changeImgEfPosi("center"),
-                  () => changeImgEfPosi("bottom-right"),
-                ]}
-              />
+              <div className={styles["control-box"]}>
+                <CheckBox
+                  messageList={["高さ100%"]}
+                  checkedList={containState.checkedList}
+                  changeFuncList={[
+                    () => effectStateDispatch({ type: "imgEfMaxHeight" }),
+                  ]}
+                  checkBoxSize="small"
+                />
+                <RadioBox
+                  radioName="position"
+                  radioSpanList={containState.radioSpanList}
+                  radioCheckList={[
+                    radioPosiChecked.topLeft,
+                    radioPosiChecked.center,
+                    radioPosiChecked.bottomRight,
+                  ]}
+                  radioChangeFuncList={[
+                    () => changeImgEfPosi("top-left"),
+                    () => changeImgEfPosi("center"),
+                    () => changeImgEfPosi("bottom-right"),
+                  ]}
+                />
+              </div>
             )}
             {radioSizeChecked.none && (
               <RadioBox

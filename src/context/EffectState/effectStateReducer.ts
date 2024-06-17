@@ -11,7 +11,13 @@ import { shakeHeavyChange } from "./effectStateFunc/shakeHeavyChange";
 import { EffectStateType } from "./effectStateInit";
 
 type ActionBasicType = {
-  type: "blendCgActive" | "filterShadow" | "mirror" | "pixel" | "shake";
+  type:
+    | "imgEfMaxHeight"
+    | "blendCgActive"
+    | "filterShadow"
+    | "mirror"
+    | "pixel"
+    | "shake";
 };
 
 type ActionImageEffectType1 = {
@@ -79,6 +85,14 @@ const effectStateReducer = (
       return imgEfPosiChange(state, action.payload);
     case "imgEfSize":
       return imgEfSizeChange(state, action.payload);
+    case "imgEfMaxHeight":
+      return {
+        ...state,
+        imageEF: {
+          ...state.imageEF,
+          maxHeightFull: !state.imageEF.maxHeightFull,
+        },
+      };
     case "mirror":
       return { ...state, mirrorEffect: !state.mirrorEffect };
     case "filter":

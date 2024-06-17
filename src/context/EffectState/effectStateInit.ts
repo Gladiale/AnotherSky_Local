@@ -32,6 +32,7 @@ type EffectStateType = {
     size: "contain" | "none" | "cover";
     position: (typeof imgPositionList)[number];
     blendKind: (typeof blendKindList)[number];
+    maxHeightFull: boolean;
   };
   mirrorEffect: boolean;
   filterEffect: {
@@ -57,6 +58,7 @@ const effectSateInit: EffectStateType = {
     size: "contain",
     position: "center",
     blendKind: "soft-light",
+    maxHeightFull: false,
   },
   mirrorEffect: false,
   filterEffect: {

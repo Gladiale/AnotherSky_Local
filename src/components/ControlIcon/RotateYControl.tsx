@@ -22,6 +22,7 @@ const RotateYControl = () => {
             () => setIsTachie((prev) => !prev),
             () => setIsEffect((prev) => !prev),
           ]}
+          checkBoxSize="middle"
         />
       </div>
       <GiStarSwirl
