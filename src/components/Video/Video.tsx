@@ -7,6 +7,7 @@ import { useScene } from "../../context/SceneContext";
 import { useMediaSize, useScreenMode } from "../../context/ScreenContext";
 import { useRotateY } from "../../context/RotateYContext";
 import EffectImage from "../EffectImage/EffectImage";
+import VideoControl from "./VideoControl/VideoControl";
 
 const Video = () => {
   const { setScene } = useScene();
@@ -18,6 +19,8 @@ const Video = () => {
   const { filterState } = useFilter();
 
   const [rotateVideoDeg, setRotateVideoDeg] = useState<number>(0);
+  const [videoHovered, setVideoHovered] = useState<boolean>(false);
+  const [hasControl, setHasControl] = useState<boolean>(false);
 
   const rotateVideo = () => {
     rotateVideoDeg <= -1350
@@ -36,9 +39,12 @@ const Video = () => {
       className={styles["video-content"]}
       onClick={rotateVideo}
       onContextMenu={resetScene}
+      onMouseEnter={() => setVideoHovered(true)}
+      onMouseLeave={() => setVideoHovered(false)}
     >
       <div
         className={`${styles["video-box"]} 
+        ${effectState.shakeEffect.active && styles.shake}
         ${screenMode === "cardMode" && styles.cardMode}
         ${screenMode === "cgMode" && styles.cgMode}`}
         style={{
@@ -51,6 +57,7 @@ const Video = () => {
           loop
           autoPlay
           playsInline
+          controls={hasControl}
           style={{
             filter: effectState.filterEffect.targetVideo
               ? `opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
@@ -63,7 +70,13 @@ const Video = () => {
           }}
           src={`/video/${mediaState.folder.videoFolder[1]}/${mediaState.file.videoFile[1]}`}
         ></video>
+
         {effectState.imageEF.activeImage && <EffectImage />}
+
+        <VideoControl
+          videoHovered={videoHovered}
+          setHasControl={setHasControl}
+        />
       </div>
     </div>
   );
