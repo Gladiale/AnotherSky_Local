@@ -68,7 +68,7 @@ const Video = () => {
             maxHeight: mediaSize === "custom" ? "100dvh" : undefined,
             maxWidth: mediaSize === "custom" ? "65dvw" : undefined,
           }}
-          src={`/video/${mediaState.folder.videoFolder[1]}/${mediaState.file.videoFile[1]}`}
+          src={`/video/${mediaState.folder.video[1]}/${mediaState.file.videoFile[1]}`}
         ></video>
 
         {effectState.imageEF.activeImage && <EffectImage />}

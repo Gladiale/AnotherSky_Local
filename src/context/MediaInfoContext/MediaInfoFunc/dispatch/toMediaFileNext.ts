@@ -8,7 +8,7 @@ const toMediaFileNext = (
 ): MediaInfoType => {
   switch (scene) {
     case "card-stand":
-      return fileNextFunc(state, "stand");
+      return fileNextFunc(state, "character");
     case "card-cg":
       return fileNextFunc(state, "cg");
     default:

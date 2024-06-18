@@ -42,7 +42,7 @@ const ListImageMode2 = () => {
       type: "specific",
       payload: { target: target, fileInfo: imageInfoList[index] },
     });
-    if (target === "cg-image") {
+    if (target === "cg") {
       setScene("card-cg");
       if (isCharacter) {
         setIsCharacter(false);
@@ -59,17 +59,17 @@ const ListImageMode2 = () => {
 
   let target: SpecificPayloadType["target"];
   if (listState.cg) {
-    target = "cg-image";
+    target = "cg";
   } else {
-    target = "stand-image";
+    target = "character";
   }
 
   useLayoutEffect(() => {
     const imageList: [number, string][][] = [];
     if (listState.cg) {
-      target = "cg-image";
+      target = "cg";
     } else {
-      target = "stand-image";
+      target = "character";
     }
     for (let i = 0; i < 7; i++) {
       createRandomImg(imageList, listState, mediaState);
@@ -138,8 +138,7 @@ const ListImageMode2 = () => {
               style={{
                 ["--img" as any]: `url(/${target}/${item[0][1]}/${item[1][1]})`,
                 backgroundSize: listSubState.heightAuto ? "cover" : "contain",
-                backgroundPosition:
-                  target === "stand-image" ? "center" : "unset",
+                backgroundPosition: target === "character" ? "center" : "unset",
               }}
               onClick={() => changeCardCg(target, index)}
             />
@@ -159,8 +158,7 @@ const ListImageMode2 = () => {
               style={{
                 ["--img" as any]: `url(/${target}/${item[0][1]}/${item[1][1]})`,
                 backgroundSize: listSubState.heightAuto ? "cover" : "contain",
-                backgroundPosition:
-                  target === "stand-image" ? "center" : "unset",
+                backgroundPosition: target === "character" ? "center" : "unset",
               }}
               onClick={() => changeCardCg(target, index)}
             />
@@ -180,8 +178,7 @@ const ListImageMode2 = () => {
               style={{
                 ["--img" as any]: `url(/${target}/${item[0][1]}/${item[1][1]})`,
                 backgroundSize: listSubState.heightAuto ? "cover" : "contain",
-                backgroundPosition:
-                  target === "stand-image" ? "center" : "unset",
+                backgroundPosition: target === "character" ? "center" : "unset",
               }}
               onClick={() => changeCardCg(target, index)}
             />

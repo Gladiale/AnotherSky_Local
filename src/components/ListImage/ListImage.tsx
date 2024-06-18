@@ -33,7 +33,7 @@ const ListImage = () => {
       type: "specific",
       payload: { target: target, fileInfo: imageInfoList[index] },
     });
-    if (target === "cg-image") {
+    if (target === "cg") {
       setScene("card-cg");
       if (isCharacter) {
         setIsCharacter(false);
@@ -50,9 +50,9 @@ const ListImage = () => {
 
   let target: SpecificPayloadType["target"];
   if (listState.cg) {
-    target = "cg-image";
+    target = "cg";
   } else {
-    target = "stand-image";
+    target = "character";
   }
 
   // useLayoutEffectはuseEffectの先に実行　と　値が画面を反映する前実行
@@ -60,9 +60,9 @@ const ListImage = () => {
     const imageList: [number, string][][] = [];
 
     if (listState.cg) {
-      target = "cg-image";
+      target = "cg";
     } else {
-      target = "stand-image";
+      target = "character";
     }
 
     for (let i = 0; i < 9; i++) {

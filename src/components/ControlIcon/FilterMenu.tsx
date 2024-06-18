@@ -204,8 +204,8 @@ const FilterMenu = () => {
         <label>
           <input
             type="checkbox"
-            checked={effectState.filterEffect.targetStand}
-            onChange={() => changeTarget("stand")}
+            checked={effectState.filterEffect.targetCharacter}
+            onChange={() => changeTarget("character")}
           />
           <span>立ち絵</span>
         </label>

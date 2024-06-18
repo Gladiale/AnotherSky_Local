@@ -1,11 +1,11 @@
 import { CGDataObj } from "../../../../data/CGDataObj";
+import { CharacterDataObj } from "../../../../data/CharacterDataObj";
 import { EffectDataObj } from "../../../../data/EffectDataObj";
-import { StandImgDataObj } from "../../../../data/StandImgDataObj";
 import { VideoDataObj } from "../../../../data/VideoDataObj";
 import { VoiceDataObj } from "../../../../data/VoiceDataObj";
 import { MediaInfoType } from "../../mediaInfo";
 
-type ChangeTargetType = "stand" | "cg" | "video" | "voice" | "effect";
+type ChangeTargetType = "character" | "cg" | "video" | "voice" | "effect";
 type TargetObjType = Record<string, string[]>;
 
 const getTargetFunc = (
@@ -20,29 +20,29 @@ const getTargetFunc = (
   let targetFile: keyof MediaInfoType["file"];
 
   switch (target) {
-    case "stand":
-      dataObj = StandImgDataObj;
-      targetFolder = "standFolder";
-      targetFile = "standFile";
+    case "character":
+      dataObj = CharacterDataObj;
+      targetFolder = "character";
+      targetFile = "characterFile";
       break;
     case "cg":
       dataObj = CGDataObj;
-      targetFolder = "cgFolder";
+      targetFolder = "cg";
       targetFile = "cgFile";
       break;
     case "video":
       dataObj = VideoDataObj;
-      targetFolder = "videoFolder";
+      targetFolder = "video";
       targetFile = "videoFile";
       break;
     case "voice":
       dataObj = VoiceDataObj;
-      targetFolder = "voiceFolder";
+      targetFolder = "voice";
       targetFile = "voiceFile";
       break;
     case "effect":
       dataObj = EffectDataObj;
-      targetFolder = "effectFolder";
+      targetFolder = "effect";
       targetFile = "effectFile";
       break;
     default:

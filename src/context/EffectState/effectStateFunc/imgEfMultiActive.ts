@@ -3,7 +3,7 @@ import { EffectStateType } from "../effectStateInit";
 const imgEfMultiActive = (
   state: EffectStateType,
   actionKey: "openAll" | "closeAll"
-) => {
+): EffectStateType => {
   if (actionKey === "openAll") {
     return {
       ...state,

@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { getNextFile, getPrevFile } from "../helper/dataObjControl";
-import { StandImgDataObj } from "../data/StandImgDataObj";
+import { CharacterDataObj } from "../data/CharacterDataObj";
 import { type MediaInfoType } from "./MediaInfoContext/mediaInfo";
 
 type CharacterStateContextType = {
@@ -44,8 +44,8 @@ const characterReducer = (
   switch (action.type) {
     case "init":
       return {
-        folder: action.payload.folder.standFolder,
-        file: action.payload.file.standFile,
+        folder: action.payload.folder.character,
+        file: action.payload.file.characterFile,
       };
     case "deleteData":
       return {
@@ -54,14 +54,14 @@ const characterReducer = (
       };
     case "next":
       const nextFile = getNextFile(
-        StandImgDataObj,
+        CharacterDataObj,
         state.folder[1],
         state.file[0]
       );
       return { ...state, file: nextFile };
     case "prev":
       const prevFile = getPrevFile(
-        StandImgDataObj,
+        CharacterDataObj,
         state.folder[1],
         state.file[0]
       );

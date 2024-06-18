@@ -80,7 +80,7 @@ const ImageEffectControl = () => {
           />
           <PartsBoxEF
             nameEF="imageEF"
-            message={mediaState.folder.effectFolder[1]}
+            message={mediaState.folder.effect[1]}
             active={effectState.imageEF.activeImage}
             activeFunc={() =>
               effectStateDispatch({

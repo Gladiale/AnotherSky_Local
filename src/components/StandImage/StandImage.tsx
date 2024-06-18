@@ -63,7 +63,7 @@ const StandImage = ({ imgStyle }: PropsType) => {
         style={{
           transform: `rotateY(${rotateYState.standImgRotateY ? 180 : 0}deg)`,
           imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
-          filter: effectState.filterEffect.targetStand
+          filter: effectState.filterEffect.targetCharacter
             ? effectState.filterEffect.dropShadow
               ? filterShadow + filterNoShadow
               : filterNoShadow
@@ -72,7 +72,7 @@ const StandImage = ({ imgStyle }: PropsType) => {
             : undefined,
           display:
             effectState.mirrorEffect &&
-            effectState.filterEffect.targetStand &&
+            effectState.filterEffect.targetCharacter &&
             filterState.opacity === 0
               ? "none"
               : undefined,

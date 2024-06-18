@@ -31,7 +31,7 @@ const VoiceControl = () => {
               onClick={() => mediaDispatch({ type: "voicePrev" })}
             />
             <p onClick={() => mediaDispatch({ type: "voiceFolderNext" })}>
-              {mediaState.folder.voiceFolder[1]}
+              {mediaState.folder.voice[1]}
             </p>
             <BsChevronRight
               className={styles.iconSmall}
@@ -50,7 +50,7 @@ const VoiceControl = () => {
               isLoop ? undefined : () => mediaDispatch({ type: "voiceNext" })
             }
             className={isLoop ? "" : styles.inOrder}
-            src={`/voice/${mediaState.folder.voiceFolder[1]}/${mediaState.file.voiceFile[1]}`}
+            src={`/voice/${mediaState.folder.voice[1]}/${mediaState.file.voiceFile[1]}`}
           ></audio>
         </div>
       )}

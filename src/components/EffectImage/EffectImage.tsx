@@ -30,7 +30,7 @@ const EffectImage = () => {
       ${effectState.imageEF.position === "bottom-left" && styles.bottomLeft}
       ${effectState.imageEF.position === "bottom-right" && styles.bottomRight}
       `}
-      src={`/effect-image/${mediaState.folder.effectFolder[1]}/${mediaState.file.effectFile[1]}`}
+      src={`/effect/${mediaState.folder.effect[1]}/${mediaState.file.effectFile[1]}`}
       style={{
         mixBlendMode: effectState.imageEF.activeBlend
           ? effectState.imageEF.blendKind

@@ -1,13 +1,13 @@
 import { initialData } from "./funcs/initialData.mjs";
 
 // cg-imageフォルダをイニシャル
-await initialData("cg-image", "CGDataObj");
+await initialData("cg", "CGDataObj");
 
 // effect-imageフォルダをイニシャル
-await initialData("effect-image", "EffectDataObj");
+await initialData("effect", "EffectDataObj");
 
 // stand-imageフォルダをイニシャル
-await initialData("stand-image", "StandImgDataObj");
+await initialData("character", "CharacterDataObj");
 
 // videoフォルダをイニシャル
 await initialData("video", "VideoDataObj");

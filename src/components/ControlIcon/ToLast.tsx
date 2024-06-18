@@ -7,16 +7,10 @@ const ToLast = () => {
   const { scene } = useScene();
   const { mediaDispatch } = useMediaInfo();
 
-  const toLastFolder = (e: any) => {
-    e.preventDefault();
-    mediaDispatch({ type: "folderLast", payload: scene });
-  };
-
   return (
     <BiLastPage
       className={styles.icon}
       onClick={() => mediaDispatch({ type: "last", payload: scene })}
-      onContextMenu={toLastFolder}
     />
   );
 };

@@ -16,6 +16,20 @@ const getFileList = (dataObj: DataObjType, folder: string): string[] => {
   return fileList;
 };
 
+const getDirectoryData = (dataObj: DataObjType): [number, string][][] => {
+  const folderList = getFolderList(dataObj);
+  const directoryData: [number, string][][] = [];
+
+  folderList.forEach((folder, index) => {
+    const file = getFileList(dataObj, folder)[0];
+    directoryData.push([
+      [index, folder],
+      [0, file],
+    ]);
+  });
+  return directoryData;
+};
+
 const getNextFile = (
   dataObj: DataObjType,
   folder: string,
@@ -75,6 +89,7 @@ export {
   getFileList,
   getNextFile,
   getPrevFile,
+  getDirectoryData,
   getRandomFile,
   getRandomFolder,
   getRandomFolderFile,

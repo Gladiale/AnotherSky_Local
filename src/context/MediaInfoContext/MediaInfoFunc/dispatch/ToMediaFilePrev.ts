@@ -8,7 +8,7 @@ const toMediaFilePrev = (
 ): MediaInfoType => {
   switch (scene) {
     case "card-stand":
-      return filePrevFunc(state, "stand");
+      return filePrevFunc(state, "character");
     case "card-cg":
       return filePrevFunc(state, "cg");
     default:

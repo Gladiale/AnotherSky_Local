@@ -1,6 +1,6 @@
 import styles from "./ImageParts.module.css";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useState } from "react";
+import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
 import { getRandomFolderFile } from "../../helper/dataObjControl";
 import { VoiceDataObj } from "../../data/VoiceDataObj";
@@ -39,17 +39,18 @@ const ImageParts = ({ handleAspect }: PropsType) => {
     >
       <img
         className={styles["stand-img"]}
-        src={`/stand-image/${mediaState.folder.standFolder[1]}/${mediaState.file.standFile[1]}`}
+        src={`/character/${mediaState.folder.character[1]}/${mediaState.file.characterFile[1]}`}
         onLoad={handleAspect}
       />
 
-      {effectState.blendCG.active && effectState.filterEffect.targetStand && (
-        <img
-          className={`${styles["stand-img"]} ${styles.texture}`}
-          src={`/stand-image/${mediaState.folder.standFolder[1]}/${mediaState.file.standFile[1]}`}
-          onLoad={handleAspect}
-        />
-      )}
+      {effectState.blendCG.active &&
+        effectState.filterEffect.targetCharacter && (
+          <img
+            className={`${styles["stand-img"]} ${styles.texture}`}
+            src={`/character/${mediaState.folder.character[1]}/${mediaState.file.characterFile[1]}`}
+            onLoad={handleAspect}
+          />
+        )}
 
       {hasVocal && (
         <audio

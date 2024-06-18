@@ -3,7 +3,7 @@ import { EffectStateType } from "../effectStateInit";
 const activeNewState = (
   state: EffectStateType,
   targetKey: "activeImage" | "activeBlend"
-) => {
+): EffectStateType => {
   return {
     ...state,
     imageEF: { ...state.imageEF, [targetKey]: !state.imageEF[targetKey] },

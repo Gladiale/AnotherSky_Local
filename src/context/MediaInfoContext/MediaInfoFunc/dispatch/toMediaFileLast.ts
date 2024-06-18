@@ -8,7 +8,7 @@ const toMediaFileLast = (
 ): MediaInfoType => {
   switch (scene) {
     case "card-stand":
-      return fileLastFunc(state, "stand");
+      return fileLastFunc(state, "character");
     case "card-cg":
       return fileLastFunc(state, "cg");
     default:

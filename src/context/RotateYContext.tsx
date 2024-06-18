@@ -52,6 +52,9 @@ function reducer(state: rotateYType, action: rotateYActionType) {
         newState = { ...state, listImgRotateY: !state.listImgRotateY };
       }
       break;
+    case "directoryMode":
+      newState = { ...state };
+      break;
     default:
       throw new Error("不明なactionです");
   }

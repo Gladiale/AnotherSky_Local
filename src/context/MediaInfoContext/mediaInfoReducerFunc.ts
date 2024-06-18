@@ -1,5 +1,4 @@
 import { RandomTargetType } from "../../components/ControlIcon/RandomControl";
-import { type SceneType } from "../SceneContext";
 import { fileFirstFunc } from "./MediaInfoFunc/common/fileFirstFunc";
 import { fileLastFunc } from "./MediaInfoFunc/common/fileLastFunc";
 import { fileNextFunc } from "./MediaInfoFunc/common/fileNextFunc";
@@ -9,28 +8,17 @@ import { toMediaFilePrev } from "./MediaInfoFunc/dispatch/ToMediaFilePrev";
 import { toMediaFileFirst } from "./MediaInfoFunc/dispatch/toMediaFileFirst";
 import { toMediaFileLast } from "./MediaInfoFunc/dispatch/toMediaFileLast";
 import { toMediaFileNext } from "./MediaInfoFunc/dispatch/toMediaFileNext";
-import { toMediaFolderFirst } from "./MediaInfoFunc/dispatch/toMediaFolderFirst";
-import { toMediaFolderLast } from "./MediaInfoFunc/dispatch/toMediaFolderLast";
-import { toMediaFolderNext } from "./MediaInfoFunc/dispatch/toMediaFolderNext";
-import { toMediaFolderPrev } from "./MediaInfoFunc/dispatch/toMediaFolderPrev";
 import { toMediaRandom } from "./MediaInfoFunc/dispatch/toMediaRandom";
 import { toMediaRandomWithParam } from "./MediaInfoFunc/dispatch/toMediaRandomWithParam";
 import {
   toMediaSpecificFile,
   type SpecificPayloadType,
 } from "./MediaInfoFunc/dispatch/toMediaSpecificFile";
+import { type SceneType } from "../SceneContext";
 import { type MediaInfoType } from "./mediaInfo";
 
 type MainActionType = {
-  type:
-    | "next"
-    | "prev"
-    | "first"
-    | "last"
-    | "folderNext"
-    | "folderPrev"
-    | "folderFirst"
-    | "folderLast";
+  type: "next" | "prev" | "first" | "last";
   payload: SceneType;
 };
 
@@ -73,14 +61,6 @@ function reducerFunc(state: MediaInfoType, action: ActionType) {
       return toMediaFileFirst(state, action.payload);
     case "last":
       return toMediaFileLast(state, action.payload);
-    case "folderNext":
-      return toMediaFolderNext(state, action.payload);
-    case "folderPrev":
-      return toMediaFolderPrev(state, action.payload);
-    case "folderFirst":
-      return toMediaFolderFirst(state, action.payload);
-    case "folderLast":
-      return toMediaFolderLast(state, action.payload);
     case "voiceNext":
       return fileNextFunc(state, "voice");
     case "voicePrev":

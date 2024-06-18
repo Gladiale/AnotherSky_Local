@@ -3,7 +3,7 @@ import { blendKindList, type EffectStateType } from "../effectStateInit";
 const createNewState = (
   state: EffectStateType,
   kind: EffectStateType["imageEF"]["blendKind"]
-) => {
+): EffectStateType => {
   return {
     ...state,
     imageEF: {

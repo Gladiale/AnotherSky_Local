@@ -37,7 +37,7 @@ type EffectStateType = {
   mirrorEffect: boolean;
   filterEffect: {
     targetCard: boolean;
-    targetStand: boolean;
+    targetCharacter: boolean;
     targetVideo: boolean;
     dropShadow: boolean;
   };
@@ -63,7 +63,7 @@ const effectSateInit: EffectStateType = {
   mirrorEffect: false,
   filterEffect: {
     targetCard: false,
-    targetStand: false,
+    targetCharacter: false,
     targetVideo: false,
     dropShadow: false,
   },

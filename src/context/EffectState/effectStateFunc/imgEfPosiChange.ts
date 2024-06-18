@@ -3,7 +3,7 @@ import { EffectStateType } from "../effectStateInit";
 const imgEfPosiChange = (
   state: EffectStateType,
   position: EffectStateType["imageEF"]["position"]
-) => {
+): EffectStateType => {
   return {
     ...state,
     imageEF: {

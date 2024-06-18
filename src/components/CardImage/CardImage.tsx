@@ -1,9 +1,9 @@
-import { useState } from "react";
 import styles from "./CardImage.module.css";
+import { useState } from "react";
+import { useRotateY } from "../../context/RotateYContext";
+import { type SceneType } from "../../context/SceneContext";
 import CardImageCG from "../CardImageCG/CardImageCG";
 import CardImageStand from "../CardImageStand/CardImageStand";
-import { type SceneType } from "../../context/SceneContext";
-import { useRotateY } from "../../context/RotateYContext";
 
 type PropsType = {
   scene: SceneType;

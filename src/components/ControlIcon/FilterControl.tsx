@@ -9,7 +9,7 @@ const FilterControl = () => {
   const condition: boolean =
     effectState.blendCG.active ||
     effectState.filterEffect.targetCard ||
-    effectState.filterEffect.targetStand ||
+    effectState.filterEffect.targetCharacter ||
     effectState.filterEffect.targetVideo;
 
   const openCloseFilter = () => {

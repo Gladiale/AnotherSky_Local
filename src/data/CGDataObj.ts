@@ -1,1 +1,1 @@
-export const CGDataObj = {"sample":["000.jpg","HSDxD_dx1_i5.PNG","sky.png"]}
+export const CGDataObj = {"sample":["000.jpg","HSDxD_dx1_i5.PNG","sky.png"],"sample2":["2.jpg","HSDxD_dx1_i5.PNG","sky.png"],"sample3":["3.jpg","HSDxD_dx1_i5.PNG","sky.png"],"sample4":["4.jpg","HSDxD_dx1_i5.PNG","sky.png"],"sample5":["5.jpg","HSDxD_dx1_i5.PNG","sky.png"],"sample6":["6.jpg","HSDxD_dx1_i5.PNG","sky.png"],"sample7":["7.jpg","HSDxD_dx1_i5.PNG","sky.png"]}

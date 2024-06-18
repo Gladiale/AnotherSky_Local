@@ -24,8 +24,8 @@ const CG = ({ className }: PropsType) => {
   }, [isCharacter]);
 
   const imgUrl = isCharacter
-    ? `/stand-image/${characterInfo.folder[1]}/${characterInfo.file[1]}`
-    : `/cg-image/${mediaState.folder.cgFolder[1]}/${mediaState.file.cgFile[1]}`;
+    ? `/character/${characterInfo.folder[1]}/${characterInfo.file[1]}`
+    : `/cg/${mediaState.folder.cg[1]}/${mediaState.file.cgFile[1]}`;
 
   return (
     <img

@@ -19,7 +19,7 @@ const Container = () => {
   const { effectState } = useEffectState();
 
   useLayoutEffect(() => {
-    if (mediaState.file.standFile[1] === "") {
+    if (mediaState.file.characterFile[1] === "") {
       mediaDispatch({ type: "random" });
     }
   }, []);

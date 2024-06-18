@@ -15,8 +15,8 @@ const CheckBox = (props: PropsType) => {
       {messageList.map((message, index) => (
         <label key={index}>
           <input
-            className={styles[checkBoxSize]}
             type="checkbox"
+            className={styles[checkBoxSize]}
             checked={checkedList[index]}
             onChange={changeFuncList[index]}
           />

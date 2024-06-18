@@ -1,15 +1,15 @@
 type MediaInfoType = {
   folder: {
-    cgFolder: [number, string];
-    standFolder: [number, string];
-    videoFolder: [number, string];
-    voiceFolder: [number, string];
-    effectFolder: [number, string];
+    cg: [number, string];
+    character: [number, string];
+    video: [number, string];
+    voice: [number, string];
+    effect: [number, string];
   };
 
   file: {
     cgFile: [number, string];
-    standFile: [number, string];
+    characterFile: [number, string];
     videoFile: [number, string];
     voiceFile: [number, string];
     effectFile: [number, string];
@@ -18,15 +18,15 @@ type MediaInfoType = {
 
 const mediaInfoInit: MediaInfoType = {
   folder: {
-    cgFolder: [0, ""],
-    standFolder: [0, ""],
-    videoFolder: [0, ""],
-    voiceFolder: [0, ""],
-    effectFolder: [0, ""],
+    cg: [0, ""],
+    character: [0, ""],
+    video: [0, ""],
+    voice: [0, ""],
+    effect: [0, ""],
   },
   file: {
     cgFile: [0, ""],
-    standFile: [0, ""],
+    characterFile: [0, ""],
     videoFile: [0, ""],
     voiceFile: [0, ""],
     effectFile: [0, ""],

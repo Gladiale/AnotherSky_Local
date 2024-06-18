@@ -1,11 +1,11 @@
 import { EffectStateType } from "../effectStateInit";
 
-type FilterTargetType = "card" | "stand" | "video" | "allOpen" | "allClose";
+type FilterTargetType = "card" | "character" | "video" | "allOpen" | "allClose";
 
 const filterTargetSelect = (
   state: EffectStateType,
   target: FilterTargetType
-) => {
+): EffectStateType => {
   switch (target) {
     case "card":
       return {
@@ -15,12 +15,12 @@ const filterTargetSelect = (
           targetCard: !state.filterEffect.targetCard,
         },
       };
-    case "stand":
+    case "character":
       return {
         ...state,
         filterEffect: {
           ...state.filterEffect,
-          targetStand: !state.filterEffect.targetStand,
+          targetCharacter: !state.filterEffect.targetCharacter,
         },
       };
     case "video":
@@ -37,7 +37,7 @@ const filterTargetSelect = (
         filterEffect: {
           ...state.filterEffect,
           targetCard: true,
-          targetStand: true,
+          targetCharacter: true,
           targetVideo: true,
         },
       };
@@ -50,7 +50,7 @@ const filterTargetSelect = (
         filterEffect: {
           ...state.filterEffect,
           targetCard: false,
-          targetStand: false,
+          targetCharacter: false,
           targetVideo: false,
         },
       };

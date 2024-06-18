@@ -4,21 +4,36 @@ export type SceneType =
   | "card-stand"
   | "card-cg"
   | "card-video"
-  | "card-listImg";
+  | "card-listImg"
+  | "directoryMode";
 
-type ContextType = {
+export type DirectoryTargetType = "cg" | "character" | "video";
+
+type SceneContextType = {
   scene: SceneType;
   setScene: React.Dispatch<React.SetStateAction<SceneType>>;
 };
 
-const SceneContext = createContext({} as ContextType);
+type DirectoryContextType = {
+  directoryTarget: DirectoryTargetType;
+  setDirectoryTarget: React.Dispatch<React.SetStateAction<DirectoryTargetType>>;
+};
+
+const SceneContext = createContext({} as SceneContextType);
+const DirectoryTargetContext = createContext({} as DirectoryContextType);
 
 const SceneProvider = ({ children }: { children: React.ReactNode }) => {
   const [scene, setScene] = useState<SceneType>("card-stand");
+  const [directoryTarget, setDirectoryTarget] =
+    useState<DirectoryTargetType>("cg");
 
   return (
     <SceneContext.Provider value={{ scene, setScene }}>
-      {children}
+      <DirectoryTargetContext.Provider
+        value={{ directoryTarget, setDirectoryTarget }}
+      >
+        {children}
+      </DirectoryTargetContext.Provider>
     </SceneContext.Provider>
   );
 };
@@ -27,4 +42,8 @@ const useScene = () => {
   return useContext(SceneContext);
 };
 
-export { SceneProvider, useScene };
+const useDirectoryTarget = () => {
+  return useContext(DirectoryTargetContext);
+};
+
+export { SceneProvider, useScene, useDirectoryTarget };

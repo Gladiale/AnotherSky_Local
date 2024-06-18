@@ -1,8 +1,8 @@
 import { getFileList, getFolderList } from "../../../../helper/dataObjControl";
-import { type MediaInfoType } from "../../mediaInfo";
 import { getTargetFunc } from "./getTargetFunc";
+import { type MediaInfoType } from "../../mediaInfo";
 
-type ChangeTargetType = "stand" | "cg" | "video" | "voice" | "effect";
+type ChangeTargetType = "character" | "cg" | "video" | "voice" | "effect";
 
 const folderPrevFunc = (state: MediaInfoType, target: ChangeTargetType) => {
   const [dataObj, targetFolder, targetFile] = getTargetFunc(target);

@@ -7,16 +7,10 @@ const ToFirst = () => {
   const { scene } = useScene();
   const { mediaDispatch } = useMediaInfo();
 
-  const toFirstFolder = (e: any) => {
-    e.preventDefault();
-    mediaDispatch({ type: "folderFirst", payload: scene });
-  };
-
   return (
     <BiFirstPage
       className={styles.icon}
       onClick={() => mediaDispatch({ type: "first", payload: scene })}
-      onContextMenu={toFirstFolder}
     />
   );
 };

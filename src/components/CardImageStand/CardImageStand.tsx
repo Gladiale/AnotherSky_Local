@@ -12,7 +12,7 @@ const CardImageStand = () => {
         isHovered.cardHover ? styles.standHover : ""
       }`}
       style={{
-        backgroundImage: `url('/stand-image/${mediaState.folder.standFolder[1]}/${mediaState.file.standFile[1]}')`,
+        backgroundImage: `url('/character/${mediaState.folder.character[1]}/${mediaState.file.characterFile[1]}')`,
       }}
     />
   );
