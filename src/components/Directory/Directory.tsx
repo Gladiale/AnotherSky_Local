@@ -61,7 +61,7 @@ const Directory = () => {
     <div
       className={styles["directory-container"]}
       style={{
-        paddingBottom: screenMode === "cardMode" ? "3.5rem" : undefined,
+        marginBottom: screenMode === "cardMode" ? "3.5rem" : undefined,
       }}
     >
       <div

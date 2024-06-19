@@ -53,7 +53,7 @@ function reducer(state: rotateYType, action: rotateYActionType) {
       }
       break;
     case "directoryMode":
-      newState = { ...state };
+      newState = state;
       break;
     default:
       throw new Error("不明なactionです");

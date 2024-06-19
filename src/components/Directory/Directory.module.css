@@ -79,7 +79,6 @@
 }
 
 .directory-container .pageNav {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,15 +86,19 @@
 
 .directory-container .pageNav .pageButton {
   width: 2rem;
-  border: 1px solid #fff;
+  border: 1px solid #f9bbff;
   text-align: center;
   cursor: pointer;
 }
 
 .directory-container .pageNav .pageButton.active {
-  background-color: #a40080;
+  background-color: #980093;
 }
 
 .directory-container .pageNav .pageButton p {
   color: #ff84fb;
+}
+
+.directory-container .pageNav .pageButton.active p {
+  color: #f8ccff;
 }
