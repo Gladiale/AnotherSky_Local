@@ -7,10 +7,16 @@ const ToNext = () => {
   const { scene } = useScene();
   const { mediaDispatch } = useMediaInfo();
 
+  const toNextFolder = (e: React.MouseEvent<SVGAElement>) => {
+    e.preventDefault();
+    mediaDispatch({ type: "folderNext", payload: scene });
+  };
+
   return (
     <BsChevronRight
       className={styles.icon}
       onClick={() => mediaDispatch({ type: "next", payload: scene })}
+      onContextMenu={toNextFolder}
     />
   );
 };

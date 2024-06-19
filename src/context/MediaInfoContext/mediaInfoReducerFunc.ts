@@ -16,9 +16,11 @@ import {
 } from "./MediaInfoFunc/dispatch/toMediaSpecificFile";
 import { type SceneType } from "../SceneContext";
 import { type MediaInfoType } from "./mediaInfo";
+import { toMediaFolderNext } from "./MediaInfoFunc/dispatch/toMediaFolderNext";
+import { toMediaFolderPrev } from "./MediaInfoFunc/dispatch/toMediaFolderPrev";
 
 type MainActionType = {
-  type: "next" | "prev" | "first" | "last";
+  type: "next" | "prev" | "first" | "last" | "folderNext" | "folderPrev";
   payload: SceneType;
 };
 
@@ -61,6 +63,10 @@ function reducerFunc(state: MediaInfoType, action: ActionType) {
       return toMediaFileFirst(state, action.payload);
     case "last":
       return toMediaFileLast(state, action.payload);
+    case "folderNext":
+      return toMediaFolderNext(state, action.payload);
+    case "folderPrev":
+      return toMediaFolderPrev(state, action.payload);
     case "voiceNext":
       return fileNextFunc(state, "voice");
     case "voicePrev":
