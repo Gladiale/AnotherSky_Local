@@ -76,7 +76,7 @@
 }
 
 .menuFilter > label:hover {
-  scale: 2;
+  scale: 2 1;
   animation: hoverShake 0.15s linear 3;
 }
 
