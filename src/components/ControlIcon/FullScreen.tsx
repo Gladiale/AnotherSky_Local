@@ -1,8 +1,14 @@
 import styles from "./FullScreen.module.css";
 import { useEffect, useState } from "react";
-import { type SceneType, useScene } from "../../context/SceneContext";
+import {
+  type SceneType,
+  useScene,
+  useDirectoryInfo,
+  DirectoryTargetType,
+} from "../../context/SceneContext";
 import { GiAllSeeingEye, GiEclipseFlare } from "react-icons/gi";
 import CheckBoxType2 from "./ControlParts/CheckBoxType2";
+import RadioBox from "./ControlParts/RadioBox";
 
 const FullScreen = () => {
   // フルスクリーン(https://gray-code.com/javascript/display-the-page-in-full-screen/)
@@ -12,6 +18,8 @@ const FullScreen = () => {
   const [beforeScene, setBeforeScene] = useState<SceneType | null>(null);
 
   const { scene, setScene } = useScene();
+  const { directoryTarget, setDirectoryTarget, setPageIndex } =
+    useDirectoryInfo();
 
   const changeScene = () => {
     if (scene != "directoryMode") {
@@ -20,6 +28,11 @@ const FullScreen = () => {
     } else {
       beforeScene && setScene(beforeScene);
     }
+  };
+
+  const changeTarget = (target: DirectoryTargetType) => {
+    setPageIndex(0);
+    setDirectoryTarget(target);
   };
 
   useEffect(() => {
@@ -32,13 +45,29 @@ const FullScreen = () => {
 
   return (
     <div className={styles["screen-container"]}>
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${isDirectory && styles.active}`}>
         <CheckBoxType2
           messageList={["ディレクトリ"]}
           checkedList={[isDirectory]}
           changeFuncList={[() => setIsDirectory((prev) => !prev)]}
           checkBoxSize="middle"
         />
+        {isDirectory && (
+          <RadioBox
+            radioName="directory"
+            radioSpanList={["画像", "立ち絵", "動画"]}
+            radioCheckList={[
+              directoryTarget === "cg",
+              directoryTarget === "character",
+              directoryTarget === "video",
+            ]}
+            radioChangeFuncList={[
+              () => changeTarget("cg"),
+              () => changeTarget("character"),
+              () => changeTarget("video"),
+            ]}
+          />
+        )}
       </div>
       {isDirectory ? (
         <GiAllSeeingEye className={styles.icon} onClick={changeScene} />

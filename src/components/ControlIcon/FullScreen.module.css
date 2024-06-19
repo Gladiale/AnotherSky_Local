@@ -44,6 +44,10 @@
   scale: 0;
 }
 
+.screen-container .wrapper.active {
+  transform: translateY(-95%);
+}
+
 .screen-container:hover .wrapper {
   scale: 1;
 }

@@ -1,5 +1,5 @@
 import styles from "./ControlParts.module.css";
-import { GiChessQueen } from "react-icons/gi";
+import { GiCrenelCrown } from "react-icons/gi";
 import { useHover } from "../../../context/HoverContext";
 import {
   useCardCharacterInfo,
@@ -25,7 +25,7 @@ const ControlParts = () => {
         isHovered.cardHover && !isHovered.iconHover ? styles.show : undefined
       }`}
     >
-      <GiChessQueen className={styles.icon} onClick={changeContent} />
+      <GiCrenelCrown className={styles.icon} onClick={changeContent} />
     </div>
   );
 };
