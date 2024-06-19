@@ -27,11 +27,9 @@ const ImageEffectControl = () => {
   };
 
   const openCloseImgEF = () => {
-    if (condition) {
-      effectStateDispatch({ type: "imgEfMultiActive", payload: "closeAll" });
-    } else {
-      effectStateDispatch({ type: "imgEfMultiActive", payload: "openAll" });
-    }
+    condition
+      ? effectStateDispatch({ type: "imgEfMultiActive", payload: "closeAll" })
+      : effectStateDispatch({ type: "imgEfMultiActive", payload: "openAll" });
   };
 
   const radioPosiChecked = {
