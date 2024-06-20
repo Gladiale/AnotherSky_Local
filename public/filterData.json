@@ -51,16 +51,6 @@
   },
   {
     "opacity": 100,
-    "brightness": 74,
-    "contrast": 175,
-    "grayscale": 0,
-    "hueRotate": 136,
-    "invert": 100,
-    "saturate": 126,
-    "sepia": 0
-  },
-  {
-    "opacity": 100,
     "brightness": 246,
     "contrast": 363,
     "grayscale": 27,
@@ -68,6 +58,16 @@
     "invert": 0,
     "saturate": 511,
     "sepia": 60
+  },
+  {
+    "opacity": 100,
+    "brightness": 74,
+    "contrast": 175,
+    "grayscale": 0,
+    "hueRotate": 136,
+    "invert": 100,
+    "saturate": 126,
+    "sepia": 0
   },
   {
     "opacity": 100,
