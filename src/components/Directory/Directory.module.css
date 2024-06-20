@@ -33,7 +33,7 @@
 }
 
 .directory-container .gird-box .item:hover {
-  filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+  filter: drop-shadow(0 0 0.3rem #86fff3) drop-shadow(0 0 0.6rem #fc3eff);
 }
 
 .directory-container .gird-box .item img {
@@ -82,6 +82,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.3rem;
+
+  padding-top: 0.1rem;
+  z-index: 9;
 }
 
 .directory-container .pageNav .pageButton {
@@ -91,14 +95,17 @@
   cursor: pointer;
 }
 
-.directory-container .pageNav .pageButton.active {
-  background-color: #980093;
-}
-
 .directory-container .pageNav .pageButton p {
   color: #ff84fb;
+  transition: 0.25s;
+}
+
+.directory-container .pageNav .pageButton:hover p {
+  color: #980093;
+  background-color: #f694ff;
 }
 
 .directory-container .pageNav .pageButton.active p {
-  color: #f8ccff;
+  color: #980093;
+  background-color: #f9bbff;
 }

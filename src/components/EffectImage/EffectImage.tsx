@@ -8,18 +8,20 @@ const EffectImage = () => {
   const { effectState } = useEffectState();
   const { rotateYState } = useRotateY();
 
-  let imgWidth: "auto" | "100%";
+  let imgWidth: "auto" | "100%", imgHeight: "auto" | "100%";
   switch (effectState.imageEF.size) {
     case "none":
       imgWidth = "auto";
+      imgHeight = "auto";
       break;
     case "cover":
       imgWidth = "100%";
+      imgHeight = "100%";
       break;
     default:
       effectState.imageEF.maxHeightFull
-        ? (imgWidth = "auto")
-        : (imgWidth = "100%");
+        ? ((imgWidth = "auto"), (imgHeight = "100%"))
+        : ((imgWidth = "100%"), (imgHeight = "auto"));
   }
 
   return (
@@ -36,14 +38,9 @@ const EffectImage = () => {
           ? effectState.imageEF.blendKind
           : undefined,
         objectFit: effectState.imageEF.size,
-        height: effectState.imageEF.size === "cover" ? "100%" : "auto",
+        height: imgHeight,
         width: imgWidth,
-        maxHeight:
-          effectState.imageEF.size === "contain"
-            ? effectState.imageEF.maxHeightFull
-              ? "100%"
-              : "120%"
-            : undefined,
+        maxHeight: effectState.imageEF.size === "contain" ? "120%" : undefined,
         transform: rotateYState.effectRotateY ? "rotateY(180deg)" : undefined,
       }}
     />
