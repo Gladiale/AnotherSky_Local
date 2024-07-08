@@ -14,25 +14,10 @@ html {
   font-size: 16px;
 }
 
-/* ！重要 125%DPI対応 */
+/* ！重要 125%画面拡大倍率対応 */
 /* 参考: https://junzou-marketing.com/css-responsive-image */
-@media (min-resolution: 1.25dppx) {
+/* @media (min-resolution: 1.25dppx) {
   html {
     font-size: 12.8px;
   }
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100dvh;
-  /* background: transparent; */
-  background: #061206;
-  overflow: hidden;
-}
-
-/* スクロールバー非表示（Chrome・Safari） */
-/* body::-webkit-scrollbar {
-  display: none;
 } */
