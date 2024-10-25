@@ -82,42 +82,44 @@ const Card = () => {
   };
 
   return (
-    <div
-      className={`${styles.card}
+    <div className={`${styles["card-container-3d"]}`}>
+      <div
+        className={`${styles.card}
       ${scene === "card-cg" ? styles.sceneCG : ""}
       ${screenMode === "cardMode" && styles.cardMode}
       ${screenMode === "cgMode" && styles.cgMode}`}
-      onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: false })}
-      onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
-      onClick={changeScene}
-      onContextMenu={resetScene}
-      onWheel={changeImage}
-      style={{
-        transform: `rotate(${rotateCardDeg}deg) rotateY(${
-          rotateYState.cardRotateY ? 180 : 0
-        }deg)`,
-        overflow:
-          (isPictureMode && effectState.mirrorEffect) || scene === "card-stand"
-            ? "hidden"
+        onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: false })}
+        onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
+        onClick={changeScene}
+        onContextMenu={resetScene}
+        onWheel={changeImage}
+        style={{
+          transform: `rotate(${rotateCardDeg}deg) rotateY(${
+            rotateYState.cardRotateY ? 180 : 0
+          }deg)`,
+          overflow:
+            (isPictureMode && effectState.mirrorEffect) || scene === "card-stand"
+              ? "hidden"
+              : undefined,
+          width: isPictureMode && effectState.mirrorEffect ? "100%" : undefined,
+          imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
+          filter: effectState.filterEffect.targetCard
+            ? `drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff) opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
             : undefined,
-        width: isPictureMode && effectState.mirrorEffect ? "100%" : undefined,
-        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
-        filter: effectState.filterEffect.targetCard
-          ? `drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff) opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
-          : undefined,
-        boxShadow:
-          effectState.filterEffect.targetCard && scene === "card-stand"
-            ? "0 0 0 5px #0009"
-            : undefined,
-      }}
-    >
-      <CardImage
-        scene={scene}
-        isPictureMode={isPictureMode}
-        setIsPictureMode={setIsPictureMode}
-      />
+          boxShadow:
+            effectState.filterEffect.targetCard && scene === "card-stand"
+              ? "0 0 0 5px #0009"
+              : undefined,
+        }}
+      >
+        <CardImage
+          scene={scene}
+          isPictureMode={isPictureMode}
+          setIsPictureMode={setIsPictureMode}
+        />
 
-      <CardClip scene={scene} />
+        <CardClip scene={scene} />
+      </div>
     </div>
   );
 };

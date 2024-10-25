@@ -38,6 +38,10 @@
 
 .img-box .blendMode .cg-img {
   transition: 0.5s;
+  /* mask-image: url("/character/GBF/001.png");
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat; */
 }
 
 .img-box .blendMode .texture-img {

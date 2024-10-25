@@ -6,7 +6,7 @@
   position: relative;
 
   transform-style: preserve-3d;
-  perspective: 1500px;
+  perspective: 900px;
 }
 
 .stand-container:hover {

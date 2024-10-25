@@ -25,10 +25,7 @@ const ListImage = () => {
   const [imageInfoList, setImageInfoList] = useState<[number, string][][]>([]);
 
   // 左クリック
-  const changeCardCg = (
-    target: SpecificPayloadType["target"],
-    index: number
-  ) => {
+  const changeCardCg = (target: SpecificPayloadType["target"], index: number) => {
     mediaDispatch({
       type: "specific",
       payload: { target: target, fileInfo: imageInfoList[index] },
@@ -45,7 +42,7 @@ const ListImage = () => {
   // 右クリック
   const resetCardScene = (e: any) => {
     e.preventDefault();
-    setScene("card-cg");
+    // setScene("card-cg");
   };
 
   let target: SpecificPayloadType["target"];
@@ -82,9 +79,7 @@ const ListImage = () => {
           : undefined,
       }}
       onContextMenu={resetCardScene}
-      onWheel={() =>
-        setListState((prev) => ({ ...prev, random: !prev.random }))
-      }
+      onWheel={() => setListState((prev) => ({ ...prev, random: !prev.random }))}
     >
       {imageInfoList.map((item, index) => (
         <div

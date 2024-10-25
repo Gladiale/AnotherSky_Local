@@ -8,8 +8,7 @@ import {
 } from "../../context/ImageListState";
 
 const ShowListImage = () => {
-  const { listState, setListState, listSubState, setListSubState } =
-    useImageList();
+  const { listState, setListState, listSubState, setListSubState } = useImageList();
   const { scene, setScene } = useScene();
 
   const changeState = (target: keyof ImageListType) => {
@@ -28,7 +27,8 @@ const ShowListImage = () => {
     if (scene != "card-listImg") {
       setScene("card-listImg");
     } else {
-      setListState((prev) => ({ ...prev, random: !prev.random }));
+      // setListState((prev) => ({ ...prev, random: !prev.random }));
+      setScene("card-cg");
     }
   };
 

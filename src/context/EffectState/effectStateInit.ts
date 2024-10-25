@@ -57,7 +57,7 @@ const effectSateInit: EffectStateType = {
     activeBlend: false,
     size: "contain",
     position: "center",
-    blendKind: "soft-light",
+    blendKind: "hard-light",
     maxHeightFull: false,
   },
   mirrorEffect: false,
