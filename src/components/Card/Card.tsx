@@ -14,9 +14,18 @@ import {
   useCardCharacterInfo,
   useCardCharacterState,
 } from "../../context/CardCharacterContext";
+import { useImageControl } from "../../hooks/useImageControl";
 
 const Card = () => {
-  const [isPictureMode, setIsPictureMode] = useState<boolean>(false);
+  const {
+    isEditMode,
+    setIsEditMode,
+    imageScale,
+    imagePosition,
+    triggerEditMode,
+    changeImageScale,
+    moveImageReverse,
+  } = useImageControl();
 
   const { setIsHovered } = useHover();
   const { scene, setScene } = useScene();
@@ -60,7 +69,7 @@ const Card = () => {
       case "card-cg":
         setScene("card-stand");
         setRotateCardDeg(0);
-        setIsPictureMode(false);
+        setIsEditMode(false);
         break;
       default:
         console.log("test");
@@ -68,16 +77,14 @@ const Card = () => {
   };
 
   const changeImage = (e: React.WheelEvent) => {
-    if (!isPictureMode) {
-      if (!isCharacter) {
-        e.deltaY > 0
-          ? mediaDispatch({ type: "next", payload: scene })
-          : mediaDispatch({ type: "prev", payload: scene });
-      } else {
-        e.deltaY > 0
-          ? characterInfoDispatch({ type: "next" })
-          : characterInfoDispatch({ type: "prev" });
-      }
+    if (!isCharacter) {
+      e.deltaY > 0
+        ? mediaDispatch({ type: "next", payload: scene })
+        : mediaDispatch({ type: "prev", payload: scene });
+    } else {
+      e.deltaY > 0
+        ? characterInfoDispatch({ type: "next" })
+        : characterInfoDispatch({ type: "prev" });
     }
   };
 
@@ -98,10 +105,10 @@ const Card = () => {
             rotateYState.cardRotateY ? 180 : 0
           }deg)`,
           overflow:
-            (isPictureMode && effectState.mirrorEffect) || scene === "card-stand"
+            (isEditMode && effectState.mirrorEffect) || scene === "card-stand"
               ? "hidden"
               : undefined,
-          width: isPictureMode && effectState.mirrorEffect ? "100%" : undefined,
+          width: isEditMode && effectState.mirrorEffect ? "100%" : undefined,
           imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
           filter: effectState.filterEffect.targetCard
             ? `drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff) opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
@@ -113,9 +120,15 @@ const Card = () => {
         }}
       >
         <CardImage
-          scene={scene}
-          isPictureMode={isPictureMode}
-          setIsPictureMode={setIsPictureMode}
+          props={{
+            isEditMode,
+            setIsEditMode,
+            imageScale,
+            imagePosition,
+            triggerEditMode,
+            changeImageScale,
+            moveImageReverse,
+          }}
         />
 
         <CardClip scene={scene} />

@@ -1,33 +1,41 @@
 import styles from "./CardImage.module.css";
-import { useState } from "react";
 import { useRotateY } from "../../context/RotateYContext";
-import { type SceneType } from "../../context/SceneContext";
+import { useScene } from "../../context/SceneContext";
 import CardImageCG from "../CardImageCG/CardImageCG";
 import CardImageStand from "../CardImageStand/CardImageStand";
 
 type PropsType = {
-  scene: SceneType;
-  isPictureMode: boolean;
-  setIsPictureMode: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const CardImage = (props: PropsType) => {
-  const { scene, isPictureMode, setIsPictureMode } = props;
-
-  const [pictureScale, setPictureScale] = useState<number>(1.5);
-  const [picturePosition, setPicturePosition] = useState<{
+  isEditMode: boolean;
+  setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  imageScale: number;
+  imagePosition: {
     x: number;
     y: number;
-  }>({ x: 0, y: 0 });
+  };
+  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>, scale: number) => void;
+  changeImageScale: (e: React.WheelEvent) => void;
+  moveImageReverse: (e: React.MouseEvent<HTMLDivElement>) => void;
+};
+
+const CardImage = ({ props }: { props: PropsType }) => {
+  const {
+    isEditMode,
+    imageScale,
+    imagePosition,
+    triggerEditMode,
+    changeImageScale,
+    moveImageReverse,
+  } = props;
 
   const { rotateYState } = useRotateY();
+  const { scene } = useScene();
 
   return (
     <div
       className={styles["cg-wrapper"]}
       style={{
-        scale: isPictureMode ? String(pictureScale) : "1",
-        transform: `translate(${picturePosition.x}px, ${picturePosition.y}px)
+        scale: isEditMode ? String(imageScale) : "1",
+        transform: `translate(${imagePosition.x}px, ${imagePosition.y}px)
                     rotateY(${rotateYState.cgRotateY ? 180 : 0}deg)`,
       }}
     >
@@ -36,12 +44,9 @@ const CardImage = (props: PropsType) => {
       ) : (
         <CardImageCG
           data={{
-            isPictureMode,
-            setIsPictureMode,
-            pictureScale,
-            setPictureScale,
-            picturePosition,
-            setPicturePosition,
+            triggerEditMode,
+            changeImageScale,
+            moveImageReverse,
           }}
         />
       )}
