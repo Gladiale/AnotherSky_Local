@@ -10,7 +10,7 @@ const imgEfMultiActive = (
       imageEF: {
         ...state.imageEF,
         activeImage: true,
-        activeBlend: true,
+        activeBlend: false,
       },
     };
   }
