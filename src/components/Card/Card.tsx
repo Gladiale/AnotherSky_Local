@@ -17,6 +17,7 @@ import {
 import { useImageControl } from "../../hooks/useImageControl";
 
 const Card = () => {
+  // カスタムフック、インスタンス化に相当
   const {
     isEditMode,
     setIsEditMode,
