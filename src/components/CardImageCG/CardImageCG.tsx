@@ -43,7 +43,7 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
     }
   };
 
-  const enterPictureMode = (e: React.MouseEvent<HTMLDivElement>) => {
+  const movePictureMode = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isPictureMode) {
       const maxMoveX =
         (e.currentTarget.clientWidth * pictureScale - e.currentTarget.clientWidth) / 2;
@@ -95,7 +95,7 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
       <div
         className={styles["blendMode"]}
         onMouseDown={triggerPictureMode}
-        onMouseMove={enterPictureMode}
+        onMouseMove={movePictureMode}
         onWheel={changeScale}
         style={{
           height: mediaSize === "contain" ? undefined : "fit-content",
