@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import styles from "./AutoNext.module.css";
+import { useEffect, useState } from "react";
 import { GiHeartBattery } from "react-icons/gi";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";
@@ -12,6 +12,7 @@ import {
 const AutoNext = () => {
   // 自動画像変換
   const [isAutoMatic, setIsAutoMatic] = useState<boolean>(false);
+  const [isAutoEff, setIsAutoEff] = useState<boolean>(false);
   const [autoSpeed, setAutoSpeed] = useState<number>(450);
 
   const { scene } = useScene();
@@ -22,14 +23,26 @@ const AutoNext = () => {
   const handleAutoSpeed = (condition: string) => {
     switch (condition) {
       case "plus":
-        setAutoSpeed((prev) => prev + 50);
+        setAutoSpeed((prev) => prev + 15);
         break;
       case "minus":
-        setAutoSpeed((prev) => prev - 50);
+        setAutoSpeed((prev) => prev - 15);
         break;
       default:
         setAutoSpeed(40);
     }
+  };
+
+  const handleAutoMatic = () => {
+    if (isAutoMatic) {
+      setIsAutoEff(false);
+    }
+    setIsAutoMatic((prev) => !prev);
+  };
+
+  const handleAutoEff = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsAutoEff((prev) => !prev);
   };
 
   useEffect(() => {
@@ -50,24 +63,33 @@ const AutoNext = () => {
     };
   }, [isAutoMatic, autoSpeed]);
 
+  useEffect(() => {
+    let intervalId: number | undefined;
+    if (isAutoEff) {
+      intervalId = window.setInterval(() => {
+        mediaDispatch({ type: "effectNext" });
+      }, autoSpeed);
+    }
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [isAutoEff, autoSpeed]);
+
   return (
     <div className={styles["autoMatic-box"]}>
       <GiHeartBattery
-        className={`${styles.icon} ${isAutoMatic && styles.autoMatic}`}
-        onClick={() => setIsAutoMatic((prev) => !prev)}
+        className={`${styles.icon} ${isAutoMatic && styles.autoMatic} ${
+          isAutoEff && styles.autoMaticEff
+        }`}
+        onClick={handleAutoMatic}
+        onContextMenu={handleAutoEff}
       />
       <div className={styles["autoMatic-options"]}>
-        <BsDashLg
-          className={styles.iconSmall}
-          onClick={() => handleAutoSpeed("minus")}
-        />
+        <BsDashLg className={styles.iconSmall} onClick={() => handleAutoSpeed("minus")} />
         <p onClick={() => handleAutoSpeed("ani")}>
           {autoSpeed === 40 ? "Anime" : autoSpeed + "ms"}
         </p>
-        <BsPlusLg
-          className={styles.iconSmall}
-          onClick={() => handleAutoSpeed("plus")}
-        />
+        <BsPlusLg className={styles.iconSmall} onClick={() => handleAutoSpeed("plus")} />
       </div>
     </div>
   );

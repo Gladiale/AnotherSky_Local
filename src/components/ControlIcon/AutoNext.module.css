@@ -30,6 +30,9 @@
 .autoMatic-box .icon.autoMatic {
   animation: animate-rotate 1.5s linear infinite;
 }
+.autoMatic-box .icon.autoMaticEff {
+  color: #00eb6a;
+}
 
 .autoMatic-box .autoMatic-options {
   display: flex;
