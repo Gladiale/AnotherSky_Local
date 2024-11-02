@@ -1,12 +1,35 @@
+import styles from "./EffectImage.module.css";
+import { useState } from "react";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useRotateY } from "../../context/RotateYContext";
-import styles from "./EffectImage.module.css";
+import { useImageControl } from "../../hooks/useImageControl";
 
 const EffectImage = () => {
   const { mediaState } = useMediaInfo();
   const { effectState } = useEffectState();
   const { rotateYState } = useRotateY();
+  const [imageDeg, setImageDeg] = useState<number>(0);
+
+  const {
+    isEditMode,
+    triggerEditMode,
+    imageScale,
+    changeImageScale,
+    imagePosition,
+    moveImageDirect,
+  } = useImageControl();
+
+  const changeImageDeg = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (isEditMode) {
+      e.stopPropagation();
+      if (imageDeg <= -1350) {
+        setImageDeg(0);
+      } else {
+        setImageDeg((prev) => prev - 90);
+      }
+    }
+  };
 
   let imgWidth: "auto" | "100%", imgHeight: "auto" | "100%";
   switch (effectState.imageEF.size) {
@@ -26,7 +49,7 @@ const EffectImage = () => {
 
   return (
     <img
-      className={`${styles["effect-img"]}
+      className={`${styles["effect-img"]} ${isEditMode ? styles.isEditing : ""}
       ${effectState.imageEF.position === "top-left" && styles.topLeft}
       ${effectState.imageEF.position === "top-right" && styles.topRight}
       ${effectState.imageEF.position === "bottom-left" && styles.bottomLeft}
@@ -41,8 +64,15 @@ const EffectImage = () => {
         height: imgHeight,
         width: imgWidth,
         maxHeight: effectState.imageEF.size === "contain" ? "120%" : undefined,
-        transform: rotateYState.effectRotateY ? "rotateY(180deg)" : undefined,
+        transform: rotateYState.effectRotateY
+          ? `rotateY(180deg) rotate(${imageDeg}deg) translate(${imagePosition.x}px, ${imagePosition.y}px)`
+          : `rotate(${imageDeg}deg) translate(${imagePosition.x}px, ${imagePosition.y}px)`,
+        scale: String(imageScale),
       }}
+      onClick={changeImageDeg}
+      onMouseDown={(e) => triggerEditMode(e, 1, true)}
+      onMouseMove={moveImageDirect}
+      onWheel={changeImageScale}
     />
   );
 };

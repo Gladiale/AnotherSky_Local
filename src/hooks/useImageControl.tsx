@@ -8,15 +8,29 @@ const useImageControl = () => {
     y: number;
   }>({ x: 0, y: 0 });
 
-  const triggerEditMode = (e: React.MouseEvent<HTMLDivElement>, scale: number) => {
+  // マウス最初の座標
+  const [originPosition, setOriginPosition] = useState<{
+    x: number;
+    y: number;
+  }>({ x: 0, y: 0 });
+
+  const triggerEditMode = (
+    e: React.MouseEvent<HTMLDivElement>,
+    initialScale: number,
+    isEffect = false
+  ) => {
     if (e.button === 1) {
       e.stopPropagation();
+      // 現在のマウスの座標
+      setOriginPosition({ x: e.clientX, y: e.clientY });
       setIsEditMode((prev) => !prev);
-      setImagePosition({
-        x: 0,
-        y: 0,
-      });
-      setImageScale(scale);
+      if (!isEffect) {
+        setImagePosition({
+          x: 0,
+          y: 0,
+        });
+        setImageScale(initialScale);
+      }
     }
   };
 
@@ -59,12 +73,10 @@ const useImageControl = () => {
 
   const moveImageDirect = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isEditMode) {
-      const positionX: number = e.nativeEvent.layerX;
-      const positionY: number = e.nativeEvent.layerY;
-
+      // マウスの移動距離
       setImagePosition({
-        x: positionX,
-        y: positionY,
+        x: e.clientX - originPosition.x,
+        y: e.clientY - originPosition.y,
       });
     }
   };

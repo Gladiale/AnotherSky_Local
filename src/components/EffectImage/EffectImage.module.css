@@ -4,6 +4,15 @@
   user-select: none;
 }
 
+.effect-img:hover {
+  border: 0.1rem dashed #e79aff;
+}
+
+.effect-img.isEditing {
+  filter: drop-shadow(0 0 3px #e386ff) drop-shadow(0 0 7px #2cffb9);
+  /* mix-blend-mode: difference; */
+}
+
 /* .effect-img.center {
   inset: 0;
   margin: auto;
