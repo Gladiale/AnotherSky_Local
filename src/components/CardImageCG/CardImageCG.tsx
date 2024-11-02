@@ -1,9 +1,9 @@
 import styles from "./CardImageCG.module.css";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useMediaSize } from "../../context/ScreenContext";
 import CG from "./CG";
 import EffectImage from "../EffectImage/EffectImage";
 import ControlParts from "./ControlParts/ControlParts";
-import { useMediaSize } from "../../context/ScreenContext";
 
 type PropsType = {
   isPictureMode: boolean;
@@ -32,7 +32,7 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
   const { effectState } = useEffectState();
   const { mediaSize } = useMediaSize();
 
-  const triggerPictureMode = (e: any) => {
+  const triggerPictureMode = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.button === 1) {
       setIsPictureMode((prev) => !prev);
       setPicturePosition({
@@ -43,22 +43,22 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
     }
   };
 
-  const enterPictureMode = (e: any) => {
+  const enterPictureMode = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isPictureMode) {
       const maxMoveX =
-        (e.target.clientWidth * pictureScale - e.target.clientWidth) / 2;
+        (e.currentTarget.clientWidth * pictureScale - e.currentTarget.clientWidth) / 2;
       const maxMoveY =
-        (e.target.clientHeight * pictureScale - e.target.clientHeight) / 2;
+        (e.currentTarget.clientHeight * pictureScale - e.currentTarget.clientHeight) / 2;
 
       const positionX: number =
         -(
-          Math.floor(e.nativeEvent.layerX - e.target.clientWidth / 2) /
-          e.target.clientWidth
+          Math.floor(e.nativeEvent.layerX - e.currentTarget.clientWidth / 2) /
+          e.currentTarget.clientWidth
         ) * maxMoveX;
       const positionY: number =
         -(
-          Math.floor(e.nativeEvent.layerY - e.target.clientHeight / 2) /
-          e.target.clientHeight
+          Math.floor(e.nativeEvent.layerY - e.currentTarget.clientHeight / 2) /
+          e.currentTarget.clientHeight
         ) * maxMoveY;
 
       setPicturePosition({
@@ -79,14 +79,9 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
   };
 
   const shakeCondition = {
-    low:
-      effectState.shakeEffect.active && effectState.shakeEffect.heavy === "low",
-    normal:
-      effectState.shakeEffect.active &&
-      effectState.shakeEffect.heavy === "normal",
-    high:
-      effectState.shakeEffect.active &&
-      effectState.shakeEffect.heavy === "high",
+    low: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "low",
+    normal: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "normal",
+    high: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "high",
   };
 
   return (
