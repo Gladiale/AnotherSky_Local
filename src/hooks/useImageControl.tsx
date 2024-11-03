@@ -21,8 +21,10 @@ const useImageControl = () => {
   ) => {
     if (e.button === 1) {
       e.stopPropagation();
-      // 現在のマウスの座標
-      setOriginPosition({ x: e.clientX, y: e.clientY });
+      if (!isEditMode) {
+        // 現在のマウスの座標
+        setOriginPosition({ x: e.clientX, y: e.clientY });
+      }
       setIsEditMode((prev) => !prev);
       if (!isEffect) {
         setImagePosition({
