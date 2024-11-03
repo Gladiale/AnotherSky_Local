@@ -21,9 +21,13 @@ const useImageControl = () => {
   ) => {
     if (e.button === 1) {
       e.stopPropagation();
-      if (!isEditMode) {
-        // 現在のマウスの座標
-        setOriginPosition({ x: e.clientX, y: e.clientY });
+      if (!isEditMode && isEffect) {
+        const targetData = e.currentTarget.getBoundingClientRect();
+        // 現在のマウスの座標 (二回目以後はtransformによる偏移が発生するため、前回の偏移量を引くことで、transformの誤差を消す)
+        setOriginPosition({
+          x: targetData.x + targetData.width / 2 - imagePosition.x,
+          y: targetData.y + targetData.height / 2 - imagePosition.y,
+        });
       }
       setIsEditMode((prev) => !prev);
       if (!isEffect) {
