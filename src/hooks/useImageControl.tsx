@@ -16,8 +16,8 @@ const useImageControl = ({ initialScale, isEffect }: ParamsType) => {
     const targetData = e.currentTarget.getBoundingClientRect();
     // 現在のマウスの座標 (二回目以後はtransformによる偏移が発生するため、前回の偏移量を引くことで、transformの誤差を消す)
     setOriginPosition({
-      x: targetData.x + targetData.width / 2 - imagePosition.x,
-      y: targetData.y + targetData.height / 2 - imagePosition.y,
+      x: targetData.x + targetData.width / 2 - imagePosition.x * imageScale,
+      y: targetData.y + targetData.height / 2 - imagePosition.y * imageScale,
     });
   };
 
