@@ -12,7 +12,7 @@ type PropsType = {
     x: number;
     y: number;
   };
-  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>, scale: number) => void;
+  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>) => void;
   changeImageScale: (e: React.WheelEvent) => void;
   moveImageReverse: (e: React.MouseEvent<HTMLDivElement>) => void;
 };

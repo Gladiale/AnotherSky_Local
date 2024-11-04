@@ -1,34 +1,29 @@
 import { useState } from "react";
 
-const useImageControl = () => {
+type ParamsType = {
+  initialScale: number;
+  isEffect: boolean;
+};
+
+const useImageControl = ({ initialScale, isEffect }: ParamsType) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [imageScale, setImageScale] = useState<number>(1);
-  const [imagePosition, setImagePosition] = useState<{
-    x: number;
-    y: number;
-  }>({ x: 0, y: 0 });
+  const [imageScale, setImageScale] = useState<number>(initialScale);
+  const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
 
   // マウス最初の座標
-  const [originPosition, setOriginPosition] = useState<{
-    x: number;
-    y: number;
-  }>({ x: 0, y: 0 });
+  const [originPosition, setOriginPosition] = useState({ x: 0, y: 0 });
+  const changeOriginPoint = (e: React.MouseEvent<HTMLDivElement> | React.WheelEvent) => {
+    const targetData = e.currentTarget.getBoundingClientRect();
+    // 現在のマウスの座標 (二回目以後はtransformによる偏移が発生するため、前回の偏移量を引くことで、transformの誤差を消す)
+    setOriginPosition({
+      x: targetData.x + targetData.width / 2 - imagePosition.x,
+      y: targetData.y + targetData.height / 2 - imagePosition.y,
+    });
+  };
 
-  const triggerEditMode = (
-    e: React.MouseEvent<HTMLDivElement>,
-    initialScale: number,
-    isEffect = false
-  ) => {
+  const triggerEditMode = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.button === 1) {
       e.stopPropagation();
-      if (!isEditMode && isEffect) {
-        const targetData = e.currentTarget.getBoundingClientRect();
-        // 現在のマウスの座標 (二回目以後はtransformによる偏移が発生するため、前回の偏移量を引くことで、transformの誤差を消す)
-        setOriginPosition({
-          x: targetData.x + targetData.width / 2 - imagePosition.x,
-          y: targetData.y + targetData.height / 2 - imagePosition.y,
-        });
-      }
       setIsEditMode((prev) => !prev);
       if (!isEffect) {
         setImagePosition({
@@ -36,6 +31,9 @@ const useImageControl = () => {
           y: 0,
         });
         setImageScale(initialScale);
+      }
+      if (!isEditMode && isEffect) {
+        changeOriginPoint(e);
       }
     }
   };
@@ -71,8 +69,9 @@ const useImageControl = () => {
         ) * maxMoveY;
 
       setImagePosition({
-        x: positionX,
-        y: positionY,
+        // imageScaleを割ることで、移動倍率による問題を解消
+        x: (positionX / imageScale) * 2,
+        y: (positionY / imageScale) * 2,
       });
     }
   };
@@ -80,9 +79,10 @@ const useImageControl = () => {
   const moveImageDirect = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isEditMode) {
       // マウスの移動距離
+      // imageScaleによって、transformに必要な移動倍率も変わってしまうため、imageScaleを割ることで、その分の相応の移動倍率にすることができる
       setImagePosition({
-        x: e.clientX - originPosition.x,
-        y: e.clientY - originPosition.y,
+        x: (e.clientX - originPosition.x) / imageScale,
+        y: (e.clientY - originPosition.y) / imageScale,
       });
     }
   };

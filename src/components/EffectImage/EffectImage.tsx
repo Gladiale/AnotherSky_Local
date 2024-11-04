@@ -18,7 +18,7 @@ const EffectImage = () => {
     changeImageScale,
     imagePosition,
     moveImageDirect,
-  } = useImageControl();
+  } = useImageControl({ initialScale: 1, isEffect: true });
 
   const changeImageDeg = (e: React.MouseEvent<HTMLImageElement>) => {
     if (isEditMode) {
@@ -70,7 +70,7 @@ const EffectImage = () => {
         scale: String(imageScale),
       }}
       onClick={changeImageDeg}
-      onMouseDown={(e) => triggerEditMode(e, 1, true)}
+      onMouseDown={triggerEditMode}
       onMouseMove={moveImageDirect}
       onWheel={changeImageScale}
     />

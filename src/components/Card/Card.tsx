@@ -26,7 +26,7 @@ const Card = () => {
     triggerEditMode,
     changeImageScale,
     moveImageReverse,
-  } = useImageControl();
+  } = useImageControl({ initialScale: 1.5, isEffect: false });
 
   const { setIsHovered } = useHover();
   const { scene, setScene } = useScene();
