@@ -1,35 +1,38 @@
-.effect-img {
+.effect-box {
   position: absolute;
   transition: 0.3s;
   user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.effect-img.isEditing {
+.effect-box.topLeft {
+  top: 0;
+  left: 0;
+}
+
+.effect-box.topRight {
+  top: 0;
+  right: 0;
+}
+
+.effect-box.bottomLeft {
+  bottom: 0;
+  left: 0;
+}
+
+.effect-box.bottomRight {
+  bottom: 0;
+  right: 0;
+}
+
+.effect-box .effect-img {
+  transition: 0.5s;
+}
+
+.effect-box .effect-img.isEditing {
   outline: 0.1rem dashed #e79aff;
   filter: drop-shadow(0 0 3px #e386ff) drop-shadow(0 0 7px #2cffb9);
-}
-
-/* .effect-img.center {
-  inset: 0;
-  margin: auto;
-} */
-
-.effect-img.topLeft {
-  top: 0;
-  left: 0;
-}
-
-.effect-img.topRight {
-  top: 0;
-  right: 0;
-}
-
-.effect-img.bottomLeft {
-  bottom: 0;
-  left: 0;
-}
-
-.effect-img.bottomRight {
-  bottom: 0;
-  right: 0;
 }
