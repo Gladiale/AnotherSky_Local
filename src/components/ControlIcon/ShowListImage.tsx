@@ -38,7 +38,7 @@ const ShowListImage = () => {
       <div className={styles["target-box"]}>
         <div className={styles.otherAction}>
           <label>
-            <span>高度Auto</span>
+            <span>高さAuto</span>
             <input
               type="checkbox"
               checked={listSubState.heightAuto}
