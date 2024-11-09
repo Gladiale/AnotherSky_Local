@@ -6,7 +6,7 @@ import EffectImage from "../EffectImage/EffectImage";
 import ControlParts from "./ControlParts/ControlParts";
 
 type PropsType = {
-  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>) => void;
+  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>, reset?: boolean) => void;
   changeImageScale: (e: React.WheelEvent) => void;
   moveImageReverse: (e: React.MouseEvent<HTMLDivElement>) => void;
 };

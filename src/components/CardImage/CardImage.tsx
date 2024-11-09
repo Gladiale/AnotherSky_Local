@@ -6,13 +6,12 @@ import CardImageStand from "../CardImageStand/CardImageStand";
 
 type PropsType = {
   isEditMode: boolean;
-  setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   imageScale: number;
   imagePosition: {
     x: number;
     y: number;
   };
-  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>) => void;
+  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>, reset?: boolean) => void;
   changeImageScale: (e: React.WheelEvent) => void;
   moveImageReverse: (e: React.MouseEvent<HTMLDivElement>) => void;
 };

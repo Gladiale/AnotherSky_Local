@@ -21,8 +21,8 @@ const useImageControl = ({ initialScale, isEffect }: ParamsType) => {
     });
   };
 
-  const triggerEditMode = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.button === 1) {
+  const triggerEditMode = (e: React.MouseEvent<HTMLDivElement>, reset = false) => {
+    if (e.button === 1 || reset) {
       e.stopPropagation();
       setIsEditMode((prev) => !prev);
       if (!isEffect) {
@@ -89,7 +89,6 @@ const useImageControl = ({ initialScale, isEffect }: ParamsType) => {
 
   return {
     isEditMode,
-    setIsEditMode,
     imageScale,
     imagePosition,
     triggerEditMode,

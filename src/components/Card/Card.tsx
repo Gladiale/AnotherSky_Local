@@ -20,7 +20,6 @@ const Card = () => {
   // カスタムフック、インスタンス化に相当
   const {
     isEditMode,
-    setIsEditMode,
     imageScale,
     imagePosition,
     triggerEditMode,
@@ -61,7 +60,7 @@ const Card = () => {
   };
 
   // Cardにマウスの右クリック
-  const resetScene = (e: any) => {
+  const resetScene = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     switch (scene) {
       case "card-stand":
@@ -70,7 +69,9 @@ const Card = () => {
       case "card-cg":
         setScene("card-stand");
         setRotateCardDeg(0);
-        setIsEditMode(false);
+        if (isEditMode) {
+          triggerEditMode(e, true);
+        }
         break;
       default:
         console.log("test");
@@ -123,7 +124,6 @@ const Card = () => {
         <CardImage
           props={{
             isEditMode,
-            setIsEditMode,
             imageScale,
             imagePosition,
             triggerEditMode,
