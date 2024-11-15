@@ -14,7 +14,7 @@ const ToPrev = () => {
   const { characterInfoDispatch } = useCardCharacterInfo();
 
   const toPrevImage = () => {
-    isCharacter
+    isCharacter && scene === "card-cg"
       ? characterInfoDispatch({ type: "prev" })
       : mediaDispatch({ type: "prev", payload: scene });
   };
