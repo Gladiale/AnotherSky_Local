@@ -9,7 +9,6 @@ import { VideoDataObj } from "../../data/VideoDataObj";
 import { CharacterDataObj } from "../../data/CharacterDataObj";
 import { getDirectoryData } from "../../helper/dataObjControl";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import { useScreenMode } from "../../context/ScreenContext";
 
 const getTargetData = (target: DirectoryTargetType) => {
   switch (target) {
@@ -37,7 +36,6 @@ const Directory = () => {
   const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
   const { mediaDispatch } = useMediaInfo();
   const { setScene } = useScene();
-  const { screenMode } = useScreenMode();
 
   const directoryData: [number, string][][] = getTargetData(directoryTarget);
   // console.log("directoryData:", directoryData);
@@ -58,12 +56,7 @@ const Directory = () => {
   };
 
   return (
-    <div
-      className={styles["directory-container"]}
-      style={{
-        marginBottom: screenMode === "cardMode" ? "3.5rem" : undefined,
-      }}
-    >
+    <div className={styles["directory-container"]}>
       <div
         className={`${styles["gird-box"]} 
         ${directoryTarget === "character" ? styles.character : undefined}
@@ -71,15 +64,9 @@ const Directory = () => {
         `}
       >
         {directorySliced[pageIndex].map((directory, index) => (
-          <div
-            key={index}
-            className={styles.item}
-            onClick={() => setDirectory(index)}
-          >
+          <div key={index} className={styles.item} onClick={() => setDirectory(index)}>
             {directoryTarget != "video" && (
-              <img
-                src={`/${directoryTarget}/${directory[0][1]}/${directory[1][1]}`}
-              />
+              <img src={`/${directoryTarget}/${directory[0][1]}/${directory[1][1]}`} />
             )}
             <p>{directory[0][1]}</p>
           </div>
@@ -90,9 +77,7 @@ const Directory = () => {
           <div
             key={index}
             onClick={() => setPageIndex(index)}
-            className={`${styles.pageButton} ${
-              pageIndex === index && styles.active
-            }`}
+            className={`${styles.pageButton} ${pageIndex === index && styles.active}`}
           >
             <p>{index + 1}</p>
           </div>

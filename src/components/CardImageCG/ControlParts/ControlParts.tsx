@@ -5,6 +5,7 @@ import {
   useCardCharacterInfo,
   useCardCharacterState,
 } from "../../../context/CardCharacterContext";
+import IconSpecial from "../../Common/IconSpecial";
 
 const ControlParts = () => {
   const { isHovered } = useHover();
@@ -25,7 +26,7 @@ const ControlParts = () => {
         isHovered.cardHover && !isHovered.iconHover ? styles.show : undefined
       }`}
     >
-      <GiCrenelCrown className={styles.icon} onClick={changeContent} />
+      <IconSpecial children={<GiCrenelCrown />} onClick={changeContent} />
     </div>
   );
 };

@@ -15,10 +15,9 @@
   transition: 0.3s;
 }
 
-.effect-box:hover {
-  /* animation: korokoro 2.5s linear 0s 1; */
-  animation: hoverShake 0.15s linear 3;
-}
+/* .effect-box:hover {
+  animation: korokoro 2.5s linear 0s 1;
+} */
 
 .effect-box label {
   display: flex;
@@ -61,19 +60,4 @@
   border-top-color: transparent;
   border-left-color: transparent;
   transform: rotate(45deg);
-}
-
-@keyframes hoverShake {
-  0% {
-    transform: skew(0deg, 0deg);
-  }
-  25% {
-    transform: skew(1deg, 1deg);
-  }
-  75% {
-    transform: skew(-1deg, -1deg);
-  }
-  100% {
-    transform: skew(0deg, 0deg);
-  }
 }

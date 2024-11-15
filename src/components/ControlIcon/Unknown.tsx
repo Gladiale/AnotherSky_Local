@@ -1,8 +1,12 @@
-import styles from "./Icon.module.css";
 import { GiChewedHeart } from "react-icons/gi";
+import IconDefault from "../Common/IconDefault";
 
 const Unknown = () => {
-  return <GiChewedHeart className={styles.icon} />;
+  return (
+    <IconDefault>
+      <GiChewedHeart />
+    </IconDefault>
+  );
 };
 
 export default Unknown;

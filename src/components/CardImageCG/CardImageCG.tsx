@@ -1,6 +1,7 @@
 import styles from "./CardImageCG.module.css";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
 import { useMediaSize } from "../../context/ScreenContext";
+import { useAppOption } from "../../context/AppOptionContext";
 import CG from "./CG";
 import EffectImage from "../EffectImage/EffectImage";
 import ControlParts from "./ControlParts/ControlParts";
@@ -16,6 +17,7 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
 
   const { effectState } = useEffectState();
   const { mediaSize } = useMediaSize();
+  const { optionData } = useAppOption();
 
   const shakeCondition = {
     low: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "low",
@@ -32,7 +34,7 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
       `}
     >
       <div
-        className={styles["blendMode"]}
+        className={`${styles["blendMode"]} ${optionData.cgSwing && styles.swing}`}
         onMouseDown={triggerEditMode}
         onMouseMove={moveImageReverse}
         onWheel={changeImageScale}

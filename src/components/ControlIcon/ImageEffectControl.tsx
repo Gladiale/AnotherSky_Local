@@ -1,21 +1,23 @@
 import styles from "./ImageEffectControl.module.css";
 import { GiPrism } from "react-icons/gi";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
-import PartsBoxEF from "./ControlParts/PartsBoxEF";
-import EffectBox from "./ControlParts/EffectBox";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import RadioBox from "./ControlParts/RadioBox";
 import { EffectStateType } from "../../context/EffectState/effectStateInit";
-import CheckBox from "./ControlParts/CheckBox";
+import { useEffectControl } from "../../context/EffectControlContext";
+import PartsBox from "../Common/PartsBox";
+import EffectBox from "../Common/EffectBox";
+import CheckBox from "../Common/CheckBox";
+import RadioBox from "../Common/RadioBox";
+import IconDefault from "../Common/IconDefault";
 
 const ImageEffectControl = () => {
   const { effectState, effectStateDispatch } = useEffectState();
   const { mediaState, mediaDispatch } = useMediaInfo();
+  const { triggerEditMode } = useEffectControl();
 
   const condition: boolean =
     effectState.imageEF.activeImage ||
     effectState.imageEF.activeBlend ||
-    effectState.filterEffect.dropShadow ||
     effectState.pixelEffect ||
     effectState.shakeEffect.active;
 
@@ -26,9 +28,10 @@ const ImageEffectControl = () => {
     checkedList: effectState.imageEF.maxHeightFull ? [true] : [false],
   };
 
-  const openCloseImgEF = () => {
+  const openCloseImgEF = (e: React.MouseEvent<HTMLDivElement>) => {
     condition
-      ? effectStateDispatch({ type: "imgEfMultiActive", payload: "closeAll" })
+      ? (effectStateDispatch({ type: "imgEfMultiActive", payload: "closeAll" }),
+        triggerEditMode(e, true))
       : effectStateDispatch({ type: "imgEfMultiActive", payload: "openAll" });
   };
 
@@ -59,8 +62,9 @@ const ImageEffectControl = () => {
       {condition && (
         <div className={styles["EF-wrapper"]}>
           <EffectBox />
-          <PartsBoxEF
-            nameEF="blendEF"
+          <PartsBox
+            name2nd="blendEF"
+            part2nd={true}
             message={effectState.imageEF.blendKind}
             active={effectState.imageEF.activeBlend}
             activeFunc={() =>
@@ -76,8 +80,9 @@ const ImageEffectControl = () => {
               effectStateDispatch({ type: "imgEfKind", payload: "next" })
             }
           />
-          <PartsBoxEF
-            nameEF="imageEF"
+          <PartsBox
+            name2nd="imageEF"
+            part2nd={true}
             message={mediaState.folder.effect[1]}
             active={effectState.imageEF.activeImage}
             activeFunc={() =>
@@ -97,9 +102,7 @@ const ImageEffectControl = () => {
                 <CheckBox
                   messageList={["高さ100%"]}
                   checkedList={containState.checkedList}
-                  changeFuncList={[
-                    () => effectStateDispatch({ type: "imgEfMaxHeight" }),
-                  ]}
+                  changeFuncList={[() => effectStateDispatch({ type: "imgEfMaxHeight" })]}
                   checkBoxSize="small"
                 />
                 <RadioBox
@@ -157,10 +160,9 @@ const ImageEffectControl = () => {
         </div>
       )}
 
-      <GiPrism
-        className={`${styles.icon} ${condition && styles.toggleState}`}
-        onClick={openCloseImgEF}
-      />
+      <IconDefault className={condition && "toggle"} onClick={openCloseImgEF}>
+        <GiPrism />
+      </IconDefault>
     </div>
   );
 };

@@ -1,14 +1,31 @@
 .control-container {
   position: absolute;
-  bottom: 0.5rem;
+  bottom: 0.2rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  z-index: 999;
-  filter: drop-shadow(0 0 5px #5cff95) drop-shadow(0 0 15px #ff34dd);
+
+  z-index: 99;
 }
 
-.control-container:hover {
-  filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+@media (max-width: 768px) {
+  .control-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0.3rem;
+
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0;
+
+    padding-top: 2.5rem;
+  }
+}
+
+.control-container.shadow {
+  /* filter: var(--drop-shadow); */
+  filter: var(--drop-shadow-hover);
 }

@@ -8,13 +8,31 @@
 }
 
 .container.cardMode {
-  height: 54rem;
+  height: 864px;
 }
 
 .container.cgMode {
-  height: 99dvh;
+  height: 100dvh;
 }
 
 .container.mirror {
   width: 100dvw;
+}
+
+@media (max-height: 864px) {
+  .container.cardMode {
+    height: 670px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container.cardMode {
+    height: 600px;
+  }
+}
+
+@media (max-width: 768px) and (max-resolution: 1dppx) {
+  .container.cardMode {
+    height: 670px;
+  }
 }

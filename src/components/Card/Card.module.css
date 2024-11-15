@@ -18,36 +18,40 @@
   justify-content: center;
   align-items: center;
   background: var(--clr1);
-  box-shadow: 0 0 0 5px #0009, 0 10px 65px var(--clr1);
+  border: 5px solid #000000dc;
+  box-shadow: 0 0 30px var(--clr1);
   user-select: none;
-  transition: 0.5s;
+  transition: all 0.5s, border 0.1s, background-color 0s, box-shadow 0.3s;
   /* imageの3D化 */
   transform-style: preserve-3d;
   perspective: 1000px;
 
   height: 100%;
+  aspect-ratio: 1 / 1.42;
 }
 
-.card.cardMode {
-  width: 38rem;
-}
-.card.cgMode {
-  width: 40dvw;
+@media (max-width: 768px) {
+  .card.cgMode {
+    width: 100dvw;
+  }
 }
 
 .card:hover {
   background: var(--clr2);
-  box-shadow: 0 0 0 5px #0009, 0 10px 65px var(--clr2), 0 10px 95px var(--clr2);
+  box-shadow: 0 0 30px var(--clr2), 0 0 35px var(--clr2);
 }
 
 .card.sceneCG {
   background: none;
   box-shadow: none;
-
+  border: 0px solid transparent;
   width: auto;
-  filter: drop-shadow(0 0 5px #5cff95) drop-shadow(0 0 15px #ff34dd);
 }
 
-.card.sceneCG:hover {
-  filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+.card.sceneCG.shadow {
+  filter: var(--drop-shadow);
+}
+
+.card.sceneCG.shadow:hover {
+  filter: var(--drop-shadow-hover);
 }

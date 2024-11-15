@@ -2,13 +2,13 @@
   cursor: crosshair;
   transition: 0.5s;
   animation: poyon 1.1s linear 0s 1;
-  filter: drop-shadow(0 0 5px #ff00d4) drop-shadow(0 0 15px #ff00d4);
   position: relative;
   z-index: 9;
 
   /* *** rotateYの親要素に当たれば3Dは実現できる *** */
   transform-style: preserve-3d;
   perspective: 1500px;
+  height: 100%;
 }
 
 .video-content .video-box {
@@ -17,15 +17,15 @@
   align-items: center;
 
   transition: 0.5s;
-  width: "fit-content";
+  height: 100%;
 }
 
 .video-content .video-box.cardMode {
-  height: 54.5rem;
+  filter: drop-shadow(0 0 5px #ff00d4) drop-shadow(0 0 15px #ff00d4);
 }
-.video-content .video-box.cgMode {
+/* .video-content .video-box.cgMode {
   height: 99dvh;
-}
+} */
 
 .video-content .video-box.shake:hover {
   animation: bounce_video 0.5s ease alternate infinite;

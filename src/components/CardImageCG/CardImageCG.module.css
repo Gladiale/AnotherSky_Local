@@ -29,6 +29,9 @@
   position: relative;
   cursor: crosshair;
   transition: 0.5s;
+}
+
+.img-box .blendMode.swing {
   animation: cg_picture 7.5s linear infinite;
 }
 

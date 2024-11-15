@@ -12,6 +12,7 @@ import { ImageListProvider } from "../../context/ImageListState";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
 import { RotateYProvider } from "../../context/RotateYContext";
 import { CardCharacterProvider } from "../../context/CardCharacterContext";
+import { EffectControlProvider } from "../../context/EffectControlContext";
 
 const Container = () => {
   const { mediaState, mediaDispatch } = useMediaInfo();
@@ -36,9 +37,11 @@ const Container = () => {
           <RotateYProvider>
             <HoverProvider>
               <ImageListProvider>
-                <Content />
-                <Control />
-                <Information />
+                <EffectControlProvider>
+                  <Content />
+                  <Control />
+                  <Information />
+                </EffectControlProvider>
               </ImageListProvider>
             </HoverProvider>
           </RotateYProvider>

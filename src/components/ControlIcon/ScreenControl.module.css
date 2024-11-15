@@ -8,38 +8,9 @@
   white-space: nowrap;
 }
 
-.screen-container .icon {
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 50%;
-  color: #ffa9ec;
-  font-size: 2.2rem;
-  transition: 0.25s;
-}
-
-.screen-container .icon:hover {
-  border: 1px dashed #ffa9ec;
-  background-color: #fff;
-  color: rgb(200, 0, 15);
-  animation: 0.2s linear 0s flashAni;
-}
-
-.screen-container .icon:active {
-  color: #eb00e7;
-  border: 1px dashed #eb004e;
-  scale: 1.5;
-}
-
-/* .screen-container .icon.sizeNone {
-  color: #e1ff00;
-}
-.screen-container .icon.sizeCustom {
-  color: #00eeff;
-} */
-
 .screen-container .sizeSelect {
   position: absolute;
-  transform: translateY(-140%);
+  transform: translateY(-145%);
 
   display: flex;
   justify-content: center;
@@ -90,16 +61,10 @@
   background: #ed8be9;
 }
 
-@keyframes flashAni {
-  0%,
-  35%,
-  50%,
-  85% {
-    opacity: 0;
-  }
-  20%,
-  65%,
-  100% {
-    opacity: 1;
+@media (max-width: 768px) {
+  .screen-container .sizeSelect {
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translateY(0) translateX(-60%);
   }
 }

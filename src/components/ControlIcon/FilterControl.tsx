@@ -1,7 +1,8 @@
 import styles from "./FilterControl.module.css";
 import { GiFairyWand } from "react-icons/gi";
-import FilterMenu from "./FilterMenu";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import FilterMenu from "./FilterMenu";
+import IconDefault from "../Common/IconDefault";
 
 const FilterControl = () => {
   const { effectState, effectStateDispatch } = useEffectState();
@@ -20,10 +21,9 @@ const FilterControl = () => {
 
   return (
     <div className={styles["filter-container"]}>
-      <GiFairyWand
-        className={`${styles.icon} ${condition && styles.toggleFilter}`}
-        onClick={openCloseFilter}
-      />
+      <IconDefault onClick={openCloseFilter} className={condition && "toggle"}>
+        <GiFairyWand />
+      </IconDefault>
       {condition && <FilterMenu />}
     </div>
   );

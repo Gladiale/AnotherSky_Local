@@ -1,6 +1,18 @@
 @charset "utf-8";
 @import url("https://fonts.googleapis.com/css?family=Poppins:200;300;400;500;600;700;800;900&display=swap");
 
+:root {
+  --label-color: #ff84fb;
+  --label-color-hover: #d9ff2f;
+
+  --unchecked-color: #ed8be9;
+  --checked-color: #93ffeb;
+  --checkBox-color-hover: #09ff00;
+
+  --drop-shadow: drop-shadow(0 0 5px #5cff95) drop-shadow(0 0 15px #ff34dd);
+  --drop-shadow-hover: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+}
+
 *,
 *::before,
 *::after {
@@ -14,10 +26,19 @@ html {
   font-size: 16px;
 }
 
-/* ！重要 125%画面拡大倍率対応 */
+/* 125%画面拡大倍率対応例 */
 /* 参考: https://junzou-marketing.com/css-responsive-image */
 /* @media (min-resolution: 1.25dppx) {
   html {
     font-size: 12.8px;
   }
 } */
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  background: #061206;
+  overflow: hidden;
+}

@@ -1,16 +1,17 @@
-import styles from "./Icon.module.css";
 import { GiAbstract024 } from "react-icons/gi";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import IconDefault from "../Common/IconDefault";
 
 const MirrorEffectControl = () => {
   const { effectState, effectStateDispatch } = useEffectState();
 
   return (
-    <GiAbstract024
-      className={`${styles.icon} 
-      ${effectState.mirrorEffect && styles.toggleState}`}
+    <IconDefault
+      className={effectState.mirrorEffect && "toggle"}
       onClick={() => effectStateDispatch({ type: "mirror" })}
-    />
+    >
+      <GiAbstract024 />
+    </IconDefault>
   );
 };
 

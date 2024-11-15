@@ -4,6 +4,8 @@ import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { GiHeartStake } from "react-icons/gi";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { BiFirstPage, BiLastPage } from "react-icons/bi";
+import IconSmall from "../Common/IconSmall";
+import IconDefault from "../Common/IconDefault";
 
 const VoiceControl = () => {
   const { mediaState, mediaDispatch } = useMediaInfo();
@@ -22,23 +24,23 @@ const VoiceControl = () => {
       {hasVoice && (
         <div className={styles["voice-box"]}>
           <div className={styles["voice-control"]}>
-            <BiFirstPage
-              className={styles.iconSmall}
+            <IconSmall
+              children={<BiFirstPage />}
               onClick={() => mediaDispatch({ type: "voiceFirst" })}
             />
-            <BsChevronLeft
-              className={styles.iconSmall}
+            <IconSmall
+              children={<BsChevronLeft />}
               onClick={() => mediaDispatch({ type: "voicePrev" })}
             />
             <p onClick={() => mediaDispatch({ type: "voiceFolderNext" })}>
               {mediaState.folder.voice[1]}
             </p>
-            <BsChevronRight
-              className={styles.iconSmall}
+            <IconSmall
+              children={<BsChevronRight />}
               onClick={() => mediaDispatch({ type: "voiceNext" })}
             />
-            <BiLastPage
-              className={styles.iconSmall}
+            <IconSmall
+              children={<BiLastPage />}
               onClick={() => mediaDispatch({ type: "voiceLast" })}
             />
           </div>
@@ -46,20 +48,20 @@ const VoiceControl = () => {
             controls
             autoPlay
             loop={isLoop}
-            onEnded={
-              isLoop ? undefined : () => mediaDispatch({ type: "voiceNext" })
-            }
+            onEnded={isLoop ? undefined : () => mediaDispatch({ type: "voiceNext" })}
             className={isLoop ? "" : styles.inOrder}
             src={`/voice/${mediaState.folder.voice[1]}/${mediaState.file.voiceFile[1]}`}
           ></audio>
         </div>
       )}
 
-      <GiHeartStake
-        className={`${styles.icon} ${hasVoice ? styles.toggleVoice : ""}`}
+      <IconDefault
+        className={hasVoice && "toggleVoice"}
         onClick={() => setHasVoice((prev) => !prev)}
         onContextMenu={changeVoiceLoop}
-      />
+      >
+        <GiHeartStake />
+      </IconDefault>
     </div>
   );
 };

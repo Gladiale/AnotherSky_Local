@@ -4,19 +4,27 @@ import { useEffectState } from "../../context/EffectState/EffectStateContext";
 import { useFilter } from "../../context/FilterContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";
-import { useMediaSize, useScreenMode } from "../../context/ScreenContext";
+import { useScreenMode } from "../../context/ScreenContext";
 import { useRotateY } from "../../context/RotateYContext";
+import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import EffectImage from "../EffectImage/EffectImage";
 import VideoControl from "./VideoControl/VideoControl";
+import useLoading from "../../hooks/useLoading";
+import Loading from "../Loading/Loading";
 
 const Video = () => {
   const { setScene } = useScene();
   const { mediaState } = useMediaInfo();
   const { rotateYState } = useRotateY();
   const { screenMode } = useScreenMode();
-  const { mediaSize } = useMediaSize();
   const { effectState } = useEffectState();
   const { filterState } = useFilter();
+  const { mediaSizeData } = useMediaSizeData();
+
+  const { loadStatus, showTarget, showError } = useLoading({
+    trigger: [mediaState.folder.video[1], mediaState.file.videoFile[1]],
+    target: "video",
+  });
 
   const [rotateVideoDeg, setRotateVideoDeg] = useState<number>(0);
   const [videoHovered, setVideoHovered] = useState<boolean>(false);
@@ -50,7 +58,6 @@ const Video = () => {
         style={{
           transform: `rotate(${rotateVideoDeg}deg) 
                       rotateY(${rotateYState.videoRotateY ? 180 : 0}deg)`,
-          height: mediaSize === "contain" ? undefined : "fit-content",
         }}
       >
         <video
@@ -62,21 +69,23 @@ const Video = () => {
             filter: effectState.filterEffect.targetVideo
               ? `opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
               : undefined,
-            objectFit: mediaSize === "custom" ? "contain" : mediaSize,
-            height: mediaSize === "contain" ? "100%" : "auto",
-            width: "auto",
-            maxHeight: mediaSize === "custom" ? "100dvh" : undefined,
-            maxWidth: mediaSize === "custom" ? "65dvw" : undefined,
+            objectFit: mediaSizeData.objectFit,
+            height: mediaSizeData.height,
+            width: mediaSizeData.width,
+            maxHeight: mediaSizeData.maxHeight,
+            maxWidth: mediaSizeData.maxWidth,
+            display: loadStatus === "success" ? undefined : "none",
           }}
+          onLoadedData={showTarget}
+          onStalled={showError}
           src={`/video/${mediaState.folder.video[1]}/${mediaState.file.videoFile[1]}`}
         ></video>
 
+        <Loading loadStatus={loadStatus} />
+
         {effectState.imageEF.activeImage && <EffectImage />}
 
-        <VideoControl
-          videoHovered={videoHovered}
-          setHasControl={setHasControl}
-        />
+        <VideoControl videoHovered={videoHovered} setHasControl={setHasControl} />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ type PropsType = {
   checkBoxSize: "small" | "middle" | "big";
 };
 
-const CheckBoxType2 = (props: PropsType) => {
+const CheckBox2nd = (props: PropsType) => {
   const { messageList, checkedList, changeFuncList, checkBoxSize } = props;
 
   return (
@@ -27,4 +27,4 @@ const CheckBoxType2 = (props: PropsType) => {
   );
 };
 
-export default CheckBoxType2;
+export default CheckBox2nd;

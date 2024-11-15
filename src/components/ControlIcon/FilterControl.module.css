@@ -5,41 +5,6 @@
   align-items: center;
 }
 
-.icon {
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 50%;
-  color: #ffa9ec;
-  font-size: 2.2rem;
-  transition: 0.25s;
-}
-
-.icon:hover {
-  border: 1px dashed #ffa9ec;
-  background-color: #fff;
-  color: rgb(200, 0, 15);
-  animation: 0.2s linear 0s flashAni;
-}
-
-.icon:active {
-  color: #eb00e7;
-  border: 1px dashed #eb004e;
-  scale: 1.5;
-}
-
-.icon.toggleFilter {
-  animation: change-color 1s linear infinite alternate;
-}
-
-@keyframes change-color {
-  0% {
-    color: #ff99fd;
-  }
-  100% {
-    color: #ebd000;
-  }
-}
-
 .menuFilter {
   position: absolute;
   font-size: 1rem;
@@ -296,17 +261,9 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
 }
 
-@keyframes flashAni {
-  0%,
-  35%,
-  50%,
-  85% {
-    opacity: 0;
-  }
-  20%,
-  65%,
-  100% {
-    opacity: 1;
+@media (max-width: 768px) {
+  .menuFilter {
+    transform: translateY(-30%) translateX(-65%);
   }
 }
 

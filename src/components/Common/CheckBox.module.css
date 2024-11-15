@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
-  color: #ff84fb;
   font-size: 0.8rem;
 }
 
@@ -18,22 +17,31 @@
   justify-content: center;
   user-select: none;
   gap: 0.2rem;
+  color: var(--label-color);
+}
+
+.check-box label:hover {
+  color: var(--label-color-hover);
 }
 
 /* チェックボックスカスタマイズ */
 .check-box label input[type="checkbox"] {
   appearance: none;
   cursor: pointer;
-  border: 1px solid #ed8be9;
+  border: 1px solid var(--unchecked-color);
   transition: all 0.12s, border-color 0.08s;
   position: relative;
 }
 
 .check-box label input[type="checkbox"]:checked {
-  border-color: #93ffeb;
+  border-color: var(--checked-color);
   border-top-color: transparent;
   border-left-color: transparent;
   transform: rotate(45deg);
+}
+
+.check-box label:hover input[type="checkbox"]:not(:checked) {
+  border-color: var(--checkBox-color-hover);
 }
 
 .check-box label input[type="checkbox"].middle {

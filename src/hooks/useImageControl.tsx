@@ -10,6 +10,19 @@ const useImageControl = ({ initialScale, isEffect }: ParamsType) => {
   const [imageScale, setImageScale] = useState<number>(initialScale);
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
 
+  // 画像回転
+  const [imageDeg, setImageDeg] = useState<number>(0);
+  const changeImageDeg = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isEditMode || !isEffect) {
+      e.stopPropagation();
+      if (imageDeg <= -1350) {
+        setImageDeg(0);
+      } else {
+        setImageDeg((prev) => prev - 90);
+      }
+    }
+  };
+
   // マウス最初の座標
   const [originPosition, setOriginPosition] = useState({ x: 0, y: 0 });
   const changeOriginPoint = (e: React.MouseEvent<HTMLDivElement> | React.WheelEvent) => {
@@ -22,14 +35,19 @@ const useImageControl = ({ initialScale, isEffect }: ParamsType) => {
   };
 
   const triggerEditMode = (e: React.MouseEvent<HTMLDivElement>, reset = false) => {
-    if (e.button === 1 || reset) {
+    if (reset) {
+      e.stopPropagation();
+      setIsEditMode(false);
+      setImagePosition({ x: 0, y: 0 });
+      setImageScale(initialScale);
+      setImageDeg(0);
+    }
+
+    if (e.button === 1) {
       e.stopPropagation();
       setIsEditMode((prev) => !prev);
       if (!isEffect) {
-        setImagePosition({
-          x: 0,
-          y: 0,
-        });
+        setImagePosition({ x: 0, y: 0 });
         setImageScale(initialScale);
       }
       if (!isEditMode && isEffect) {
@@ -89,9 +107,11 @@ const useImageControl = ({ initialScale, isEffect }: ParamsType) => {
 
   return {
     isEditMode,
+    imageDeg,
     imageScale,
     imagePosition,
     triggerEditMode,
+    changeImageDeg,
     changeImageScale,
     moveImageReverse,
     moveImageDirect,

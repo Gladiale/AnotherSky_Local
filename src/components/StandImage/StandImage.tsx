@@ -2,8 +2,9 @@ import styles from "./StandImage.module.css";
 import { useState } from "react";
 import { useFilter } from "../../context/FilterContext";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
-import ImageParts from "./ImageParts";
 import { useRotateY } from "../../context/RotateYContext";
+import { useFilterData } from "../../hooks/useFilterData";
+import ImageParts from "./ImageParts";
 
 type PropsType = {
   imgStyle?: React.CSSProperties;
@@ -15,6 +16,7 @@ const StandImage = ({ imgStyle }: PropsType) => {
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
   const { filterState } = useFilter();
+  const { filterData } = useFilterData("character");
 
   const handleAspect = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const width = e.currentTarget.naturalWidth;
@@ -44,9 +46,6 @@ const StandImage = ({ imgStyle }: PropsType) => {
     return setImgMoveValue("-32%");
   };
 
-  const filterShadow = `drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff)`;
-  const filterNoShadow = `opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`;
-
   return (
     <div
       className={`${styles["stand-container"]} ${
@@ -63,13 +62,7 @@ const StandImage = ({ imgStyle }: PropsType) => {
         style={{
           transform: `rotateY(${rotateYState.standImgRotateY ? 180 : 0}deg)`,
           imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
-          filter: effectState.filterEffect.targetCharacter
-            ? effectState.filterEffect.dropShadow
-              ? filterShadow + filterNoShadow
-              : filterNoShadow
-            : effectState.filterEffect.dropShadow
-            ? filterShadow
-            : undefined,
+          filter: filterData,
           display:
             effectState.mirrorEffect &&
             effectState.filterEffect.targetCharacter &&

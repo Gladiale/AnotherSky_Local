@@ -5,32 +5,10 @@
   align-items: center;
 }
 
-.autoMatic-box .icon {
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 50%;
-  color: #ffa9ec;
-  font-size: 2.2rem;
-  transition: 0.25s;
-}
-
-.autoMatic-box .icon:hover {
-  border: 1px dashed #ffa9ec;
-  background-color: #fff;
-  color: rgb(200, 0, 15);
-  animation: 0.2s linear 0s flashAni;
-}
-
-.autoMatic-box .icon:active {
-  color: #eb00e7;
-  border: 1px dashed #eb004e;
-  scale: 1.5;
-}
-
-.autoMatic-box .icon.autoMatic {
+.autoMatic-box .autoMatic {
   animation: animate-rotate 1.5s linear infinite;
 }
-.autoMatic-box .icon.autoMaticEff {
+.autoMatic-box .autoMaticEff {
   color: #00eb6a;
 }
 
@@ -48,23 +26,6 @@
 
 .autoMatic-box:hover .autoMatic-options {
   scale: 1;
-}
-
-.autoMatic-box .autoMatic-options .iconSmall {
-  cursor: pointer;
-  font-size: 1.1rem;
-  padding: 2px;
-  margin-left: 0.3rem;
-  margin-right: 0.3rem;
-  border-radius: 50%;
-  color: #ff57b6;
-  background-color: #37fffc;
-}
-
-.autoMatic-box .autoMatic-options .iconSmall:hover {
-  color: #e57dff;
-  background-color: #89ffd4;
-  animation: 0.2s linear 0s flashAni;
 }
 
 .autoMatic-box .autoMatic-options p {
@@ -86,6 +47,12 @@
   color: #590072;
   background-color: #89ffd4;
   border: 1px dashed #ffa9ec;
+}
+
+@media (max-width: 768px) {
+  .autoMatic-box .autoMatic-options {
+    transform: translateY(0) translateX(-65%);
+  }
 }
 
 @keyframes flashAni {

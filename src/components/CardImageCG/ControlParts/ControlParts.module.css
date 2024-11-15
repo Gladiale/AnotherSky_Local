@@ -15,38 +15,3 @@
 .control-box:hover {
   opacity: 1;
 }
-
-.control-box .icon {
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 50%;
-  color: #e090ff;
-  font-size: 2.2rem;
-  transition: 0.25s;
-  filter: drop-shadow(0 0 5px #920083) drop-shadow(0 0 15px #fc58ff);
-}
-
-.control-box .icon:hover {
-  color: rgb(200, 0, 15);
-  animation: 0.2s linear 0s flashAni;
-  filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 5px #fc3eff);
-}
-
-.control-box .icon:active {
-  color: #eb00e7;
-  scale: 1.3;
-}
-
-@keyframes flashAni {
-  0%,
-  35%,
-  50%,
-  85% {
-    opacity: 0;
-  }
-  20%,
-  65%,
-  100% {
-    opacity: 1;
-  }
-}

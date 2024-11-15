@@ -22,10 +22,6 @@ const imgEfMultiActive = (
       activeImage: false,
       activeBlend: false,
     },
-    filterEffect: {
-      ...state.filterEffect,
-      dropShadow: false,
-    },
     pixelEffect: false,
     shakeEffect: {
       ...state.shakeEffect,

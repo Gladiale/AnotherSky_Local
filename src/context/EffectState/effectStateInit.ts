@@ -39,7 +39,6 @@ type EffectStateType = {
     targetCard: boolean;
     targetCharacter: boolean;
     targetVideo: boolean;
-    dropShadow: boolean;
   };
   pixelEffect: boolean;
   shakeEffect: {
@@ -65,7 +64,6 @@ const effectSateInit: EffectStateType = {
     targetCard: false,
     targetCharacter: false,
     targetVideo: false,
-    dropShadow: false,
   },
   pixelEffect: false,
   shakeEffect: {

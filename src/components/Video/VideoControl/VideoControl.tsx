@@ -1,5 +1,6 @@
 import { GiCyberEye } from "react-icons/gi";
 import styles from "./VideoControl.module.css";
+import IconSpecial from "../../Common/IconSpecial";
 
 type PropsType = {
   videoHovered: boolean;
@@ -14,7 +15,7 @@ const VideoControl = ({ videoHovered, setHasControl }: PropsType) => {
 
   return (
     <div className={`${styles["control-box"]} ${videoHovered && styles.show}`}>
-      <GiCyberEye className={styles.icon} onClick={changeControl} />
+      <IconSpecial children={<GiCyberEye />} onClick={changeControl} />
     </div>
   );
 };

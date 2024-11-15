@@ -3,7 +3,8 @@ import { GiStarSwirl } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
 import { useState } from "react";
 import { useRotateY } from "../../context/RotateYContext";
-import CheckBox from "./ControlParts/CheckBox";
+import CheckBox from "../Common/CheckBox";
+import IconDefault from "../Common/IconDefault";
 
 const RotateYControl = () => {
   const [isTachie, setIsTachie] = useState<boolean>(false);
@@ -25,11 +26,10 @@ const RotateYControl = () => {
           checkBoxSize="middle"
         />
       </div>
-      <GiStarSwirl
-        className={styles.icon}
-        onClick={() =>
-          rotateYDispatch({ type: scene, payload: { isTachie, isEffect } })
-        }
+
+      <IconDefault
+        children={<GiStarSwirl />}
+        onClick={() => rotateYDispatch({ type: scene, payload: { isTachie, isEffect } })}
       />
     </div>
   );

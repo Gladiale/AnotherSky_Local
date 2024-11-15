@@ -1,4 +1,4 @@
-.EF-box {
+.parts-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,7 +7,7 @@
   gap: 0.1rem;
 }
 
-.EF-box label {
+.parts-box label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,38 +18,17 @@
   transition: 0.25s;
 }
 
-.EF-box label:hover {
+.parts-box label:hover {
   color: #d9ff2f;
 }
 
-.EF-box .controlEF {
+.parts-box .control {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.EF-box .controlEF .iconSmall {
-  cursor: pointer;
-  font-size: 1.1rem;
-  padding: 2px;
-  margin-left: 0.3rem;
-  margin-right: 0.3rem;
-  border-radius: 50%;
-  color: #ff57b6;
-  background-color: #37fffc;
-}
-
-.EF-box .controlEF .iconSmall:hover {
-  color: #e57dff;
-  background-color: #89ffd4;
-  animation: 0.2s linear 0s flashAni;
-}
-
-.EF-box .controlEF .iconSmall:active {
-  background-color: #ba0091;
-}
-
-.EF-box .controlEF p {
+.parts-box .control p {
   font-size: 1.05rem;
   line-height: 1rem;
   width: 6rem;
@@ -63,7 +42,7 @@
   transition: 0.25s;
 }
 
-.EF-box .controlEF p:hover {
+.parts-box .control p:hover {
   animation: 0.2s linear 0s flashAni;
   color: #590072;
   background-color: #89ffd4;
@@ -71,7 +50,7 @@
 }
 
 /* checkboxカスタマイズ */
-.EF-box input[type="checkbox"] {
+.parts-box input[type="checkbox"] {
   appearance: none;
   cursor: pointer;
   width: 0.8rem;
@@ -81,7 +60,7 @@
   position: relative;
 }
 
-.EF-box input[type="checkbox"]:checked {
+.parts-box input[type="checkbox"]:checked {
   width: 0.4rem;
   top: -0.2rem;
   left: 0.2rem;
@@ -91,7 +70,7 @@
   transform: rotate(45deg);
 }
 
-.EF-box label:hover input[type="checkbox"]:not(:checked) {
+.parts-box label:hover input[type="checkbox"]:not(:checked) {
   border-color: #09ff00;
 }
 

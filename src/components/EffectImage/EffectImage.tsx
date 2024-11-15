@@ -1,35 +1,31 @@
 import styles from "./EffectImage.module.css";
-import { useState } from "react";
 import { useEffectState } from "../../context/EffectState/EffectStateContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useRotateY } from "../../context/RotateYContext";
-import { useImageControl } from "../../hooks/useImageControl";
+import { useEffectControl } from "../../context/EffectControlContext";
+import Loading from "../Loading/Loading";
+import useLoading from "../../hooks/useLoading";
 
 const EffectImage = () => {
   const { mediaState } = useMediaInfo();
   const { effectState } = useEffectState();
   const { rotateYState } = useRotateY();
-  const [imageDeg, setImageDeg] = useState<number>(0);
 
   const {
     isEditMode,
-    triggerEditMode,
+    imageDeg,
     imageScale,
-    changeImageScale,
     imagePosition,
+    triggerEditMode,
+    changeImageDeg,
+    changeImageScale,
     moveImageDirect,
-  } = useImageControl({ initialScale: 1, isEffect: true });
+  } = useEffectControl();
 
-  const changeImageDeg = (e: React.MouseEvent<HTMLImageElement>) => {
-    if (isEditMode) {
-      e.stopPropagation();
-      if (imageDeg <= -1350) {
-        setImageDeg(0);
-      } else {
-        setImageDeg((prev) => prev - 90);
-      }
-    }
-  };
+  const { loadStatus, showTarget, showError } = useLoading({
+    trigger: [mediaState.folder.effect[1], mediaState.file.effectFile[1]],
+    target: "effect",
+  });
 
   let imgWidth: "auto" | "100%",
     imgHeight: "auto" | "100%",
@@ -61,7 +57,6 @@ const EffectImage = () => {
       style={{
         width: imgWidth,
         height: divHeight,
-        // maxHeight: effectState.imageEF.size === "contain" ? "120%" : undefined,
         scale: String(imageScale),
         transform: `translate(${imagePosition.x}px, ${imagePosition.y}px)`,
         mixBlendMode: effectState.imageEF.activeBlend
@@ -79,12 +74,17 @@ const EffectImage = () => {
           transform: rotateYState.effectRotateY
             ? `rotateY(180deg) rotate(${imageDeg}deg)`
             : `rotate(${imageDeg}deg)`,
+          display: loadStatus === "success" ? undefined : "none",
         }}
         onClick={changeImageDeg}
         onMouseDown={triggerEditMode}
         onMouseMove={moveImageDirect}
         onWheel={changeImageScale}
+        onLoad={showTarget}
+        onStalled={showError}
       />
+
+      <Loading loadStatus={loadStatus} />
     </div>
   );
 };

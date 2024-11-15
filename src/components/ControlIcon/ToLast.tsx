@@ -1,17 +1,16 @@
-import styles from "./Icon.module.css";
 import { BiLastPage } from "react-icons/bi";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";
+import IconDefault from "../Common/IconDefault";
 
 const ToLast = () => {
   const { scene } = useScene();
   const { mediaDispatch } = useMediaInfo();
 
   return (
-    <BiLastPage
-      className={styles.icon}
-      onClick={() => mediaDispatch({ type: "last", payload: scene })}
-    />
+    <IconDefault onClick={() => mediaDispatch({ type: "last", payload: scene })}>
+      <BiLastPage />
+    </IconDefault>
   );
 };
 

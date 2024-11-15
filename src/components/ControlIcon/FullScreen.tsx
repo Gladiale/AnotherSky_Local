@@ -6,9 +6,10 @@ import {
   useDirectoryInfo,
   DirectoryTargetType,
 } from "../../context/SceneContext";
-import { GiAllSeeingEye, GiEclipseFlare } from "react-icons/gi";
-import CheckBoxType2 from "./ControlParts/CheckBoxType2";
-import RadioBox from "./ControlParts/RadioBox";
+import { GiCorset, GiEclipseFlare } from "react-icons/gi";
+import RadioBox from "../Common/RadioBox";
+import CheckBox2nd from "../Common/CheckBox2nd";
+import IconDefault from "../Common/IconDefault";
 
 const FullScreen = () => {
   // フルスクリーン(https://gray-code.com/javascript/display-the-page-in-full-screen/)
@@ -18,8 +19,7 @@ const FullScreen = () => {
   const [beforeScene, setBeforeScene] = useState<SceneType | null>(null);
 
   const { scene, setScene } = useScene();
-  const { directoryTarget, setDirectoryTarget, setPageIndex } =
-    useDirectoryInfo();
+  const { directoryTarget, setDirectoryTarget, setPageIndex } = useDirectoryInfo();
 
   const changeScene = () => {
     if (scene != "directoryMode") {
@@ -46,7 +46,7 @@ const FullScreen = () => {
   return (
     <div className={styles["screen-container"]}>
       <div className={`${styles.wrapper} ${isDirectory && styles.active}`}>
-        <CheckBoxType2
+        <CheckBox2nd
           messageList={["ディレクトリ"]}
           checkedList={[isDirectory]}
           changeFuncList={[() => setIsDirectory((prev) => !prev)]}
@@ -70,10 +70,10 @@ const FullScreen = () => {
         )}
       </div>
       {isDirectory ? (
-        <GiAllSeeingEye className={styles.icon} onClick={changeScene} />
+        <IconDefault children={<GiCorset />} onClick={changeScene} />
       ) : (
-        <GiEclipseFlare
-          className={styles.icon}
+        <IconDefault
+          children={<GiEclipseFlare />}
           onClick={() => setIsFullScreen((prev) => !prev)}
         />
       )}

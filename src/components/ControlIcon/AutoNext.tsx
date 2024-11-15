@@ -8,6 +8,8 @@ import {
   useCardCharacterInfo,
   useCardCharacterState,
 } from "../../context/CardCharacterContext";
+import IconDefault from "../Common/IconDefault";
+import IconSmall from "../Common/IconSmall";
 
 const AutoNext = () => {
   // 自動画像変換
@@ -77,19 +79,20 @@ const AutoNext = () => {
 
   return (
     <div className={styles["autoMatic-box"]}>
-      <GiHeartBattery
-        className={`${styles.icon} ${isAutoMatic && styles.autoMatic} ${
-          isAutoEff && styles.autoMaticEff
-        }`}
-        onClick={handleAutoMatic}
-        onContextMenu={handleAutoEff}
-      />
+      <IconDefault onClick={handleAutoMatic} onContextMenu={handleAutoEff}>
+        <GiHeartBattery
+          className={`
+            ${isAutoMatic && styles.autoMatic}
+            ${isAutoEff && styles.autoMaticEff}`}
+        />
+      </IconDefault>
+
       <div className={styles["autoMatic-options"]}>
-        <BsDashLg className={styles.iconSmall} onClick={() => handleAutoSpeed("minus")} />
+        <IconSmall children={<BsDashLg />} onClick={() => handleAutoSpeed("minus")} />
         <p onClick={() => handleAutoSpeed("ani")}>
           {autoSpeed === 40 ? "Anime" : autoSpeed + "ms"}
         </p>
-        <BsPlusLg className={styles.iconSmall} onClick={() => handleAutoSpeed("plus")} />
+        <IconSmall children={<BsPlusLg />} onClick={() => handleAutoSpeed("plus")} />
       </div>
     </div>
   );

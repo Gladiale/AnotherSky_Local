@@ -1,5 +1,6 @@
 import styles from "./Control.module.css";
 import { useHover } from "../../context/HoverContext";
+import { useAppOption } from "../../context/AppOptionContext";
 
 import FullScreen from "../ControlIcon/FullScreen";
 import ToPrev from "../ControlIcon/ToPrev";
@@ -19,10 +20,12 @@ import RotateYControl from "../ControlIcon/RotateYControl";
 
 const Control = () => {
   const { setIsHovered } = useHover();
+  const { optionData } = useAppOption();
 
   return (
     <div
-      className={styles["control-container"]}
+      className={`${styles["control-container"]}
+        ${optionData.iconShadow && styles.shadow}`}
       onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: true })}
       onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
     >

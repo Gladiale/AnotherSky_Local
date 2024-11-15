@@ -2,6 +2,7 @@ import styles from "./RandomControl.module.css";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { GiDiceEightFacesEight, GiDiceTwentyFacesTwenty } from "react-icons/gi";
 import { useState } from "react";
+import IconDefault from "../Common/IconDefault";
 
 export type RandomTargetType = {
   folder: boolean;
@@ -29,15 +30,15 @@ const RandomControl = () => {
   return (
     <div className={styles["random-container"]}>
       {randomTarget.folder ? (
-        <GiDiceTwentyFacesTwenty
-          className={styles.icon}
+        <IconDefault
+          children={<GiDiceTwentyFacesTwenty />}
           onClick={() =>
             mediaDispatch({ type: "randomWithSelect", payload: randomTarget })
           }
         />
       ) : (
-        <GiDiceEightFacesEight
-          className={styles.icon}
+        <IconDefault
+          children={<GiDiceEightFacesEight />}
           onClick={() =>
             mediaDispatch({ type: "randomWithSelect", payload: randomTarget })
           }

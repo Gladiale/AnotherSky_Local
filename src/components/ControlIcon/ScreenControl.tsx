@@ -1,6 +1,7 @@
 import styles from "./ScreenControl.module.css";
 import { GiSnowflake2 } from "react-icons/gi";
 import { useMediaSize, useScreenMode } from "../../context/ScreenContext";
+import IconDefault from "../Common/IconDefault";
 
 const ScreenControl = () => {
   const { screenMode, setScreenMode } = useScreenMode();
@@ -47,7 +48,10 @@ const ScreenControl = () => {
           <span>custom</span>
         </label>
       </div>
-      <GiSnowflake2 className={styles.icon} onClick={screenControl} />
+
+      <IconDefault onClick={screenControl}>
+        <GiSnowflake2 />
+      </IconDefault>
     </div>
   );
 };

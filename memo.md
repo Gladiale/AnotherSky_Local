@@ -4,3 +4,5 @@
 <GiCrenelCrown />
 <GiImperialCrown />
 <GiCrown />
+
+<GiCorset />

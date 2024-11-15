@@ -1,6 +1,6 @@
 import styles from "./EffectBox.module.css";
-import { useEffectState } from "../../../context/EffectState/EffectStateContext";
-import { EffectStateType } from "../../../context/EffectState/effectStateInit";
+import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { type EffectStateType } from "../../context/EffectState/effectStateInit";
 import RadioBox from "./RadioBox";
 
 const EffectBox = () => {
@@ -19,14 +19,6 @@ const EffectBox = () => {
   return (
     <div className={styles["effect-box"]}>
       <label>
-        <span>DropShadow</span>
-        <input
-          type="checkbox"
-          checked={effectState.filterEffect.dropShadow}
-          onChange={() => effectStateDispatch({ type: "filterShadow" })}
-        />
-      </label>
-      <label>
         <span>PixelateEffect</span>
         <input
           type="checkbox"
@@ -38,11 +30,7 @@ const EffectBox = () => {
         <RadioBox
           radioName="heavy"
           radioSpanList={["軽", "中", "重"]}
-          radioCheckList={[
-            radioChecked.low,
-            radioChecked.normal,
-            radioChecked.high,
-          ]}
+          radioCheckList={[radioChecked.low, radioChecked.normal, radioChecked.high]}
           radioChangeFuncList={[
             () => changeHeavy("low"),
             () => changeHeavy("normal"),
