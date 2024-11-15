@@ -10,6 +10,13 @@
   font-size: 0.9rem;
 }
 
+@media (max-width: 768px) {
+  .check-box.column {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+
 .check-box label {
   cursor: pointer;
   display: flex;

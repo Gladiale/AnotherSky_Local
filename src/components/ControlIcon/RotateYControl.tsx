@@ -17,6 +17,7 @@ const RotateYControl = () => {
     <div className={styles["rotateY-container"]}>
       <div className={styles.wrapper}>
         <CheckBox
+          responsive={true}
           messageList={["立ち絵", "エフェクト"]}
           checkedList={[isTachie, isEffect]}
           changeFuncList={[
