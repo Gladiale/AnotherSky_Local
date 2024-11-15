@@ -1,6 +1,7 @@
 import styles from "./ControlParts.module.css";
 import { GiCrenelCrown } from "react-icons/gi";
 import { useHover } from "../../../context/HoverContext";
+import { useAppOption } from "../../../context/AppOptionContext";
 import {
   useCardCharacterInfo,
   useCardCharacterState,
@@ -9,6 +10,7 @@ import IconSpecial from "../../Common/IconSpecial";
 
 const ControlParts = () => {
   const { isHovered } = useHover();
+  const { optionData } = useAppOption();
   const { isCharacter, setIsCharacter } = useCardCharacterState();
   const { characterInfoDispatch } = useCardCharacterInfo();
 
@@ -26,7 +28,11 @@ const ControlParts = () => {
         isHovered.cardHover && !isHovered.iconHover ? styles.show : undefined
       }`}
     >
-      <IconSpecial children={<GiCrenelCrown />} onClick={changeContent} />
+      <IconSpecial
+        effect={optionData.iconShadow && true}
+        children={<GiCrenelCrown />}
+        onClick={changeContent}
+      />
     </div>
   );
 };

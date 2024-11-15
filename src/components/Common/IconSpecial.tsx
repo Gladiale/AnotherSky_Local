@@ -10,7 +10,7 @@ type IconSpecialProps = {
 const IconSpecial = ({ children, effect, onClick, onContextMenu }: IconSpecialProps) => {
   return (
     <div
-      className={`${styles.iconSpecial} ${effect ? styles.effect : ""}`}
+      className={`${styles.iconSpecial} ${effect && styles.effect}`}
       onClick={onClick}
       onContextMenu={onContextMenu}
     >
