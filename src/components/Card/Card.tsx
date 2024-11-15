@@ -7,7 +7,7 @@ import { useScene } from "../../context/SceneContext";
 import { useHover } from "../../context/HoverContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
 import {
   useCardCharacterInfo,

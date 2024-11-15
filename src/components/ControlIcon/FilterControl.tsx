@@ -1,6 +1,6 @@
 import styles from "./FilterControl.module.css";
 import { GiFairyWand } from "react-icons/gi";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import FilterMenu from "./FilterMenu";
 import IconDefault from "../Common/IconDefault";
 

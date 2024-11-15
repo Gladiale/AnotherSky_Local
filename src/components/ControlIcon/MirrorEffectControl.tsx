@@ -1,5 +1,5 @@
 import { GiAbstract024 } from "react-icons/gi";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import IconDefault from "../Common/IconDefault";
 
 const MirrorEffectControl = () => {

@@ -1,7 +1,7 @@
 import styles from "./Content.module.css";
 import { useScene } from "../../context/SceneContext";
 import { useImageList } from "../../context/ImageListState";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import Card from "../Card/Card";
 import StandImage from "../StandImage/StandImage";
 import Video from "../Video/Video";

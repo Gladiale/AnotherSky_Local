@@ -1,5 +1,13 @@
-// type GetListType = (folderName: string) => string[];
-// export { type GetListType };
+type FilterDataType = {
+  opacity: number;
+  brightness: number;
+  contrast: number;
+  grayscale: number;
+  hueRotate: number;
+  invert: number;
+  saturate: number;
+  sepia: number;
+};
 
 type AppOptionDataType = {
   cgShadow: boolean;
@@ -9,4 +17,4 @@ type AppOptionDataType = {
   loadingAnime: boolean;
 };
 
-export type { AppOptionDataType };
+export type { FilterDataType, AppOptionDataType };

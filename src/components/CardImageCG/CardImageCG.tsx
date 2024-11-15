@@ -1,5 +1,5 @@
 import styles from "./CardImageCG.module.css";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useMediaSize } from "../../context/ScreenContext";
 import { useAppOption } from "../../context/AppOptionContext";
 import CG from "./CG";

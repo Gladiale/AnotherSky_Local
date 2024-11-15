@@ -1,17 +1,14 @@
 import styles from "./FilterControl.module.css";
 import { useState } from "react";
 import { useFilter } from "../../context/FilterContext";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
-import { type FilterTargetType } from "../../context/EffectState/effectStateFunc/filterTargetSelect";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
+import { type FilterTargetType } from "../../context/EffectStateContext/effectStateFunc/filterTargetSelect";
 
 const FilterMenu = () => {
   const { filterState, filterDispatch } = useFilter();
   const { effectState, effectStateDispatch } = useEffectState();
 
-  const handleEffect = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    effectName: string
-  ) => {
+  const handleEffect = (e: React.ChangeEvent<HTMLInputElement>, effectName: string) => {
     filterDispatch({
       type: effectName,
       payload: { effectData: Number(e.target.value) },

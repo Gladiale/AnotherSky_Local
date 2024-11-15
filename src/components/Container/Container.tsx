@@ -9,7 +9,7 @@ import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { FilterProvider } from "../../context/FilterContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { ImageListProvider } from "../../context/ImageListState";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { RotateYProvider } from "../../context/RotateYContext";
 import { CardCharacterProvider } from "../../context/CardCharacterContext";
 import { EffectControlProvider } from "../../context/EffectControlContext";

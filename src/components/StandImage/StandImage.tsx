@@ -1,7 +1,7 @@
 import styles from "./StandImage.module.css";
 import { useState } from "react";
 import { useFilter } from "../../context/FilterContext";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { useFilterData } from "../../hooks/useFilterData";
 import ImageParts from "./ImageParts";

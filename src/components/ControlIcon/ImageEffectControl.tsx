@@ -1,8 +1,8 @@
 import styles from "./ImageEffectControl.module.css";
 import { GiPrism } from "react-icons/gi";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import { EffectStateType } from "../../context/EffectState/effectStateInit";
+import { EffectStateType } from "../../context/EffectStateContext/effectStateInit";
 import { useEffectControl } from "../../context/EffectControlContext";
 import PartsBox from "../Common/PartsBox";
 import EffectBox from "../Common/EffectBox";

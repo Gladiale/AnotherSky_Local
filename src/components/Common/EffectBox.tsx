@@ -1,6 +1,6 @@
 import styles from "./EffectBox.module.css";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
-import { type EffectStateType } from "../../context/EffectState/effectStateInit";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
+import { type EffectStateType } from "../../context/EffectStateContext/effectStateInit";
 import RadioBox from "./RadioBox";
 
 const EffectBox = () => {

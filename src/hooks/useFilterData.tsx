@@ -1,5 +1,5 @@
 import { useFilter } from "../context/FilterContext";
-import { useEffectState } from "../context/EffectState/EffectStateContext";
+import { useEffectState } from "../context/EffectStateContext/EffectStateContext";
 import { useAppOption } from "../context/AppOptionContext";
 
 const useFilterData = (target: "cg" | "character") => {

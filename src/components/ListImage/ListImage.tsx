@@ -5,7 +5,7 @@ import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { createRandomImg } from "../../helper/createRandomImg";
 import { useScene } from "../../context/SceneContext";
 import { useFilter } from "../../context/FilterContext";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
 import {

@@ -1,5 +1,5 @@
 import styles from "./EffectImage.module.css";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { useEffectControl } from "../../context/EffectControlContext";

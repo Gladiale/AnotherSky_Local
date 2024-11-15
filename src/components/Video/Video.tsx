@@ -1,6 +1,6 @@
 import styles from "./Video.module.css";
 import { useState } from "react";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useFilter } from "../../context/FilterContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";

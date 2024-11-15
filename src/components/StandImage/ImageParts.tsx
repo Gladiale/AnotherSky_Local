@@ -1,7 +1,7 @@
 import styles from "./ImageParts.module.css";
 import { useState } from "react";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import { useEffectState } from "../../context/EffectState/EffectStateContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { getRandomFolderFile } from "../../helper/dataObjControl";
 import { VoiceDataObj } from "../../data/VoiceDataObj";
 import useLoading from "../../hooks/useLoading";
