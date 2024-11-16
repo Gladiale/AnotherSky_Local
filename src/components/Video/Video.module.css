@@ -20,12 +20,14 @@
   height: 100%;
 }
 
-.video-content .video-box.cardMode {
-  filter: drop-shadow(0 0 5px #ff00d4) drop-shadow(0 0 15px #ff00d4);
+.video-content .video-box.shadow {
+  /* filter: drop-shadow(0 0 5px #ff00d4) drop-shadow(0 0 15px #ff00d4); */
+  filter: var(--drop-shadow);
 }
-/* .video-content .video-box.cgMode {
-  height: 99dvh;
-} */
+
+.video-content .video-box.shadow:hover {
+  filter: var(--drop-shadow-hover);
+}
 
 .video-content .video-box.shake:hover {
   animation: bounce_video 0.5s ease alternate infinite;

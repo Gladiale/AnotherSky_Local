@@ -10,11 +10,12 @@ type FilterDataType = {
 };
 
 type AppOptionDataType = {
+  loadingAnime: boolean;
+  cgSwing: boolean;
   cgShadow: boolean;
+  videoShadow: boolean;
   characterShadow: boolean;
   iconShadow: boolean;
-  cgSwing: boolean;
-  loadingAnime: boolean;
 };
 
 export type { FilterDataType, AppOptionDataType };

@@ -2,11 +2,12 @@ import { createContext, useContext, useLayoutEffect, useState } from "react";
 import type { AppOptionDataType } from "../types";
 
 const optionInit: AppOptionDataType = {
+  loadingAnime: true,
+  cgSwing: true,
   cgShadow: true,
+  videoShadow: true,
   characterShadow: false,
   iconShadow: true,
-  cgSwing: true,
-  loadingAnime: true,
 };
 
 type AppOptionContextType = {

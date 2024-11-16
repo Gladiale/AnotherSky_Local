@@ -2,8 +2,18 @@ import styles from "./AppOption.module.css";
 import { useEffect, useState } from "react";
 import { GiCat, GiDelighted } from "react-icons/gi";
 import { useAppOption } from "../../context/AppOptionContext";
+import type { AppOptionDataType } from "../../types";
 // components
 import IconDefault from "../Common/IconDefault";
+
+const optionConfig: { target: keyof AppOptionDataType; text: string }[] = [
+  { target: "loadingAnime", text: "Loading動画" },
+  { target: "cgSwing", text: "揺れの動画効果 —> CG" },
+  { target: "cgShadow", text: "DropShadow効果 —> CG" },
+  { target: "videoShadow", text: "DropShadow効果 —> 動画" },
+  { target: "characterShadow", text: "DropShadow効果 —> 立ち絵" },
+  { target: "iconShadow", text: "DropShadow効果 —> アイコン" },
+];
 
 const AppOption = () => {
   const [showPanel, setShowPanel] = useState<boolean>(false);
@@ -30,44 +40,15 @@ const AppOption = () => {
         className={styles["option-panel"]}
         style={{ right: showPanel ? "0" : "calc(-100dvh / 3)" }}
       >
-        <label onClick={() => changeOptionData("loadingAnime")}>
-          <GiCat
-            className={`${styles["icon"]} 
-            ${optionData.loadingAnime && styles["checked"]}`}
-          />
-          <p>Loading動画</p>
-        </label>
-
-        <label onClick={() => changeOptionData("cgSwing")}>
-          <GiCat
-            className={`${styles["icon"]} 
-            ${optionData.cgSwing && styles["checked"]}`}
-          />
-          <p>揺れの動画効果 —&gt; CG</p>
-        </label>
-
-        <label onClick={() => changeOptionData("cgShadow")}>
-          <GiCat
-            className={`${styles["icon"]} ${optionData.cgShadow && styles["checked"]}`}
-          />
-          <p>DropShadow効果 —&gt; CG </p>
-        </label>
-
-        <label onClick={() => changeOptionData("characterShadow")}>
-          <GiCat
-            className={`${styles["icon"]} 
-            ${optionData.characterShadow && styles["checked"]}`}
-          />
-          <p>DropShadow効果 —&gt; 立ち絵</p>
-        </label>
-
-        <label onClick={() => changeOptionData("iconShadow")}>
-          <GiCat
-            className={`${styles["icon"]} 
-            ${optionData.iconShadow && styles["checked"]}`}
-          />
-          <p>DropShadow効果 —&gt; アイコン</p>
-        </label>
+        {optionConfig.map((option, index) => (
+          <label key={index} onClick={() => changeOptionData(option.target)}>
+            <GiCat
+              className={`${styles["icon"]} 
+            ${optionData[option.target] && styles["checked"]}`}
+            />
+            <p>{option.text}</p>
+          </label>
+        ))}
       </div>
     </div>
   );

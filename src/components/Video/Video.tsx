@@ -5,8 +5,8 @@ import { useFilter } from "../../context/FilterContext";
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useScene } from "../../context/SceneContext";
-import { useScreenMode } from "../../context/ScreenContext";
 import { useRotateY } from "../../context/RotateYContext";
+import { useAppOption } from "../../context/AppOptionContext";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import EffectImage from "../EffectImage/EffectImage";
 import VideoControl from "./VideoControl/VideoControl";
@@ -16,9 +16,9 @@ const Video = () => {
   const { setScene } = useScene();
   const { urlConfig } = useUrlConfig();
   const { rotateYState } = useRotateY();
-  const { screenMode } = useScreenMode();
   const { effectState } = useEffectState();
   const { filterState } = useFilter();
+  const { optionData } = useAppOption();
   const { mediaSizeData } = useMediaSizeData();
 
   const { loadStatus, showTarget, showError } = useLoading({
@@ -51,10 +51,9 @@ const Video = () => {
       onMouseLeave={() => setVideoHovered(false)}
     >
       <div
-        className={`${styles["video-box"]} 
-        ${effectState.shakeEffect.active && styles.shake}
-        ${screenMode === "cardMode" && styles.cardMode}
-        ${screenMode === "cgMode" && styles.cgMode}`}
+        className={`${styles["video-box"]}
+        ${optionData.videoShadow && styles.shadow}
+        ${effectState.shakeEffect.active && styles.shake}`}
         style={{
           transform: `rotate(${rotateVideoDeg}deg) 
                       rotateY(${rotateYState.videoRotateY ? 180 : 0}deg)`,
