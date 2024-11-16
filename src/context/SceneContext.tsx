@@ -1,11 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-export type SceneType =
-  | "card-stand"
-  | "card-cg"
-  | "card-video"
-  | "card-listImg"
-  | "directoryMode";
+export type SceneType = "card" | "cg" | "video" | "listImg" | "directoryMode";
 
 export type DirectoryTargetType = "cg" | "character" | "video";
 
@@ -25,9 +20,8 @@ const SceneContext = createContext({} as SceneContextType);
 const DirectoryInfoContext = createContext({} as DirectoryContextType);
 
 const SceneProvider = ({ children }: { children: React.ReactNode }) => {
-  const [scene, setScene] = useState<SceneType>("card-stand");
-  const [directoryTarget, setDirectoryTarget] =
-    useState<DirectoryTargetType>("cg");
+  const [scene, setScene] = useState<SceneType>("card");
+  const [directoryTarget, setDirectoryTarget] = useState<DirectoryTargetType>("cg");
   const [pageIndex, setPageIndex] = useState<number>(0);
 
   return (

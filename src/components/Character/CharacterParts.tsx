@@ -43,9 +43,9 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
 
   const changeStandImage = (e: React.WheelEvent) => {
     if (e.deltaY > 0) {
-      mediaDispatch({ type: "next", payload: "card-stand" });
+      mediaDispatch({ type: "next", payload: "card" });
     } else {
-      mediaDispatch({ type: "prev", payload: "card-stand" });
+      mediaDispatch({ type: "prev", payload: "card" });
     }
   };
 

@@ -39,7 +39,7 @@ const Video = () => {
   const resetScene = (e: any) => {
     e.preventDefault();
     setRotateVideoDeg(0);
-    setScene("card-stand");
+    setScene("card");
   };
 
   return (

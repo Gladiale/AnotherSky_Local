@@ -2,14 +2,11 @@ import { type SceneType } from "../../../SceneContext";
 import { type MediaInfoType } from "../../mediaInfo";
 import { folderPrevFunc } from "../common/folderPrevFunc";
 
-const toMediaFolderPrev = (
-  state: MediaInfoType,
-  scene: SceneType
-): MediaInfoType => {
+const toMediaFolderPrev = (state: MediaInfoType, scene: SceneType): MediaInfoType => {
   switch (scene) {
-    case "card-stand":
+    case "card":
       return folderPrevFunc(state, "character");
-    case "card-cg":
+    case "cg":
       return folderPrevFunc(state, "cg");
     default:
       return folderPrevFunc(state, "video");

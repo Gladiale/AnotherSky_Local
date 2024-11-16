@@ -31,7 +31,7 @@ const ListImage = () => {
       payload: { target: target, fileInfo: imageInfoList[index] },
     });
     if (target === "cg") {
-      setScene("card-cg");
+      setScene("cg");
       if (isCharacter) {
         setIsCharacter(false);
         characterInfoDispatch({ type: "deleteData" });

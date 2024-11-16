@@ -40,7 +40,7 @@ const ListImageMode2 = () => {
       payload: { target: target, fileInfo: imageInfoList[index] },
     });
     if (target === "cg") {
-      setScene("card-cg");
+      setScene("cg");
       if (isCharacter) {
         setIsCharacter(false);
         characterInfoDispatch({ type: "deleteData" });
@@ -51,7 +51,7 @@ const ListImageMode2 = () => {
   // 右クリック
   const resetCardScene = (e: any) => {
     e.preventDefault();
-    setScene("card-cg");
+    setScene("cg");
   };
 
   let target: SpecificPayloadType["target"];

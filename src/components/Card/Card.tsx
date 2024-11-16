@@ -1,6 +1,6 @@
 import styles from "./Card.module.css";
 
-import Polygon from "./Polygon";
+import CardPolygon from "./CardPolygon";
 import CardImage from "../CardImage/CardImage";
 
 import { useScene } from "../../context/SceneContext";
@@ -44,9 +44,9 @@ const Card = () => {
   // Cardにマウスの左クリック
   const changeScene = (e: React.MouseEvent<HTMLDivElement>) => {
     switch (scene) {
-      case "card-stand":
-        return setScene("card-cg");
-      case "card-cg":
+      case "card":
+        return setScene("cg");
+      case "cg":
         changeImageDeg(e);
         break;
       default:
@@ -58,11 +58,11 @@ const Card = () => {
   const resetScene = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     switch (scene) {
-      case "card-stand":
-        setScene("card-video");
+      case "card":
+        setScene("video");
         break;
-      case "card-cg":
-        setScene("card-stand");
+      case "cg":
+        setScene("card");
         if (isEditMode || imageDeg !== 0) {
           triggerEditMode(e, true);
         }
@@ -73,7 +73,7 @@ const Card = () => {
   };
 
   const changeImage = (e: React.WheelEvent) => {
-    if (isCharacter && scene === "card-cg") {
+    if (isCharacter && scene === "cg") {
       e.deltaY > 0
         ? characterInfoDispatch({ type: "next" })
         : characterInfoDispatch({ type: "prev" });
@@ -88,7 +88,7 @@ const Card = () => {
     <div className={`${styles["card-container-3d"]}`}>
       <div
         className={`${styles.card}
-          ${scene === "card-cg" && styles.sceneCG}
+          ${scene === "cg" && styles.sceneCG}
           ${optionData.cgShadow && styles.shadow}
           ${screenMode === "cardMode" && styles.cardMode}
           ${screenMode === "cgMode" && styles.cgMode}`}
@@ -101,16 +101,14 @@ const Card = () => {
           transform: `rotate(${imageDeg}deg)
             rotateY(${rotateYState.cardRotateY ? 180 : 0}deg)`,
           overflow:
-            (isEditMode && effectState.mirrorEffect) || scene === "card-stand"
+            (isEditMode && effectState.mirrorEffect) || scene === "card"
               ? "hidden"
               : undefined,
           width: isEditMode && effectState.mirrorEffect ? "100%" : undefined,
           imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
           filter: filterData,
           boxShadow:
-            scene === "card-stand" &&
-            optionData.cgShadow &&
-            effectState.filterEffect.targetCard
+            scene === "card" && optionData.cgShadow && effectState.filterEffect.targetCard
               ? "none"
               : undefined,
         }}
@@ -126,7 +124,7 @@ const Card = () => {
           }}
         />
 
-        <Polygon scene={scene} />
+        <CardPolygon scene={scene} />
       </div>
     </div>
   );

@@ -51,8 +51,8 @@ const Directory = () => {
         fileInfo: directorySliced[pageIndex][index],
       },
     });
-    directoryTarget === "cg" && setScene("card-cg");
-    directoryTarget === "video" && setScene("card-video");
+    directoryTarget === "cg" && setScene("cg");
+    directoryTarget === "video" && setScene("video");
   };
 
   return (

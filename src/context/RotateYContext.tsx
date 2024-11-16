@@ -28,24 +28,24 @@ function reducer(state: rotateYType, action: rotateYActionType) {
   let newState: rotateYType;
 
   switch (action.type) {
-    case "card-stand":
+    case "card":
       newState = { ...state, cardRotateY: !state.cardRotateY };
       break;
-    case "card-cg":
+    case "cg":
       if (action.payload.isTachie || action.payload.isEffect) {
         newState = { ...state };
       } else {
         newState = { ...state, cgRotateY: !state.cgRotateY };
       }
       break;
-    case "card-video":
+    case "video":
       if (action.payload.isTachie || action.payload.isEffect) {
         newState = { ...state };
       } else {
         newState = { ...state, videoRotateY: !state.videoRotateY };
       }
       break;
-    case "card-listImg":
+    case "listImg":
       if (action.payload.isTachie) {
         newState = { ...state };
       } else {

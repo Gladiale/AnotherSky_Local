@@ -41,7 +41,7 @@ const CardImage = ({ props }: { props: PropsType }) => {
                     rotateY(${rotateYState.cgRotateY ? 180 : 0}deg)`,
       }}
     >
-      {scene === "card-stand" ? (
+      {scene === "card" ? (
         <div
           className={`${styles["stand-img"]} ${isHovered.cardHover && styles.standHover}`}
           style={{

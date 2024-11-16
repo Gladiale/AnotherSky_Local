@@ -16,13 +16,13 @@ const Content = () => {
 
   return (
     <div className={`${styles.content} ${effectState.mirrorEffect ? styles.mirror : ""}`}>
-      {scene != "card-stand" && <Character />}
-      {(scene === "card-cg" || scene === "card-stand") && <Card />}
-      {scene === "card-listImg" && !listSubState.mode2 && <ListImage />}
-      {scene === "card-listImg" && listSubState.mode2 && <ListImageMode2 />}
+      {scene != "card" && <Character />}
+      {(scene === "cg" || scene === "card") && <Card />}
+      {scene === "listImg" && !listSubState.mode2 && <ListImage />}
+      {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}
       {scene === "directoryMode" && <Directory />}
-      {scene === "card-video" && <Video />}
-      {scene != "card-stand" && !effectState.mirrorEffect && (
+      {scene === "video" && <Video />}
+      {scene != "card" && !effectState.mirrorEffect && (
         <Character imgStyle={{ transform: "rotateY(180deg)" }} />
       )}
     </div>

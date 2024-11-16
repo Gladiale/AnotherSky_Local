@@ -25,11 +25,11 @@ const ShowListImage = () => {
   };
 
   const changeScene = () => {
-    if (scene != "card-listImg") {
-      setScene("card-listImg");
+    if (scene != "listImg") {
+      setScene("listImg");
     } else {
       // setListState((prev) => ({ ...prev, random: !prev.random }));
-      setScene("card-cg");
+      setScene("cg");
     }
   };
 

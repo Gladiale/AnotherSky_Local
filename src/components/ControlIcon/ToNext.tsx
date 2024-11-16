@@ -14,7 +14,7 @@ const ToNext = () => {
   const { characterInfoDispatch } = useCardCharacterInfo();
 
   const toNextImage = () => {
-    isCharacter && scene === "card-cg"
+    isCharacter && scene === "cg"
       ? characterInfoDispatch({ type: "next" })
       : mediaDispatch({ type: "next", payload: scene });
   };
