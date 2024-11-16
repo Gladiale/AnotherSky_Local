@@ -11,6 +11,11 @@
   filter: drop-shadow(0 0 3px #5cff95) drop-shadow(0 0 6px #ff34dd);
 }
 
+.wrapper .waiting {
+  color: #f79cff;
+  font-size: 1.2rem;
+}
+
 .wrapper .failed {
   color: #980065;
   font-size: 1.2rem;

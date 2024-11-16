@@ -1,10 +1,10 @@
 import styles from "./EffectImage.module.css";
+import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useRotateY } from "../../context/RotateYContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useEffectControl } from "../../context/EffectControlContext";
 import Loading from "../Loading/Loading";
-import useLoading from "../../hooks/useLoading";
 
 const EffectImage = () => {
   const { urlConfig } = useUrlConfig();

@@ -8,8 +8,8 @@ type ParamsType = {
 
 const useLoading = ({ trigger, target }: ParamsType) => {
   const { optionData } = useAppOption();
-  const [loadStatus, setLoadStatus] = useState<"wait" | "success" | "failed">(
-    optionData.loadingAnime ? "wait" : "success"
+  const [loadStatus, setLoadStatus] = useState<"waiting" | "success" | "failed">(
+    optionData.loadingAnime ? "waiting" : "success"
   );
 
   const loadingTime = {
@@ -19,15 +19,22 @@ const useLoading = ({ trigger, target }: ParamsType) => {
       video: 700,
       effect: 200,
     },
+    failed: 6000,
   };
 
   useLayoutEffect(() => {
+    let timeoutId: number;
     if (optionData.loadingAnime) {
-      setLoadStatus("wait");
+      setLoadStatus("waiting");
+      timeoutId = setTimeout(() => {
+        setLoadStatus((prevStatus) => (prevStatus === "waiting" ? "failed" : prevStatus));
+      }, loadingTime.failed);
     }
+
     if (!optionData.loadingAnime && loadStatus === "failed") {
       setLoadStatus("success");
     }
+    return () => clearTimeout(timeoutId);
   }, [...trigger]);
 
   const showTarget = () => {
@@ -48,4 +55,4 @@ const useLoading = ({ trigger, target }: ParamsType) => {
   return { loadStatus, showTarget, showError };
 };
 
-export default useLoading;
+export { useLoading };

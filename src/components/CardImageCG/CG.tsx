@@ -1,6 +1,7 @@
 import styles from "./CardImageCG.module.css";
 import { useLayoutEffect } from "react";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
+import { useLoading } from "../../hooks/useLoading";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import {
@@ -8,7 +9,6 @@ import {
   useCardCharacterState,
 } from "../../context/CardCharacterContext";
 import Loading from "../Loading/Loading";
-import useLoading from "../../hooks/useLoading";
 
 type PropsType = {
   className: "cg-img" | "texture-img";
@@ -50,7 +50,10 @@ const CG = ({ className }: PropsType) => {
         onLoad={showTarget}
         onStalled={showError}
       />
-      <Loading loadStatus={loadStatus} />
+      <Loading
+        loadStatus={loadStatus}
+        loadStyle={{ position: className === "cg-img" ? "relative" : "absolute" }}
+      />
     </>
   );
 };

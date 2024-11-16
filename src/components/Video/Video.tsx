@@ -2,6 +2,7 @@ import styles from "./Video.module.css";
 import { useState } from "react";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useFilter } from "../../context/FilterContext";
+import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useScene } from "../../context/SceneContext";
 import { useScreenMode } from "../../context/ScreenContext";
@@ -9,7 +10,6 @@ import { useRotateY } from "../../context/RotateYContext";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import EffectImage from "../EffectImage/EffectImage";
 import VideoControl from "./VideoControl/VideoControl";
-import useLoading from "../../hooks/useLoading";
 import Loading from "../Loading/Loading";
 
 const Video = () => {
