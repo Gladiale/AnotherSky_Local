@@ -1,12 +1,12 @@
 import styles from "./ControlParts.module.css";
 import { GiCrenelCrown } from "react-icons/gi";
-import { useHover } from "../../../context/HoverContext";
-import { useAppOption } from "../../../context/AppOptionContext";
+import { useHover } from "../../context/HoverContext";
+import { useAppOption } from "../../context/AppOptionContext";
 import {
   useCardCharacterInfo,
   useCardCharacterState,
-} from "../../../context/CardCharacterContext";
-import IconSpecial from "../../Common/IconSpecial";
+} from "../../context/CardCharacterContext";
+import IconSpecial from "../Common/IconSpecial";
 
 const ControlParts = () => {
   const { isHovered } = useHover();

@@ -1,4 +1,4 @@
-import styles from "./CardImageCG.module.css";
+import styles from "./CGbox.module.css";
 import { useLayoutEffect } from "react";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useLoading } from "../../hooks/useLoading";

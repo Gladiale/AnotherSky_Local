@@ -1,8 +1,9 @@
 import styles from "./CardImage.module.css";
-import { useRotateY } from "../../context/RotateYContext";
 import { useScene } from "../../context/SceneContext";
-import CardImageCG from "../CardImageCG/CardImageCG";
-import CardImageStand from "../CardImageStand/CardImageStand";
+import { useHover } from "../../context/HoverContext";
+import { useUrlConfig } from "../../hooks/useUrlConfig";
+import { useRotateY } from "../../context/RotateYContext";
+import CGbox from "../CGbox/CGbox";
 
 type PropsType = {
   isEditMode: boolean;
@@ -26,8 +27,10 @@ const CardImage = ({ props }: { props: PropsType }) => {
     moveImageReverse,
   } = props;
 
-  const { rotateYState } = useRotateY();
   const { scene } = useScene();
+  const { isHovered } = useHover();
+  const { urlConfig } = useUrlConfig();
+  const { rotateYState } = useRotateY();
 
   return (
     <div
@@ -39,9 +42,14 @@ const CardImage = ({ props }: { props: PropsType }) => {
       }}
     >
       {scene === "card-stand" ? (
-        <CardImageStand />
+        <div
+          className={`${styles["stand-img"]} ${isHovered.cardHover && styles.standHover}`}
+          style={{
+            backgroundImage: `url(${urlConfig.character})`,
+          }}
+        />
       ) : (
-        <CardImageCG
+        <CGbox
           data={{
             triggerEditMode,
             changeImageScale,

@@ -1,10 +1,10 @@
-import styles from "./CardImageCG.module.css";
+import styles from "./CGbox.module.css";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useMediaSize } from "../../context/ScreenContext";
 import { useAppOption } from "../../context/AppOptionContext";
 import CG from "./CG";
 import EffectImage from "../EffectImage/EffectImage";
-import ControlParts from "./ControlParts/ControlParts";
+import ControlParts from "./ControlParts";
 
 type PropsType = {
   triggerEditMode: (e: React.MouseEvent<HTMLDivElement>, reset?: boolean) => void;
@@ -12,7 +12,7 @@ type PropsType = {
   moveImageReverse: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-const CardImageCG = ({ data }: { data: PropsType }) => {
+const CGbox = ({ data }: { data: PropsType }) => {
   const { triggerEditMode, changeImageScale, moveImageReverse } = data;
 
   const { effectState } = useEffectState();
@@ -54,4 +54,4 @@ const CardImageCG = ({ data }: { data: PropsType }) => {
   );
 };
 
-export default CardImageCG;
+export default CGbox;

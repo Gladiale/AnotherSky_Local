@@ -1,6 +1,6 @@
 import styles from "./Card.module.css";
 
-import CardClip from "../CardClip/CardClip";
+import Polygon from "./Polygon";
 import CardImage from "../CardImage/CardImage";
 
 import { useScene } from "../../context/SceneContext";
@@ -126,7 +126,7 @@ const Card = () => {
           }}
         />
 
-        <CardClip scene={scene} />
+        <Polygon scene={scene} />
       </div>
     </div>
   );

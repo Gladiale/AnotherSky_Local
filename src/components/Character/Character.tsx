@@ -1,16 +1,16 @@
-import styles from "./StandImage.module.css";
+import styles from "./Character.module.css";
 import { useState } from "react";
 import { useFilter } from "../../context/FilterContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { useFilterData } from "../../hooks/useFilterData";
-import ImageParts from "./ImageParts";
+import CharacterParts from "./CharacterParts";
 
 type PropsType = {
   imgStyle?: React.CSSProperties;
 };
 
-const StandImage = ({ imgStyle }: PropsType) => {
+const Character = ({ imgStyle }: PropsType) => {
   const [imgMoveValue, setImgMoveValue] = useState<string>("");
 
   const { rotateYState } = useRotateY();
@@ -71,10 +71,10 @@ const StandImage = ({ imgStyle }: PropsType) => {
               : undefined,
         }}
       >
-        <ImageParts handleAspect={handleAspect} />
+        <CharacterParts handleAspect={handleAspect} />
       </div>
     </div>
   );
 };
 
-export default StandImage;
+export default Character;

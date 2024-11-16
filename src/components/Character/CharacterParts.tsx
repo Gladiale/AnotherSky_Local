@@ -1,4 +1,4 @@
-import styles from "./ImageParts.module.css";
+import styles from "./CharacterParts.module.css";
 import { useState } from "react";
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
@@ -12,7 +12,7 @@ type PropsType = {
   handleAspect: (e: React.SyntheticEvent<HTMLImageElement>) => void;
 };
 
-const ImageParts = ({ handleAspect }: PropsType) => {
+const CharacterParts = ({ handleAspect }: PropsType) => {
   const [vocal, setVocal] = useState<string>("");
   const [hasVocal, setHasVocal] = useState<boolean>(false);
 
@@ -85,4 +85,4 @@ const ImageParts = ({ handleAspect }: PropsType) => {
   );
 };
 
-export default ImageParts;
+export default CharacterParts;
