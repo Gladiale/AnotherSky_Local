@@ -1,6 +1,10 @@
 import styles from "./Loading.module.css";
 
-const Loading = ({ loadStatus }: { loadStatus: "wait" | "success" | "failed" }) => {
+type LoadingProps = {
+  loadStatus: "wait" | "success" | "failed";
+};
+
+const Loading = ({ loadStatus }: LoadingProps) => {
   return (
     <div
       className={styles.wrapper}
