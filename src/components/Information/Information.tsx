@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useHover } from "../../context/HoverContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
@@ -9,6 +10,7 @@ const Information = () => {
   const { scene } = useScene();
   const { effectState } = useEffectState();
   const { mediaState } = useMediaInfo();
+  const [voiceActive, setVoiceActive] = useState<boolean>(false);
 
   const infoConfig = {
     voice: `サウンド「${mediaState.file.voiceFile[1].split(".")[0]}」`,
@@ -24,13 +26,21 @@ const Information = () => {
     }」`,
   };
 
+  useEffect(() => {
+    setVoiceActive(true);
+    const timeoutId = setTimeout(() => {
+      setVoiceActive(false);
+    }, 1500);
+    return () => clearTimeout(timeoutId);
+  }, [infoConfig.voice]);
+
   return (
     <div
       className={`${styles.information} ${
         isHovered.iconHover ? styles["Info-hovered"] : ""
       }`}
     >
-      <p>{infoConfig.voice}</p>
+      <p className={voiceActive ? styles.active : ""}>{infoConfig.voice}</p>
       <p>
         <span className={scene === "card" ? styles.active : ""}>
           {infoConfig.character}

@@ -18,12 +18,26 @@
   filter: drop-shadow(0 0 3px #ff63ff) drop-shadow(0 0 15px #a20072);
 }
 
+.information p {
+  transition: 0.2s;
+}
+
+.information > p.active {
+  color: #00ff4c;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.information > p > span.active {
+  color: #d7ff25;
+}
+
 @media (max-width: 768px) {
   .information {
     font-size: 1rem;
   }
-}
 
-.information > p > span.active {
-  color: #d0ff00;
+  .information > p.active {
+    font-size: 1.1rem;
+  }
 }
