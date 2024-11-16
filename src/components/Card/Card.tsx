@@ -73,14 +73,14 @@ const Card = () => {
   };
 
   const changeImage = (e: React.WheelEvent) => {
-    if (!isCharacter) {
-      e.deltaY > 0
-        ? mediaDispatch({ type: "next", payload: scene })
-        : mediaDispatch({ type: "prev", payload: scene });
-    } else {
+    if (isCharacter && scene === "card-cg") {
       e.deltaY > 0
         ? characterInfoDispatch({ type: "next" })
         : characterInfoDispatch({ type: "prev" });
+    } else {
+      e.deltaY > 0
+        ? mediaDispatch({ type: "next", payload: scene })
+        : mediaDispatch({ type: "prev", payload: scene });
     }
   };
 
