@@ -1,5 +1,6 @@
-import { GiCyberEye } from "react-icons/gi";
 import styles from "./VideoControl.module.css";
+import { GiCyberEye } from "react-icons/gi";
+import { useAppOption } from "../../../context/AppOptionContext";
 import IconSpecial from "../../Common/IconSpecial";
 
 type PropsType = {
@@ -8,6 +9,8 @@ type PropsType = {
 };
 
 const VideoControl = ({ videoHovered, setHasControl }: PropsType) => {
+  const { optionData } = useAppOption();
+
   const changeControl = (e: React.MouseEvent) => {
     e.stopPropagation();
     setHasControl((prev) => !prev);
@@ -15,7 +18,11 @@ const VideoControl = ({ videoHovered, setHasControl }: PropsType) => {
 
   return (
     <div className={`${styles["control-box"]} ${videoHovered && styles.show}`}>
-      <IconSpecial children={<GiCyberEye />} onClick={changeControl} />
+      <IconSpecial
+        effect={optionData.iconShadow && true}
+        children={<GiCyberEye />}
+        onClick={changeControl}
+      />
     </div>
   );
 };

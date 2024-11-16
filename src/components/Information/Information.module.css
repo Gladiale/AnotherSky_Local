@@ -7,7 +7,7 @@
   user-select: none;
   text-align: center;
   white-space: nowrap;
-  mix-blend-mode: exclusion;
+  /* mix-blend-mode: exclusion; */
   transition: 0.5s;
   opacity: 0;
 }
@@ -22,4 +22,8 @@
   .information {
     font-size: 1rem;
   }
+}
+
+.information > p > span.active {
+  color: #d0ff00;
 }
