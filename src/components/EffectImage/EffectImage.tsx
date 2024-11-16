@@ -1,13 +1,13 @@
 import styles from "./EffectImage.module.css";
-import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useRotateY } from "../../context/RotateYContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useEffectControl } from "../../context/EffectControlContext";
 import Loading from "../Loading/Loading";
 import useLoading from "../../hooks/useLoading";
 
 const EffectImage = () => {
-  const { mediaState } = useMediaInfo();
+  const { urlConfig } = useUrlConfig();
   const { effectState } = useEffectState();
   const { rotateYState } = useRotateY();
 
@@ -23,7 +23,7 @@ const EffectImage = () => {
   } = useEffectControl();
 
   const { loadStatus, showTarget, showError } = useLoading({
-    trigger: [mediaState.folder.effect[1], mediaState.file.effectFile[1]],
+    trigger: [urlConfig.effect],
     target: "effect",
   });
 
@@ -66,7 +66,7 @@ const EffectImage = () => {
     >
       <img
         className={`${styles["effect-img"]} ${isEditMode ? styles.isEditing : ""}`}
-        src={`/effect/${mediaState.folder.effect[1]}/${mediaState.file.effectFile[1]}`}
+        src={urlConfig.effect}
         style={{
           objectFit: effectState.imageEF.size,
           width: imgWidth,

@@ -1,5 +1,6 @@
 import styles from "./ImageParts.module.css";
 import { useState } from "react";
+import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { getRandomFolderFile } from "../../helper/dataObjControl";
@@ -14,11 +15,13 @@ type PropsType = {
 const ImageParts = ({ handleAspect }: PropsType) => {
   const [vocal, setVocal] = useState<string>("");
   const [hasVocal, setHasVocal] = useState<boolean>(false);
-  const { mediaState, mediaDispatch } = useMediaInfo();
+
+  const { urlConfig } = useUrlConfig();
   const { effectState } = useEffectState();
+  const { mediaDispatch } = useMediaInfo();
 
   const { loadStatus, showTarget, showError } = useLoading({
-    trigger: [mediaState.folder.character[1], mediaState.file.characterFile[1]],
+    trigger: [urlConfig.character],
     target: "character",
   });
 
@@ -55,7 +58,7 @@ const ImageParts = ({ handleAspect }: PropsType) => {
     <div className={styles["stand-box"]} onClick={handleVocal} onWheel={changeStandImage}>
       <img
         className={styles["stand-img"]}
-        src={`/character/${mediaState.folder.character[1]}/${mediaState.file.characterFile[1]}`}
+        src={urlConfig.character}
         style={{ display: loadStatus === "success" ? undefined : "none" }}
         onLoad={handleLoaded}
         onStalled={showError}
@@ -66,7 +69,7 @@ const ImageParts = ({ handleAspect }: PropsType) => {
       {effectState.blendCG.active && effectState.filterEffect.targetCharacter && (
         <img
           className={`${styles["stand-img"]} ${styles.texture}`}
-          src={`/character/${mediaState.folder.character[1]}/${mediaState.file.characterFile[1]}`}
+          src={urlConfig.character}
           style={{ display: loadStatus === "success" ? undefined : "none" }}
         />
       )}

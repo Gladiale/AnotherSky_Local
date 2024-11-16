@@ -2,7 +2,7 @@ import styles from "./Video.module.css";
 import { useState } from "react";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useFilter } from "../../context/FilterContext";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useScene } from "../../context/SceneContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useRotateY } from "../../context/RotateYContext";
@@ -14,7 +14,7 @@ import Loading from "../Loading/Loading";
 
 const Video = () => {
   const { setScene } = useScene();
-  const { mediaState } = useMediaInfo();
+  const { urlConfig } = useUrlConfig();
   const { rotateYState } = useRotateY();
   const { screenMode } = useScreenMode();
   const { effectState } = useEffectState();
@@ -22,7 +22,7 @@ const Video = () => {
   const { mediaSizeData } = useMediaSizeData();
 
   const { loadStatus, showTarget, showError } = useLoading({
-    trigger: [mediaState.folder.video[1], mediaState.file.videoFile[1]],
+    trigger: [urlConfig.video],
     target: "video",
   });
 
@@ -78,7 +78,7 @@ const Video = () => {
           }}
           onLoadedData={showTarget}
           onStalled={showError}
-          src={`/video/${mediaState.folder.video[1]}/${mediaState.file.videoFile[1]}`}
+          src={urlConfig.video}
         ></video>
 
         <Loading loadStatus={loadStatus} />

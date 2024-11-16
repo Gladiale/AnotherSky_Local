@@ -1,5 +1,6 @@
 import styles from "./CardImageCG.module.css";
 import { useLayoutEffect } from "react";
+import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import {
@@ -17,11 +18,10 @@ const CG = ({ className }: PropsType) => {
   const { mediaSizeData } = useMediaSizeData();
   const { mediaState } = useMediaInfo();
   const { isCharacter } = useCardCharacterState();
+  const { urlConfig } = useUrlConfig();
   const { characterInfo, characterInfoDispatch } = useCardCharacterInfo();
 
-  const imgUrl = isCharacter
-    ? `/character/${characterInfo.folder[1]}/${characterInfo.file[1]}`
-    : `/cg/${mediaState.folder.cg[1]}/${mediaState.file.cgFile[1]}`;
+  const imgUrl = isCharacter ? urlConfig.cardCharacter : urlConfig.cg;
 
   const { loadStatus, showTarget, showError } = useLoading({
     trigger: [isCharacter, imgUrl],

@@ -1,18 +1,16 @@
 import { useHover } from "../../context/HoverContext";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useUrlConfig } from "../../hooks/useUrlConfig";
 import styles from "./CardImageStand.module.css";
 
 const CardImageStand = () => {
-  const { mediaState } = useMediaInfo();
+  const { urlConfig } = useUrlConfig();
   const { isHovered } = useHover();
 
   return (
     <div
-      className={`${styles["stand-img"]} ${
-        isHovered.cardHover ? styles.standHover : ""
-      }`}
+      className={`${styles["stand-img"]} ${isHovered.cardHover ? styles.standHover : ""}`}
       style={{
-        backgroundImage: `url('/character/${mediaState.folder.character[1]}/${mediaState.file.characterFile[1]}')`,
+        backgroundImage: `url(${urlConfig.character})`,
       }}
     />
   );

@@ -1,5 +1,6 @@
 import styles from "./VoiceControl.module.css";
 import { useState } from "react";
+import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { GiHeartStake } from "react-icons/gi";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
@@ -8,6 +9,7 @@ import IconSmall from "../Common/IconSmall";
 import IconDefault from "../Common/IconDefault";
 
 const VoiceControl = () => {
+  const { urlConfig } = useUrlConfig();
   const { mediaState, mediaDispatch } = useMediaInfo();
 
   const [isLoop, setIsLoop] = useState<boolean>(true);
@@ -50,7 +52,7 @@ const VoiceControl = () => {
             loop={isLoop}
             onEnded={isLoop ? undefined : () => mediaDispatch({ type: "voiceNext" })}
             className={isLoop ? "" : styles.inOrder}
-            src={`/voice/${mediaState.folder.voice[1]}/${mediaState.file.voiceFile[1]}`}
+            src={urlConfig.voice}
           ></audio>
         </div>
       )}
