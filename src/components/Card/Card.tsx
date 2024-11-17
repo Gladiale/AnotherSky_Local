@@ -74,48 +74,46 @@ const Card = () => {
   };
 
   return (
-    <div className={`${styles["card-container-3d"]}`}>
-      <div
-        className={`${styles.card}
+    <div
+      className={`${styles.card}
         ${screenMode === "cgMode" && styles.cgMode}
         ${scene === "card" && styles.sceneCard}
         ${(scene === "cg" || scene === "anotherCharacter") && styles.sceneCG}
         ${optionData.loadingAnime && styles.hasAnime}
         ${optionData.cgShadow && styles.shadow}`}
-        onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: false })}
-        onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
-        onClick={changeScene}
-        onContextMenu={resetScene}
-        onWheel={changeImage}
-        style={{
-          transform: `rotate(${imageDeg}deg)
+      onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: false })}
+      onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
+      onClick={changeScene}
+      onContextMenu={resetScene}
+      onWheel={changeImage}
+      style={{
+        transform: `rotate(${imageDeg}deg)
             rotateY(${rotateYState.cardRotateY ? 180 : 0}deg)`,
-          overflow:
-            (isEditMode && effectState.mirrorEffect) || scene === "card"
-              ? "hidden"
-              : undefined,
-          width: isEditMode && effectState.mirrorEffect ? "100%" : undefined,
-          imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
-          filter: filterData,
-          boxShadow:
-            scene === "card" && optionData.cgShadow && effectState.filterEffect.targetCard
-              ? "none"
-              : undefined,
+        overflow:
+          (isEditMode && effectState.mirrorEffect) || scene === "card"
+            ? "hidden"
+            : undefined,
+        width: isEditMode && effectState.mirrorEffect ? "100%" : undefined,
+        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
+        filter: filterData,
+        boxShadow:
+          scene === "card" && optionData.cgShadow && effectState.filterEffect.targetCard
+            ? "none"
+            : undefined,
+      }}
+    >
+      <CardImage
+        props={{
+          isEditMode,
+          imageScale,
+          imagePosition,
+          triggerEditMode,
+          changeImageScale,
+          moveImageReverse,
         }}
-      >
-        <CardImage
-          props={{
-            isEditMode,
-            imageScale,
-            imagePosition,
-            triggerEditMode,
-            changeImageScale,
-            moveImageReverse,
-          }}
-        />
+      />
 
-        <CardPolygon scene={scene} />
-      </div>
+      <CardPolygon scene={scene} />
     </div>
   );
 };

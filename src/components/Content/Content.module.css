@@ -15,3 +15,9 @@
   left: 0;
   width: 50%;
 }
+
+.content.threeD {
+  /* cardの3D化 */
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
