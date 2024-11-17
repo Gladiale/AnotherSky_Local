@@ -1,18 +1,21 @@
+// 後にsceneにanotherCharacterを追加
+
+type MediaOriginType =
+  | "cg"
+  | "character"
+  | "anotherCharacter"
+  | "video"
+  | "voice"
+  | "effect";
+
 type MediaInfoType = {
   folder: {
-    cg: [number, string];
-    character: [number, string];
-    video: [number, string];
-    voice: [number, string];
-    effect: [number, string];
+    // [key]: [index, name]
+    [P in MediaOriginType]: [number, string];
   };
-
   file: {
-    cgFile: [number, string];
-    characterFile: [number, string];
-    videoFile: [number, string];
-    voiceFile: [number, string];
-    effectFile: [number, string];
+    // [key]: [index, name, length]
+    [P in MediaOriginType]: [number, string, number];
   };
 };
 
@@ -20,17 +23,19 @@ const mediaInfoInit: MediaInfoType = {
   folder: {
     cg: [0, ""],
     character: [0, ""],
+    anotherCharacter: [0, ""],
     video: [0, ""],
     voice: [0, ""],
     effect: [0, ""],
   },
   file: {
-    cgFile: [0, ""],
-    characterFile: [0, ""],
-    videoFile: [0, ""],
-    voiceFile: [0, ""],
-    effectFile: [0, ""],
+    cg: [0, "", 0],
+    character: [0, "", 0],
+    anotherCharacter: [0, "", 0],
+    video: [0, "", 0],
+    voice: [0, "", 0],
+    effect: [0, "", 0],
   },
 };
 
-export { type MediaInfoType, mediaInfoInit };
+export { type MediaOriginType, type MediaInfoType, mediaInfoInit };

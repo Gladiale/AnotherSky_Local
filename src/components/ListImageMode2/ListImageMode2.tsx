@@ -9,10 +9,6 @@ import { useScreenMode } from "../../context/ScreenContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
-import {
-  useCardCharacterInfo,
-  useCardCharacterState,
-} from "../../context/CardCharacterContext";
 
 const ListImageMode2 = () => {
   const { listState, listSubState, setListState } = useImageList();
@@ -22,10 +18,10 @@ const ListImageMode2 = () => {
   const { effectState } = useEffectState();
   const { filterState } = useFilter();
   const { screenMode } = useScreenMode();
-  const { isCharacter, setIsCharacter } = useCardCharacterState();
-  const { characterInfoDispatch } = useCardCharacterInfo();
 
-  const [imageInfoList, setImageInfoList] = useState<[number, string][][]>([]);
+  const [imageInfoList, setImageInfoList] = useState<
+    [[number, string], [number, string, number]][]
+  >([]);
   const imgBoxRef = useRef<HTMLDivElement>(null);
   const [changeInfo, setChangeInfo] = useState({
     changed: false,
@@ -41,10 +37,6 @@ const ListImageMode2 = () => {
     });
     if (target === "cg") {
       setScene("cg");
-      if (isCharacter) {
-        setIsCharacter(false);
-        characterInfoDispatch({ type: "deleteData" });
-      }
     }
   };
 
@@ -62,7 +54,7 @@ const ListImageMode2 = () => {
   }
 
   useLayoutEffect(() => {
-    const imageList: [number, string][][] = [];
+    const imageList: [[number, string], [number, string, number]][] = [];
     if (listState.cg) {
       target = "cg";
     } else {

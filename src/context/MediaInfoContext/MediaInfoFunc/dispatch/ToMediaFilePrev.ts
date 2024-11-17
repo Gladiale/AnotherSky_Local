@@ -8,8 +8,12 @@ const toMediaFilePrev = (state: MediaInfoType, scene: SceneType): MediaInfoType 
       return filePrevFunc(state, "character");
     case "cg":
       return filePrevFunc(state, "cg");
-    default:
+    case "anotherCharacter":
+      return filePrevFunc(state, "anotherCharacter");
+    case "video":
       return filePrevFunc(state, "video");
+    default:
+      return state;
   }
 };
 

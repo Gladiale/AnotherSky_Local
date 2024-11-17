@@ -2,10 +2,7 @@ import { RandomTargetType } from "../../../../components/ControlIcon/RandomContr
 import { CGDataObj } from "../../../../data/CGDataObj";
 import { CharacterDataObj } from "../../../../data/CharacterDataObj";
 import { VideoDataObj } from "../../../../data/VideoDataObj";
-import {
-  getRandomFile,
-  getRandomFolderFile,
-} from "../../../../helper/dataObjControl";
+import { getRandomFile, getRandomFolderFile } from "../../../../helper/dataObjControl";
 import { type MediaInfoType } from "../../mediaInfo";
 
 type FolderType = {
@@ -15,9 +12,9 @@ type FolderType = {
 };
 
 type FileType = {
-  cgFile?: [number, string];
-  characterFile?: [number, string];
-  videoFile?: [number, string];
+  cg?: [number, string, number];
+  character?: [number, string, number];
+  video?: [number, string, number];
 };
 
 const toMediaRandomWithParam = (
@@ -32,17 +29,17 @@ const toMediaRandomWithParam = (
     if (randomTarget.cg) {
       const cgData = getRandomFolderFile(CGDataObj);
       folder.cg = cgData.folder;
-      file.cgFile = cgData.file;
+      file.cg = cgData.file;
     }
     if (randomTarget.stand) {
       const characterData = getRandomFolderFile(CharacterDataObj);
       folder.character = characterData.folder;
-      file.characterFile = characterData.file;
+      file.character = characterData.file;
     }
     if (randomTarget.video) {
       const videoData = getRandomFolderFile(VideoDataObj);
       folder.video = videoData.folder;
-      file.videoFile = videoData.file;
+      file.video = videoData.file;
     }
     return {
       folder: { ...state.folder, ...folder },
@@ -52,16 +49,13 @@ const toMediaRandomWithParam = (
 
   // folderがターゲット外の時実行
   if (randomTarget.cg) {
-    file.cgFile = getRandomFile(CGDataObj, state.folder.cg[1]);
+    file.cg = getRandomFile(CGDataObj, state.folder.cg[1]);
   }
   if (randomTarget.stand) {
-    file.characterFile = getRandomFile(
-      CharacterDataObj,
-      state.folder.character[1]
-    );
+    file.character = getRandomFile(CharacterDataObj, state.folder.character[1]);
   }
   if (randomTarget.video) {
-    file.videoFile = getRandomFile(VideoDataObj, state.folder.video[1]);
+    file.video = getRandomFile(VideoDataObj, state.folder.video[1]);
   }
   return { ...state, file: { ...state.file, ...file } };
 };

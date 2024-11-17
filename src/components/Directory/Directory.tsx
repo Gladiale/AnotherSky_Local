@@ -8,7 +8,10 @@ import { CGDataObj } from "../../data/CGDataObj";
 import { VideoDataObj } from "../../data/VideoDataObj";
 import { CharacterDataObj } from "../../data/CharacterDataObj";
 import { getDirectoryData } from "../../helper/dataObjControl";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import {
+  useAnotherCharacter,
+  useMediaInfo,
+} from "../../context/MediaInfoContext/MediaInfoContext";
 
 const getTargetData = (target: DirectoryTargetType) => {
   switch (target) {
@@ -21,7 +24,10 @@ const getTargetData = (target: DirectoryTargetType) => {
   }
 };
 
-const sliceListByNum = (array: [number, string][][], contentNum: number) => {
+const sliceListByNum = (
+  array: [[number, string], [number, string, number]][],
+  contentNum: number
+) => {
   // 切り上げ
   const maxPage = Math.ceil(array.length / contentNum);
   let newArr = [];
@@ -35,9 +41,10 @@ const sliceListByNum = (array: [number, string][][], contentNum: number) => {
 const Directory = () => {
   const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
   const { mediaDispatch } = useMediaInfo();
+  const { setAnotherActive } = useAnotherCharacter();
   const { setScene } = useScene();
 
-  const directoryData: [number, string][][] = getTargetData(directoryTarget);
+  const directoryData = getTargetData(directoryTarget);
   // console.log("directoryData:", directoryData);
   const directorySliced = sliceListByNum(directoryData, 9);
   // console.log("sliced:", directorySliced);
@@ -51,7 +58,7 @@ const Directory = () => {
         fileInfo: directorySliced[pageIndex][index],
       },
     });
-    directoryTarget === "cg" && setScene("cg");
+    directoryTarget === "cg" && (setScene("cg"), setAnotherActive(false));
     directoryTarget === "video" && setScene("video");
   };
 

@@ -8,8 +8,12 @@ const toMediaFolderNext = (state: MediaInfoType, scene: SceneType): MediaInfoTyp
       return folderNextFunc(state, "character");
     case "cg":
       return folderNextFunc(state, "cg");
-    default:
+    case "anotherCharacter":
+      return folderNextFunc(state, "anotherCharacter");
+    case "video":
       return folderNextFunc(state, "video");
+    default:
+      return state;
   }
 };
 

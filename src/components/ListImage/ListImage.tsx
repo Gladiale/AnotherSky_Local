@@ -8,10 +8,6 @@ import { useFilter } from "../../context/FilterContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
-import {
-  useCardCharacterInfo,
-  useCardCharacterState,
-} from "../../context/CardCharacterContext";
 
 const ListImage = () => {
   const { listState, listSubState, setListState } = useImageList();
@@ -20,9 +16,9 @@ const ListImage = () => {
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
   const { filterState } = useFilter();
-  const { isCharacter, setIsCharacter } = useCardCharacterState();
-  const { characterInfoDispatch } = useCardCharacterInfo();
-  const [imageInfoList, setImageInfoList] = useState<[number, string][][]>([]);
+  const [imageInfoList, setImageInfoList] = useState<
+    [[number, string], [number, string, number]][]
+  >([]);
 
   // 左クリック
   const changeCardCg = (target: SpecificPayloadType["target"], index: number) => {
@@ -32,10 +28,6 @@ const ListImage = () => {
     });
     if (target === "cg") {
       setScene("cg");
-      if (isCharacter) {
-        setIsCharacter(false);
-        characterInfoDispatch({ type: "deleteData" });
-      }
     }
   };
 
@@ -54,7 +46,7 @@ const ListImage = () => {
 
   // useLayoutEffectはuseEffectの先に実行　と　値が画面を反映する前実行
   useLayoutEffect(() => {
-    const imageList: [number, string][][] = [];
+    const imageList: [[number, string], [number, string, number]][] = [];
 
     if (listState.cg) {
       target = "cg";

@@ -11,7 +11,6 @@ import { useScreenMode } from "../../context/ScreenContext";
 import { ImageListProvider } from "../../context/ImageListState";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { RotateYProvider } from "../../context/RotateYContext";
-import { CardCharacterProvider } from "../../context/CardCharacterContext";
 import { EffectControlProvider } from "../../context/EffectControlContext";
 
 const Container = () => {
@@ -20,7 +19,7 @@ const Container = () => {
   const { effectState } = useEffectState();
 
   useLayoutEffect(() => {
-    if (mediaState.file.characterFile[1] === "") {
+    if (mediaState.file.character[1] === "") {
       mediaDispatch({ type: "random" });
     }
   }, []);
@@ -33,19 +32,17 @@ const Container = () => {
       ${screenMode === "cgMode" && styles.cgMode}`}
     >
       <FilterProvider>
-        <CardCharacterProvider>
-          <RotateYProvider>
-            <HoverProvider>
-              <ImageListProvider>
-                <EffectControlProvider>
-                  <Content />
-                  <Control />
-                  <Information />
-                </EffectControlProvider>
-              </ImageListProvider>
-            </HoverProvider>
-          </RotateYProvider>
-        </CardCharacterProvider>
+        <RotateYProvider>
+          <HoverProvider>
+            <ImageListProvider>
+              <EffectControlProvider>
+                <Content />
+                <Control />
+                <Information />
+              </EffectControlProvider>
+            </ImageListProvider>
+          </HoverProvider>
+        </RotateYProvider>
       </FilterProvider>
     </div>
   );

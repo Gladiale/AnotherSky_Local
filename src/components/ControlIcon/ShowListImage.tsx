@@ -1,6 +1,7 @@
 import styles from "./ShowListImage.module.css";
 import { GiGooeyImpact } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
+import { useAnotherCharacter } from "../../context/MediaInfoContext/MediaInfoContext";
 import {
   type ImageListType,
   type ImageListSubType,
@@ -11,6 +12,7 @@ import IconDefault from "../Common/IconDefault";
 const ShowListImage = () => {
   const { listState, setListState, listSubState, setListSubState } = useImageList();
   const { scene, setScene } = useScene();
+  const { anotherActive } = useAnotherCharacter();
 
   const changeState = (target: keyof ImageListType) => {
     if (target === "folder") {
@@ -29,6 +31,9 @@ const ShowListImage = () => {
       setScene("listImg");
     } else {
       // setListState((prev) => ({ ...prev, random: !prev.random }));
+      if (anotherActive) {
+        return setScene("anotherCharacter");
+      }
       setScene("cg");
     }
   };

@@ -10,14 +10,15 @@ import { toMediaFileLast } from "./MediaInfoFunc/dispatch/toMediaFileLast";
 import { toMediaFileNext } from "./MediaInfoFunc/dispatch/toMediaFileNext";
 import { toMediaRandom } from "./MediaInfoFunc/dispatch/toMediaRandom";
 import { toMediaRandomWithParam } from "./MediaInfoFunc/dispatch/toMediaRandomWithParam";
+import { toMediaFolderNext } from "./MediaInfoFunc/dispatch/toMediaFolderNext";
+import { toMediaFolderPrev } from "./MediaInfoFunc/dispatch/toMediaFolderPrev";
+import { initAnotherCharacter } from "./MediaInfoFunc/dispatch/initAnotherCharacter";
 import {
   toMediaSpecificFile,
   type SpecificPayloadType,
 } from "./MediaInfoFunc/dispatch/toMediaSpecificFile";
 import { type SceneType } from "../SceneContext";
 import { type MediaInfoType } from "./mediaInfo";
-import { toMediaFolderNext } from "./MediaInfoFunc/dispatch/toMediaFolderNext";
-import { toMediaFolderPrev } from "./MediaInfoFunc/dispatch/toMediaFolderPrev";
 
 type MainActionType = {
   type: "next" | "prev" | "first" | "last" | "folderNext" | "folderPrev";
@@ -34,7 +35,8 @@ type SubActionType = {
     | "voiceLast"
     | "effectNext"
     | "effectPrev"
-    | "effectFolderNext";
+    | "effectFolderNext"
+    | "initAnother";
 };
 
 type OtherActionType = {
@@ -47,11 +49,7 @@ type SpecificActionType = {
   payload: SpecificPayloadType;
 };
 
-type ActionType =
-  | MainActionType
-  | SubActionType
-  | OtherActionType
-  | SpecificActionType;
+type ActionType = MainActionType | SubActionType | OtherActionType | SpecificActionType;
 
 function reducerFunc(state: MediaInfoType, action: ActionType) {
   switch (action.type) {
@@ -83,6 +81,8 @@ function reducerFunc(state: MediaInfoType, action: ActionType) {
       return filePrevFunc(state, "effect");
     case "effectFolderNext":
       return folderNextRandomFile(state, "effect");
+    case "initAnother":
+      return initAnotherCharacter(state);
     case "random":
       return toMediaRandom();
     case "randomWithSelect":

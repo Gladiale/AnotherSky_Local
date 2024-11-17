@@ -1,30 +1,21 @@
 import { getFileList, getFolderList } from "../../../../helper/dataObjControl";
 import { getTargetFunc } from "./getTargetFunc";
-import { type MediaInfoType } from "../../mediaInfo";
+import { type MediaOriginType, type MediaInfoType } from "../../mediaInfo";
 
-type ChangeTargetType = "character" | "cg" | "video" | "voice" | "effect";
-
-const folderPrevFunc = (state: MediaInfoType, target: ChangeTargetType) => {
-  const [dataObj, targetFolder, targetFile] = getTargetFunc(target);
-
-  let folderIndex: number;
-  let folderName: string;
+const folderPrevFunc = (state: MediaInfoType, target: MediaOriginType): MediaInfoType => {
+  const dataObj = getTargetFunc(target);
 
   const folderList: string[] = getFolderList(dataObj);
-  const index: number = state.folder[targetFolder][0];
-  if (index === 0) {
-    folderIndex = folderList.length - 1;
-  } else {
-    folderIndex = index - 1;
-  }
+  const prevFolderIndex =
+    (state.folder[target][0] - 1 + folderList.length) % folderList.length;
 
-  folderName = folderList[folderIndex];
+  const folderName = folderList[prevFolderIndex];
   const fileList: string[] = getFileList(dataObj, folderName);
 
   return {
     ...state,
-    folder: { ...state.folder, [targetFolder]: [folderIndex, folderName] },
-    file: { ...state.file, [targetFile]: [0, fileList[0]] },
+    folder: { ...state.folder, [target]: [prevFolderIndex, folderName] },
+    file: { ...state.file, [target]: [0, fileList[0], fileList.length] },
   };
 };
 

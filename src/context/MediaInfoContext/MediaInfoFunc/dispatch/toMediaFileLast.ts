@@ -8,8 +8,12 @@ const toMediaFileLast = (state: MediaInfoType, scene: SceneType): MediaInfoType 
       return fileLastFunc(state, "character");
     case "cg":
       return fileLastFunc(state, "cg");
-    default:
+    case "anotherCharacter":
+      return fileLastFunc(state, "anotherCharacter");
+    case "video":
       return fileLastFunc(state, "video");
+    default:
+      return state;
   }
 };
 

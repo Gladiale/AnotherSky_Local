@@ -3,53 +3,27 @@ import { CharacterDataObj } from "../../../../data/CharacterDataObj";
 import { EffectDataObj } from "../../../../data/EffectDataObj";
 import { VideoDataObj } from "../../../../data/VideoDataObj";
 import { VoiceDataObj } from "../../../../data/VoiceDataObj";
-import { MediaInfoType } from "../../mediaInfo";
+import { type MediaOriginType } from "../../mediaInfo";
 
-type ChangeTargetType = "character" | "cg" | "video" | "voice" | "effect";
 type TargetObjType = Record<string, string[]>;
 
-const getTargetFunc = (
-  target: ChangeTargetType
-): [
-  TargetObjType,
-  keyof MediaInfoType["folder"],
-  keyof MediaInfoType["file"]
-] => {
-  let dataObj: TargetObjType;
-  let targetFolder: keyof MediaInfoType["folder"];
-  let targetFile: keyof MediaInfoType["file"];
-
+const getTargetFunc = (target: MediaOriginType): TargetObjType => {
   switch (target) {
-    case "character":
-      dataObj = CharacterDataObj;
-      targetFolder = "character";
-      targetFile = "characterFile";
-      break;
     case "cg":
-      dataObj = CGDataObj;
-      targetFolder = "cg";
-      targetFile = "cgFile";
-      break;
+      return CGDataObj;
+    case "character":
+      return CharacterDataObj;
+    case "anotherCharacter":
+      return CharacterDataObj;
     case "video":
-      dataObj = VideoDataObj;
-      targetFolder = "video";
-      targetFile = "videoFile";
-      break;
+      return VideoDataObj;
     case "voice":
-      dataObj = VoiceDataObj;
-      targetFolder = "voice";
-      targetFile = "voiceFile";
-      break;
+      return VoiceDataObj;
     case "effect":
-      dataObj = EffectDataObj;
-      targetFolder = "effect";
-      targetFile = "effectFile";
-      break;
+      return EffectDataObj;
     default:
       throw new Error("不明なactionです");
   }
-
-  return [dataObj, targetFolder, targetFile];
 };
 
 export { getTargetFunc };

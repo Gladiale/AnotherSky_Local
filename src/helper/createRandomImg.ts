@@ -5,12 +5,12 @@ import { CharacterDataObj } from "../data/CharacterDataObj";
 import { getRandomFile, getRandomFolderFile } from "./dataObjControl";
 
 const createRandomImg = (
-  imageInfoList: [number, string][][],
+  imageInfoList: [[number, string], [number, string, number]][],
   listState: ImageListType,
   mediaState: MediaInfoType
 ) => {
   let folder: [number, string];
-  let file: [number, string];
+  let file: [number, string, number];
 
   if (listState.folder) {
     if (listState.cg) {

@@ -8,12 +8,14 @@ import { useScene } from "../../context/SceneContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { useAppOption } from "../../context/AppOptionContext";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
+import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import EffectImage from "../EffectImage/EffectImage";
 import VideoControl from "./VideoControl/VideoControl";
 import Loading from "../Loading/Loading";
 
 const Video = () => {
-  const { setScene } = useScene();
+  const { scene, setScene } = useScene();
+  const { mediaDispatch } = useMediaInfo();
   const { urlConfig } = useUrlConfig();
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
@@ -42,11 +44,18 @@ const Video = () => {
     setScene("card");
   };
 
+  const changeVideo = (e: React.WheelEvent) => {
+    e.deltaY > 0
+      ? mediaDispatch({ type: "next", payload: scene })
+      : mediaDispatch({ type: "prev", payload: scene });
+  };
+
   return (
     <div
       className={styles["video-content"]}
       onClick={rotateVideo}
       onContextMenu={resetScene}
+      onWheel={changeVideo}
       onMouseEnter={() => setVideoHovered(true)}
       onMouseLeave={() => setVideoHovered(false)}
     >

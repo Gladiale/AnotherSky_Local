@@ -8,8 +8,12 @@ const toMediaFolderPrev = (state: MediaInfoType, scene: SceneType): MediaInfoTyp
       return folderPrevFunc(state, "character");
     case "cg":
       return folderPrevFunc(state, "cg");
-    default:
+    case "anotherCharacter":
+      return folderPrevFunc(state, "anotherCharacter");
+    case "video":
       return folderPrevFunc(state, "video");
+    default:
+      return state;
   }
 };
 

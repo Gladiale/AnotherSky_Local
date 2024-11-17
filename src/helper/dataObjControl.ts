@@ -3,7 +3,7 @@ import { getRandomInt } from "./getRandomInt";
 type DataObjType = Record<string, string[]>;
 type RandomFileType = {
   folder: [number, string];
-  file: [number, string];
+  file: [number, string, number];
 };
 
 const getFolderList = (dataObj: DataObjType): string[] => {
@@ -16,15 +16,18 @@ const getFileList = (dataObj: DataObjType, folder: string): string[] => {
   return fileList;
 };
 
-const getDirectoryData = (dataObj: DataObjType): [number, string][][] => {
+const getDirectoryData = (
+  dataObj: DataObjType
+): [[number, string], [number, string, number]][] => {
   const folderList = getFolderList(dataObj);
-  const directoryData: [number, string][][] = [];
+  const directoryData: [[number, string], [number, string, number]][] = [];
 
   folderList.forEach((folder, index) => {
-    const file = getFileList(dataObj, folder)[0];
+    const fileList = getFileList(dataObj, folder);
+    const file = fileList[0];
     directoryData.push([
       [index, folder],
-      [0, file],
+      [0, file, fileList.length],
     ]);
   });
   return directoryData;
@@ -59,10 +62,10 @@ const getPrevFile = (
 const getRandomFile = (
   dataObj: DataObjType,
   folder: string
-): [number, string] => {
+): [number, string, number] => {
   const fileList: string[] = dataObj[folder];
   const index = getRandomInt(fileList.length);
-  return [index, fileList[index]];
+  return [index, fileList[index], fileList.length];
 };
 
 const getRandomFolder = (dataObj: DataObjType): [number, string] => {
@@ -80,7 +83,7 @@ const getRandomFolderFile = (dataObj: DataObjType): RandomFileType => {
 
   return {
     folder: [randomFolderIndex, randomFolderName],
-    file: [randomFileIndex, randomFileName],
+    file: [randomFileIndex, randomFileName, fileList.length],
   };
 };
 

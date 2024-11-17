@@ -1,13 +1,8 @@
 import styles from "./CGbox.module.css";
-import { useLayoutEffect } from "react";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useLoading } from "../../hooks/useLoading";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import {
-  useCardCharacterInfo,
-  useCardCharacterState,
-} from "../../context/CardCharacterContext";
+import { useAnotherCharacter } from "../../context/MediaInfoContext/MediaInfoContext";
 import Loading from "../Loading/Loading";
 
 type PropsType = {
@@ -15,24 +10,16 @@ type PropsType = {
 };
 
 const CG = ({ className }: PropsType) => {
-  const { mediaSizeData } = useMediaSizeData();
-  const { mediaState } = useMediaInfo();
-  const { isCharacter } = useCardCharacterState();
   const { urlConfig } = useUrlConfig();
-  const { characterInfo, characterInfoDispatch } = useCardCharacterInfo();
+  const { anotherActive } = useAnotherCharacter();
+  const { mediaSizeData } = useMediaSizeData();
 
-  const imgUrl = isCharacter ? urlConfig.cardCharacter : urlConfig.cg;
+  const imgUrl = anotherActive ? urlConfig.anotherCharacter : urlConfig.cg;
 
   const { loadStatus, showTarget, showError } = useLoading({
-    trigger: [isCharacter, imgUrl],
+    trigger: [anotherActive, imgUrl],
     target: "cg",
   });
-
-  useLayoutEffect(() => {
-    if (characterInfo.file[1] === "") {
-      characterInfoDispatch({ type: "init", payload: mediaState });
-    }
-  }, [isCharacter]);
 
   return (
     <>

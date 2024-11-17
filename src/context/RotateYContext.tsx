@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { SceneType } from "./SceneContext";
+import { type SceneType } from "./SceneContext";
 
 type rotateYType = {
   cardRotateY: boolean;

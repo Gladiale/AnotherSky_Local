@@ -9,13 +9,14 @@
   white-space: nowrap;
   /* mix-blend-mode: exclusion; */
   transition: 0.5s;
+  filter: drop-shadow(0 0 3px #ff63ff) drop-shadow(0 0 15px #a20072);
   opacity: 0;
+  z-index: 0;
 }
 
-.information.Info-hovered {
+.information.infoActive {
   opacity: 1;
   z-index: 20;
-  filter: drop-shadow(0 0 3px #ff63ff) drop-shadow(0 0 15px #a20072);
 }
 
 .information p {
@@ -26,6 +27,12 @@
   color: #00ff4c;
   font-size: 1.3rem;
   font-weight: 600;
+}
+
+.information > p > span {
+  color: #e789ff;
+  font-size: 1.2rem;
+  font-weight: normal;
 }
 
 .information > p > span.active {
@@ -39,5 +46,9 @@
 
   .information > p.active {
     font-size: 1.1rem;
+  }
+
+  .information > p > span {
+    font-size: 1rem;
   }
 }

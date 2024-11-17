@@ -8,8 +8,12 @@ const toMediaFileNext = (state: MediaInfoType, scene: SceneType): MediaInfoType 
       return fileNextFunc(state, "character");
     case "cg":
       return fileNextFunc(state, "cg");
-    default:
+    case "anotherCharacter":
+      return fileNextFunc(state, "anotherCharacter");
+    case "video":
       return fileNextFunc(state, "video");
+    default:
+      return state;
   }
 };
 

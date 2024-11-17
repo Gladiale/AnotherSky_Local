@@ -1,22 +1,17 @@
 import { getFileList } from "../../../../helper/dataObjControl";
 import { getTargetFunc } from "./getTargetFunc";
-import { type MediaInfoType } from "../../mediaInfo";
+import { type MediaOriginType, type MediaInfoType } from "../../mediaInfo";
 
-type ChangeTargetType = "character" | "cg" | "video" | "voice" | "effect";
+const fileLastFunc = (state: MediaInfoType, target: MediaOriginType): MediaInfoType => {
+  const dataObj = getTargetFunc(target);
 
-const fileLastFunc = (state: MediaInfoType, target: ChangeTargetType) => {
-  const [dataObj, targetFolder, targetFile] = getTargetFunc(target);
-
-  const fileList: string[] = getFileList(
-    dataObj,
-    state.folder[targetFolder][1]
-  );
-
-  const fileIndex = fileList.length - 1;
+  const fileList: string[] = getFileList(dataObj, state.folder[target][1]);
+  const fileLength = fileList.length;
+  const fileIndex = fileLength - 1;
 
   return {
     ...state,
-    file: { ...state.file, [targetFile]: [fileIndex, fileList[fileIndex]] },
+    file: { ...state.file, [target]: [fileIndex, fileList[fileIndex], fileLength] },
   };
 };
 

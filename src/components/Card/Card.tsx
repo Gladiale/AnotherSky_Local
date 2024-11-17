@@ -6,13 +6,12 @@ import CardImage from "../CardImage/CardImage";
 import { useScene } from "../../context/SceneContext";
 import { useHover } from "../../context/HoverContext";
 import { useScreenMode } from "../../context/ScreenContext";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import {
+  useAnotherCharacter,
+  useMediaInfo,
+} from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
-import {
-  useCardCharacterInfo,
-  useCardCharacterState,
-} from "../../context/CardCharacterContext";
 import { useImageControl } from "../../hooks/useImageControl";
 import { useAppOption } from "../../context/AppOptionContext";
 import { useFilterData } from "../../hooks/useFilterData";
@@ -34,61 +33,51 @@ const Card = () => {
   const { setIsHovered } = useHover();
   const { scene, setScene } = useScene();
   const { mediaDispatch } = useMediaInfo();
+  const { anotherActive } = useAnotherCharacter();
   const { screenMode } = useScreenMode();
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
   const { filterData } = useFilterData("cg");
-  const { isCharacter } = useCardCharacterState();
-  const { characterInfoDispatch } = useCardCharacterInfo();
 
   // Cardにマウスの左クリック
   const changeScene = (e: React.MouseEvent<HTMLDivElement>) => {
-    switch (scene) {
-      case "card":
-        return setScene("cg");
-      case "cg":
-        changeImageDeg(e);
-        break;
-      default:
-        return;
+    if (scene === "card") {
+      if (anotherActive) {
+        return setScene("anotherCharacter");
+      }
+      return setScene("cg");
+    }
+    if (scene === "cg" || scene === "anotherCharacter") {
+      return changeImageDeg(e);
     }
   };
 
   // Cardにマウスの右クリック
   const resetScene = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    switch (scene) {
-      case "card":
-        setScene("video");
-        break;
-      case "cg":
-        setScene("card");
-        if (isEditMode || imageDeg !== 0) {
-          triggerEditMode(e, true);
-        }
-        break;
-      default:
-        return;
+    if (scene === "card") {
+      return setScene("video");
+    }
+    if (scene === "cg" || scene === "anotherCharacter") {
+      setScene("card");
+      if (isEditMode || imageDeg !== 0) {
+        triggerEditMode(e, true);
+      }
+      return;
     }
   };
 
   const changeImage = (e: React.WheelEvent) => {
-    if (isCharacter && scene === "cg") {
-      e.deltaY > 0
-        ? characterInfoDispatch({ type: "next" })
-        : characterInfoDispatch({ type: "prev" });
-    } else {
-      e.deltaY > 0
-        ? mediaDispatch({ type: "next", payload: scene })
-        : mediaDispatch({ type: "prev", payload: scene });
-    }
+    e.deltaY > 0
+      ? mediaDispatch({ type: "next", payload: scene })
+      : mediaDispatch({ type: "prev", payload: scene });
   };
 
   return (
     <div className={`${styles["card-container-3d"]}`}>
       <div
         className={`${styles.card}
-          ${scene === "cg" && styles.sceneCG}
+          ${(scene === "cg" || scene === "anotherCharacter") && styles.sceneCG}
           ${optionData.cgShadow && styles.shadow}
           ${screenMode === "cardMode" && styles.cardMode}
           ${screenMode === "cgMode" && styles.cgMode}`}

@@ -17,7 +17,7 @@ const Content = () => {
   return (
     <div className={`${styles.content} ${effectState.mirrorEffect ? styles.mirror : ""}`}>
       {scene != "card" && <Character />}
-      {(scene === "cg" || scene === "card") && <Card />}
+      {(scene === "cg" || scene === "card" || scene === "anotherCharacter") && <Card />}
       {scene === "listImg" && !listSubState.mode2 && <ListImage />}
       {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}
       {scene === "directoryMode" && <Directory />}

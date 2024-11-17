@@ -8,8 +8,12 @@ const toMediaFileFirst = (state: MediaInfoType, scene: SceneType): MediaInfoType
       return fileFirstFunc(state, "character");
     case "cg":
       return fileFirstFunc(state, "cg");
-    default:
+    case "anotherCharacter":
+      return fileFirstFunc(state, "anotherCharacter");
+    case "video":
       return fileFirstFunc(state, "video");
+    default:
+      return state;
   }
 };
 
