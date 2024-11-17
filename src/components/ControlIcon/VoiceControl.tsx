@@ -58,7 +58,7 @@ const VoiceControl = () => {
       )}
 
       <IconDefault
-        className={hasVoice && "toggleVoice"}
+        className={hasVoice && "anime-scale"}
         onClick={() => setHasVoice((prev) => !prev)}
         onContextMenu={changeVoiceLoop}
       >

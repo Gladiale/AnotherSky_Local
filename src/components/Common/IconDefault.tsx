@@ -2,7 +2,7 @@ import styles from "./Icon.module.css";
 
 type IconDefaultProps = {
   children: React.ReactNode;
-  className?: string | false;
+  className?: "anime-color" | "anime-scale" | false;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onContextMenu?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };

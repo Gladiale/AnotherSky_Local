@@ -21,7 +21,7 @@ const FilterControl = () => {
 
   return (
     <div className={styles["filter-container"]}>
-      <IconDefault onClick={openCloseFilter} className={condition && "toggle"}>
+      <IconDefault onClick={openCloseFilter} className={condition && "anime-color"}>
         <GiFairyWand />
       </IconDefault>
       {condition && <FilterMenu />}

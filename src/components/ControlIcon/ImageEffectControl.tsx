@@ -160,7 +160,7 @@ const ImageEffectControl = () => {
         </div>
       )}
 
-      <IconDefault className={condition && "toggle"} onClick={openCloseImgEF}>
+      <IconDefault className={condition && "anime-color"} onClick={openCloseImgEF}>
         <GiPrism />
       </IconDefault>
     </div>

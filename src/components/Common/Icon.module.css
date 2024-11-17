@@ -27,13 +27,12 @@
   scale: 0.8;
 }
 
-.iconDefault.toggle {
+.iconDefault.anime-color {
   animation: change-color 1s linear infinite alternate;
 }
 
-.iconDefault.toggleVoice {
-  animation: open-voice 1s linear infinite alternate;
-  /* animation: animate-rotate 1.5s linear infinite; */
+.iconDefault.anime-scale {
+  animation: change-scale 1s linear infinite alternate;
 }
 
 .iconSmall {
@@ -86,7 +85,7 @@
   }
 }
 
-@keyframes open-voice {
+@keyframes change-scale {
   0% {
     color: #ff99fd;
     scale: 0.9;
