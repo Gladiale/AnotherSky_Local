@@ -15,7 +15,7 @@ const useMediaSizeData = () => {
         ? "100dvw"
         : "auto",
     width: windowWidth <= 768 && mediaSize === "contain" ? "100dvw" : "auto",
-    maxHeight: mediaSize === "custom" ? "100dvh" : undefined,
+    maxHeight: mediaSize === "custom" ? "100%" : undefined,
     maxWidth:
       mediaSize === "custom" && windowWidth > 768
         ? "65dvw"

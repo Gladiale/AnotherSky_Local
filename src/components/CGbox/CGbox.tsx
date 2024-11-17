@@ -1,7 +1,6 @@
 import styles from "./CGbox.module.css";
-import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
-import { useMediaSize } from "../../context/ScreenContext";
 import { useAppOption } from "../../context/AppOptionContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import CG from "./CG";
 import EffectImage from "../EffectImage/EffectImage";
 import ControlParts from "./ControlParts";
@@ -16,7 +15,6 @@ const CGbox = ({ data }: { data: PropsType }) => {
   const { triggerEditMode, changeImageScale, moveImageReverse } = data;
 
   const { effectState } = useEffectState();
-  const { mediaSize } = useMediaSize();
   const { optionData } = useAppOption();
 
   const shakeCondition = {
@@ -38,9 +36,6 @@ const CGbox = ({ data }: { data: PropsType }) => {
         onMouseDown={triggerEditMode}
         onMouseMove={moveImageReverse}
         onWheel={changeImageScale}
-        style={{
-          height: mediaSize === "contain" ? undefined : "fit-content",
-        }}
       >
         <CG className="cg-img" />
         {effectState.blendCG.active && effectState.filterEffect.targetCard && (
