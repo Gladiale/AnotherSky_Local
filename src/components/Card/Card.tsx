@@ -77,10 +77,11 @@ const Card = () => {
     <div className={`${styles["card-container-3d"]}`}>
       <div
         className={`${styles.card}
-          ${(scene === "cg" || scene === "anotherCharacter") && styles.sceneCG}
-          ${scene === "card" && styles.sceneCard}
-          ${optionData.cgShadow && styles.shadow}
-          ${screenMode === "cgMode" && styles.cgMode}`}
+        ${screenMode === "cgMode" && styles.cgMode}
+        ${scene === "card" && styles.sceneCard}
+        ${(scene === "cg" || scene === "anotherCharacter") && styles.sceneCG}
+        ${optionData.loadingAnime && styles.hasAnime}
+        ${optionData.cgShadow && styles.shadow}`}
         onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: false })}
         onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
         onClick={changeScene}
