@@ -17,10 +17,8 @@
 }
 
 .wrapper .failed {
-  color: #980065;
+  color: #f79cff;
   font-size: 1.2rem;
-  background-color: #f79cff;
-  border-radius: 5px;
 }
 
 /* HTML: <div class="loader"></div> */

@@ -21,7 +21,7 @@
   border: 5px solid #000000dc;
   box-shadow: 0 0 30px var(--clr1);
   user-select: none;
-  transition: all 0.5s, border 0.1s, background-color 0s, box-shadow 0.3s;
+  transition: all 0.5s, border 0.1s, background-color 0s, box-shadow 0s;
   /* imageの3D化 */
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -39,6 +39,10 @@
 .card:hover {
   background: var(--clr2);
   box-shadow: 0 0 30px var(--clr2), 0 0 35px var(--clr2);
+}
+
+.card.sceneCard {
+  transition: box-shadow 0.5s;
 }
 
 .card.sceneCG {

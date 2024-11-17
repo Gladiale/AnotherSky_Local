@@ -19,7 +19,7 @@ const useLoading = ({ trigger, target }: ParamsType) => {
       video: 700,
       effect: 200,
     },
-    failed: 6000,
+    failed: 7000,
   };
 
   useLayoutEffect(() => {

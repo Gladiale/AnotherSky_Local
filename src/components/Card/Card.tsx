@@ -78,8 +78,8 @@ const Card = () => {
       <div
         className={`${styles.card}
           ${(scene === "cg" || scene === "anotherCharacter") && styles.sceneCG}
+          ${scene === "card" && styles.sceneCard}
           ${optionData.cgShadow && styles.shadow}
-          ${screenMode === "cardMode" && styles.cardMode}
           ${screenMode === "cgMode" && styles.cgMode}`}
         onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: false })}
         onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
