@@ -7,22 +7,20 @@ const mediaStateInit: MediaStateType = {
     scale: 1,
     position: { x: 0, y: 0 },
     isEditMode: false,
-    touchMode: "closed",
   },
   effect: {
     deg: 0,
     scale: 1,
     position: { x: 0, y: 0 },
     isEditMode: false,
-    touchMode: "closed",
   },
   video: {
     deg: 0,
     scale: 1,
     position: { x: 0, y: 0 },
     isEditMode: false,
-    touchMode: "closed",
   },
+  touchMode: "closed",
 };
 
 type MediaStateContextType = {

@@ -4,7 +4,7 @@ import type { MediaStateType } from "../types";
 
 type ParamsType = {
   initialScale: number;
-  target: keyof MediaStateType;
+  target: keyof Omit<MediaStateType, "touchMode">;
 };
 
 const useMediaControl = ({ initialScale, target }: ParamsType) => {
