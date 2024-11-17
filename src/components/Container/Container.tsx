@@ -11,7 +11,7 @@ import { useScreenMode } from "../../context/ScreenContext";
 import { ImageListProvider } from "../../context/ImageListState";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { RotateYProvider } from "../../context/RotateYContext";
-import { EffectControlProvider } from "../../context/EffectControlContext";
+import { MediaStateProvider } from "../../context/MediaStateContext";
 
 const Container = () => {
   const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
@@ -35,11 +35,11 @@ const Container = () => {
         <RotateYProvider>
           <HoverProvider>
             <ImageListProvider>
-              <EffectControlProvider>
+              <MediaStateProvider>
                 <Content />
                 <Control />
                 <Information />
-              </EffectControlProvider>
+              </MediaStateProvider>
             </ImageListProvider>
           </HoverProvider>
         </RotateYProvider>

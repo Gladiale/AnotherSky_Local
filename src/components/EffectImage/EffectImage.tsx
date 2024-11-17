@@ -3,7 +3,8 @@ import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useRotateY } from "../../context/RotateYContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
-import { useEffectControl } from "../../context/EffectControlContext";
+import { useMediaControl } from "../../hooks/useMediaControl";
+import { useMediaState } from "../../context/MediaStateContext";
 import Loading from "../Loading/Loading";
 
 const EffectImage = () => {
@@ -11,16 +12,10 @@ const EffectImage = () => {
   const { effectState } = useEffectState();
   const { rotateYState } = useRotateY();
 
-  const {
-    isEditMode,
-    imageDeg,
-    imageScale,
-    imagePosition,
-    triggerEditMode,
-    changeImageDeg,
-    changeImageScale,
-    moveImageDirect,
-  } = useEffectControl();
+  const { mediaState } = useMediaState();
+
+  const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaDirect } =
+    useMediaControl({ initialScale: 1, target: "effect" });
 
   const { loadStatus, showTarget, showError } = useLoading({
     trigger: [urlConfig.effect],
@@ -57,29 +52,31 @@ const EffectImage = () => {
       style={{
         width: imgWidth,
         height: divHeight,
-        scale: String(imageScale),
-        transform: `translate(${imagePosition.x}px, ${imagePosition.y}px)`,
+        scale: String(mediaState["effect"].scale),
+        transform: `translate(${mediaState["effect"].position.x}px, ${mediaState["effect"].position.y}px)`,
         mixBlendMode: effectState.imageEF.activeBlend
           ? effectState.imageEF.blendKind
           : undefined,
       }}
     >
       <img
-        className={`${styles["effect-img"]} ${isEditMode ? styles.isEditing : ""}`}
+        className={`${styles["effect-img"]} ${
+          mediaState["effect"].isEditMode ? styles.isEditing : ""
+        }`}
         src={urlConfig.effect}
         style={{
           objectFit: effectState.imageEF.size,
           width: imgWidth,
           height: imgHeight,
           transform: rotateYState.effectRotateY
-            ? `rotateY(180deg) rotate(${imageDeg}deg)`
-            : `rotate(${imageDeg}deg)`,
+            ? `rotateY(180deg) rotate(${mediaState["effect"].deg}deg)`
+            : `rotate(${mediaState["effect"].deg}deg)`,
           display: loadStatus === "success" ? undefined : "none",
         }}
-        onClick={changeImageDeg}
+        onClick={changeMediaDeg}
         onMouseDown={triggerEditMode}
-        onMouseMove={moveImageDirect}
-        onWheel={changeImageScale}
+        onMouseMove={moveMediaDirect}
+        onWheel={changeMediaScale}
         onLoad={showTarget}
         onStalled={showError}
       />

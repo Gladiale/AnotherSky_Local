@@ -3,7 +3,7 @@ import { GiPrism } from "react-icons/gi";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { EffectStateType } from "../../context/EffectStateContext/effectStateInit";
-import { useEffectControl } from "../../context/EffectControlContext";
+import { useMediaControl } from "../../hooks/useMediaControl";
 import PartsBox from "../Common/PartsBox";
 import EffectBox from "../Common/EffectBox";
 import CheckBox from "../Common/CheckBox";
@@ -13,7 +13,7 @@ import IconDefault from "../Common/IconDefault";
 const ImageEffectControl = () => {
   const { effectState, effectStateDispatch } = useEffectState();
   const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
-  const { triggerEditMode } = useEffectControl();
+  const { triggerEditMode } = useMediaControl({ initialScale: 1, target: "effect" });
 
   const condition: boolean =
     effectState.imageEF.activeImage ||

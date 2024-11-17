@@ -12,22 +12,17 @@ import {
 } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
-import { useImageControl } from "../../hooks/useImageControl";
 import { useAppOption } from "../../context/AppOptionContext";
 import { useFilterData } from "../../hooks/useFilterData";
+import { useMediaControl } from "../../hooks/useMediaControl";
+import { useMediaState } from "../../context/MediaStateContext";
 
 const Card = () => {
   // カスタムフック、インスタンス化に相当
-  const {
-    isEditMode,
-    imageDeg,
-    imageScale,
-    imagePosition,
-    triggerEditMode,
-    changeImageDeg,
-    changeImageScale,
-    moveImageReverse,
-  } = useImageControl({ initialScale: 1.5, isEffect: false });
+  const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaReverse } =
+    useMediaControl({ initialScale: 1.5, target: "image" });
+
+  const { mediaState } = useMediaState();
 
   const { optionData } = useAppOption();
   const { setIsHovered } = useHover();
@@ -48,7 +43,7 @@ const Card = () => {
       return setScene("cg");
     }
     if (scene === "cg" || scene === "anotherCharacter") {
-      return changeImageDeg(e);
+      return changeMediaDeg(e);
     }
   };
 
@@ -60,9 +55,7 @@ const Card = () => {
     }
     if (scene === "cg" || scene === "anotherCharacter") {
       setScene("card");
-      if (isEditMode || imageDeg !== 0) {
-        triggerEditMode(e, true);
-      }
+      triggerEditMode(e, true);
       return;
     }
   };
@@ -87,13 +80,14 @@ const Card = () => {
       onContextMenu={resetScene}
       onWheel={changeImage}
       style={{
-        transform: `rotate(${imageDeg}deg)
+        transform: `rotate(${mediaState["image"].deg}deg)
             rotateY(${rotateYState.cardRotateY ? 180 : 0}deg)`,
         overflow:
-          (isEditMode && effectState.mirrorEffect) || scene === "card"
+          (mediaState["image"].isEditMode && effectState.mirrorEffect) || scene === "card"
             ? "hidden"
             : undefined,
-        width: isEditMode && effectState.mirrorEffect ? "100%" : undefined,
+        width:
+          mediaState["image"].isEditMode && effectState.mirrorEffect ? "100%" : undefined,
         imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
         filter: filterData,
         boxShadow:
@@ -104,12 +98,9 @@ const Card = () => {
     >
       <CardImage
         props={{
-          isEditMode,
-          imageScale,
-          imagePosition,
           triggerEditMode,
-          changeImageScale,
-          moveImageReverse,
+          changeMediaScale,
+          moveMediaReverse,
         }}
       />
 
