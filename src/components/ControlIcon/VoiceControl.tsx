@@ -10,7 +10,7 @@ import IconDefault from "../Common/IconDefault";
 
 const VoiceControl = () => {
   const { urlConfig } = useUrlConfig();
-  const { mediaState, mediaDispatch } = useMediaInfo();
+  const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
 
   const [isLoop, setIsLoop] = useState<boolean>(true);
   const [hasVoice, setHasVoice] = useState<boolean>(false);
@@ -28,29 +28,29 @@ const VoiceControl = () => {
           <div className={styles["voice-control"]}>
             <IconSmall
               children={<BiFirstPage />}
-              onClick={() => mediaDispatch({ type: "voiceFirst" })}
+              onClick={() => mediaInfoDispatch({ type: "voiceFirst" })}
             />
             <IconSmall
               children={<BsChevronLeft />}
-              onClick={() => mediaDispatch({ type: "voicePrev" })}
+              onClick={() => mediaInfoDispatch({ type: "voicePrev" })}
             />
-            <p onClick={() => mediaDispatch({ type: "voiceFolderNext" })}>
-              {mediaState.folder.voice[1]}
+            <p onClick={() => mediaInfoDispatch({ type: "voiceFolderNext" })}>
+              {mediaInfo.folder.voice[1]}
             </p>
             <IconSmall
               children={<BsChevronRight />}
-              onClick={() => mediaDispatch({ type: "voiceNext" })}
+              onClick={() => mediaInfoDispatch({ type: "voiceNext" })}
             />
             <IconSmall
               children={<BiLastPage />}
-              onClick={() => mediaDispatch({ type: "voiceLast" })}
+              onClick={() => mediaInfoDispatch({ type: "voiceLast" })}
             />
           </div>
           <audio
             controls
             autoPlay
             loop={isLoop}
-            onEnded={isLoop ? undefined : () => mediaDispatch({ type: "voiceNext" })}
+            onEnded={isLoop ? undefined : () => mediaInfoDispatch({ type: "voiceNext" })}
             className={isLoop ? "" : styles.inOrder}
             src={urlConfig.voice}
           ></audio>

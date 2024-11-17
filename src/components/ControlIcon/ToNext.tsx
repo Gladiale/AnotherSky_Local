@@ -5,15 +5,15 @@ import IconDefault from "../Common/IconDefault";
 
 const ToNext = () => {
   const { scene } = useScene();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
 
   const toNextImage = () => {
-    mediaDispatch({ type: "next", payload: scene });
+    mediaInfoDispatch({ type: "next", payload: scene });
   };
 
   const toNextFolder = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    mediaDispatch({ type: "folderNext", payload: scene });
+    mediaInfoDispatch({ type: "folderNext", payload: scene });
   };
 
   return (

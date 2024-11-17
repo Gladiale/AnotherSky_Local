@@ -18,7 +18,7 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
 
   const { urlConfig } = useUrlConfig();
   const { effectState } = useEffectState();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
 
   const { loadStatus, showTarget, showError } = useLoading({
     trigger: [urlConfig.character],
@@ -43,9 +43,9 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
 
   const changeStandImage = (e: React.WheelEvent) => {
     if (e.deltaY > 0) {
-      mediaDispatch({ type: "next", payload: "card" });
+      mediaInfoDispatch({ type: "next", payload: "card" });
     } else {
-      mediaDispatch({ type: "prev", payload: "card" });
+      mediaInfoDispatch({ type: "prev", payload: "card" });
     }
   };
 

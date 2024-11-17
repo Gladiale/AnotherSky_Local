@@ -32,7 +32,7 @@ const Card = () => {
   const { optionData } = useAppOption();
   const { setIsHovered } = useHover();
   const { scene, setScene } = useScene();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
   const { anotherActive } = useAnotherCharacter();
   const { screenMode } = useScreenMode();
   const { rotateYState } = useRotateY();
@@ -69,8 +69,8 @@ const Card = () => {
 
   const changeImage = (e: React.WheelEvent) => {
     e.deltaY > 0
-      ? mediaDispatch({ type: "next", payload: scene })
-      : mediaDispatch({ type: "prev", payload: scene });
+      ? mediaInfoDispatch({ type: "next", payload: scene })
+      : mediaInfoDispatch({ type: "prev", payload: scene });
   };
 
   return (

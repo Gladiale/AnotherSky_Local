@@ -14,7 +14,7 @@ const AutoNext = () => {
   const [autoSpeed, setAutoSpeed] = useState<number>(450);
 
   const { scene } = useScene();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
 
   const handleAutoSpeed = (condition: string) => {
     switch (condition) {
@@ -48,7 +48,7 @@ const AutoNext = () => {
       // console.log("time start");
       intervalId = window.setInterval(() => {
         // console.log("interval running");
-        mediaDispatch({ type: "next", payload: scene });
+        mediaInfoDispatch({ type: "next", payload: scene });
       }, autoSpeed);
     }
     return () => {
@@ -61,7 +61,7 @@ const AutoNext = () => {
     let intervalId: number | undefined;
     if (isAutoEff) {
       intervalId = window.setInterval(() => {
-        mediaDispatch({ type: "effectNext" });
+        mediaInfoDispatch({ type: "effectNext" });
       }, autoSpeed);
     }
     return () => {

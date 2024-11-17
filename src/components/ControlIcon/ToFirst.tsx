@@ -5,10 +5,10 @@ import IconDefault from "../Common/IconDefault";
 
 const ToFirst = () => {
   const { scene } = useScene();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
 
   return (
-    <IconDefault onClick={() => mediaDispatch({ type: "first", payload: scene })}>
+    <IconDefault onClick={() => mediaInfoDispatch({ type: "first", payload: scene })}>
       <BiFirstPage />
     </IconDefault>
   );

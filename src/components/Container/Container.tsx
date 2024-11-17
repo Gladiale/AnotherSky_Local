@@ -14,13 +14,13 @@ import { RotateYProvider } from "../../context/RotateYContext";
 import { EffectControlProvider } from "../../context/EffectControlContext";
 
 const Container = () => {
-  const { mediaState, mediaDispatch } = useMediaInfo();
+  const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
   const { screenMode } = useScreenMode();
   const { effectState } = useEffectState();
 
   useLayoutEffect(() => {
-    if (mediaState.file.character[1] === "") {
-      mediaDispatch({ type: "random" });
+    if (mediaInfo.file.character[1] === "") {
+      mediaInfoDispatch({ type: "random" });
     }
   }, []);
 

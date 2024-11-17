@@ -3,8 +3,8 @@ import { mediaInfoInit, type MediaInfoType } from "./mediaInfo";
 import { ActionType, reducerFunc } from "./mediaInfoReducerFunc";
 
 type MediaInfoContextType = {
-  mediaState: MediaInfoType;
-  mediaDispatch: React.Dispatch<ActionType>;
+  mediaInfo: MediaInfoType;
+  mediaInfoDispatch: React.Dispatch<ActionType>;
 };
 
 type AnotherCharacterContextType = {
@@ -17,10 +17,10 @@ const AnotherCharacterContext = createContext({} as AnotherCharacterContextType)
 
 const MediaInfoProvider = ({ children }: { children: React.ReactNode }) => {
   const [anotherActive, setAnotherActive] = useState<boolean>(false);
-  const [mediaState, mediaDispatch] = useReducer(reducerFunc, mediaInfoInit);
+  const [mediaInfo, mediaInfoDispatch] = useReducer(reducerFunc, mediaInfoInit);
 
   return (
-    <MediaInfoContext.Provider value={{ mediaState, mediaDispatch }}>
+    <MediaInfoContext.Provider value={{ mediaInfo, mediaInfoDispatch }}>
       <AnotherCharacterContext.Provider value={{ anotherActive, setAnotherActive }}>
         {children}
       </AnotherCharacterContext.Provider>

@@ -11,7 +11,7 @@ import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaIn
 
 const ListImage = () => {
   const { listState, listSubState, setListState } = useImageList();
-  const { mediaState, mediaDispatch } = useMediaInfo();
+  const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
   const { setScene } = useScene();
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
@@ -22,7 +22,7 @@ const ListImage = () => {
 
   // 左クリック
   const changeCardCg = (target: SpecificPayloadType["target"], index: number) => {
-    mediaDispatch({
+    mediaInfoDispatch({
       type: "specific",
       payload: { target: target, fileInfo: imageInfoList[index] },
     });
@@ -55,7 +55,7 @@ const ListImage = () => {
     }
 
     for (let i = 0; i < 9; i++) {
-      createRandomImg(imageList, listState, mediaState);
+      createRandomImg(imageList, listState, mediaInfo);
     }
 
     setImageInfoList(imageList);

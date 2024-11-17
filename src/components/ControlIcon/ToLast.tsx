@@ -5,10 +5,10 @@ import IconDefault from "../Common/IconDefault";
 
 const ToLast = () => {
   const { scene } = useScene();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
 
   return (
-    <IconDefault onClick={() => mediaDispatch({ type: "last", payload: scene })}>
+    <IconDefault onClick={() => mediaInfoDispatch({ type: "last", payload: scene })}>
       <BiLastPage />
     </IconDefault>
   );

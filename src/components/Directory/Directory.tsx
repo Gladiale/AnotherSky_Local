@@ -40,7 +40,7 @@ const sliceListByNum = (
 
 const Directory = () => {
   const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
   const { setAnotherActive } = useAnotherCharacter();
   const { setScene } = useScene();
 
@@ -51,7 +51,7 @@ const Directory = () => {
 
   // 左クリック実行
   const setDirectory = (index: number) => {
-    mediaDispatch({
+    mediaInfoDispatch({
       type: "specific",
       payload: {
         target: directoryTarget,

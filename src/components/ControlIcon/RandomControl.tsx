@@ -12,7 +12,7 @@ export type RandomTargetType = {
 };
 
 const RandomControl = () => {
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
 
   const [randomTarget, setRandomTarget] = useState<RandomTargetType>({
     folder: true,
@@ -33,14 +33,14 @@ const RandomControl = () => {
         <IconDefault
           children={<GiDiceTwentyFacesTwenty />}
           onClick={() =>
-            mediaDispatch({ type: "randomWithSelect", payload: randomTarget })
+            mediaInfoDispatch({ type: "randomWithSelect", payload: randomTarget })
           }
         />
       ) : (
         <IconDefault
           children={<GiDiceEightFacesEight />}
           onClick={() =>
-            mediaDispatch({ type: "randomWithSelect", payload: randomTarget })
+            mediaInfoDispatch({ type: "randomWithSelect", payload: randomTarget })
           }
         />
       )}

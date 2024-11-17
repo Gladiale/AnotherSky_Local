@@ -13,14 +13,14 @@ const ControlParts = () => {
   const { isHovered } = useHover();
   const { setScene } = useScene();
   const { optionData } = useAppOption();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
   const { anotherActive, setAnotherActive } = useAnotherCharacter();
 
   const changeContent = (e: React.MouseEvent) => {
     e.stopPropagation();
     setAnotherActive((prev) => !prev);
     if (!anotherActive) {
-      mediaDispatch({ type: "initAnother" });
+      mediaInfoDispatch({ type: "initAnother" });
       setScene("anotherCharacter");
     } else {
       setScene("cg");

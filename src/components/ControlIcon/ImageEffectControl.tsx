@@ -12,7 +12,7 @@ import IconDefault from "../Common/IconDefault";
 
 const ImageEffectControl = () => {
   const { effectState, effectStateDispatch } = useEffectState();
-  const { mediaState, mediaDispatch } = useMediaInfo();
+  const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
   const { triggerEditMode } = useEffectControl();
 
   const condition: boolean =
@@ -83,7 +83,7 @@ const ImageEffectControl = () => {
           <PartsBox
             name2nd="imageEF"
             part2nd={true}
-            message={mediaState.folder.effect[1]}
+            message={mediaInfo.folder.effect[1]}
             active={effectState.imageEF.activeImage}
             activeFunc={() =>
               effectStateDispatch({
@@ -91,9 +91,9 @@ const ImageEffectControl = () => {
                 payload: "imageActive",
               })
             }
-            prevValFunc={() => mediaDispatch({ type: "effectPrev" })}
-            nextValFunc={() => mediaDispatch({ type: "effectNext" })}
-            folderChange={() => mediaDispatch({ type: "effectFolderNext" })}
+            prevValFunc={() => mediaInfoDispatch({ type: "effectPrev" })}
+            nextValFunc={() => mediaInfoDispatch({ type: "effectNext" })}
+            folderChange={() => mediaInfoDispatch({ type: "effectFolderNext" })}
           />
 
           <div className={styles["radio-content"]}>

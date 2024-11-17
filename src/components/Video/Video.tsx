@@ -15,7 +15,7 @@ import Loading from "../Loading/Loading";
 
 const Video = () => {
   const { scene, setScene } = useScene();
-  const { mediaDispatch } = useMediaInfo();
+  const { mediaInfoDispatch } = useMediaInfo();
   const { urlConfig } = useUrlConfig();
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
@@ -46,8 +46,8 @@ const Video = () => {
 
   const changeVideo = (e: React.WheelEvent) => {
     e.deltaY > 0
-      ? mediaDispatch({ type: "next", payload: scene })
-      : mediaDispatch({ type: "prev", payload: scene });
+      ? mediaInfoDispatch({ type: "next", payload: scene })
+      : mediaInfoDispatch({ type: "prev", payload: scene });
   };
 
   return (
