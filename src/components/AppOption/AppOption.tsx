@@ -1,6 +1,6 @@
 import styles from "./AppOption.module.css";
 import { useEffect, useState } from "react";
-import { GiCat, GiDelighted } from "react-icons/gi";
+import { GiDelighted, GiHollowCat } from "react-icons/gi";
 import { useAppOption } from "../../context/AppOptionContext";
 import type { AppOptionDataType } from "../../types";
 // components
@@ -42,7 +42,7 @@ const AppOption = () => {
       >
         {optionConfig.map((option, index) => (
           <label key={index} onClick={() => changeOptionData(option.target)}>
-            <GiCat
+            <GiHollowCat
               className={`${styles["icon"]} 
             ${optionData[option.target] && styles["checked"]}`}
             />

@@ -14,8 +14,8 @@ import { useEffectState } from "../../context/EffectStateContext/EffectStateCont
 import { useRotateY } from "../../context/RotateYContext";
 import { useAppOption } from "../../context/AppOptionContext";
 import { useFilterData } from "../../hooks/useFilterData";
-import { useMediaControl } from "../../hooks/useMediaControl";
 import { useMediaState } from "../../context/MediaStateContext";
+import { useMediaControl } from "../../hooks/useMediaControl";
 
 const Card = () => {
   // カスタムフック、インスタンス化に相当
@@ -23,7 +23,6 @@ const Card = () => {
     useMediaControl({ initialScale: 1.5, target: "image" });
 
   const { mediaState } = useMediaState();
-
   const { optionData } = useAppOption();
   const { setIsHovered } = useHover();
   const { scene, setScene } = useScene();

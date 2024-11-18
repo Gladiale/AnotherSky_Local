@@ -3,6 +3,7 @@ import { GiCrenelCrown } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
 import { useHover } from "../../context/HoverContext";
 import { useAppOption } from "../../context/AppOptionContext";
+import { useInformation } from "../../hooks/useInformation";
 import {
   useAnotherCharacter,
   useMediaInfo,
@@ -14,6 +15,7 @@ const ControlParts = () => {
   const { setScene } = useScene();
   const { optionData } = useAppOption();
   const { mediaInfoDispatch } = useMediaInfo();
+  const { infoActive } = useInformation();
   const { anotherActive, setAnotherActive } = useAnotherCharacter();
 
   const changeContent = (e: React.MouseEvent) => {
@@ -29,9 +31,9 @@ const ControlParts = () => {
 
   return (
     <div
-      className={`${styles["control-box"]} ${
-        isHovered.cardHover && !isHovered.iconHover ? styles.show : ""
-      }`}
+      className={`${styles["control-box"]}
+      ${isHovered.cardHover && !isHovered.iconHover && styles.show}
+      ${infoActive && styles.hidden}`}
     >
       <IconSpecial
         effect={optionData.iconShadow}

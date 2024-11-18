@@ -3,7 +3,11 @@ import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";
 import IconDefault from "../Common/IconDefault";
 
-const ToNext = () => {
+type PropsType = {
+  mobileHidden?: boolean;
+};
+
+const ToNext = ({ mobileHidden }: PropsType) => {
   const { scene } = useScene();
   const { mediaInfoDispatch } = useMediaInfo();
 
@@ -17,7 +21,11 @@ const ToNext = () => {
   };
 
   return (
-    <IconDefault onClick={toNextImage} onContextMenu={toNextFolder}>
+    <IconDefault
+      mobileHidden={mobileHidden}
+      onClick={toNextImage}
+      onContextMenu={toNextFolder}
+    >
       <BsChevronRight />
     </IconDefault>
   );

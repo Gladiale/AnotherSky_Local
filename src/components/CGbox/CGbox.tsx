@@ -1,6 +1,7 @@
 import styles from "./CGbox.module.css";
 import { useAppOption } from "../../context/AppOptionContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
+import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
 import CG from "./CG";
 import EffectImage from "../EffectImage/EffectImage";
 import ControlParts from "./ControlParts";
@@ -14,6 +15,7 @@ type PropsType = {
 const CGbox = ({ data }: { data: PropsType }) => {
   const { triggerEditMode, changeMediaScale, moveMediaReverse } = data;
 
+  const { handleTouchStart, handleTouchMove } = useMediaTouchControl({ target: "image" });
   const { effectState } = useEffectState();
   const { optionData } = useAppOption();
 
@@ -36,6 +38,8 @@ const CGbox = ({ data }: { data: PropsType }) => {
         onMouseDown={triggerEditMode}
         onMouseMove={moveMediaReverse}
         onWheel={changeMediaScale}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
       >
         <CG className="cg-img" />
         {effectState.blendCG.active && effectState.filterEffect.targetCard && (

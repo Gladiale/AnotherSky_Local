@@ -31,6 +31,10 @@
   animation: change-color 1s linear infinite alternate;
 }
 
+.iconDefault.anime-color-2nd {
+  animation: change-color-2nd 1s linear infinite alternate;
+}
+
 .iconDefault.anime-scale {
   animation: change-scale 1s linear infinite alternate;
 }
@@ -60,6 +64,10 @@
   .iconDefault {
     font-size: 1.9rem;
   }
+
+  .iconDefault.hidden {
+    display: none;
+  }
 }
 
 @keyframes flashAni {
@@ -82,6 +90,15 @@
   }
   100% {
     color: #ebd000;
+  }
+}
+
+@keyframes change-color-2nd {
+  0% {
+    color: #7d1784;
+  }
+  100% {
+    color: #5aff8c;
   }
 }
 

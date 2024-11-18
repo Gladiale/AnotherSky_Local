@@ -3,6 +3,7 @@
   top: 1rem;
   right: 1rem;
   z-index: 999;
+  transition: 0.5s;
 }
 
 @media (max-width: 768px) {
@@ -64,32 +65,6 @@
 }
 
 .app-option .option-panel label .icon.checked {
+  color: #b1ff57;
   filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
 }
-
-/* チェックボックスカスタマイズ */
-/* .app-option .option-panel label input[type="checkbox"] {
-  appearance: none;
-  cursor: pointer;
-  border: 1px solid var(--unchecked-color);
-  transition: all 0.12s, border-color 0.08s;
-  position: relative;
-
-  width: 0.9rem;
-  height: 0.9rem;
-}
-
-.app-option .option-panel label input[type="checkbox"]:checked {
-  border-color: var(--checked-color);
-  border-top-color: transparent;
-  border-left-color: transparent;
-  transform: rotate(45deg);
-
-  width: 0.45rem;
-  top: -0.225rem;
-  left: 0.225rem;
-}
-
-.app-option .option-panel label:hover input[type="checkbox"]:not(:checked) {
-  border-color: var(--checkBox-color-hover);
-} */

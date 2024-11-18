@@ -29,6 +29,7 @@
 }
 
 .effect-box .effect-img {
+  touch-action: none;
   transition: 0.5s;
 }
 

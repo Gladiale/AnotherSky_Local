@@ -29,6 +29,10 @@
   position: relative;
   cursor: crosshair;
   transition: 0.5s;
+
+  /* スマホタッチ時ブラウザのリロードを阻止 */
+  /* 参考: https://blog.csdn.net/weixin_44514894/article/details/116088933 */
+  touch-action: none;
 }
 
 .img-box .blendMode.swing {

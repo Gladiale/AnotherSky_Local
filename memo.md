@@ -6,3 +6,13 @@
 <GiCrown />
 
 <GiCorset />
+<GiFeline />
+
+<GiFreemasonry />
+<GiFurShirt />
+<GiMimicChest />
+
+<GiSunbeams />
+<GiSnowman />
+<GiExplodingPlanet />
+<GiBee />
