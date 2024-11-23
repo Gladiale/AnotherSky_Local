@@ -1,7 +1,8 @@
 import styles from "./CGbox.module.css";
+import { useScreenMode } from "../../context/ScreenContext";
 import { useAppOption } from "../../context/AppOptionContext";
-import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import CG from "./CG";
 import EffectImage from "../EffectImage/EffectImage";
 import ControlParts from "./ControlParts";
@@ -15,9 +16,10 @@ type PropsType = {
 const CGbox = ({ data }: { data: PropsType }) => {
   const { triggerEditMode, changeMediaScale, moveMediaReverse } = data;
 
-  const { handleTouchStart, handleTouchMove } = useMediaTouchControl({ target: "image" });
+  const { screenMode } = useScreenMode();
   const { effectState } = useEffectState();
   const { optionData } = useAppOption();
+  const { handleTouchStart, handleTouchMove } = useMediaTouchControl({ target: "image" });
 
   const shakeCondition = {
     low: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "low",
@@ -40,6 +42,7 @@ const CGbox = ({ data }: { data: PropsType }) => {
         onWheel={changeMediaScale}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
+        style={{ height: screenMode === "cardMode" ? "100%" : undefined }}
       >
         <CG className="cg-img" />
         {effectState.blendCG.active && effectState.filterEffect.targetCard && (
