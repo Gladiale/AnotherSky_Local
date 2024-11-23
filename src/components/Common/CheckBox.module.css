@@ -3,11 +3,6 @@
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.8rem;
-}
-
-.check-box.type2 {
-  font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {

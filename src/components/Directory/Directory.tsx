@@ -1,17 +1,19 @@
 import styles from "./Directory.module.css";
+import { CGDataObj } from "../../data/CGDataObj";
+import { VideoDataObj } from "../../data/VideoDataObj";
+import { CharacterDataObj } from "../../data/CharacterDataObj";
+import { getDirectoryData } from "../../helper/dataObjControl";
+
 import {
   type DirectoryTargetType,
   useScene,
   useDirectoryInfo,
 } from "../../context/SceneContext";
-import { CGDataObj } from "../../data/CGDataObj";
-import { VideoDataObj } from "../../data/VideoDataObj";
-import { CharacterDataObj } from "../../data/CharacterDataObj";
-import { getDirectoryData } from "../../helper/dataObjControl";
 import {
   useAnotherCharacter,
   useMediaInfo,
 } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useScreenMode } from "../../context/ScreenContext";
 
 const getTargetData = (target: DirectoryTargetType) => {
   switch (target) {
@@ -39,10 +41,11 @@ const sliceListByNum = (
 };
 
 const Directory = () => {
-  const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
+  const { setScene } = useScene();
+  const { screenMode } = useScreenMode();
   const { mediaInfoDispatch } = useMediaInfo();
   const { setAnotherActive } = useAnotherCharacter();
-  const { setScene } = useScene();
+  const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
 
   const directoryData = getTargetData(directoryTarget);
   // console.log("directoryData:", directoryData);
@@ -63,12 +66,14 @@ const Directory = () => {
   };
 
   return (
-    <div className={styles["directory-container"]}>
+    <div
+      className={`${styles["directory-container"]}
+      ${screenMode === "cgMode" && styles.cgMode}`}
+    >
       <div
-        className={`${styles["gird-box"]} 
-        ${directoryTarget === "character" ? styles.character : undefined}
-        ${directoryTarget === "video" ? styles.video : undefined}
-        `}
+        className={`${styles["gird-box"]}
+        ${directoryTarget === "character" && styles.character}
+        ${directoryTarget === "video" && styles.video}`}
       >
         {directorySliced[pageIndex].map((directory, index) => (
           <div key={index} className={styles.item} onClick={() => setDirectory(index)}>

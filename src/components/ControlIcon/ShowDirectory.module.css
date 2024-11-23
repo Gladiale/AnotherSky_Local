@@ -1,4 +1,4 @@
-.screen-container {
+.icon-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -8,33 +8,27 @@
   transition: 0.5s;
 }
 
-.screen-container .wrapper {
+.icon-container .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   position: absolute;
-  transform: translateY(-145%);
+  /* transform: translateY(-145%); */
+  transform: translateY(145%);
 
   font-size: 1rem;
   transition: 0.5s;
   scale: 0;
 }
 
-.screen-container .wrapper.active {
-  transform: translateY(-95%);
-}
-
-.screen-container:hover .wrapper {
+.icon-container:hover .wrapper {
   scale: 1;
 }
 
 @media (max-width: 768px) {
-  .screen-container .wrapper {
-    transform: translateY(0) translateX(-70%);
-  }
-  .screen-container .wrapper.active {
-    transform: translateY(0) translateX(-63%);
+  .icon-container .wrapper {
+    transform: translateY(0) translateX(-85%);
   }
 }

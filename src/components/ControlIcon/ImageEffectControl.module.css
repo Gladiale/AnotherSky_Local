@@ -42,7 +42,7 @@
 
 @media (max-width: 768px) {
   .EF-container .EF-wrapper {
-    transform: translateY(150%) translateX(-60%);
+    transform: translateY(170%) translateX(-60%);
   }
   .EF-container:hover .EF-wrapper {
     transform: translateY(-37%) translateX(-60%);

@@ -49,3 +49,10 @@
   border-radius: 50%;
   background: #ff7cf4;
 }
+
+@media (max-width: 768px) {
+  .radio-box.responsive {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}

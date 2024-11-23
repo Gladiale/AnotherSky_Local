@@ -16,3 +16,7 @@
 <GiSnowman />
 <GiExplodingPlanet />
 <GiBee />
+
+<GiHolyOak />
+<GiGothicCross />
+<GiEclipseFlare />

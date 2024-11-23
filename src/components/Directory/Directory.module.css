@@ -28,11 +28,21 @@
 @media (max-width: 768px) {
   .directory-container {
     margin-bottom: 0;
+    gap: 0.2rem;
   }
   .directory-container .gird-box {
     height: calc(100% - 4rem);
     aspect-ratio: 1 / 1.4;
     grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.1rem;
+  }
+
+  .directory-container.cgMode {
+    margin-bottom: 1.5rem;
+  }
+  .directory-container.cgMode .gird-box {
+    height: 90dvh;
+    width: 100dvw;
   }
 }
 

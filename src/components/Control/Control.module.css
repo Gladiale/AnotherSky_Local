@@ -1,4 +1,4 @@
-.main-box {
+.desk-box {
   position: absolute;
   bottom: 0.2rem;
 
@@ -11,13 +11,36 @@
   transition: 0.5s;
 }
 
-.main-box.shadow {
+.desk-box.shadow {
   filter: var(--drop-shadow-hover);
 }
-.main-box.hidden {
+.desk-box.hidden {
   opacity: 0;
   scale: 0;
   transition: opacity 0.5s, scale 2s;
+}
+
+.desk-box > .desk-1st,
+.desk-box > .desk-2nd {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  z-index: 9;
+  opacity: 1;
+  scale: 1;
+  transition: all 0.5s;
+}
+
+.desk-box > .desk-1st.hidden,
+.desk-box > .desk-2nd.hidden {
+  position: absolute;
+  z-index: 0;
+  opacity: 0;
+  scale: 0;
+  transition: opacity 0.5s, scale 1.5s;
 }
 
 .mobile-box-1st,
@@ -32,7 +55,7 @@
 .storage-box {
   position: fixed;
   top: 1rem;
-  right: 5rem;
+  right: 4.5rem;
   z-index: 99;
   transition: 0.5s;
 }
@@ -41,7 +64,7 @@
 }
 
 @media (max-width: 768px) {
-  .main-box {
+  .desk-box {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -54,11 +77,21 @@
     padding: 4rem 0;
   }
 
-  .main-box.hidden {
+  .desk-box.hidden {
     opacity: 0;
     top: 100%;
     scale: 0;
     transition: top 0.5s, opacity 1s, scale 2s;
+  }
+
+  .desk-box > .desk-1st,
+  .desk-box > .desk-2nd {
+    display: contents;
+  }
+
+  .desk-box > .desk-1st.hidden,
+  .desk-box > .desk-2nd.hidden {
+    display: none;
   }
 
   .mobile-box-1st,
