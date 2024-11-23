@@ -60,12 +60,19 @@
   animation: 0.2s linear 0s flashAni;
 }
 
+.iconDefault.onlyMobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .iconDefault {
     font-size: 1.9rem;
   }
 
-  .iconDefault.hidden {
+  .iconDefault.onlyMobile {
+    display: flex;
+  }
+  .iconDefault.onlyDesk {
     display: none;
   }
 }

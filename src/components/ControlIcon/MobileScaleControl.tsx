@@ -14,7 +14,7 @@ const MobileScaleControl = () => {
 
   return (
     <IconDefault
-      className={mediaState.touchMode === "scaleMode" && "anime-color-2nd"}
+      anime={mediaState.touchMode === "scaleMode" && "anime-color-2nd"}
       onClick={handleTouchMode}
     >
       <GiBee style={{ transform: "rotateY(180deg)" }} />

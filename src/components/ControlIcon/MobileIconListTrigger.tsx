@@ -21,7 +21,7 @@ const MobileIconListTrigger = ({ handleListTrigger, boxKey }: PropsType) => {
   return (
     <IconDefault
       onClick={handleClick}
-      className={mediaState.touchMode === "rotateMod" && "anime-color-2nd"}
+      anime={mediaState.touchMode === "rotateMod" && "anime-color-2nd"}
     >
       <GiSunbeams />
     </IconDefault>

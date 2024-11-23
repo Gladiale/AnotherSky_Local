@@ -4,16 +4,16 @@ import { useScene } from "../../context/SceneContext";
 import IconDefault from "../Common/IconDefault";
 
 type PropsType = {
-  mobileHidden?: boolean;
+  active?: "onlyMobile" | "onlyDesk";
 };
 
-const ToLast = ({ mobileHidden }: PropsType) => {
+const ToLast = ({ active }: PropsType) => {
   const { scene } = useScene();
   const { mediaInfoDispatch } = useMediaInfo();
 
   return (
     <IconDefault
-      mobileHidden={mobileHidden}
+      active={active}
       onClick={() => mediaInfoDispatch({ type: "last", payload: scene })}
     >
       <BiLastPage />

@@ -2,16 +2,16 @@ import styles from "./Icon.module.css";
 
 type IconDefaultProps = {
   children: React.ReactNode;
-  mobileHidden?: boolean;
-  className?: "anime-color" | "anime-color-2nd" | "anime-scale" | false;
+  active?: "onlyMobile" | "onlyDesk";
+  anime?: "anime-color" | "anime-color-2nd" | "anime-scale" | false;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onContextMenu?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 const IconDefault = ({
   children,
-  mobileHidden,
-  className,
+  active,
+  anime,
   onClick,
   onContextMenu,
 }: IconDefaultProps) => {
@@ -20,8 +20,7 @@ const IconDefault = ({
       onClick={onClick}
       onContextMenu={onContextMenu}
       className={`${styles.iconDefault} 
-      ${className && styles[className]} 
-      ${mobileHidden && styles.hidden}`}
+      ${anime && styles[anime]} ${active && styles[active]}`}
     >
       {children}
     </div>

@@ -3,12 +3,12 @@ import IconDefault from "../Common/IconDefault";
 
 type PropsType = {
   handleIconStorage: () => void;
-  className?: "anime-color" | "anime-scale" | false;
+  anime?: "anime-color" | "anime-color-2nd" | "anime-scale" | false;
 };
 
-const IconStorage = ({ handleIconStorage, className }: PropsType) => {
+const IconStorage = ({ handleIconStorage, anime }: PropsType) => {
   return (
-    <IconDefault onClick={handleIconStorage} className={className}>
+    <IconDefault onClick={handleIconStorage} anime={anime}>
       <GiMimicChest />
       {/* <GiSnowman /> */}
     </IconDefault>

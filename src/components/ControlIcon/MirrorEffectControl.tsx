@@ -7,7 +7,7 @@ const MirrorEffectControl = () => {
 
   return (
     <IconDefault
-      className={effectState.mirrorEffect && "anime-color"}
+      anime={effectState.mirrorEffect && "anime-color"}
       onClick={() => effectStateDispatch({ type: "mirror" })}
     >
       <GiAbstract024 />

@@ -14,7 +14,7 @@ const MobilePositionControl = () => {
 
   return (
     <IconDefault
-      className={mediaState.touchMode === "positionMode" && "anime-color-2nd"}
+      anime={mediaState.touchMode === "positionMode" && "anime-color-2nd"}
       onClick={handleTouchMode}
     >
       <GiBirdClaw />

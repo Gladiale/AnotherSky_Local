@@ -4,16 +4,16 @@ import { useScene } from "../../context/SceneContext";
 import IconDefault from "../Common/IconDefault";
 
 type PropsType = {
-  mobileHidden?: boolean;
+  active?: "onlyMobile" | "onlyDesk";
 };
 
-const ToFirst = ({ mobileHidden }: PropsType) => {
+const ToFirst = ({ active }: PropsType) => {
   const { scene } = useScene();
   const { mediaInfoDispatch } = useMediaInfo();
 
   return (
     <IconDefault
-      mobileHidden={mobileHidden}
+      active={active}
       onClick={() => mediaInfoDispatch({ type: "first", payload: scene })}
     >
       <BiFirstPage />

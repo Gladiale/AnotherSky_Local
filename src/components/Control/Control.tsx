@@ -49,13 +49,13 @@ const Control = () => {
         <MirrorEffectControl />
         <Unknown />
         <VoiceControl />
-        <ToFirst mobileHidden={true} />
-        <ToPrev mobileHidden={true} />
+        <ToFirst active="onlyDesk" />
+        <ToPrev active="onlyDesk" />
         <ShowListImage />
         <FullScreen />
         <RandomControl />
-        <ToNext mobileHidden={true} />
-        <ToLast mobileHidden={true} />
+        <ToNext active="onlyDesk" />
+        <ToLast active="onlyDesk" />
         <AutoNext />
         <RotateYControl />
         <FilterControl />
@@ -69,11 +69,11 @@ const Control = () => {
         onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: true })}
         onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
       >
-        <ToFirst mobileHidden={false} />
-        <ToPrev mobileHidden={false} />
+        <ToFirst active="onlyMobile" />
+        <ToPrev active="onlyMobile" />
         <MobileIconListTrigger boxKey="1st" handleListTrigger={handleListTrigger} />
-        <ToNext mobileHidden={false} />
-        <ToLast mobileHidden={false} />
+        <ToNext active="onlyMobile" />
+        <ToLast active="onlyMobile" />
       </div>
 
       <div
