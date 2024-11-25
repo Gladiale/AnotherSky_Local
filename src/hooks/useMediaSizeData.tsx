@@ -15,7 +15,8 @@ const useMediaSizeData = () => {
         ? "100dvw"
         : "auto",
     width: isMobileSize && mediaSize === "contain" ? "100dvw" : "auto",
-    maxHeight: mediaSize === "custom" ? "100%" : undefined,
+    maxHeight:
+      mediaSize === "custom" ? "100%" : mediaSize === "contain" ? "100dvh" : undefined,
     maxWidth:
       mediaSize === "custom" && !isMobileSize
         ? "65dvw"
