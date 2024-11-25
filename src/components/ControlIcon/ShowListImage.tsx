@@ -1,5 +1,5 @@
 import styles from "./ShowListImage.module.css";
-import { GiHolyOak } from "react-icons/gi";
+import { GiNewBorn } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
 import { useAnotherCharacter } from "../../context/MediaInfoContext/MediaInfoContext";
 import {
@@ -40,7 +40,7 @@ const ShowListImage = () => {
 
   return (
     <div className={styles["showList-container"]}>
-      <IconDefault children={<GiHolyOak />} onClick={changeScene} />
+      <IconDefault children={<GiNewBorn />} onClick={changeScene} />
       <div className={styles["target-box"]}>
         <div className={styles.otherAction}>
           <label>
