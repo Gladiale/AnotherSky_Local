@@ -20,3 +20,5 @@
 <GiHolyOak />
 <GiGothicCross />
 <GiEclipseFlare />
+<GiCrownedExplosion />
+<GiIronCross />
