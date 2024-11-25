@@ -1,20 +1,23 @@
 import styles from "./Loading.module.css";
 
 type LoadingProps = {
-  loadStatus: "waiting" | "success" | "failed";
+  kind: "1st" | "2nd" | "3rd";
   loadStyle?: React.CSSProperties;
+  loadStatus: "waiting" | "success" | "failed";
 };
 
-const Loading = ({ loadStatus, loadStyle }: LoadingProps) => {
+const Loading = ({ kind, loadStyle, loadStatus }: LoadingProps) => {
   return (
     <div
       className={styles.wrapper}
       style={{
         display: loadStatus === "success" ? "none" : undefined,
-        position: loadStyle?.position,
+        ...loadStyle,
       }}
     >
-      <div className={styles.loader} />
+      {kind === "1st" && <div className={styles["loader-1st"]} />}
+      {kind === "2nd" && <div className={styles["loader-2nd"]} />}
+      {kind === "3rd" && <div className={styles["loader-3rd"]} />}
       {loadStatus === "waiting" && <p className={styles.waiting}>Loading...</p>}
       {loadStatus === "failed" && (
         <p className={styles.failed}>データの読み込みが失敗しました！</p>

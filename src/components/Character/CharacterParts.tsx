@@ -64,7 +64,7 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
         onStalled={showError}
       />
 
-      <Loading loadStatus={loadStatus} />
+      <Loading kind="3rd" loadStatus={loadStatus} />
 
       {effectState.blendCG.active && effectState.filterEffect.targetCharacter && (
         <img

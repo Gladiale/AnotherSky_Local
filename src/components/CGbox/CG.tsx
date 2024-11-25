@@ -38,6 +38,7 @@ const CG = ({ className }: PropsType) => {
         onStalled={showError}
       />
       <Loading
+        kind="1st"
         loadStatus={loadStatus}
         loadStyle={{ position: className === "cg-img" ? "relative" : "absolute" }}
       />

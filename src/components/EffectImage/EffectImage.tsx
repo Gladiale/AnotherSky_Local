@@ -96,7 +96,7 @@ const EffectImage = () => {
         onStalled={showError}
       />
 
-      <Loading loadStatus={loadStatus} loadStyle={{ position: "absolute" }} />
+      <Loading kind="2nd" loadStatus={loadStatus} loadStyle={{ position: "absolute" }} />
     </div>
   );
 };

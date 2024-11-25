@@ -89,7 +89,7 @@ const Video = () => {
           src={urlConfig.video}
         ></video>
 
-        <Loading loadStatus={loadStatus} />
+        <Loading kind="1st" loadStatus={loadStatus} />
 
         {effectState.imageEF.activeImage && <EffectImage />}
 
