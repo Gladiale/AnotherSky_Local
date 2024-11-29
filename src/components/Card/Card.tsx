@@ -93,6 +93,7 @@ const Card = () => {
           scene === "card" && optionData.cgShadow && effectState.filterEffect.targetCard
             ? "none"
             : undefined,
+        aspectRatio: scene !== "card" ? "unset" : undefined,
       }}
     >
       <CardImage

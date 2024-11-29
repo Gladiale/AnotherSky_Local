@@ -36,7 +36,7 @@ const CGbox = ({ data }: { data: PropsType }) => {
       `}
     >
       <div
-        className={`${styles["blendMode"]} ${optionData.cgSwing && styles.swing}`}
+        className={`${styles["mix-box"]} ${optionData.cgSwing && styles.swing}`}
         onMouseDown={triggerEditMode}
         onMouseMove={moveMediaReverse}
         onWheel={changeMediaScale}

@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200;300;400;500;600;700;800;900&display=swap");
 
 :root {
+  --aspect-ratio: 1 / 1.618;
+  /* --aspect-ratio-mobile: 1 / 1.42; */
+
   --label-color: #ff84fb;
   --label-color-hover: #d9ff2f;
 

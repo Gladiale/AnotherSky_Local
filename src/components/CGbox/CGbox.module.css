@@ -19,7 +19,7 @@
   animation: shakeHighAni 0.15s linear infinite;
 }
 
-.img-box .blendMode {
+.img-box .mix-box {
   height: 100%;
   width: fit-content;
 
@@ -35,22 +35,22 @@
   touch-action: none;
 }
 
-.img-box .blendMode.swing {
+.img-box .mix-box.swing {
   animation: cg_picture 7.5s linear infinite;
 }
 
-.img-box.shakeHigh .blendMode:hover {
+.img-box.shakeHigh .mix-box:hover {
   animation: shakeHighAni 0.15s linear infinite;
 }
 
 @media (max-width: 768px) {
-  .img-box .blendMode {
+  .img-box .mix-box {
     height: fit-content;
     width: fit-content;
   }
 }
 
-.img-box .blendMode .cg-img {
+.img-box .mix-box .cg-img {
   transition: 0.5s;
   /* mask-image: url("/character/GBF/001.png");
   mask-size: contain;
@@ -58,7 +58,7 @@
   mask-repeat: no-repeat; */
 }
 
-.img-box .blendMode .texture-img {
+.img-box .mix-box .texture-img {
   transition: 0.5s;
   position: absolute;
   inset: 0;

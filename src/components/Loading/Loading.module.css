@@ -13,7 +13,7 @@
   justify-content: center;
 
   height: 100%;
-  aspect-ratio: 1 / 1.42;
+  aspect-ratio: var(--aspect-ratio);
   filter: drop-shadow(0 0 3px #5cff95) drop-shadow(0 0 6px #ff34dd);
 
   position: relative;

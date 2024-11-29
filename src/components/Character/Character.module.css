@@ -1,6 +1,6 @@
 .stand-container {
   height: 100%;
-  max-width: 25dvw;
+  max-width: 35dvw;
   transition: 0.5s;
   /* z-indexを効くために */
   position: relative;
@@ -18,19 +18,16 @@
   max-width: none;
   position: absolute;
   left: 0;
-  /* transform: translateX(-22%); */
   z-index: 99;
 }
 
 .stand-container .stand-wrapper {
   height: 100%;
   transition: 0.4s;
-  /* filter: drop-shadow(0 0 5px #5cff95) drop-shadow(0 0 15px #ff34dd); */
 }
 
 .stand-container .stand-wrapper:hover {
   animation: bounce 0.5s ease alternate infinite;
-  /* filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff); */
 }
 
 @keyframes bounce {
