@@ -11,7 +11,7 @@ import { useFilterData } from "../../hooks/useFilterData";
 import { useMouseControl } from "../../hooks/useMouseControl";
 // framer-motion
 import { motion } from "motion/react";
-import { bgRefresh, cardRefresh } from "../../motion/motionVariants";
+import { bgRefresh, cardRefresh } from "../../libs/motion/motionVariants";
 // import { useEffect, useState } from "react";
 
 const Card = () => {

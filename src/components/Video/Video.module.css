@@ -37,6 +37,9 @@
 
   height: 100%;
   transition: transform var(--spring-duration-2nd) var(--spring-easing-2nd);
+
+  /* スマホタッチ時ブラウザのリロードを阻止 */
+  touch-action: none;
 }
 
 .video-content .video-box.shadow {
