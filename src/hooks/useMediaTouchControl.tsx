@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMediaState } from "../context/MediaStateContext";
+import { fixRotateDirectionAtTouch } from "../libs/utils/fixRotateDirection";
 import type { MediaStateType } from "../types";
 
 type ParamsType = {
@@ -26,21 +27,16 @@ const useMediaTouchControl = ({ target }: ParamsType) => {
     });
 
     if (target === "effect" && mediaState.touchMode === "rotateMod") {
-      // windowの左右を基準に回転方向を決め
-      const mouseXatWindow = e.touches[0].clientX;
-      const windowWidth = window.innerWidth;
-      setMediaState((prev) => ({
-        ...prev,
+      const stateDeg = mediaState[target]["deg"];
+      const newDeg = fixRotateDirectionAtTouch(e, stateDeg, "antiClockwise");
+
+      setMediaState({
+        ...mediaState,
         [target]: {
-          ...prev[target],
-          deg:
-            prev[target].deg <= -1350 || prev[target].deg >= 1350
-              ? 0
-              : mouseXatWindow <= windowWidth / 2
-              ? prev[target].deg - 90
-              : prev[target].deg + 90,
+          ...mediaState[target],
+          deg: newDeg,
         },
-      }));
+      });
     }
   };
 
