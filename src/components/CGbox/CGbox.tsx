@@ -1,25 +1,35 @@
 import styles from "./CGbox.module.css";
+import { useRotateY } from "../../context/RotateYContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useAppOption } from "../../context/AppOptionContext";
-import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
+import { useMediaState } from "../../context/MediaStateContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
+import { useFilterData } from "../../hooks/useFilterData";
+import { useMediaControl } from "../../hooks/useMediaControl";
+import { useMouseControl } from "../../hooks/useMouseControl";
+import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
+// GSAP
+import gsap from "gsap";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+
 import CG from "./CG";
-import EffectImage from "../EffectImage/EffectImage";
 import ControlParts from "./ControlParts";
+import EffectImage from "../EffectImage/EffectImage";
 
-type PropsType = {
-  triggerEditMode: (e: React.MouseEvent<HTMLDivElement>, reset?: boolean) => void;
-  changeMediaScale: (e: React.WheelEvent) => void;
-  moveMediaReverse: (e: React.MouseEvent<HTMLDivElement>) => void;
-};
-
-const CGbox = ({ data }: { data: PropsType }) => {
-  const { triggerEditMode, changeMediaScale, moveMediaReverse } = data;
-
+const CGbox = () => {
+  // コンテキスト
+  const { rotateYState } = useRotateY();
   const { screenMode } = useScreenMode();
-  const { effectState } = useEffectState();
   const { optionData } = useAppOption();
+  const { mediaState } = useMediaState();
+  const { effectState } = useEffectState();
+  // カスタムフック
+  const { filterData } = useFilterData("cg");
+  const { resetScene, changeMedia } = useMouseControl("cg");
   const { handleTouchStart, handleTouchMove } = useMediaTouchControl({ target: "image" });
+  const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaReverse } =
+    useMediaControl({ initialScale: 1.5, target: "image" });
 
   const shakeCondition = {
     low: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "low",
@@ -27,22 +37,56 @@ const CGbox = ({ data }: { data: PropsType }) => {
     high: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "high",
   };
 
+  const cgBoxRef = useRef<HTMLDivElement | null>(null);
+  useGSAP(() => {
+    gsap.to(cgBoxRef.current, {
+      scale: 1,
+    });
+  }, []);
+
   return (
     <div
-      className={`${styles["img-box"]}
-      ${shakeCondition.low ? styles.shakeLow : ""}
-      ${shakeCondition.normal ? styles.shakeNormal : ""}
-      ${shakeCondition.high ? styles.shakeHigh : ""}
+      ref={cgBoxRef}
+      className={`${styles["cg-box"]}
+      ${optionData.cgSwing && styles.swing}
+      ${optionData.cgShadow && styles.shadow}
+      ${shakeCondition.low && styles.shakeLow}
+      ${shakeCondition.normal && styles.shakeNormal}
+      ${shakeCondition.high && styles.shakeHigh}
       `}
+      style={{
+        filter: filterData,
+        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
+        // width:
+        //   mediaState["image"].isEditMode && effectState.mirrorEffect ? "100%" : undefined,
+        overflow:
+          mediaState["image"].isEditMode && effectState.mirrorEffect
+            ? "hidden"
+            : undefined,
+      }}
+      onWheel={changeMedia}
+      onContextMenu={(e) => {
+        resetScene(e);
+        triggerEditMode(e, true);
+      }}
     >
       <div
-        className={`${styles["mix-box"]} ${optionData.cgSwing && styles.swing}`}
+        className={styles["mix-box"]}
+        style={{
+          height: screenMode === "cardMode" ? "100%" : undefined,
+          transform: `
+          scale(${String(mediaState["image"].scale)})
+          rotate(${mediaState["image"].deg}deg)
+          rotateY(${rotateYState.cgRotateY ? 180 : 0}deg)
+          translate(${mediaState["image"].position.x}px,
+          ${mediaState["image"].position.y}px)`,
+        }}
+        onClick={changeMediaDeg}
         onMouseDown={triggerEditMode}
         onMouseMove={moveMediaReverse}
         onWheel={changeMediaScale}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
-        style={{ height: screenMode === "cardMode" ? "100%" : undefined }}
       >
         <CG className="cg-img" />
         {effectState.blendCG.active && effectState.filterEffect.targetCard && (

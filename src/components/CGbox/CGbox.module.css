@@ -1,25 +1,63 @@
-.img-box {
+.cg-box {
+  position: relative;
+  z-index: 10;
+
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
+  user-select: none;
+  transition-duration: var(--spring-duration);
+  transition-timing-function: var(--spring-easing);
+
+  /* 3D化 */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  /* gsap */
+  scale: 0;
 }
 
-.img-box.shakeLow {
+.cg-box.shadow {
+  filter: var(--drop-shadow);
+}
+
+.cg-box.shadow:hover {
+  filter: var(--drop-shadow-hover);
+}
+
+.cg-box.swing {
+  animation: cg_swing 7.5s linear infinite;
+}
+
+.cg-box.shakeLow {
   animation: shakeLowAni 0.1s linear infinite;
 }
 
-.img-box.shakeNormal {
+.cg-box.shakeNormal {
   animation: shakeNormalAni 0.12s linear infinite;
 }
 
-.img-box.shakeHigh {
+.cg-box.shakeHigh {
   animation: shakeHighAni 0.15s linear infinite;
 }
 
-.img-box .mix-box {
+.cg-box .control-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0.1rem;
+  opacity: 0;
+  transition: 0.25s;
+}
+
+.cg-box:hover .control-box {
+  opacity: 1;
+}
+
+.cg-box .mix-box {
   height: 100%;
   width: fit-content;
 
@@ -28,29 +66,23 @@
   align-items: center;
   position: relative;
   cursor: crosshair;
-  transition: 0.5s;
+  transition: transform var(--spring-duration-2nd) var(--spring-easing-2nd);
+  /* transition-duration: 1s;
+  transition-timing-function: var(--spring-easing); */
 
   /* スマホタッチ時ブラウザのリロードを阻止 */
   /* 参考: https://blog.csdn.net/weixin_44514894/article/details/116088933 */
   touch-action: none;
 }
 
-.img-box .mix-box.swing {
-  animation: cg_picture 7.5s linear infinite;
-}
-
-.img-box.shakeHigh .mix-box:hover {
-  animation: shakeHighAni 0.15s linear infinite;
-}
-
 @media (max-width: 768px) {
-  .img-box .mix-box {
+  .cg-box .mix-box {
     height: fit-content;
     width: fit-content;
   }
 }
 
-.img-box .mix-box .cg-img {
+.cg-box .mix-box .cg-img {
   transition: 0.5s;
   /* mask-image: url("/character/GBF/001.png");
   mask-size: contain;
@@ -58,7 +90,7 @@
   mask-repeat: no-repeat; */
 }
 
-.img-box .mix-box .texture-img {
+.cg-box .mix-box .texture-img {
   transition: 0.5s;
   position: absolute;
   inset: 0;
@@ -66,7 +98,7 @@
   mix-blend-mode: exclusion;
 }
 
-@keyframes cg_picture {
+@keyframes cg_swing {
   0% {
     transform: translateY(0px) rotate(0deg);
   }

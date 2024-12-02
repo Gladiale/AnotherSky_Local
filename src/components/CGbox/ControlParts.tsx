@@ -1,7 +1,6 @@
-import styles from "./ControlParts.module.css";
+import styles from "./CGbox.module.css";
 import { GiCrenelCrown } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
-import { useHover } from "../../context/HoverContext";
 import { useAppOption } from "../../context/AppOptionContext";
 import { useInformation } from "../../hooks/useInformation";
 import {
@@ -11,7 +10,6 @@ import {
 import IconSpecial from "../Common/IconSpecial";
 
 const ControlParts = () => {
-  const { isHovered } = useHover();
   const { setScene } = useScene();
   const { optionData } = useAppOption();
   const { mediaInfoDispatch } = useMediaInfo();
@@ -31,9 +29,8 @@ const ControlParts = () => {
 
   return (
     <div
-      className={`${styles["control-box"]}
-      ${isHovered.cardHover && !isHovered.iconHover && styles.show}
-      ${infoActive && styles.hidden}`}
+      className={styles["control-box"]}
+      style={{ opacity: infoActive ? 0 : undefined }}
     >
       <IconSpecial
         effect={optionData.iconShadow}

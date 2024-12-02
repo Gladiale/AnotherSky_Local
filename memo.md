@@ -5,10 +5,10 @@
 <GiImperialCrown />
 <GiCrown />
 
-<GiCorset />
 <GiFeline />
 
 <GiFreemasonry />
+<GiCorset />
 <GiFurShirt />
 <GiMimicChest />
 

@@ -1,6 +1,6 @@
 import styles from "./ShowDirectory.module.css";
 import { useState } from "react";
-import { GiCorset } from "react-icons/gi";
+import { GiAtom } from "react-icons/gi";
 import {
   type DirectoryTargetType,
   type SceneType,
@@ -49,7 +49,7 @@ const ShowDirectory = () => {
           ]}
         />
       </div>
-      <IconDefault children={<GiCorset />} onClick={changeScene} />
+      <IconDefault children={<GiAtom />} onClick={changeScene} />
     </div>
   );
 };

@@ -35,13 +35,13 @@
 
 @keyframes bounce {
   0% {
-    translate: 0px 0px;
-    scale: 1;
-    /* transform: translateY(0px) scale(1); */
+    /* translate: 0px 0px;
+    scale: 1; */
+    transform: translateY(0px) scale(1);
   }
   100% {
-    translate: 0px -15px;
-    scale: 0.95 1;
-    /* transform: translateY(-15px) scale(0.95, 1); */
+    /* translate: 0px -15px;
+    scale: 0.95 1; */
+    transform: translateY(-15px) scale(0.95, 1);
   }
 }

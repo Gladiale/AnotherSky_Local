@@ -3,6 +3,7 @@ import { useScene } from "../../context/SceneContext";
 import { useImageList } from "../../context/ImageListState";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import Card from "../Card/Card";
+import CGbox from "../CGbox/CGbox";
 import Video from "../Video/Video";
 import Character from "../Character/Character";
 import ListImage from "../ListImage/ListImage";
@@ -20,7 +21,8 @@ const Content = () => {
       ${effectState.mirrorEffect && styles.mirror}`}
     >
       {scene != "card" && <Character />}
-      {(scene === "cg" || scene === "card" || scene === "anotherCharacter") && <Card />}
+      {scene === "card" && <Card />}
+      {(scene === "cg" || scene === "anotherCharacter") && <CGbox />}
       {scene === "listImg" && !listSubState.mode2 && <ListImage />}
       {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}
       {scene === "directoryMode" && <Directory />}

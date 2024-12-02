@@ -20,11 +20,19 @@ const useMediaTouchControl = ({ target }: ParamsType) => {
     });
 
     if (target === "effect" && mediaState.touchMode === "rotateMod") {
+      // windowの左右を基準に回転方向を決め
+      const mouseXatWindow = touch.clientX;
+      const windowWidth = window.innerWidth;
       setMediaState((prev) => ({
         ...prev,
         [target]: {
           ...prev[target],
-          deg: prev[target].deg <= -1350 ? 0 : prev[target].deg - 90,
+          deg:
+            prev[target].deg <= -1350 || prev[target].deg >= 1350
+              ? 0
+              : mouseXatWindow <= windowWidth / 2
+              ? prev[target].deg - 90
+              : prev[target].deg + 90,
         },
       }));
     }
