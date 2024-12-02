@@ -43,7 +43,10 @@ const Video = () => {
     <div
       className={styles["video-content"]}
       onWheel={changeMedia}
-      onContextMenu={resetScene}
+      onContextMenu={(e) => {
+        resetScene(e);
+        triggerEditMode(e, true);
+      }}
     >
       <div
         className={`${styles["video-box"]}
