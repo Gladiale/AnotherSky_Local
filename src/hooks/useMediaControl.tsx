@@ -70,7 +70,7 @@ const useMediaControl = ({ initialScale, target }: ParamsType) => {
   const [originPosition, setOriginPosition] = useState({ x: 0, y: 0 });
   const changeOriginPoint = (e: React.MouseEvent<HTMLDivElement> | React.WheelEvent) => {
     const targetData = e.currentTarget.getBoundingClientRect();
-    // 現在のマウスの座標 (二回目以後はtransformによる偏移が発生するため、前回の偏移量を引くことで、transformの誤差を消す)
+    // ターゲットエレメントの中央座標を取得 (二回目以後はtransformによる偏移が発生するため、前回の偏移量を引くことで、transformの誤差を消す)
     setOriginPosition({
       x:
         targetData.x +
