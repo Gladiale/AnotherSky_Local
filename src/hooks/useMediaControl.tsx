@@ -1,7 +1,62 @@
 import { useState } from "react";
-import { fixRotateDirection } from "../libs/utils/fixRotateDirection";
 import { mediaStateInit, useMediaState } from "../context/MediaStateContext";
 import type { MediaStateType } from "../types";
+
+const fixRotateDirection = (e: React.MouseEvent<HTMLDivElement>, prevDeg: number) => {
+  let rotateDeg: number;
+
+  // *** windowの左右を基準に回転方向を決め ***
+  const mouseXatWindow = e.clientX;
+  const windowWidth = window.innerWidth;
+
+  if (prevDeg <= -1350 || prevDeg >= 1350) {
+    rotateDeg = 0;
+  } else {
+    rotateDeg = mouseXatWindow <= windowWidth / 2 ? prevDeg - 90 : prevDeg + 90;
+  }
+
+  /*
+  // *** ターゲットのエレメントの左右を基準に回転方向を決め ***
+  // ターゲットのサーズ [width, height]
+  const targetSize = [e.currentTarget.offsetWidth, e.currentTarget.offsetHeight];
+  // ターゲット上のマウスの座標 [x, y]
+  const mouseAtTarget = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
+
+  const angle1st = [0, 360, 720, 1080];
+  const angle2nd = angle1st.map((item) => item + 90);
+  const angle3rd = angle1st.map((item) => item + 180);
+  const angle4th = angle1st.map((item) => item + 270);
+
+  const prevDegAbs = Math.abs(prevDeg);
+  switch (true) {
+    case angle1st.includes(prevDegAbs):
+      rotateDeg = mouseAtTarget[0] <= targetSize[0] / 2 ? prevDeg - 90 : prevDeg + 90;
+      break;
+    case angle3rd.includes(prevDegAbs):
+      rotateDeg = mouseAtTarget[0] >= targetSize[0] / 2 ? prevDeg - 90 : prevDeg + 90;
+      break;
+    case angle2nd.includes(prevDegAbs):
+      if (prevDeg < 0) {
+        rotateDeg = mouseAtTarget[1] <= targetSize[1] / 2 ? prevDeg - 90 : prevDeg + 90;
+      } else {
+        rotateDeg = mouseAtTarget[1] <= targetSize[1] / 2 ? prevDeg + 90 : prevDeg - 90;
+      }
+      break;
+    case angle4th.includes(prevDegAbs):
+      if (prevDeg < 0) {
+        rotateDeg = mouseAtTarget[1] >= targetSize[1] / 2 ? prevDeg - 90 : prevDeg + 90;
+      } else {
+        rotateDeg = mouseAtTarget[1] >= targetSize[1] / 2 ? prevDeg + 90 : prevDeg - 90;
+      }
+      break;
+    default:
+      rotateDeg = 0;
+      break;
+  }
+  */
+
+  return rotateDeg;
+};
 
 type ParamsType = {
   initialScale: number;
@@ -39,7 +94,7 @@ const useMediaControl = ({ initialScale, target }: ParamsType) => {
       if (target === "effect") {
         newDeg = stateDeg <= -1350 ? 0 : stateDeg - 90;
       } else {
-        newDeg = fixRotateDirection(e, stateDeg, "window");
+        newDeg = fixRotateDirection(e, stateDeg);
       }
 
       setMediaState({

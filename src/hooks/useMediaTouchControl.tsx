@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useMediaState } from "../context/MediaStateContext";
-import { fixRotateDirectionAtTouch } from "../libs/utils/fixRotateDirection";
 import type { MediaStateType } from "../types";
 
 type ParamsType = {
@@ -28,7 +27,7 @@ const useMediaTouchControl = ({ target }: ParamsType) => {
 
     if (target === "effect" && mediaState.touchMode === "rotateMod") {
       const stateDeg = mediaState[target]["deg"];
-      const newDeg = fixRotateDirectionAtTouch(e, stateDeg, "antiClockwise");
+      const newDeg = stateDeg <= -1350 || stateDeg >= 1350 ? 0 : stateDeg - 90;
 
       setMediaState({
         ...mediaState,
