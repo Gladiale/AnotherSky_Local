@@ -75,19 +75,34 @@
   touch-action: none;
 }
 
-@media (max-width: 768px) {
-  .cg-box .mix-box {
-    height: fit-content;
-    width: fit-content;
-  }
+/* 試験中の機能 */
+.cg-box .mix-box:hover {
+  /* mask参考: https://lopan.jp/css-mask/cloud-mask */
+
+  /* mask-image: url("/ink.gif");
+  mask-size: cover;
+  mask-position: center;
+  mask-repeat: no-repeat; */
+
+  /* mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-mode: luminance;
+  animation: mask-animation 2s linear forwards; */
 }
+
+/* @keyframes mask-animation {
+  0% {
+    mask-image: url("/character/sample/001.png");
+    mask-position: 150% 150%;
+  }
+  100% {
+    mask-image: none;
+    mask-position: -150% -150%;
+  }
+} */
 
 .cg-box .mix-box .cg-img {
   transition: 0.5s;
-  /* mask-image: url("/character/GBF/001.png");
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat; */
 }
 
 .cg-box .mix-box .texture-img {
@@ -96,6 +111,13 @@
   inset: 0;
   margin: auto;
   mix-blend-mode: exclusion;
+}
+
+@media (max-width: 768px) {
+  .cg-box .mix-box {
+    height: fit-content;
+    width: fit-content;
+  }
 }
 
 @keyframes cg_swing {
