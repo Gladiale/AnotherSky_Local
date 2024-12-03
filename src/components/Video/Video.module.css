@@ -42,16 +42,17 @@
   touch-action: none;
 }
 
+.video-content .video-box.shake {
+  animation: bounce_video 0.5s ease alternate infinite;
+  /* animation: bounce_video 0.5s var(--spring-easing-2nd) alternate infinite; */
+}
+
 .video-content .video-box.shadow {
   filter: var(--drop-shadow);
 }
 
 .video-content .video-box.shadow:hover {
   filter: var(--drop-shadow-hover);
-}
-
-.video-content .video-box.shake:hover {
-  animation: bounce_video 0.5s ease alternate infinite;
 }
 
 .video-content .video-box video {

@@ -7,9 +7,10 @@ import { useEffectState } from "../../context/EffectStateContext/EffectStateCont
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useFilterData } from "../../hooks/useFilterData";
-import { useMediaSizeData } from "../../hooks/useMediaSizeData";
+import { useTransform3d } from "../../hooks/useTransform3d";
 import { useMouseControl } from "../../hooks/useMouseControl";
 import { useMediaControl } from "../../hooks/useMediaControl";
+import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
 import EffectImage from "../EffectImage/EffectImage";
 import VideoControl from "./VideoControl";
@@ -26,6 +27,7 @@ const Video = () => {
   const { mediaSizeData } = useMediaSizeData();
   const { filterData } = useFilterData("video");
   const { resetScene, changeMedia } = useMouseControl("video");
+  const { transform3d, changeTransform3d, resetTransform3d } = useTransform3d();
 
   const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaReverse } =
     useMediaControl({ initialScale: 1.5, target: "video" });
@@ -80,9 +82,12 @@ const Video = () => {
             maxHeight: mediaSizeData.maxHeight,
             maxWidth: mediaSizeData.maxWidth,
             display: loadStatus === "success" ? undefined : "none",
+            transform: transform3d,
           }}
           onLoadedData={showTarget}
           onStalled={showError}
+          onMouseMove={changeTransform3d}
+          onMouseLeave={resetTransform3d}
           src={urlConfig.video}
         ></video>
         <Loading kind="1st" loadStatus={loadStatus} />
