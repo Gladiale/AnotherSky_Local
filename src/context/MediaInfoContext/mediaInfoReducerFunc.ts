@@ -1,9 +1,9 @@
-import { RandomTargetType } from "../../components/ControlIcon/RandomControl";
 import { fileFirstFunc } from "./MediaInfoFunc/common/fileFirstFunc";
 import { fileLastFunc } from "./MediaInfoFunc/common/fileLastFunc";
 import { fileNextFunc } from "./MediaInfoFunc/common/fileNextFunc";
 import { filePrevFunc } from "./MediaInfoFunc/common/filePrevFunc";
 import { folderNextRandomFile } from "./MediaInfoFunc/common/folderNextRandomFile";
+import { folderPrevRandomFile } from "./MediaInfoFunc/common/folderPrevRandomFile";
 import { toMediaFilePrev } from "./MediaInfoFunc/dispatch/ToMediaFilePrev";
 import { toMediaFileFirst } from "./MediaInfoFunc/dispatch/toMediaFileFirst";
 import { toMediaFileLast } from "./MediaInfoFunc/dispatch/toMediaFileLast";
@@ -19,6 +19,7 @@ import {
 } from "./MediaInfoFunc/dispatch/toMediaSpecificFile";
 import { type SceneType } from "../SceneContext";
 import { type MediaInfoType } from "./mediaInfo";
+import { type RandomTargetType } from "../../components/ControlIcon/RandomControl";
 
 type MainActionType = {
   type: "next" | "prev" | "first" | "last" | "folderNext" | "folderPrev";
@@ -31,11 +32,13 @@ type SubActionType = {
     | "voiceNext"
     | "voicePrev"
     | "voiceFolderNext"
+    | "voiceFolderPrev"
     | "voiceFirst"
     | "voiceLast"
     | "effectNext"
     | "effectPrev"
     | "effectFolderNext"
+    | "effectFolderPrev"
     | "initAnother";
 };
 
@@ -75,12 +78,16 @@ function reducerFunc(state: MediaInfoType, action: ActionType) {
       return fileLastFunc(state, "voice");
     case "voiceFolderNext":
       return folderNextRandomFile(state, "voice");
+    case "voiceFolderPrev":
+      return folderPrevRandomFile(state, "voice");
     case "effectNext":
       return fileNextFunc(state, "effect");
     case "effectPrev":
       return filePrevFunc(state, "effect");
     case "effectFolderNext":
       return folderNextRandomFile(state, "effect");
+    case "effectFolderPrev":
+      return folderPrevRandomFile(state, "effect");
     case "initAnother":
       return initAnotherCharacter(state);
     case "random":

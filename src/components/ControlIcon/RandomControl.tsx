@@ -1,13 +1,13 @@
 import styles from "./RandomControl.module.css";
+import { useState } from "react";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { GiDiceEightFacesEight, GiDiceTwentyFacesTwenty } from "react-icons/gi";
-import { useState } from "react";
 import IconDefault from "../Common/IconDefault";
 
 export type RandomTargetType = {
   folder: boolean;
   cg: boolean;
-  stand: boolean;
+  character: boolean;
   video: boolean;
 };
 
@@ -17,7 +17,7 @@ const RandomControl = () => {
   const [randomTarget, setRandomTarget] = useState<RandomTargetType>({
     folder: true,
     cg: true,
-    stand: true,
+    character: true,
     video: true,
   });
 
@@ -67,8 +67,8 @@ const RandomControl = () => {
           <label>
             <input
               type="checkbox"
-              checked={randomTarget.stand}
-              onChange={() => selectTarget("stand")}
+              checked={randomTarget.character}
+              onChange={() => selectTarget("character")}
             />
             <span>立ち絵</span>
           </label>

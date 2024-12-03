@@ -10,7 +10,8 @@ type PropsType = {
   message: string;
   prevValFunc: () => void;
   nextValFunc: () => void;
-  folderChange?: () => void;
+  folderNext?: () => void;
+  folderPrev?: () => void;
 };
 
 const PartsBox = (props: PropsType) => {
@@ -22,14 +23,24 @@ const PartsBox = (props: PropsType) => {
     message,
     prevValFunc,
     nextValFunc,
-    folderChange,
+    folderNext,
+    folderPrev,
   } = props;
 
   return (
     <div className={styles["parts-box"]}>
       <div className={styles["control"]}>
         <IconSmall children={<BsChevronLeft />} onClick={prevValFunc} />
-        <p onClick={folderChange}>{message}</p>
+        <p
+          className={folderNext && styles.ani}
+          onClick={folderNext}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            folderPrev && folderPrev();
+          }}
+        >
+          {message}
+        </p>
         <IconSmall children={<BsChevronRight />} onClick={nextValFunc} />
       </div>
       {part2nd && (

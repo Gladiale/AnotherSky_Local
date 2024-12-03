@@ -34,7 +34,13 @@ const VoiceControl = () => {
               children={<BsChevronLeft />}
               onClick={() => mediaInfoDispatch({ type: "voicePrev" })}
             />
-            <p onClick={() => mediaInfoDispatch({ type: "voiceFolderNext" })}>
+            <p
+              onClick={() => mediaInfoDispatch({ type: "voiceFolderNext" })}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                mediaInfoDispatch({ type: "voiceFolderPrev" });
+              }}
+            >
               {mediaInfo.folder.voice[1]}
             </p>
             <IconSmall

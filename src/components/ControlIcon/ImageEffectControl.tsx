@@ -93,7 +93,8 @@ const ImageEffectControl = () => {
             }
             prevValFunc={() => mediaInfoDispatch({ type: "effectPrev" })}
             nextValFunc={() => mediaInfoDispatch({ type: "effectNext" })}
-            folderChange={() => mediaInfoDispatch({ type: "effectFolderNext" })}
+            folderNext={() => mediaInfoDispatch({ type: "effectFolderNext" })}
+            folderPrev={() => mediaInfoDispatch({ type: "effectFolderPrev" })}
           />
 
           <div className={styles["radio-content"]}>

@@ -38,15 +38,15 @@
   background-color: #f6afff;
   border: 1px dashed #ec60ff;
   user-select: none;
-  cursor: pointer;
   transition: 0.25s;
 }
 
-.parts-box .control p:hover {
-  animation: 0.2s linear 0s flashAni;
+.parts-box .control p.ani:hover {
+  cursor: pointer;
   color: #590072;
   background-color: #89ffd4;
   border: 1px dashed #ffa9ec;
+  animation: 0.2s linear 0s flashAni;
 }
 
 /* checkboxカスタマイズ */

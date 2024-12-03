@@ -1,9 +1,9 @@
-import { RandomTargetType } from "../../../../components/ControlIcon/RandomControl";
 import { CGDataObj } from "../../../../data/CGDataObj";
 import { CharacterDataObj } from "../../../../data/CharacterDataObj";
 import { VideoDataObj } from "../../../../data/VideoDataObj";
 import { getRandomFile, getRandomFolderFile } from "../../../../helper/dataObjControl";
 import { type MediaInfoType } from "../../mediaInfo";
+import { type RandomTargetType } from "../../../../components/ControlIcon/RandomControl";
 
 type FolderType = {
   cg?: [number, string];
@@ -31,7 +31,7 @@ const toMediaRandomWithParam = (
       folder.cg = cgData.folder;
       file.cg = cgData.file;
     }
-    if (randomTarget.stand) {
+    if (randomTarget.character) {
       const characterData = getRandomFolderFile(CharacterDataObj);
       folder.character = characterData.folder;
       file.character = characterData.file;
@@ -51,7 +51,7 @@ const toMediaRandomWithParam = (
   if (randomTarget.cg) {
     file.cg = getRandomFile(CGDataObj, state.folder.cg[1]);
   }
-  if (randomTarget.stand) {
+  if (randomTarget.character) {
     file.character = getRandomFile(CharacterDataObj, state.folder.character[1]);
   }
   if (randomTarget.video) {

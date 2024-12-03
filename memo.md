@@ -1,3 +1,6 @@
+ディレクトリ構成参考
+> https://qiita.com/RINYU_DRVO/items/88e3f9c4bf0879e12939
+
 <GiGothicCross />
 <GiQueenCrown />
 <GiChessQueen />
