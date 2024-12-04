@@ -2,30 +2,23 @@ import styles from "./CheckBox.module.css";
 
 type PropsType = {
   kind: "1st" | "2nd";
-  fontSize?: string;
   responsive?: boolean;
   gap: {
     outerGap: string;
     innerGap: string;
     responsiveGap?: string;
   };
-  messageList: string[];
-  checkedList: boolean[];
-  changeFuncList: (() => void)[];
-  checkBoxSize: "small" | "middle" | "big";
+  fontSize: number;
+  checkBoxSize: number;
+  checkBoxList: {
+    text: string;
+    state: boolean;
+    onChange: () => void;
+  }[];
 };
 
 const CheckBox = (props: PropsType) => {
-  const {
-    kind,
-    gap,
-    fontSize,
-    responsive,
-    checkBoxSize,
-    messageList,
-    checkedList,
-    changeFuncList,
-  } = props;
+  const { kind, gap, fontSize, responsive, checkBoxSize, checkBoxList } = props;
 
   return (
     <div
@@ -35,25 +28,24 @@ const CheckBox = (props: PropsType) => {
         ["--responsive-gap" as any]: gap.responsiveGap,
       }}
     >
-      {messageList.map((message, index) => (
+      {checkBoxList.map((item, index) => (
         <label key={index} style={{ gap: gap.innerGap }}>
           <input
             type="checkbox"
-            checked={checkedList[index]}
-            onChange={changeFuncList[index]}
+            checked={item.state}
+            onChange={item.onChange}
             className={kind === "2nd" ? styles.kind2nd : undefined}
             style={{
-              ["--checkbox-size" as any]:
-                checkBoxSize === "small" ? 0.7 : checkBoxSize === "middle" ? 0.8 : 0.9,
+              ["--checkbox-size" as any]: checkBoxSize,
             }}
           />
           <span
             style={{
               order: kind === "2nd" ? "-1" : undefined,
-              fontSize: fontSize ? fontSize : "0.8rem",
+              fontSize: `${fontSize}rem`,
             }}
           >
-            {message}
+            {item.text}
           </span>
         </label>
       ))}

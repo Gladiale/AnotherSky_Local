@@ -61,14 +61,22 @@ const AppOption = () => {
           <div className={styles["item-right"]}>
             <CheckBox
               kind="2nd"
-              fontSize="1rem"
-              checkBoxSize="middle"
+              fontSize={1}
+              checkBoxSize={0.8}
               gap={{ outerGap: "0.7rem", innerGap: "0.1rem" }}
-              messageList={["CG", "VIDEO"]}
-              checkedList={[appOption.lastingAnime.cg, appOption.lastingAnime.video]}
-              changeFuncList={[
-                () => appOptionDispatch({ type: "lastingAnime", payload: "cg" }),
-                () => appOptionDispatch({ type: "lastingAnime", payload: "video" }),
+              checkBoxList={[
+                {
+                  text: "CG",
+                  state: appOption.lastingAnime.cg,
+                  onChange: () =>
+                    appOptionDispatch({ type: "lastingAnime", payload: "cg" }),
+                },
+                {
+                  text: "VIDEO",
+                  state: appOption.lastingAnime.video,
+                  onChange: () =>
+                    appOptionDispatch({ type: "lastingAnime", payload: "video" }),
+                },
               ]}
             />
             <p>常時動画効果</p>
@@ -82,26 +90,42 @@ const AppOption = () => {
           <div className={styles["item-right"]}>
             <CheckBox
               kind="2nd"
-              fontSize="1rem"
-              checkBoxSize="middle"
+              fontSize={1}
+              checkBoxSize={0.8}
               gap={{ outerGap: "0.7rem", innerGap: "0.1rem" }}
-              messageList={["CG", "VIDEO"]}
-              checkedList={[appOption.dropShadow.cg, appOption.dropShadow.video]}
-              changeFuncList={[
-                () => appOptionDispatch({ type: "dropShadow", payload: "cg" }),
-                () => appOptionDispatch({ type: "dropShadow", payload: "video" }),
+              checkBoxList={[
+                {
+                  text: "CG",
+                  state: appOption.dropShadow.cg,
+                  onChange: () =>
+                    appOptionDispatch({ type: "dropShadow", payload: "cg" }),
+                },
+                {
+                  text: "VIDEO",
+                  state: appOption.dropShadow.video,
+                  onChange: () =>
+                    appOptionDispatch({ type: "dropShadow", payload: "video" }),
+                },
               ]}
             />
             <CheckBox
               kind="2nd"
-              fontSize="1rem"
-              checkBoxSize="middle"
+              fontSize={1}
+              checkBoxSize={0.8}
               gap={{ outerGap: "0.7rem", innerGap: "0.1rem" }}
-              messageList={["ICON", "Chara"]}
-              checkedList={[appOption.dropShadow.icon, appOption.dropShadow.character]}
-              changeFuncList={[
-                () => appOptionDispatch({ type: "dropShadow", payload: "icon" }),
-                () => appOptionDispatch({ type: "dropShadow", payload: "character" }),
+              checkBoxList={[
+                {
+                  text: "ICON",
+                  state: appOption.dropShadow.icon,
+                  onChange: () =>
+                    appOptionDispatch({ type: "dropShadow", payload: "icon" }),
+                },
+                {
+                  text: "CHARA",
+                  state: appOption.dropShadow.character,
+                  onChange: () =>
+                    appOptionDispatch({ type: "dropShadow", payload: "character" }),
+                },
               ]}
             />
             <p style={{ marginTop: "0.2rem" }}>ドロップシャドウ</p>

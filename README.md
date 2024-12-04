@@ -1,11 +1,5 @@
 ## ローカル環境で構築する方法
 
-```
-npm install gsap
-npm install @gsap/react
-npm install motion
-```
-
 - 簡単に流れを説明
 1. 自分のパソコンにNodejsをインストール
 

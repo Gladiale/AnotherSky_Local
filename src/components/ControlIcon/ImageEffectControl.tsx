@@ -25,7 +25,7 @@ const ImageEffectControl = () => {
     radioSpanList: effectState.imageEF.maxHeightFull
       ? ["左", "中", "右"]
       : ["上", "中", "下"],
-    checkedList: effectState.imageEF.maxHeightFull ? [true] : [false],
+    checkedState: effectState.imageEF.maxHeightFull ? true : false,
   };
 
   const openCloseImgEF = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -102,11 +102,16 @@ const ImageEffectControl = () => {
               <div className={styles["control-box"]}>
                 <CheckBox
                   kind="1st"
-                  checkBoxSize="small"
-                  gap={{ outerGap: "0.4rem", innerGap: "0.2rem" }}
-                  messageList={["高さ100%"]}
-                  checkedList={containState.checkedList}
-                  changeFuncList={[() => effectStateDispatch({ type: "imgEfMaxHeight" })]}
+                  fontSize={0.9}
+                  checkBoxSize={0.7}
+                  gap={{ outerGap: "0", innerGap: "0.1rem" }}
+                  checkBoxList={[
+                    {
+                      text: "高さ100%",
+                      state: containState.checkedState,
+                      onChange: () => effectStateDispatch({ type: "imgEfMaxHeight" }),
+                    },
+                  ]}
                 />
                 <RadioBox
                   radioName="position"

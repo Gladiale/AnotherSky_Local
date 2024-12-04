@@ -19,13 +19,20 @@ const RotateYControl = () => {
         <CheckBox
           kind="1st"
           responsive={true}
-          checkBoxSize="middle"
+          fontSize={0.8}
+          checkBoxSize={0.8}
           gap={{ outerGap: "0.4rem", innerGap: "0.1rem", responsiveGap: "0.2rem" }}
-          messageList={["立ち絵", "エフェクト"]}
-          checkedList={[isTachie, isEffect]}
-          changeFuncList={[
-            () => setIsTachie((prev) => !prev),
-            () => setIsEffect((prev) => !prev),
+          checkBoxList={[
+            {
+              text: "立ち絵",
+              state: isTachie,
+              onChange: () => setIsTachie((prev) => !prev),
+            },
+            {
+              text: "エフェクト",
+              state: isEffect,
+              onChange: () => setIsEffect((prev) => !prev),
+            },
           ]}
         />
       </div>
