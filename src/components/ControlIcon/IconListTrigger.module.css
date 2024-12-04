@@ -10,7 +10,7 @@
 
 .icon-container > p {
   position: absolute;
-  transform: translateY(-125%);
+  transform: translateY(-150%);
 
   font-size: 1rem;
   opacity: 0;

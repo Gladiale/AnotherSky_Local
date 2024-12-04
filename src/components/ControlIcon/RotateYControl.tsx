@@ -17,14 +17,16 @@ const RotateYControl = () => {
     <div className={styles["rotateY-container"]}>
       <div className={styles.wrapper}>
         <CheckBox
+          kind="1st"
           responsive={true}
+          checkBoxSize="middle"
+          gap={{ outerGap: "0.4rem", innerGap: "0.1rem", responsiveGap: "0.2rem" }}
           messageList={["立ち絵", "エフェクト"]}
           checkedList={[isTachie, isEffect]}
           changeFuncList={[
             () => setIsTachie((prev) => !prev),
             () => setIsEffect((prev) => !prev),
           ]}
-          checkBoxSize="middle"
         />
       </div>
 

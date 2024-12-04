@@ -1,9 +1,13 @@
 @charset "utf-8";
-@import url("https://fonts.googleapis.com/css?family=Poppins:200;300;400;500;600;700;800;900&display=swap");
+@import url("./fonts.css");
+/* @import url("https://fonts.googleapis.com/css2?family=Aboreto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&display=swap"); */
 
 /* css変数 グローバル変数 */
 /* 参照: https://skillhub.jp/blogs/391 */
 :root {
+  --font-main: "Aboreto", "M PLUS 1", system-ui;
+
   --aspect-ratio: 1 / 1.618;
   /* --aspect-ratio-mobile: 1 / 1.42; */
 
@@ -116,7 +120,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-main);
 }
 
 html {
@@ -128,8 +132,8 @@ html {
 /* @media (min-resolution: 1.25dppx) {
   html {
     font-size: 12.8px;
-  }
-} */
+    }
+    } */
 
 #root {
   display: flex;

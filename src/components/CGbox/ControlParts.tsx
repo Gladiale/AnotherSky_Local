@@ -1,7 +1,7 @@
 import styles from "./CGbox.module.css";
 import { GiCrenelCrown } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
-import { useAppOption } from "../../context/AppOptionContext";
+import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useInformation } from "../../hooks/useInformation";
 import {
   useAnotherCharacter,
@@ -11,7 +11,7 @@ import IconSpecial from "../Common/IconSpecial";
 
 const ControlParts = () => {
   const { setScene } = useScene();
-  const { optionData } = useAppOption();
+  const { appOption } = useAppOption();
   const { mediaInfoDispatch } = useMediaInfo();
   const { infoActive } = useInformation();
   const { anotherActive, setAnotherActive } = useAnotherCharacter();
@@ -33,7 +33,7 @@ const ControlParts = () => {
       style={{ opacity: infoActive ? 0 : undefined }}
     >
       <IconSpecial
-        effect={optionData.iconShadow}
+        effect={appOption.dropShadow.icon}
         children={<GiCrenelCrown />}
         onClick={changeContent}
       />

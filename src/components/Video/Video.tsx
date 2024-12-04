@@ -1,7 +1,7 @@
 import styles from "./Video.module.css";
 import { useState } from "react";
 import { useRotateY } from "../../context/RotateYContext";
-import { useAppOption } from "../../context/AppOptionContext";
+import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useMediaState } from "../../context/MediaStateContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useLoading } from "../../hooks/useLoading";
@@ -19,7 +19,7 @@ import Loading from "../Loading/Loading";
 const Video = () => {
   // コンテキスト
   const { rotateYState } = useRotateY();
-  const { optionData } = useAppOption();
+  const { appOption } = useAppOption();
   const { mediaState } = useMediaState();
   const { effectState } = useEffectState();
   // カスタムフック
@@ -52,9 +52,10 @@ const Video = () => {
     >
       <div
         className={`${styles["video-box"]}
-        ${optionData.videoShadow && styles.shadow}
-        ${effectState.shakeEffect.active && styles.shake}`}
+        ${appOption.dropShadow.video && styles.shadow}
+        ${appOption.lastingAnime.video && styles.shake}`}
         style={{
+          filter: filterData,
           transform: `
           scale(${String(mediaState["video"].scale)})
           rotate(${mediaState["video"].deg}deg)
@@ -75,19 +76,18 @@ const Video = () => {
           playsInline
           controls={hasControl}
           style={{
-            filter: filterData,
             objectFit: mediaSizeData.objectFit,
             height: mediaSizeData.height,
             width: mediaSizeData.width,
             maxHeight: mediaSizeData.maxHeight,
             maxWidth: mediaSizeData.maxWidth,
             display: loadStatus === "success" ? undefined : "none",
-            transform: transform3d,
+            transform: appOption.parallax ? transform3d : undefined,
           }}
           onLoadedData={showTarget}
           onStalled={showError}
-          onMouseMove={changeTransform3d}
-          onMouseLeave={resetTransform3d}
+          onMouseMove={appOption.parallax ? changeTransform3d : undefined}
+          onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
           src={urlConfig.video}
         ></video>
         <Loading kind="1st" loadStatus={loadStatus} />

@@ -2,7 +2,7 @@ import styles from "./Control.module.css";
 import { useEffect, useState } from "react";
 import { useHover } from "../../context/HoverContext";
 import { useWindowState } from "../../hooks/useWindowState";
-import { useAppOption } from "../../context/AppOptionContext";
+import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 
 import ToPrev from "../ControlIcon/ToPrev";
 import ToNext from "../ControlIcon/ToNext";
@@ -27,7 +27,7 @@ import ShowDirectory from "../ControlIcon/ShowDirectory";
 
 const Control = () => {
   const { setIsHovered } = useHover();
-  const { optionData } = useAppOption();
+  const { appOption } = useAppOption();
   const { isMobileSize } = useWindowState();
   const [deskIconState, setDeskIconState] = useState({ deskBox: true, desk1st: true });
   const [isMobile1stHidden, setIsMobile1stHidden] = useState<boolean>(false);
@@ -55,7 +55,7 @@ const Control = () => {
       {/* desk icon */}
       <div
         className={`${styles["desk-box"]} ${!deskIconState.deskBox && styles.hidden}
-        ${optionData.iconShadow && styles.shadow}`}
+        ${appOption.dropShadow.icon && styles.shadow}`}
         onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: true })}
         onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
       >
@@ -93,7 +93,7 @@ const Control = () => {
       {/* mobile icon */}
       <div
         className={`${styles["mobile-box-1st"]} 
-        ${optionData.iconShadow && styles.shadow}
+        ${appOption.dropShadow.icon && styles.shadow}
         ${isMobile1stHidden && styles.hidden}`}
         onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: true })}
         onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
@@ -107,7 +107,7 @@ const Control = () => {
 
       <div
         className={`${styles["mobile-box-2nd"]}
-        ${optionData.iconShadow && styles.shadow}
+        ${appOption.dropShadow.icon && styles.shadow}
         ${!isMobile1stHidden && styles.hidden}`}
         onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: true })}
         onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
@@ -119,7 +119,8 @@ const Control = () => {
 
       {/* 単独 icon */}
       <div
-        className={`${styles["storage-box"]} ${optionData.iconShadow && styles.shadow}`}
+        className={`${styles["storage-box"]} 
+        ${appOption.dropShadow.icon && styles.shadow}`}
         onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: true })}
         onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
       >

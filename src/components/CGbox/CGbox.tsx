@@ -1,8 +1,8 @@
 import styles from "./CGbox.module.css";
 import { useRotateY } from "../../context/RotateYContext";
 import { useScreenMode } from "../../context/ScreenContext";
-import { useAppOption } from "../../context/AppOptionContext";
 import { useMediaState } from "../../context/MediaStateContext";
+import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useFilterData } from "../../hooks/useFilterData";
 import { useMediaControl } from "../../hooks/useMediaControl";
@@ -21,7 +21,7 @@ const CGbox = () => {
   // コンテキスト
   const { rotateYState } = useRotateY();
   const { screenMode } = useScreenMode();
-  const { optionData } = useAppOption();
+  const { appOption } = useAppOption();
   const { mediaState } = useMediaState();
   const { effectState } = useEffectState();
   // カスタムフック
@@ -48,8 +48,8 @@ const CGbox = () => {
     <div
       ref={cgBoxRef}
       className={`${styles["cg-box"]}
-      ${optionData.cgSwing && styles.swing}
-      ${optionData.cgShadow && styles.shadow}
+      ${appOption.lastingAnime.cg && styles.swing}
+      ${appOption.dropShadow.cg && styles.shadow}
       ${shakeCondition.low && styles.shakeLow}
       ${shakeCondition.normal && styles.shakeNormal}
       ${shakeCondition.high && styles.shakeHigh}

@@ -1,0 +1,20 @@
+/* 参考:
+    https://mlabo.org/8821/
+    https://adsholoko.me/blog/get-to-speed-up-to-google-font/
+*/
+
+@font-face {
+  font-family: "Aboreto";
+  font-display: swap;
+  font-style: normal;
+  /* font-weight: normal; */
+  src: url("./assets/fonts/Aboreto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "M PLUS 1";
+  font-display: swap;
+  font-style: normal;
+  /* font-weight: normal; */
+  src: url("./assets/fonts/MPLUS1-VariableFont_wght.ttf") format("truetype");
+}

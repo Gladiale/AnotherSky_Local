@@ -10,7 +10,7 @@
 
 .screen-container .sizeSelect {
   position: absolute;
-  transform: translateY(-145%);
+  transform: translateY(-180%);
 
   display: flex;
   justify-content: center;

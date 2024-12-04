@@ -1,25 +1,17 @@
-import { createContext, useContext, useLayoutEffect, useState } from "react";
-import type { AppOptionDataType } from "../types";
-
-const optionInit: AppOptionDataType = {
-  loadingAnime: true,
-  cgSwing: true,
-  cgShadow: true,
-  videoShadow: true,
-  characterShadow: false,
-  iconShadow: true,
-};
+import { createContext, useContext, useLayoutEffect, useReducer } from "react";
+import { type AppOptionType, appOptionInit } from "./appOptionInit";
+import { type AppOptionActionType, appOptionReducer } from "./appOptionReducer";
 
 type AppOptionContextType = {
-  optionData: AppOptionDataType;
+  appOption: AppOptionType;
+  appOptionDispatch: React.Dispatch<AppOptionActionType>;
   saveStorageData: () => void;
-  changeOptionData: (key: keyof AppOptionDataType) => void;
 };
 
 const AppOptionContext = createContext({} as AppOptionContextType);
 
 const AppOptionProvider = ({ children }: { children: React.ReactNode }) => {
-  const [optionData, setOptionData] = useState<AppOptionDataType>(optionInit);
+  const [appOption, appOptionDispatch] = useReducer(appOptionReducer, appOptionInit);
   const storageKey = "appOption";
 
   useLayoutEffect(() => {
@@ -29,8 +21,8 @@ const AppOptionProvider = ({ children }: { children: React.ReactNode }) => {
         saveStorageData();
       } else {
         // JSON.parse()メソッドを使用して、相応の値に戻します
-        const dataSerialized: AppOptionDataType = JSON.parse(originData);
-        setOptionData(dataSerialized);
+        const dataSerialized: AppOptionType = JSON.parse(originData);
+        appOptionDispatch({ type: "restore", payload: dataSerialized });
       }
     };
 
@@ -41,16 +33,18 @@ const AppOptionProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const saveStorageData = () => {
-    const stringData = JSON.stringify(optionData);
+    const stringData = JSON.stringify(appOption);
     window.localStorage.setItem(storageKey, stringData);
   };
 
-  const changeOptionData = (key: keyof AppOptionDataType): void => {
-    setOptionData({ ...optionData, [key]: !optionData[key] });
-  };
-
   return (
-    <AppOptionContext.Provider value={{ optionData, saveStorageData, changeOptionData }}>
+    <AppOptionContext.Provider
+      value={{
+        appOption,
+        appOptionDispatch,
+        saveStorageData,
+      }}
+    >
       {children}
     </AppOptionContext.Provider>
   );

@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from "react";
-import { useAppOption } from "../context/AppOptionContext";
+import { useAppOption } from "../context/AppOptionContext/AppOptionContext";
 
 type ParamsType = {
   trigger: any[];
@@ -7,9 +7,9 @@ type ParamsType = {
 };
 
 const useLoading = ({ trigger, target }: ParamsType) => {
-  const { optionData } = useAppOption();
+  const { appOption } = useAppOption();
   const [loadStatus, setLoadStatus] = useState<"waiting" | "success" | "failed">(
-    optionData.loadingAnime ? "waiting" : "success"
+    appOption.loadingAnime ? "waiting" : "success"
   );
 
   const loadingTime = {
@@ -24,21 +24,21 @@ const useLoading = ({ trigger, target }: ParamsType) => {
 
   useLayoutEffect(() => {
     let timeoutId: number;
-    if (optionData.loadingAnime) {
+    if (appOption.loadingAnime) {
       setLoadStatus("waiting");
       timeoutId = setTimeout(() => {
         setLoadStatus((prevStatus) => (prevStatus === "waiting" ? "failed" : prevStatus));
       }, loadingTime.failed);
     }
 
-    if (!optionData.loadingAnime && loadStatus === "failed") {
+    if (!appOption.loadingAnime && loadStatus === "failed") {
       setLoadStatus("success");
     }
     return () => clearTimeout(timeoutId);
   }, [...trigger]);
 
   const showTarget = () => {
-    if (optionData.loadingAnime) {
+    if (appOption.loadingAnime) {
       setTimeout(() => {
         setLoadStatus("success");
       }, loadingTime.delay[target]);
@@ -47,7 +47,7 @@ const useLoading = ({ trigger, target }: ParamsType) => {
 
   // 読み込み失敗の時
   const showError = () => {
-    if (optionData.loadingAnime) {
+    if (appOption.loadingAnime) {
       setLoadStatus("failed");
     }
   };

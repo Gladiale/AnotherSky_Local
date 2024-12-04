@@ -120,12 +120,15 @@
   border: 1px solid #f9bbff;
   cursor: pointer;
   text-align: center;
-  align-content: center;
 }
 
 .directory-container .pageNav .pageButton p {
+  width: 100%;
+  height: 100%;
   color: #ff84fb;
   transition: 0.25s;
+  /* 縦方向の中央寄せ */
+  align-content: center;
 }
 
 .directory-container .pageNav .pageButton:hover p {

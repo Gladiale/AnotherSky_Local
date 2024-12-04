@@ -9,15 +9,6 @@ type FilterDataType = {
   sepia: number;
 };
 
-type AppOptionDataType = {
-  loadingAnime: boolean;
-  cgSwing: boolean;
-  cgShadow: boolean;
-  videoShadow: boolean;
-  characterShadow: boolean;
-  iconShadow: boolean;
-};
-
 type MediaStateType = {
   image: {
     deg: number;
@@ -42,4 +33,4 @@ type MediaStateType = {
   touchMode: "scaleMode" | "positionMode" | "rotateMod" | "closed";
 };
 
-export type { FilterDataType, AppOptionDataType, MediaStateType };
+export type { FilterDataType, MediaStateType };

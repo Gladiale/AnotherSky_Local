@@ -2,13 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.4rem;
+  gap: var(--outer-gap);
 }
 
 @media (max-width: 768px) {
   .check-box.column {
     flex-direction: column;
-    gap: 0.2rem;
+    gap: var(--responsive-gap);
   }
 }
 
@@ -18,7 +18,6 @@
   align-items: center;
   justify-content: center;
   user-select: none;
-  gap: 0.2rem;
   color: var(--label-color);
 }
 
@@ -46,32 +45,16 @@
   border-color: var(--checkBox-color-hover);
 }
 
-.check-box label input[type="checkbox"].middle {
-  width: 0.8rem;
-  height: 0.8rem;
+/* チェックボックスのサイズ */
+.check-box label input[type="checkbox"] {
+  width: calc(var(--checkbox-size) * 1rem);
+  height: calc(var(--checkbox-size) * 1rem);
 }
-.check-box label input[type="checkbox"].middle:checked {
-  width: 0.4rem;
-  top: -0.2rem;
-  left: 0.2rem;
+.check-box label input[type="checkbox"]:checked {
+  width: calc(var(--checkbox-size) / 2 * 1rem);
+  top: calc(var(--checkbox-size) / 4 * -1rem);
+  left: calc(var(--checkbox-size) / 4 * 1rem);
 }
-
-.check-box label input[type="checkbox"].small {
-  width: 0.7rem;
-  height: 0.7rem;
-}
-.check-box label input[type="checkbox"].small:checked {
-  width: 0.35rem;
-  top: -0.175rem;
-  left: 0.175rem;
-}
-
-.check-box label input[type="checkbox"].big {
-  width: 0.9rem;
-  height: 0.9rem;
-}
-.check-box label input[type="checkbox"].big:checked {
-  width: 0.45rem;
-  top: -0.225rem;
-  left: 0.225rem;
+.check-box label input[type="checkbox"].kind2nd:checked {
+  left: calc(var(--checkbox-size) / 4 * -1rem);
 }

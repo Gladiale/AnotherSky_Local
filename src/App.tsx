@@ -1,6 +1,6 @@
 import { SceneProvider } from "./context/SceneContext";
 import { ScreenProvider } from "./context/ScreenContext";
-import { AppOptionProvider } from "./context/AppOptionContext";
+import { AppOptionProvider } from "./context/AppOptionContext/AppOptionContext";
 import { MediaInfoProvider } from "./context/MediaInfoContext/MediaInfoContext";
 import { EffectStateProvider } from "./context/EffectStateContext/EffectStateContext";
 import Container from "./components/Container/Container";
