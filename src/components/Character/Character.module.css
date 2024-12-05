@@ -1,4 +1,4 @@
-.stand-container {
+.character-container {
   height: 100%;
   max-width: 35dvw;
   transition: 0.5s;
@@ -9,25 +9,18 @@
   perspective: 900px;
 }
 
-.stand-container:hover {
-  max-width: 50dvw;
+.character-container:hover {
   z-index: 99;
+  max-width: 50dvw;
+  animation: bounce 0.5s ease alternate infinite;
+  /* animation-timing-function: var(--spring-easing-2nd); */
 }
 
-.stand-container.mirror {
+.character-container.mirror {
   max-width: none;
   position: absolute;
   left: 0;
   z-index: 99;
-}
-
-.stand-container .stand-wrapper {
-  height: 100%;
-  transition: 0.4s;
-}
-
-.stand-container .stand-wrapper:hover {
-  animation: bounce 0.5s ease alternate infinite;
 }
 
 @keyframes bounce {
