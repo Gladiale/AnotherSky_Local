@@ -14,7 +14,7 @@ const useMediaSizeData = () => {
         : isMobileSize && mediaSize === "custom"
         ? "100dvw"
         : "auto",
-    width: isMobileSize && mediaSize === "contain" ? "100dvw" : "auto",
+    width: "auto",
     maxHeight:
       mediaSize === "custom" ? "100%" : mediaSize === "contain" ? "100dvh" : undefined,
     maxWidth:
@@ -22,6 +22,8 @@ const useMediaSizeData = () => {
         ? "65dvw"
         : mediaSize === "custom" && isMobileSize && screenMode === "cardMode"
         ? "90dvw"
+        : mediaSize === "contain"
+        ? "100dvw"
         : undefined,
   };
 
