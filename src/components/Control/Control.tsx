@@ -54,8 +54,8 @@ const Control = () => {
     <>
       {/* desk icon */}
       <div
-        className={`${styles["desk-box"]} ${!deskIconState.deskBox && styles.hidden}
-        ${appOption.dropShadow.icon && styles.shadow}`}
+        className={`${styles["desk-box"]} ${appOption.dropShadow.icon && styles.shadow}
+        ${!deskIconState.deskBox && styles.hidden}`}
         onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
         onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
       >
@@ -92,7 +92,7 @@ const Control = () => {
 
       {/* mobile icon */}
       <div
-        className={`${styles["mobile-box-1st"]} 
+        className={`${styles["mobile-box-1st"]}
         ${appOption.dropShadow.icon && styles.shadow}
         ${isMobile1stHidden && styles.hidden}`}
         onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}

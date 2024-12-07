@@ -22,7 +22,7 @@ function hoverReducer(state: HoverStateType, action: HoverActionType) {
     case "card":
       return action.payload === "enter"
         ? { ...state, card: true, icon: false }
-        : { ...state, card: false, icon: false };
+        : { ...state, card: false };
     case "icon":
       return action.payload === "enter"
         ? { ...state, card: true, icon: true }
@@ -30,7 +30,7 @@ function hoverReducer(state: HoverStateType, action: HoverActionType) {
     case "cg":
       return action.payload === "enter"
         ? { ...state, cg: true, icon: false }
-        : { ...state, cg: false, icon: false };
+        : { ...state, cg: false };
     default:
       throw new Error("不明なactionです");
   }
