@@ -15,15 +15,15 @@ import MirrorEffectControl from "../ControlIcon/MirrorEffectControl";
 import AutoNext from "../ControlIcon/AutoNext";
 import ImageEffectControl from "../ControlIcon/ImageEffectControl";
 import RandomControl from "../ControlIcon/RandomControl";
+import ShowFlipBook from "../ControlIcon/ShowFlipBook";
+import ShowDirectory from "../ControlIcon/ShowDirectory";
 import ShowListImage from "../ControlIcon/ShowListImage";
-import Unknown from "../ControlIcon/Unknown";
 import RotateYControl from "../ControlIcon/RotateYControl";
 import MobilePositionControl from "../ControlIcon/MobilePositionControl";
 import MobileScaleControl from "../ControlIcon/MobileScaleControl";
 import IconStorage from "../ControlIcon/IconStorage";
 import IconListTriggerMobile from "../ControlIcon/IconListTriggerMobile";
 import IconListTriggerDesk from "../ControlIcon/IconListTriggerDesk";
-import ShowDirectory from "../ControlIcon/ShowDirectory";
 
 const Control = () => {
   const { setIsHovered } = useHover();
@@ -74,7 +74,7 @@ const Control = () => {
         >
           <ScreenControl />
           <MirrorEffectControl />
-          <Unknown />
+          <ShowFlipBook />
           <VoiceControl />
           <ShowListImage />
           {isMobileSize ? (

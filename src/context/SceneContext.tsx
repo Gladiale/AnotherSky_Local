@@ -5,6 +5,7 @@ export type SceneType =
   | "cg"
   | "anotherCharacter"
   | "video"
+  | "flipBook"
   | "listImg"
   | "directoryMode";
 

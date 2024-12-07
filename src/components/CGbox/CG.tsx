@@ -18,15 +18,13 @@ const CG = ({ className }: PropsType) => {
   // カスタムフック
   const { urlConfig } = useUrlConfig();
   const { mediaSizeData } = useMediaSizeData();
+  const { transform3d, changeTransform3d, resetTransform3d } = useTransform3d();
 
   const imgUrl = anotherActive ? urlConfig.anotherCharacter : urlConfig.cg;
-
   const { loadStatus, showTarget, showError } = useLoading({
     trigger: [anotherActive, imgUrl],
     target: "cg",
   });
-
-  const { transform3d, changeTransform3d, resetTransform3d } = useTransform3d();
 
   return (
     <>

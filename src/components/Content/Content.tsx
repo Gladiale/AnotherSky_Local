@@ -5,10 +5,11 @@ import { useEffectState } from "../../context/EffectStateContext/EffectStateCont
 import Card from "../Card/Card";
 import CGbox from "../CGbox/CGbox";
 import Video from "../Video/Video";
+import FlipBook from "../FlipBook/FlipBook";
 import Character from "../Character/Character";
+import Directory from "../Directory/Directory";
 import ListImage from "../ListImage/ListImage";
 import ListImageMode2 from "../ListImageMode2/ListImageMode2";
-import Directory from "../Directory/Directory";
 
 const Content = () => {
   const { scene } = useScene();
@@ -23,10 +24,11 @@ const Content = () => {
       {scene != "card" && <Character />}
       {scene === "card" && <Card />}
       {(scene === "cg" || scene === "anotherCharacter") && <CGbox />}
+      {scene === "video" && <Video />}
+      {scene === "flipBook" && <FlipBook />}
+      {scene === "directoryMode" && <Directory />}
       {scene === "listImg" && !listSubState.mode2 && <ListImage />}
       {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}
-      {scene === "directoryMode" && <Directory />}
-      {scene === "video" && <Video />}
       {scene != "card" && !effectState.mirrorEffect && (
         <Character imgStyle={{ transform: "rotateY(180deg)" }} />
       )}

@@ -1,0 +1,106 @@
+.flip-book {
+  height: 100%;
+  cursor: crosshair;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.5s;
+  /* 3D化 */
+  transform-style: preserve-3d;
+  perspective: 2000px;
+}
+.flip-book.shadow {
+  filter: var(--drop-shadow);
+}
+.flip-book.shadow:hover {
+  filter: var(--drop-shadow-hover);
+}
+
+.flip-book .control-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  position: absolute;
+  top: 0.1rem;
+  /* right: 0.1rem; */
+  opacity: 0;
+  transition: 0.25s;
+  z-index: 99;
+}
+.flip-book:hover .control-box {
+  opacity: 1;
+}
+
+.layer {
+  height: 100%;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform-style: preserve-3d;
+  perspective: 700rem;
+  /* perspective: 250rem; */
+
+  transition: transform var(--spring-duration-2nd) var(--spring-easing-2nd);
+}
+
+.layer .book-cover {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: -99;
+}
+
+.layer .book-page {
+  height: 100%;
+  user-select: none;
+  position: relative;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.layer .book-page.left {
+  transform-origin: right;
+}
+.layer .book-page.right {
+  transform-origin: left;
+}
+
+/* -----------コンポネント----------- */
+.page-content {
+  height: 100%;
+  /* 3D化 */
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.page-content.page-front {
+  transform: rotateY(0deg) translateZ(1px);
+}
+
+.page-content.page-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg) translateZ(1px);
+}
+
+.page-content .item-box {
+  height: 100%;
+  transition: transform var(--spring-duration-2nd) var(--spring-easing-2nd);
+}
+
+.page-content .item-box .element {
+  height: 100%;
+  transition: 0.2s;
+}
+
+/* @media (max-width: 768px) {
+} */

@@ -102,11 +102,11 @@
 } */
 
 .cg-box .mix-box .cg-img {
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .cg-box .mix-box .texture-img {
-  transition: 0.5s;
+  transition: 0.2s;
   position: absolute;
   inset: 0;
   margin: auto;

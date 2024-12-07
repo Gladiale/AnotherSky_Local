@@ -1,7 +1,7 @@
-import { MediaInfoType } from "../../mediaInfo";
+import { type MediaInfoType, type MediaOriginType } from "../../mediaInfo";
 
 type SpecificPayloadType = {
-  target: "cg" | "character" | "video";
+  target: MediaOriginType;
   fileInfo: [[number, string], [number, string, number]];
 };
 
@@ -10,25 +10,10 @@ const toMediaSpecificFile = (
   payload: SpecificPayloadType
 ): MediaInfoType => {
   const { target, fileInfo } = payload;
-  switch (target) {
-    case "cg":
-      return {
-        folder: { ...state.folder, cg: fileInfo[0] },
-        file: { ...state.file, cg: fileInfo[1] },
-      };
-    case "character":
-      return {
-        folder: { ...state.folder, character: fileInfo[0] },
-        file: { ...state.file, character: fileInfo[1] },
-      };
-    case "video":
-      return {
-        folder: { ...state.folder, video: fileInfo[0] },
-        file: { ...state.file, video: fileInfo[1] },
-      };
-    default:
-      throw new Error("不明なactionです");
-  }
+  return {
+    folder: { ...state.folder, [target]: fileInfo[0] },
+    file: { ...state.file, [target]: fileInfo[1] },
+  };
 };
 
 export { type SpecificPayloadType, toMediaSpecificFile };

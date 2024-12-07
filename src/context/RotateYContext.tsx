@@ -62,6 +62,9 @@ function reducer(state: rotateYType, action: rotateYActionType) {
     case "directoryMode":
       newState = state;
       break;
+    case "flipBook":
+      newState = state;
+      break;
     default:
       throw new Error("不明なactionです");
   }
