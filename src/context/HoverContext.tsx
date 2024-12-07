@@ -1,25 +1,25 @@
 import { createContext, useContext, useState } from "react";
 
-type Hover = {
-  cardHover: boolean;
-  iconHover: boolean;
+type HoverStateType = {
+  card: boolean;
+  icon: boolean;
 };
 
-type ContextType = {
-  isHovered: Hover;
-  setIsHovered: React.Dispatch<React.SetStateAction<Hover>>;
+type HoverContextType = {
+  hoverState: HoverStateType;
+  setHoverState: React.Dispatch<React.SetStateAction<HoverStateType>>;
 };
 
-const HoverContext = createContext({} as ContextType);
+const HoverContext = createContext({} as HoverContextType);
 
 const HoverProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isHovered, setIsHovered] = useState<Hover>({
-    cardHover: false,
-    iconHover: false,
+  const [hoverState, setHoverState] = useState<HoverStateType>({
+    card: false,
+    icon: false,
   });
 
   return (
-    <HoverContext.Provider value={{ isHovered, setIsHovered }}>
+    <HoverContext.Provider value={{ hoverState, setHoverState }}>
       {children}
     </HoverContext.Provider>
   );

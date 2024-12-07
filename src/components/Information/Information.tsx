@@ -4,14 +4,14 @@ import { useInformation } from "../../hooks/useInformation";
 import { useAnotherCharacter } from "../../context/MediaInfoContext/MediaInfoContext";
 
 const Information = () => {
-  const { isHovered } = useHover();
+  const { hoverState } = useHover();
   const { anotherActive } = useAnotherCharacter();
   const { infoData, infoActive, infoState } = useInformation();
 
   return (
     <div
       className={`${styles.information}
-      ${(isHovered.iconHover || infoActive) && styles.infoActive}`}
+      ${(hoverState.icon || infoActive) && styles.infoActive}`}
     >
       <p className={infoState.voice ? styles.active : ""}>
         {infoData.voice}

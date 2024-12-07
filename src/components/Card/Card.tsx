@@ -19,7 +19,7 @@ const Card = () => {
   const { rotateYState } = useRotateY();
   const { screenMode } = useScreenMode();
   const { effectState } = useEffectState();
-  const { isHovered, setIsHovered } = useHover();
+  const { hoverState, setHoverState } = useHover();
   // カスタムフック
   const { urlConfig } = useUrlConfig();
   const { filterData } = useFilterData("card");
@@ -50,8 +50,8 @@ const Card = () => {
       onClick={changeScene}
       onContextMenu={resetScene}
       onWheel={changeMedia}
-      onMouseEnter={() => setIsHovered({ cardHover: true, iconHover: false })}
-      onMouseLeave={() => setIsHovered({ cardHover: false, iconHover: false })}
+      onMouseEnter={() => setHoverState({ card: true, icon: false })}
+      onMouseLeave={() => setHoverState({ card: false, icon: false })}
     >
       {/* 背景画像 */}
       <motion.div
@@ -60,7 +60,7 @@ const Card = () => {
         animate="visible"
         className={styles["stand-img"]}
         style={{
-          height: isHovered.cardHover ? "100%" : "0",
+          height: hoverState.card ? "100%" : "0",
           backgroundImage: `url(${urlConfig.character})`,
         }}
       />
