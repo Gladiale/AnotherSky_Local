@@ -22,7 +22,6 @@
 .cg-box.shadow {
   filter: var(--drop-shadow);
 }
-
 .cg-box.shadow:hover {
   filter: var(--drop-shadow-hover);
 }
@@ -30,15 +29,12 @@
 .cg-box.swing {
   animation: cg_swing 7.5s linear infinite;
 }
-
 .cg-box.shakeLow {
   animation: shakeLowAni 0.1s linear infinite;
 }
-
 .cg-box.shakeNormal {
   animation: shakeNormalAni 0.12s linear infinite;
 }
-
 .cg-box.shakeHigh {
   animation: shakeHighAni 0.15s linear infinite;
 }
