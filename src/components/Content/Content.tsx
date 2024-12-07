@@ -1,6 +1,7 @@
 import styles from "./Content.module.css";
 import { useScene } from "../../context/SceneContext";
 import { useImageList } from "../../context/ImageListState";
+import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import Card from "../Card/Card";
 import CGbox from "../CGbox/CGbox";
@@ -14,6 +15,7 @@ import ListImageMode2 from "../ListImageMode2/ListImageMode2";
 const Content = () => {
   const { scene } = useScene();
   const { listSubState } = useImageList();
+  const { mediaActive } = useMediaActive();
   const { effectState } = useEffectState();
 
   return (
@@ -23,9 +25,12 @@ const Content = () => {
     >
       {scene != "card" && <Character />}
       {scene === "card" && <Card />}
-      {(scene === "cg" || scene === "anotherCharacter") && <CGbox />}
+      {scene === "cg" && mediaActive.doublePage ? (
+        <FlipBook />
+      ) : (
+        scene === "cg" && <CGbox />
+      )}
       {scene === "video" && <Video />}
-      {scene === "flipBook" && <FlipBook />}
       {scene === "directoryMode" && <Directory />}
       {scene === "listImg" && !listSubState.mode2 && <ListImage />}
       {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}

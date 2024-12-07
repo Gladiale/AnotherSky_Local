@@ -9,11 +9,8 @@ import {
   useScene,
   useDirectoryInfo,
 } from "../../context/SceneContext";
-import {
-  useAnotherCharacter,
-  useMediaInfo,
-} from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScreenMode } from "../../context/ScreenContext";
+import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 
 const getTargetData = (target: DirectoryTargetType) => {
   switch (target) {
@@ -44,7 +41,6 @@ const Directory = () => {
   const { setScene } = useScene();
   const { screenMode } = useScreenMode();
   const { mediaInfoDispatch } = useMediaInfo();
-  const { setAnotherActive } = useAnotherCharacter();
   const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
 
   const directoryData = getTargetData(directoryTarget);
@@ -61,7 +57,7 @@ const Directory = () => {
         fileInfo: directorySliced[pageIndex][index],
       },
     });
-    directoryTarget === "cg" && (setScene("cg"), setAnotherActive(false));
+    directoryTarget === "cg" && setScene("cg");
     directoryTarget === "video" && setScene("video");
   };
 

@@ -38,13 +38,6 @@ function reducer(state: rotateYType, action: rotateYActionType) {
         newState = { ...state, cgRotateY: !state.cgRotateY };
       }
       break;
-    case "anotherCharacter":
-      if (action.payload.isTachie || action.payload.isEffect) {
-        newState = { ...state };
-      } else {
-        newState = { ...state, cgRotateY: !state.cgRotateY };
-      }
-      break;
     case "video":
       if (action.payload.isTachie || action.payload.isEffect) {
         newState = { ...state };
@@ -60,9 +53,6 @@ function reducer(state: rotateYType, action: rotateYActionType) {
       }
       break;
     case "directoryMode":
-      newState = state;
-      break;
-    case "flipBook":
       newState = state;
       break;
     default:

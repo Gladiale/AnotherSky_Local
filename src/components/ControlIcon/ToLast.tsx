@@ -1,5 +1,8 @@
 import { BiLastPage } from "react-icons/bi";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import {
+  useMediaActive,
+  useMediaInfo,
+} from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";
 import IconDefault from "../Common/IconDefault";
 
@@ -9,12 +12,13 @@ type PropsType = {
 
 const ToLast = ({ active }: PropsType) => {
   const { scene } = useScene();
+  const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
 
   return (
     <IconDefault
       active={active}
-      onClick={() => mediaInfoDispatch({ type: "last", payload: scene })}
+      onClick={() => mediaInfoDispatch({ type: "last", payload: { scene, mediaActive } })}
     >
       <BiLastPage />
     </IconDefault>

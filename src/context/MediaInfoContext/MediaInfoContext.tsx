@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import { mediaInfoInit, type MediaInfoType } from "./mediaInfo";
+import { mediaInfoInit, type MediaInfoType, type MediaActiveType } from "./mediaInfo";
 import { ActionType, reducerFunc } from "./mediaInfoReducerFunc";
 
 type MediaInfoContextType = {
@@ -7,23 +7,26 @@ type MediaInfoContextType = {
   mediaInfoDispatch: React.Dispatch<ActionType>;
 };
 
-type AnotherCharacterContextType = {
-  anotherActive: boolean;
-  setAnotherActive: React.Dispatch<React.SetStateAction<boolean>>;
+type MediaActiveContextType = {
+  mediaActive: MediaActiveType;
+  setMediaActive: React.Dispatch<React.SetStateAction<MediaActiveType>>;
 };
 
 const MediaInfoContext = createContext({} as MediaInfoContextType);
-const AnotherCharacterContext = createContext({} as AnotherCharacterContextType);
+const MediaActiveContext = createContext({} as MediaActiveContextType);
 
 const MediaInfoProvider = ({ children }: { children: React.ReactNode }) => {
-  const [anotherActive, setAnotherActive] = useState<boolean>(false);
+  const [mediaActive, setMediaActive] = useState<MediaActiveType>({
+    anotherCharacter: false,
+    doublePage: false,
+  });
   const [mediaInfo, mediaInfoDispatch] = useReducer(reducerFunc, mediaInfoInit);
 
   return (
     <MediaInfoContext.Provider value={{ mediaInfo, mediaInfoDispatch }}>
-      <AnotherCharacterContext.Provider value={{ anotherActive, setAnotherActive }}>
+      <MediaActiveContext.Provider value={{ mediaActive, setMediaActive }}>
         {children}
-      </AnotherCharacterContext.Provider>
+      </MediaActiveContext.Provider>
     </MediaInfoContext.Provider>
   );
 };
@@ -32,8 +35,8 @@ const useMediaInfo = () => {
   return useContext(MediaInfoContext);
 };
 
-const useAnotherCharacter = () => {
-  return useContext(AnotherCharacterContext);
+const useMediaActive = () => {
+  return useContext(MediaActiveContext);
 };
 
-export { MediaInfoProvider, useMediaInfo, useAnotherCharacter };
+export { MediaInfoProvider, useMediaInfo, useMediaActive };

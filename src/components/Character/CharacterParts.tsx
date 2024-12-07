@@ -3,7 +3,10 @@ import { useState } from "react";
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useRotateY } from "../../context/RotateYContext";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import {
+  useMediaActive,
+  useMediaInfo,
+} from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { getRandomFolderFile } from "../../helper/dataObjControl";
 import { VoiceDataObj } from "../../data/VoiceDataObj";
@@ -20,6 +23,7 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
   const { urlConfig } = useUrlConfig();
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
+  const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
 
   const { loadStatus, showTarget } = useLoading({
@@ -45,9 +49,9 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
 
   const changeStandImage = (e: React.WheelEvent) => {
     if (e.deltaY > 0) {
-      mediaInfoDispatch({ type: "next", payload: "card" });
+      mediaInfoDispatch({ type: "next", payload: { scene: "card", mediaActive } });
     } else {
-      mediaInfoDispatch({ type: "prev", payload: "card" });
+      mediaInfoDispatch({ type: "prev", payload: { scene: "card", mediaActive } });
     }
   };
 

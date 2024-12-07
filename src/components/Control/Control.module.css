@@ -96,7 +96,7 @@
 
   .mobile-box-1st,
   .mobile-box-2nd {
-    width: 100dvw;
+    /* width: 100dvw; */
     display: flex;
     justify-content: center;
     align-items: center;

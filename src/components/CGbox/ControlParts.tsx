@@ -4,8 +4,8 @@ import { useScene } from "../../context/SceneContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useInformation } from "../../hooks/useInformation";
 import {
-  useAnotherCharacter,
   useMediaInfo,
+  useMediaActive,
 } from "../../context/MediaInfoContext/MediaInfoContext";
 import IconSpecial from "../Common/IconSpecial";
 
@@ -14,14 +14,13 @@ const ControlParts = () => {
   const { appOption } = useAppOption();
   const { mediaInfoDispatch } = useMediaInfo();
   const { infoActive } = useInformation();
-  const { anotherActive, setAnotherActive } = useAnotherCharacter();
+  const { mediaActive, setMediaActive } = useMediaActive();
 
   const changeContent = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setAnotherActive((prev) => !prev);
-    if (!anotherActive) {
+    setMediaActive((prev) => ({ ...prev, anotherCharacter: !prev.anotherCharacter }));
+    if (!mediaActive.anotherCharacter) {
       mediaInfoDispatch({ type: "initAnother" });
-      setScene("anotherCharacter");
     } else {
       setScene("cg");
     }

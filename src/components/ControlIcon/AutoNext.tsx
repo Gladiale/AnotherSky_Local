@@ -1,7 +1,10 @@
 import styles from "./AutoNext.module.css";
 import { useEffect, useState } from "react";
 import { GiHeartBattery } from "react-icons/gi";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import {
+  useMediaActive,
+  useMediaInfo,
+} from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";
 import { BsDashLg, BsPlusLg } from "react-icons/bs";
 import IconDefault from "../Common/IconDefault";
@@ -14,6 +17,7 @@ const AutoNext = () => {
   const [autoSpeed, setAutoSpeed] = useState<number>(450);
 
   const { scene } = useScene();
+  const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
 
   const handleAutoSpeed = (condition: string) => {
@@ -48,7 +52,7 @@ const AutoNext = () => {
       // console.log("time start");
       intervalId = window.setInterval(() => {
         // console.log("interval running");
-        mediaInfoDispatch({ type: "next", payload: scene });
+        mediaInfoDispatch({ type: "next", payload: { scene, mediaActive } });
       }, autoSpeed);
     }
     return () => {

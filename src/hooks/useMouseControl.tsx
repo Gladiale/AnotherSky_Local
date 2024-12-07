@@ -1,20 +1,17 @@
 import { useScene } from "../context/SceneContext";
 import {
   useMediaInfo,
-  useAnotherCharacter,
+  useMediaActive,
 } from "../context/MediaInfoContext/MediaInfoContext";
 
 const useMouseControl = (target: "cg" | "card" | "video") => {
   const { scene, setScene } = useScene();
+  const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
-  const { anotherActive } = useAnotherCharacter();
 
   // Targetにマウスの左クリック
   const changeScene = () => {
-    if (anotherActive) {
-      return setScene("anotherCharacter");
-    }
-    return setScene("cg");
+    setScene("cg");
   };
 
   // Targetにマウスの右クリック
@@ -27,8 +24,8 @@ const useMouseControl = (target: "cg" | "card" | "video") => {
   const changeMedia = (e: React.WheelEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.deltaY > 0
-      ? mediaInfoDispatch({ type: "next", payload: scene })
-      : mediaInfoDispatch({ type: "prev", payload: scene });
+      ? mediaInfoDispatch({ type: "next", payload: { scene, mediaActive } })
+      : mediaInfoDispatch({ type: "prev", payload: { scene, mediaActive } });
   };
 
   return { changeScene, resetScene, changeMedia };

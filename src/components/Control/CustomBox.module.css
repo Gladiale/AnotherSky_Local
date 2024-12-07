@@ -1,0 +1,29 @@
+.custom-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-box.desk {
+  position: absolute;
+  gap: 25rem;
+  transition: 1s;
+}
+
+.custom-box.mobile {
+  position: fixed;
+  bottom: 0.3rem;
+  gap: 20rem;
+  display: none;
+  transition: 0.8s;
+}
+
+@media (max-width: 768px) {
+  .custom-box.desk {
+    display: none;
+  }
+
+  .custom-box.mobile {
+    display: flex;
+  }
+}

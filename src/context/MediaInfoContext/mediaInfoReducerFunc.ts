@@ -18,12 +18,12 @@ import {
   type SpecificPayloadType,
 } from "./MediaInfoFunc/dispatch/toMediaSpecificFile";
 import { type SceneType } from "../SceneContext";
-import { type MediaInfoType } from "./mediaInfo";
+import { type MediaActiveType, type MediaInfoType } from "./mediaInfo";
 import { type RandomTargetType } from "../../components/ControlIcon/RandomControl";
 
 type MainActionType = {
   type: "next" | "prev" | "first" | "last" | "folderNext" | "folderPrev";
-  payload: SceneType;
+  payload: { scene: SceneType; mediaActive: MediaActiveType };
 };
 
 type SubActionType = {
@@ -57,17 +57,17 @@ type ActionType = MainActionType | SubActionType | OtherActionType | SpecificAct
 function reducerFunc(state: MediaInfoType, action: ActionType) {
   switch (action.type) {
     case "next":
-      return toMediaFileNext(state, action.payload);
+      return toMediaFileNext(state, action.payload.scene, action.payload.mediaActive);
     case "prev":
-      return toMediaFilePrev(state, action.payload);
+      return toMediaFilePrev(state, action.payload.scene, action.payload.mediaActive);
     case "first":
-      return toMediaFileFirst(state, action.payload);
+      return toMediaFileFirst(state, action.payload.scene, action.payload.mediaActive);
     case "last":
-      return toMediaFileLast(state, action.payload);
+      return toMediaFileLast(state, action.payload.scene, action.payload.mediaActive);
     case "folderNext":
-      return toMediaFolderNext(state, action.payload);
+      return toMediaFolderNext(state, action.payload.scene, action.payload.mediaActive);
     case "folderPrev":
-      return toMediaFolderPrev(state, action.payload);
+      return toMediaFolderPrev(state, action.payload.scene, action.payload.mediaActive);
     case "voiceNext":
       return fileNextFunc(state, "voice");
     case "voicePrev":

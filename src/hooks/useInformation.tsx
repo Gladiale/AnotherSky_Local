@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import {
-  useAnotherCharacter,
+  useMediaActive,
   useMediaInfo,
 } from "../context/MediaInfoContext/MediaInfoContext";
 
 const useInformation = () => {
   const { mediaInfo } = useMediaInfo();
-  const { anotherActive } = useAnotherCharacter();
+  const { mediaActive } = useMediaActive();
   const [infoActive, setInfoActive] = useState<boolean>(false);
 
   const infoData = {
@@ -67,7 +67,7 @@ const useInformation = () => {
 
   useEffect(() => {
     let timeoutId: number;
-    if (anotherActive) {
+    if (mediaActive.anotherCharacter) {
       timeoutId = handleActiveStateChange("anotherCharacter");
     }
     return () => clearTimeout(timeoutId);

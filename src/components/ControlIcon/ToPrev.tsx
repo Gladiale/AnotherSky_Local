@@ -1,6 +1,9 @@
 import { BsChevronLeft } from "react-icons/bs";
 import { useScene } from "../../context/SceneContext";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import {
+  useMediaActive,
+  useMediaInfo,
+} from "../../context/MediaInfoContext/MediaInfoContext";
 import IconDefault from "../Common/IconDefault";
 
 type PropsType = {
@@ -9,15 +12,16 @@ type PropsType = {
 
 const ToPrev = ({ active }: PropsType) => {
   const { scene } = useScene();
+  const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
 
   const toPrevImage = () => {
-    mediaInfoDispatch({ type: "prev", payload: scene });
+    mediaInfoDispatch({ type: "prev", payload: { scene, mediaActive } });
   };
 
   const toPrevFolder = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    mediaInfoDispatch({ type: "folderPrev", payload: scene });
+    mediaInfoDispatch({ type: "folderPrev", payload: { scene, mediaActive } });
   };
 
   return (

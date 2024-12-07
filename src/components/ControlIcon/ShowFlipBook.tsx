@@ -1,26 +1,17 @@
-import { GiChewedHeart } from "react-icons/gi";
+import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
+import { GiBlackBook } from "react-icons/gi";
 import IconDefault from "../Common/IconDefault";
-import { useScene } from "../../context/SceneContext";
-import { useAnotherCharacter } from "../../context/MediaInfoContext/MediaInfoContext";
 
 const ShowFlipBook = () => {
-  const { scene, setScene } = useScene();
-  const { anotherActive } = useAnotherCharacter();
-
-  const changeScene = () => {
-    if (scene != "flipBook") {
-      setScene("flipBook");
-    } else {
-      if (anotherActive) {
-        return setScene("anotherCharacter");
-      }
-      setScene("cg");
-    }
-  };
+  const { setMediaActive } = useMediaActive();
 
   return (
-    <IconDefault onClick={changeScene}>
-      <GiChewedHeart />
+    <IconDefault
+      onClick={() =>
+        setMediaActive((prev) => ({ ...prev, doublePage: !prev.doublePage }))
+      }
+    >
+      <GiBlackBook />
     </IconDefault>
   );
 };

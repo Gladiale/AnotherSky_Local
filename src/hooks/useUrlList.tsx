@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import {
-  useAnotherCharacter,
+  useMediaActive,
   useMediaInfo,
 } from "../context/MediaInfoContext/MediaInfoContext";
 import { type SpecificPayloadType } from "../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
@@ -11,7 +11,7 @@ import { getTargetList } from "../helper/getTargetList";
 
 const useUrlList = () => {
   const { mediaInfo } = useMediaInfo();
-  const { anotherActive } = useAnotherCharacter();
+  const { mediaActive } = useMediaActive();
 
   const [targetList, setTargetList] = useState<string[]>([]);
   const [firstLastInfo, setFirstLastInfo] = useState<{
@@ -19,7 +19,9 @@ const useUrlList = () => {
     last: SpecificPayloadType["fileInfo"];
   }>(null!);
 
-  const target: "anotherCharacter" | "cg" = anotherActive ? "anotherCharacter" : "cg";
+  const target: "anotherCharacter" | "cg" = mediaActive.anotherCharacter
+    ? "anotherCharacter"
+    : "cg";
   useLayoutEffect(() => {
     const { targetFileList, firstFileInfo, lastFileInfo } = getTargetList(
       target,

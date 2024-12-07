@@ -4,7 +4,7 @@ import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useTransform3d } from "../../hooks/useTransform3d";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
-import { useAnotherCharacter } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
 import Loading from "../Loading/Loading";
 
 type PropsType = {
@@ -14,15 +14,15 @@ type PropsType = {
 const CG = ({ className }: PropsType) => {
   // コンテキスト
   const { appOption } = useAppOption();
-  const { anotherActive } = useAnotherCharacter();
+  const { mediaActive } = useMediaActive();
   // カスタムフック
   const { urlConfig } = useUrlConfig();
   const { mediaSizeData } = useMediaSizeData();
   const { transform3d, changeTransform3d, resetTransform3d } = useTransform3d();
 
-  const imgUrl = anotherActive ? urlConfig.anotherCharacter : urlConfig.cg;
+  const imgUrl = mediaActive.anotherCharacter ? urlConfig.anotherCharacter : urlConfig.cg;
   const { loadStatus, showTarget, showError } = useLoading({
-    trigger: [anotherActive, imgUrl],
+    trigger: [mediaActive.anotherCharacter, imgUrl],
     target: "cg",
   });
 

@@ -15,7 +15,6 @@ import MirrorEffectControl from "../ControlIcon/MirrorEffectControl";
 import AutoNext from "../ControlIcon/AutoNext";
 import ImageEffectControl from "../ControlIcon/ImageEffectControl";
 import RandomControl from "../ControlIcon/RandomControl";
-import ShowFlipBook from "../ControlIcon/ShowFlipBook";
 import ShowDirectory from "../ControlIcon/ShowDirectory";
 import ShowListImage from "../ControlIcon/ShowListImage";
 import RotateYControl from "../ControlIcon/RotateYControl";
@@ -24,6 +23,8 @@ import MobileScaleControl from "../ControlIcon/MobileScaleControl";
 import IconStorage from "../ControlIcon/IconStorage";
 import IconListTriggerMobile from "../ControlIcon/IconListTriggerMobile";
 import IconListTriggerDesk from "../ControlIcon/IconListTriggerDesk";
+import CustomBox from "./CustomBox";
+import Unknown from "../ControlIcon/Unknown";
 
 const Control = () => {
   const { hoverDispatch } = useHover();
@@ -74,7 +75,7 @@ const Control = () => {
         >
           <ScreenControl />
           <MirrorEffectControl />
-          <ShowFlipBook />
+          <Unknown />
           <VoiceControl />
           <ShowListImage />
           {isMobileSize ? (
@@ -88,7 +89,27 @@ const Control = () => {
           <FilterControl />
           <ImageEffectControl />
         </div>
+
+        {/* deskのCustomBox */}
+        <CustomBox
+          className={"desk"}
+          style={deskIconState.desk1st ? {} : { opacity: 0, scale: 0 }}
+        />
       </div>
+
+      {/* mobileのCustomBox */}
+      <CustomBox
+        className={"mobile"}
+        style={
+          deskIconState.deskBox
+            ? {
+                filter: appOption.dropShadow.icon
+                  ? "var(--drop-shadow-hover)"
+                  : undefined,
+              }
+            : { opacity: 0, scale: 0 }
+        }
+      />
 
       {/* mobile icon */}
       <div

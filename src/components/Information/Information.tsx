@@ -1,11 +1,11 @@
 import styles from "./Information.module.css";
 import { useHover } from "../../context/HoverContext";
 import { useInformation } from "../../hooks/useInformation";
-import { useAnotherCharacter } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
 
 const Information = () => {
   const { hoverState } = useHover();
-  const { anotherActive } = useAnotherCharacter();
+  const { mediaActive } = useMediaActive();
   const { infoData, infoActive, infoState } = useInformation();
 
   return (
@@ -15,7 +15,7 @@ const Information = () => {
     >
       <p className={infoState.voice ? styles.active : ""}>
         {infoData.voice}
-        {anotherActive && (
+        {mediaActive.anotherCharacter && (
           <span className={infoState.anotherCharacter ? styles.active : ""}>
             {infoData.anotherCharacter}
           </span>

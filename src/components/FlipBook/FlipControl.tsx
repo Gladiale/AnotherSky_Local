@@ -1,12 +1,8 @@
 import styles from "./FlipBook.module.css";
-import { GiCrenelCrown, GiCrownedHeart, GiStarSwirl } from "react-icons/gi";
+import { GiCrownedHeart, GiStarSwirl } from "react-icons/gi";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useInformation } from "../../hooks/useInformation";
 import IconSpecial from "../Common/IconSpecial";
-import {
-  useAnotherCharacter,
-  useMediaInfo,
-} from "../../context/MediaInfoContext/MediaInfoContext";
 
 type PropsType = {
   setLayerState: React.Dispatch<
@@ -22,8 +18,6 @@ type PropsType = {
 const FlipControl = ({ setLayerState, setIsReversing }: PropsType) => {
   const { appOption } = useAppOption();
   const { infoActive } = useInformation();
-  const { mediaInfoDispatch } = useMediaInfo();
-  const { anotherActive, setAnotherActive } = useAnotherCharacter();
 
   const changeLayerRotateY = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -31,14 +25,6 @@ const FlipControl = ({ setLayerState, setIsReversing }: PropsType) => {
       ...prev,
       rotateY: !prev.rotateY,
     }));
-  };
-
-  const changeContent = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    setAnotherActive((prev) => !prev);
-    if (!anotherActive) {
-      mediaInfoDispatch({ type: "initAnother" });
-    }
   };
 
   const reverseContent = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -55,11 +41,6 @@ const FlipControl = ({ setLayerState, setIsReversing }: PropsType) => {
         effect={appOption.dropShadow.icon}
         children={<GiStarSwirl />}
         onClick={changeLayerRotateY}
-      />
-      <IconSpecial
-        effect={appOption.dropShadow.icon}
-        children={<GiCrenelCrown />}
-        onClick={changeContent}
       />
       <IconSpecial
         effect={appOption.dropShadow.icon}

@@ -38,4 +38,9 @@ const mediaInfoInit: MediaInfoType = {
   },
 };
 
-export { type MediaOriginType, type MediaInfoType, mediaInfoInit };
+type MediaActiveType = {
+  anotherCharacter: boolean;
+  doublePage: boolean;
+};
+
+export { type MediaOriginType, type MediaInfoType, mediaInfoInit, type MediaActiveType };
