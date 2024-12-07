@@ -26,7 +26,7 @@ import IconListTriggerMobile from "../ControlIcon/IconListTriggerMobile";
 import IconListTriggerDesk from "../ControlIcon/IconListTriggerDesk";
 
 const Control = () => {
-  const { setHoverState } = useHover();
+  const { hoverDispatch } = useHover();
   const { appOption } = useAppOption();
   const { isMobileSize } = useWindowState();
   const [deskIconState, setDeskIconState] = useState({ deskBox: true, desk1st: true });
@@ -56,8 +56,8 @@ const Control = () => {
       <div
         className={`${styles["desk-box"]} ${!deskIconState.deskBox && styles.hidden}
         ${appOption.dropShadow.icon && styles.shadow}`}
-        onMouseEnter={() => setHoverState({ card: true, icon: true })}
-        onMouseLeave={() => setHoverState({ card: false, icon: false })}
+        onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
+        onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
       >
         <div
           className={`${styles["desk-1st"]} ${!deskIconState.desk1st && styles.hidden}`}
@@ -95,8 +95,8 @@ const Control = () => {
         className={`${styles["mobile-box-1st"]} 
         ${appOption.dropShadow.icon && styles.shadow}
         ${isMobile1stHidden && styles.hidden}`}
-        onMouseEnter={() => setHoverState({ card: true, icon: true })}
-        onMouseLeave={() => setHoverState({ card: false, icon: false })}
+        onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
+        onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
       >
         <ToFirst active="onlyMobile" />
         <ToPrev active="onlyMobile" />
@@ -109,8 +109,8 @@ const Control = () => {
         className={`${styles["mobile-box-2nd"]}
         ${appOption.dropShadow.icon && styles.shadow}
         ${!isMobile1stHidden && styles.hidden}`}
-        onMouseEnter={() => setHoverState({ card: true, icon: true })}
-        onMouseLeave={() => setHoverState({ card: false, icon: false })}
+        onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
+        onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
       >
         <MobilePositionControl />
         <IconListTriggerMobile boxKey="2nd" handleListTrigger={handleIconMobile} />
@@ -121,8 +121,8 @@ const Control = () => {
       <div
         className={`${styles["storage-box"]} 
         ${appOption.dropShadow.icon && styles.shadow}`}
-        onMouseEnter={() => setHoverState({ card: true, icon: true })}
-        onMouseLeave={() => setHoverState({ card: false, icon: false })}
+        onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
+        onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
       >
         {isMobileSize ? (
           <IconStorage handleIconStorage={handleIconStorage} />

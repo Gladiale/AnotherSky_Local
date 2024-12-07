@@ -19,7 +19,7 @@ const Card = () => {
   const { rotateYState } = useRotateY();
   const { screenMode } = useScreenMode();
   const { effectState } = useEffectState();
-  const { hoverState, setHoverState } = useHover();
+  const { hoverState, hoverDispatch } = useHover();
   // カスタムフック
   const { urlConfig } = useUrlConfig();
   const { filterData } = useFilterData("card");
@@ -50,8 +50,8 @@ const Card = () => {
       onClick={changeScene}
       onContextMenu={resetScene}
       onWheel={changeMedia}
-      onMouseEnter={() => setHoverState({ card: true, icon: false })}
-      onMouseLeave={() => setHoverState({ card: false, icon: false })}
+      onMouseEnter={() => hoverDispatch({ type: "card", payload: "enter" })}
+      onMouseLeave={() => hoverDispatch({ type: "card", payload: "leave" })}
     >
       {/* 背景画像 */}
       <motion.div
