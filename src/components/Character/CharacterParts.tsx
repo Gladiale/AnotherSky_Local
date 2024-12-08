@@ -65,7 +65,7 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
       onClick={handleVocal}
       onWheel={changeStandImage}
       className={styles["character-box"]}
-      style={{ transform: `rotateY(${rotateYState.standImgRotateY ? 180 : 0}deg)` }}
+      style={{ transform: `rotateY(${rotateYState.character ? 180 : 0}deg)` }}
     >
       <img
         onLoad={handleLoaded}

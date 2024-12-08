@@ -106,7 +106,7 @@ const ListImageMode2 = () => {
         screenMode != "cardMode" ? styles.big : ""
       }`}
       style={{
-        transform: `rotateY(${rotateYState.listImgRotateY ? 180 : 0}deg)`,
+        transform: `rotateY(${rotateYState.listImg ? 180 : 0}deg)`,
         filter: effectState.filterEffect.targetCard
           ? `opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
           : undefined,

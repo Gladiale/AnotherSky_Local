@@ -20,11 +20,9 @@ const FlipBook = () => {
   const [layerState, setLayerState] = useState<{
     active: "1st" | "2nd";
     page: "first" | "last" | undefined;
-    rotateY: boolean;
   }>({
     active: "1st",
     page: undefined,
-    rotateY: false,
   });
 
   return (
@@ -58,7 +56,7 @@ const FlipBook = () => {
         />
       )}
 
-      <FlipControl setLayerState={setLayerState} setIsReversing={setIsReversing} />
+      <FlipControl setIsReversing={setIsReversing} />
     </div>
   );
 };

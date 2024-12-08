@@ -1,6 +1,7 @@
 import styles from "./FlipBook.module.css";
 import { useEffect } from "react";
 import { usePageState } from "../../hooks/usePageState";
+import { useRotateY } from "../../context/RotateYContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
 import PageContent from "./PageContent";
@@ -12,13 +13,11 @@ type PropsType = {
   layerState: {
     active: "1st" | "2nd";
     page: "first" | "last" | undefined;
-    rotateY: boolean;
   };
   setLayerState: React.Dispatch<
     React.SetStateAction<{
       active: "1st" | "2nd";
       page: "first" | "last" | undefined;
-      rotateY: boolean;
     }>
   >;
   firstLastInfo: {
@@ -31,6 +30,7 @@ const FlipLayer = (props: PropsType) => {
   const { isReversing, target, urlList, layerState, setLayerState, firstLastInfo } =
     props;
 
+  const { rotateYState } = useRotateY();
   const { mediaInfoDispatch } = useMediaInfo();
   const { pageState, changePageRotateY } = usePageState();
 
@@ -83,7 +83,7 @@ const FlipLayer = (props: PropsType) => {
     <div
       className={styles["layer"]}
       onWheel={changeBookPage}
-      style={{ transform: `rotateY(${layerState.rotateY ? 180 : 0}deg)` }}
+      style={{ transform: `rotateY(${rotateYState.cg ? 180 : 0}deg)` }}
     >
       <div className={styles["book-cover"]}>
         <PageContent

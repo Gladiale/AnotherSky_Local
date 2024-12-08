@@ -25,3 +25,4 @@
 <GiEclipseFlare />
 <GiCrownedExplosion />
 <GiIronCross />
+<GiClockwork />

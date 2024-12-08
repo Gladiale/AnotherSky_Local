@@ -1,76 +1,81 @@
 import { createContext, useContext, useReducer } from "react";
 import { type SceneType } from "./SceneContext";
 
+// デフォルト値
 type rotateYType = {
-  cardRotateY: boolean;
-  cgRotateY: boolean;
-  videoRotateY: boolean;
-  listImgRotateY: boolean;
-  standImgRotateY: boolean;
-  effectRotateY: boolean;
+  card: boolean;
+  cg: boolean;
+  character: boolean;
+  video: boolean;
+  effect: boolean;
+  listImg: boolean;
 };
 
 const rotateYInit = {
-  cardRotateY: false,
-  cgRotateY: false,
-  videoRotateY: false,
-  listImgRotateY: false,
-  standImgRotateY: false,
-  effectRotateY: false,
+  card: false,
+  cg: false,
+  character: false,
+  video: false,
+  effect: false,
+  listImg: false,
 };
 
-type rotateYActionType = {
+// Reducer Action Type
+type RotateYActionType = {
   type: SceneType;
-  payload: { isTachie: boolean; isEffect: boolean };
+  payload: { isTachie?: boolean; isEffect?: boolean; isReset?: boolean };
 };
 
-function reducer(state: rotateYType, action: rotateYActionType) {
+function reducer(state: rotateYType, action: RotateYActionType) {
   let newState: rotateYType;
 
   switch (action.type) {
     case "card":
-      newState = { ...state, cardRotateY: !state.cardRotateY };
+      newState = { ...state, card: !state.card };
       break;
     case "cg":
       if (action.payload.isTachie || action.payload.isEffect) {
         newState = { ...state };
       } else {
-        newState = { ...state, cgRotateY: !state.cgRotateY };
+        newState = { ...state, cg: !state.cg };
       }
       break;
     case "video":
       if (action.payload.isTachie || action.payload.isEffect) {
         newState = { ...state };
       } else {
-        newState = { ...state, videoRotateY: !state.videoRotateY };
+        newState = { ...state, video: !state.video };
       }
       break;
     case "listImg":
       if (action.payload.isTachie) {
         newState = { ...state };
       } else {
-        newState = { ...state, listImgRotateY: !state.listImgRotateY };
+        newState = { ...state, listImg: !state.listImg };
       }
       break;
     case "directoryMode":
-      newState = state;
+      newState = { ...state };
       break;
     default:
       throw new Error("不明なactionです");
   }
 
   if (action.payload.isTachie) {
-    newState = { ...newState, standImgRotateY: !newState.standImgRotateY };
+    newState = { ...newState, character: !newState.character };
   }
   if (action.payload.isEffect) {
-    newState = { ...newState, effectRotateY: !newState.effectRotateY };
+    newState = { ...newState, effect: !newState.effect };
+  }
+  if (action.payload.isReset) {
+    newState = { ...newState, [action.type]: false };
   }
   return newState;
 }
 
 type ContextType = {
   rotateYState: rotateYType;
-  rotateYDispatch: React.Dispatch<rotateYActionType>;
+  rotateYDispatch: React.Dispatch<RotateYActionType>;
 };
 
 const RotateYContext = createContext({} as ContextType);

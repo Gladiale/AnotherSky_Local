@@ -10,7 +10,7 @@ import { useMouseControl } from "../../hooks/useMouseControl";
 import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
 // GSAP
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 
 import CG from "./CG";
@@ -19,7 +19,7 @@ import EffectImage from "../EffectImage/EffectImage";
 
 const CGbox = () => {
   // コンテキスト
-  const { rotateYState } = useRotateY();
+  const { rotateYState, rotateYDispatch } = useRotateY();
   const { screenMode } = useScreenMode();
   const { appOption } = useAppOption();
   const { mediaState } = useMediaState();
@@ -35,6 +35,14 @@ const CGbox = () => {
     low: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "low",
     normal: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "normal",
     high: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "high",
+  };
+
+  const [isLocked, setIsLocked] = useState<boolean>(false);
+  const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    isLocked
+      ? rotateYDispatch({ type: "cg", payload: {} })
+      : (resetScene(e), triggerEditMode(e, true));
   };
 
   const cgBoxRef = useRef<HTMLDivElement | null>(null);
@@ -65,10 +73,7 @@ const CGbox = () => {
             : undefined,
       }}
       onWheel={changeMedia}
-      onContextMenu={(e) => {
-        resetScene(e);
-        triggerEditMode(e, true);
-      }}
+      onContextMenu={handleContextMenu}
     >
       <div
         className={styles["mix-box"]}
@@ -77,7 +82,7 @@ const CGbox = () => {
           transform: `
           scale(${String(mediaState["image"].scale)})
           rotate(${mediaState["image"].deg}deg)
-          rotateY(${rotateYState.cgRotateY ? 180 : 0}deg)
+          rotateY(${rotateYState.cg ? 180 : 0}deg)
           translate(${mediaState["image"].position.x}px,
           ${mediaState["image"].position.y}px)`,
         }}
@@ -95,7 +100,7 @@ const CGbox = () => {
         {effectState.imageEF.activeImage && <EffectImage />}
       </div>
 
-      <ControlParts />
+      <ControlParts isLocked={isLocked} setIsLocked={setIsLocked} />
     </div>
   );
 };

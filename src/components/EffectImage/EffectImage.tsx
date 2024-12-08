@@ -80,7 +80,7 @@ const EffectImage = () => {
           objectFit: effectState.imageEF.size,
           width: imgWidth,
           height: imgHeight,
-          transform: rotateYState.effectRotateY
+          transform: rotateYState.effect
             ? `rotateY(180deg) rotate(${mediaState["effect"].deg}deg)`
             : `rotate(${mediaState["effect"].deg}deg)`,
           display: loadStatus === "success" ? undefined : "none",

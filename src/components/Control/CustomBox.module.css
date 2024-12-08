@@ -8,6 +8,7 @@
   position: absolute;
   gap: 25rem;
   transition: 1s;
+  z-index: 0;
 }
 
 .custom-box.mobile {
@@ -15,6 +16,7 @@
   bottom: 0.3rem;
   gap: 20rem;
   display: none;
+  z-index: 99;
   transition: 0.8s;
 }
 

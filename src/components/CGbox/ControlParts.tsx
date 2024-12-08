@@ -1,5 +1,5 @@
 import styles from "./CGbox.module.css";
-import { GiCrenelCrown } from "react-icons/gi";
+import { GiCampfire, GiCrenelCrown } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useInformation } from "../../hooks/useInformation";
@@ -9,7 +9,12 @@ import {
 } from "../../context/MediaInfoContext/MediaInfoContext";
 import IconSpecial from "../Common/IconSpecial";
 
-const ControlParts = () => {
+type PropsType = {
+  isLocked: boolean;
+  setIsLocked: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const ControlParts = ({ isLocked, setIsLocked }: PropsType) => {
   const { setScene } = useScene();
   const { appOption } = useAppOption();
   const { mediaInfoDispatch } = useMediaInfo();
@@ -32,9 +37,14 @@ const ControlParts = () => {
       style={{ opacity: infoActive ? 0 : undefined }}
     >
       <IconSpecial
-        effect={appOption.dropShadow.icon}
-        children={<GiCrenelCrown />}
+        effect={appOption.dropShadow.cg ? false : appOption.dropShadow.icon}
+        children={isLocked ? <GiCampfire /> : <GiCrenelCrown />}
         onClick={changeContent}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsLocked((prev) => !prev);
+        }}
       />
     </div>
   );

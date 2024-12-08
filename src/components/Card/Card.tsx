@@ -39,7 +39,7 @@ const Card = () => {
 
   return (
     <motion.div
-      variants={cardRefresh(rotateYState.cardRotateY)}
+      variants={cardRefresh(rotateYState.card)}
       initial="hidden"
       animate="visible"
       className={`${styles.card} ${screenMode === "cgMode" && styles.cgMode}`}

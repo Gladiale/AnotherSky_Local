@@ -1,8 +1,8 @@
 import styles from "./Video.module.css";
 import { useState } from "react";
 import { useRotateY } from "../../context/RotateYContext";
-import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useMediaState } from "../../context/MediaStateContext";
+import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
@@ -18,7 +18,7 @@ import Loading from "../Loading/Loading";
 
 const Video = () => {
   // コンテキスト
-  const { rotateYState } = useRotateY();
+  const { rotateYState, rotateYDispatch } = useRotateY();
   const { appOption } = useAppOption();
   const { mediaState } = useMediaState();
   const { effectState } = useEffectState();
@@ -40,15 +40,19 @@ const Video = () => {
   });
 
   const [hasControl, setHasControl] = useState<boolean>(false);
+  const [isLocked, setIsLocked] = useState<boolean>(false);
+  const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    isLocked
+      ? rotateYDispatch({ type: "video", payload: {} })
+      : (resetScene(e), triggerEditMode(e, true));
+  };
 
   return (
     <div
       className={styles["video-content"]}
       onWheel={changeMedia}
-      onContextMenu={(e) => {
-        resetScene(e);
-        triggerEditMode(e, true);
-      }}
+      onContextMenu={handleContextMenu}
     >
       <div
         className={`${styles["video-box"]}
@@ -59,7 +63,7 @@ const Video = () => {
           transform: `
           scale(${String(mediaState["video"].scale)})
           rotate(${mediaState["video"].deg}deg)
-          rotateY(${rotateYState.videoRotateY ? 180 : 0}deg)
+          rotateY(${rotateYState.video ? 180 : 0}deg)
           translate(${mediaState["video"].position.x}px,
           ${mediaState["video"].position.y}px)`,
         }}
@@ -94,7 +98,11 @@ const Video = () => {
         {effectState.imageEF.activeImage && <EffectImage />}
       </div>
 
-      <VideoControl setHasControl={setHasControl} />
+      <VideoControl
+        isLocked={isLocked}
+        setHasControl={setHasControl}
+        setIsLocked={setIsLocked}
+      />
     </div>
   );
 };
