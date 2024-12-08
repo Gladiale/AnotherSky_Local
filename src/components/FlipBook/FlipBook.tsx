@@ -1,22 +1,24 @@
 import styles from "./FlipBook.module.css";
 import { useState } from "react";
-import { useScene } from "../../context/SceneContext";
-import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useUrlList } from "../../hooks/useUrlList";
 import { useFilterData } from "../../hooks/useFilterData";
+import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
+import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import FlipLayer from "./FlipLayer";
 import FlipControl from "./FlipControl";
+// framer-motion
+import { motion } from "motion/react";
+import { flipBookRefresh } from "../../libs/motion/motionVariants";
 
 const FlipBook = () => {
   // コンテキスト
-  const { setScene } = useScene();
   const { appOption } = useAppOption();
+  const { effectState } = useEffectState();
   // カスタムフック
   const { filterData } = useFilterData("cg");
   const { urlList, firstLastInfo, target } = useUrlList();
 
   const [isReversing, setIsReversing] = useState<Boolean>(false);
-
   const [layerState, setLayerState] = useState<{
     active: "1st" | "2nd";
     page: "first" | "last" | undefined;
@@ -26,12 +28,14 @@ const FlipBook = () => {
   });
 
   return (
-    <div
+    <motion.div
+      variants={flipBookRefresh}
+      initial="hidden"
+      animate="visible"
       className={`${styles["flip-book"]} ${appOption.dropShadow.cg && styles.shadow}`}
-      style={{ filter: filterData }}
-      onContextMenu={(e) => {
-        e.preventDefault();
-        setScene("card");
+      style={{
+        filter: filterData,
+        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
       }}
     >
       {layerState.active === "1st" && (
@@ -57,7 +61,7 @@ const FlipBook = () => {
       )}
 
       <FlipControl setIsReversing={setIsReversing} />
-    </div>
+    </motion.div>
   );
 };
 

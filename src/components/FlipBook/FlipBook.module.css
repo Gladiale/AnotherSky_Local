@@ -37,9 +37,9 @@
   align-items: center;
   justify-content: center;
 
-  transform-style: preserve-3d;
-  perspective: 700rem;
+  /* transform-style: preserve-3d; */
   /* perspective: 250rem; */
+  perspective: 1800px;
 
   transition: transform var(--spring-duration-2nd) var(--spring-easing-2nd);
 }
@@ -71,7 +71,7 @@
 .page-content {
   height: 100%;
   /* 3D化 */
-  transform-style: preserve-3d;
+  /* transform-style: preserve-3d;は要らない、画像がぼやけてしまいます */
   perspective: 900px;
 }
 
@@ -94,6 +94,13 @@
 .page-content .item-box .element {
   height: 100%;
   transition: 0.2s;
+}
+
+.page-content .item-box .element.texture {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  mix-blend-mode: exclusion;
 }
 
 /* @media (max-width: 768px) {

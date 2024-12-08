@@ -8,7 +8,7 @@ const cardRefresh = (rotateY: boolean) => ({
   },
 });
 
-const bgRefresh = {
+const cardBgRefresh = {
   hidden: { scale: 3 },
   visible: {
     scale: 1,
@@ -23,4 +23,12 @@ const bgRefresh = {
   },
 };
 
-export { cardRefresh, bgRefresh };
+const flipBookRefresh = {
+  hidden: { scale: 0 },
+  visible: {
+    scale: 1,
+    transition: { duration: 1, ease: "linear", type: "spring", restSpeed: 2 },
+  },
+};
+
+export { cardRefresh, cardBgRefresh, flipBookRefresh };
