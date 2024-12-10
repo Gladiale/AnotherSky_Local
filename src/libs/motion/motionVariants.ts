@@ -27,7 +27,7 @@ const flipBookRefresh = {
   hidden: { scale: 0 },
   visible: {
     scale: 1,
-    transition: { duration: 1, ease: "linear", type: "spring", restSpeed: 2 },
+    transition: { duration: 1, ease: "linear", type: "spring", restSpeed: 2, mass: 1.5 },
   },
 };
 
