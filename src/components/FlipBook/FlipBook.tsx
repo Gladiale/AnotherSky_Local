@@ -6,6 +6,7 @@ import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import FlipLayer from "./FlipLayer";
 import FlipControl from "./FlipControl";
+import EffectImage from "../EffectImage/EffectImage";
 // framer-motion
 import { motion } from "motion/react";
 import { flipBookRefresh } from "../../libs/motion/motionVariants";
@@ -59,6 +60,8 @@ const FlipBook = () => {
           firstLastInfo={firstLastInfo}
         />
       )}
+
+      {effectState.imageEF.activeImage && <EffectImage />}
 
       <FlipControl setIsReversing={setIsReversing} />
     </motion.div>
