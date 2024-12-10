@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 
 type PageStateType = {
   left: {
-    rotateY: boolean;
-    zIndex: 0 | 9;
     scale: 0 | 1;
+    rotateY: boolean;
     frontSideScale: 0 | 1;
     backSideZIndex: -9 | 9;
     backSideScale: 0 | 1;
   };
   right: {
-    rotateY: boolean;
-    zIndex: 0 | 9;
     scale: 0 | 1;
+    rotateY: boolean;
     frontSideScale: 0 | 1;
     backSideZIndex: -9 | 9;
     backSideScale: 0 | 1;
@@ -21,17 +19,15 @@ type PageStateType = {
 
 const pageStateInit: PageStateType = {
   left: {
-    rotateY: false,
-    zIndex: 0,
     scale: 1,
+    rotateY: false,
     frontSideScale: 1,
     backSideZIndex: -9,
     backSideScale: 0,
   },
   right: {
-    rotateY: false,
-    zIndex: 0,
     scale: 1,
+    rotateY: false,
     frontSideScale: 1,
     backSideZIndex: -9,
     backSideScale: 0,
@@ -47,34 +43,13 @@ const usePageState = () => {
       [page]: {
         ...pageState[page],
         rotateY: !pageState[page].rotateY,
-        zIndex: pageState[page].zIndex === 0 ? 9 : 0,
       },
     });
   };
 
-  // useEffect(() => {
-  //   const timeoutId = setTimeout(() => {
-  //     setPageState((prev) => ({
-  //       ...prev,
-  //       left: {
-  //         ...prev["left"],
-  //         frontSideScale: prev["left"].rotateY ? 0 : 1,
-  //         backSideZIndex: prev["left"].rotateY ? 9 : -9,
-  //         backSideScale: prev["left"].rotateY ? 1 : 0,
-  //       },
-  //       right: {
-  //         ...prev["right"],
-  //         frontSideScale: prev["right"].rotateY ? 0 : 1,
-  //         backSideZIndex: prev["right"].rotateY ? 9 : -9,
-  //         backSideScale: prev["right"].rotateY ? 1 : 0,
-  //       },
-  //     }));
-  //   }, 500);
-  //   return () => clearTimeout(timeoutId);
-  // }, [pageState.left.rotateY, pageState.right.rotateY]);
-
+  // left
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    const timeoutId1st = setTimeout(() => {
       setPageState((prev) => ({
         ...prev,
         left: {
@@ -85,11 +60,27 @@ const usePageState = () => {
         },
       }));
     }, 500);
-    return () => clearTimeout(timeoutId);
+    const timeoutId2nd = setTimeout(
+      () => {
+        setPageState((prev) => ({
+          ...prev,
+          left: {
+            ...prev["left"],
+            scale: prev["left"].rotateY ? 0 : 1,
+          },
+        }));
+      },
+      pageState.left.rotateY ? 1000 : 0
+    );
+    return () => {
+      clearTimeout(timeoutId1st);
+      clearTimeout(timeoutId2nd);
+    };
   }, [pageState.left.rotateY]);
 
+  // right
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    const timeoutId1st = setTimeout(() => {
       setPageState((prev) => ({
         ...prev,
         right: {
@@ -100,71 +91,23 @@ const usePageState = () => {
         },
       }));
     }, 500);
-    return () => clearTimeout(timeoutId);
-  }, [pageState.right.rotateY]);
-
-  // useEffect(() => {
-  //   const timeoutId = setTimeout(() => {
-  //     setPageState((prev) => ({
-  //       ...prev,
-  //       left: {
-  //         ...prev["left"],
-  //         // bug
-  //         scale: prev["right"].rotateY ? 0 : 1,
-  //       },
-  //       right: {
-  //         ...prev["right"],
-  //         // bug
-  //         scale: prev["left"].rotateY ? 0 : 1,
-  //       },
-  //     }));
-  //   }, 1000);
-  //   return () => clearTimeout(timeoutId);
-  // }, [pageState.left.rotateY, pageState.right.rotateY]);
-
-  // right
-  useEffect(() => {
-    const timeoutId = setTimeout(
+    const timeoutId2nd = setTimeout(
       () => {
         setPageState((prev) => ({
           ...prev,
           right: {
             ...prev["right"],
-            // bug
-            scale: prev["left"].rotateY ? 0 : 1,
-          },
-        }));
-      },
-      pageState.right.rotateY ? 0 : 1000
-    );
-    return () => clearTimeout(timeoutId);
-  }, [pageState.right.rotateY]);
-
-  // left
-  useEffect(() => {
-    const timeoutId = setTimeout(
-      () => {
-        setPageState((prev) => ({
-          ...prev,
-          left: {
-            ...prev["left"],
-            // bug
             scale: prev["right"].rotateY ? 0 : 1,
           },
         }));
       },
-      pageState.left.rotateY ? 0 : 1000
+      pageState.right.rotateY ? 1000 : 0
     );
-    return () => clearTimeout(timeoutId);
-  }, [pageState.left.rotateY]);
-
-  // test
-  // useEffect(() => {
-  //   console.log("left");
-  // }, [pageState.left.rotateY]);
-  // useEffect(() => {
-  //   console.log("right");
-  // }, [pageState.right.rotateY]);
+    return () => {
+      clearTimeout(timeoutId1st);
+      clearTimeout(timeoutId2nd);
+    };
+  }, [pageState.right.rotateY]);
 
   return { pageState, changePageRotateY };
 };

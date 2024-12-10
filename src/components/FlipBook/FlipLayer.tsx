@@ -90,13 +90,11 @@ const FlipLayer = (props: PropsType) => {
           className={"cover-left"}
           imgUrl={isReversing ? urlList[1] : urlList[0]}
           onClick={() => changeLayerState("first")}
-          style={{ scale: String(pageState.right.rotateY ? 0 : 1) }}
         />
         <PageContent
           className={"cover-right"}
           imgUrl={isReversing ? urlList[4] : urlList[5]}
           onClick={() => changeLayerState("last")}
-          style={{ scale: String(pageState.left.rotateY ? 0 : 1) }}
         />
       </div>
 
@@ -104,15 +102,17 @@ const FlipLayer = (props: PropsType) => {
         className={`${styles["book-page"]} ${styles["left"]}`}
         style={{
           transform: `rotateY(${pageState.left.rotateY ? 180 : 0}deg)`,
-          zIndex: pageState.left.zIndex,
-          scale: String(pageState.left.scale),
+          zIndex: pageState.left.backSideZIndex,
+          // scale: String(pageState.right.scale),
         }}
         onClick={() => changePageRotateY("left")}
       >
         <PageContent
           className={"page-front"}
           imgUrl={isReversing ? urlList[3] : urlList[2]}
-          style={{ scale: String(pageState.left.frontSideScale) }}
+          style={{
+            scale: String(pageState.left.frontSideScale),
+          }}
         />
         <PageContent
           className={"page-back"}
@@ -128,8 +128,8 @@ const FlipLayer = (props: PropsType) => {
         className={`${styles["book-page"]} ${styles["right"]}`}
         style={{
           transform: `rotateY(${pageState.right.rotateY ? -180 : 0}deg)`,
-          zIndex: pageState.right.zIndex,
-          scale: String(pageState.right.scale),
+          zIndex: pageState.right.backSideZIndex,
+          // scale: String(pageState.left.scale),
         }}
         onClick={() => changePageRotateY("right")}
       >
