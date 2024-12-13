@@ -42,7 +42,8 @@ const Card = () => {
       variants={cardRefresh(rotateYState.card)}
       initial="hidden"
       animate="visible"
-      className={`${styles.card} ${screenMode === "cgMode" && styles.cgMode}`}
+      className={`${styles.card} ${screenMode === "cgMode" && styles.cgMode}
+      ${hoverState.card && styles.cardHover}`}
       style={{
         filter: filterData,
         imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
@@ -59,10 +60,7 @@ const Card = () => {
         initial="hidden"
         animate="visible"
         className={styles["stand-img"]}
-        style={{
-          height: hoverState.card ? "100%" : "0",
-          backgroundImage: `url(${urlConfig.character})`,
-        }}
+        style={{ backgroundImage: `url(${urlConfig.character})` }}
       />
 
       <CardPolygon />

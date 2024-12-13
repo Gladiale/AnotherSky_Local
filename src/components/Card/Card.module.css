@@ -12,18 +12,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--clr1);
+  background-color: var(--clr1);
   border: 5px solid #000000dc;
   box-shadow: 0 0 30px var(--clr1);
   user-select: none;
   overflow: hidden;
-  transition: box-shadow 0.5s, background-color 0.5s, border 0.15s;
+  transition: box-shadow 0.5s, background-color 0.5s, filter 0.3s, border 0.15s;
 }
 
 .card:hover {
-  background: var(--clr2);
+  background-color: var(--clr2);
   /* border: 0px solid #000000dc; */
   box-shadow: 0 0 30px var(--clr2);
+}
+
+.card::before {
+  content: "";
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  background-image: url("../../assets/images/magic-circle.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  animation: rotate-img 6s infinite linear;
+  transition: opacity 0.7s, z-index 0.3s;
+  opacity: 0.3;
+  z-index: 999;
+  transition-delay: 0.3s;
+}
+.card.cardHover:before {
+  opacity: 1;
+  z-index: 0;
+  transition-delay: 0s;
 }
 
 .card .stand-img {
@@ -32,6 +53,11 @@
   background-position: center;
   background-size: contain;
   transition: height 0.5s, background-image 0.5s;
+  z-index: 9;
+  height: 0;
+}
+.card.cardHover .stand-img {
+  height: 100%;
 }
 
 @media (max-width: 768px) {
@@ -41,5 +67,11 @@
 
   .card.cgMode {
     max-width: 100dvw;
+  }
+}
+
+@keyframes rotate-img {
+  to {
+    transform: rotate(360deg);
   }
 }

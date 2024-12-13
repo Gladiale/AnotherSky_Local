@@ -8,8 +8,8 @@
   position: absolute;
   inset: 0;
   background: #020d1e;
-  transition: 0.5s;
-  z-index: 1;
+  transition: 0.6s;
+  z-index: 99;
 }
 
 /* .clip span:hover {
