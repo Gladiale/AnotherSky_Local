@@ -101,7 +101,7 @@ const Control = () => {
       <CustomBox
         className={"mobile"}
         style={
-          deskIconState.deskBox
+          deskIconState.deskBox && !isMobile1stHidden
             ? {
                 filter: appOption.dropShadow.icon
                   ? "var(--drop-shadow-hover)"
