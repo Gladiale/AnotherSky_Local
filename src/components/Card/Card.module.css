@@ -47,6 +47,27 @@
   transition-delay: 0s;
 }
 
+.card::after {
+  content: "";
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  background-image: url("../../assets/images/angel.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: opacity 0.7s, z-index 0.3s;
+  opacity: 0.9;
+  z-index: 990;
+  transition-delay: 0.5s;
+  mix-blend-mode: color-dodge;
+}
+.card.cardHover:after {
+  opacity: 0;
+  z-index: 0;
+  transition-delay: 0s;
+}
+
 .card .stand-img {
   aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
