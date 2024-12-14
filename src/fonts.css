@@ -12,6 +12,13 @@
 }
 
 @font-face {
+  font-family: "Allura";
+  font-display: swap;
+  font-style: normal;
+  src: url("./assets/fonts/Allura-Regular.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "M PLUS 1";
   font-display: swap;
   font-style: normal;

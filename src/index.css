@@ -7,6 +7,7 @@
 /* 参照: https://skillhub.jp/blogs/391 */
 :root {
   --font-main: "Aboreto", "M PLUS 1", system-ui;
+  --font-special: "Allura", cursive;
 
   --aspect-ratio: 1 / 1.618;
   /* --aspect-ratio-mobile: 1 / 1.42; */
