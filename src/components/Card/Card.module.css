@@ -1,7 +1,9 @@
 /* css変数 ローカル変数 */
 .card {
   --clr1: #ff1d1d;
-  --clr2: #ff3be2;
+  --clr2: #c02ba0;
+  --clr3: #fb8eff;
+  --border-clr: #000000dc;
 }
 
 .card {
@@ -12,18 +14,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 5px solid var(--border-clr);
   background-color: var(--clr1);
-  border: 5px solid #000000dc;
   box-shadow: 0 0 30px var(--clr1);
   user-select: none;
   overflow: hidden;
   transition: box-shadow 0.5s, background-color 0.5s, filter 0.3s, border 0.15s;
 }
 
-.card:hover {
+.card.cardHover {
   background-color: var(--clr2);
-  /* border: 0px solid #000000dc; */
   box-shadow: 0 0 30px var(--clr2);
+}
+
+.card.cardHover:hover {
+  border: 0px solid var(--border-clr);
+  background-color: var(--clr3);
+  box-shadow: 1rem 1rem 0px #9d057c;
+}
+.card.cardHover:hover > div:nth-child(2) {
+  box-shadow: 0 0 0 2px transparent;
+}
+.card.cardHover:hover > div:nth-child(2) > span {
+  background-color: transparent;
 }
 
 .card::before {
