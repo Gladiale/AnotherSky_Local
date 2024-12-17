@@ -1,6 +1,7 @@
 import styles from "./Content.module.css";
 import { useScene } from "../../context/SceneContext";
 import { useImageList } from "../../context/ImageListState";
+import { useCharaOffsetX } from "../../hooks/useCharaOffsetX";
 import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import Card from "../Card/Card";
@@ -17,13 +18,27 @@ const Content = () => {
   const { listSubState } = useImageList();
   const { mediaActive } = useMediaActive();
   const { effectState } = useEffectState();
+  const { offsetX, contentWidth, handleContentWidth, handleOverLimit } =
+    useCharaOffsetX();
 
   return (
     <div
       className={`${styles.content} ${scene === "card" && styles.threeD}
       ${effectState.mirrorEffect && styles.mirror}`}
+      style={{
+        transform: effectState.mirrorEffect
+          ? `translateX(-${contentWidth / 2}px)`
+          : undefined,
+      }}
+      // 子要素から親要素へとイベントが流れていく
+      onLoad={handleContentWidth}
     >
-      {scene != "card" && <Character />}
+      {scene != "card" && (
+        <Character
+          handleOverLimit={handleOverLimit}
+          containerStyle={{ transform: `translateX(${offsetX}px)` }}
+        />
+      )}
       {scene === "card" && <Card />}
       {scene === "cg" && mediaActive.doublePage ? (
         <FlipBook />
@@ -35,7 +50,10 @@ const Content = () => {
       {scene === "listImg" && !listSubState.mode2 && <ListImage />}
       {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}
       {scene != "card" && !effectState.mirrorEffect && (
-        <Character imgStyle={{ transform: "rotateY(180deg)" }} />
+        <Character
+          handleOverLimit={handleOverLimit}
+          containerStyle={{ transform: `rotateY(180deg) translateX(${offsetX}px)` }}
+        />
       )}
     </div>
   );

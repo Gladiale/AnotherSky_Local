@@ -82,10 +82,6 @@
 }
 
 .card .stand-img {
-  aspect-ratio: 1 / 1;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
   transition: height 0.5s, background-image 0.5s;
   z-index: 9;
   height: 0;

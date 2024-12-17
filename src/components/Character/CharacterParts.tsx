@@ -13,10 +13,10 @@ import { VoiceDataObj } from "../../data/VoiceDataObj";
 import Loading from "../Loading/Loading";
 
 type PropsType = {
-  handleAspect: (e: React.SyntheticEvent<HTMLImageElement>) => void;
+  handleOverLimit: (e: React.SyntheticEvent<HTMLImageElement>) => void;
 };
 
-const CharacterParts = ({ handleAspect }: PropsType) => {
+const CharacterParts = ({ handleOverLimit }: PropsType) => {
   const [vocal, setVocal] = useState<string>("");
   const [hasVocal, setHasVocal] = useState<boolean>(false);
 
@@ -57,7 +57,7 @@ const CharacterParts = ({ handleAspect }: PropsType) => {
 
   const handleLoaded = (e: React.MouseEvent<HTMLImageElement>) => {
     showTarget();
-    handleAspect(e);
+    handleOverLimit(e);
   };
 
   return (

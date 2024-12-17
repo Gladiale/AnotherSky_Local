@@ -54,13 +54,14 @@ const Card = () => {
       onMouseEnter={() => hoverDispatch({ type: "card", payload: "enter" })}
       onMouseLeave={() => hoverDispatch({ type: "card", payload: "leave" })}
     >
-      {/* 背景画像 */}
-      <motion.div
+      {/* キャラクター */}
+      <motion.img
         variants={cardBgRefresh}
         initial="hidden"
         animate="visible"
+        src={urlConfig.character}
+        alt="character"
         className={styles["stand-img"]}
-        style={{ backgroundImage: `url(${urlConfig.character})` }}
       />
 
       <CardPolygon />

@@ -16,13 +16,6 @@
   /* animation-timing-function: var(--spring-easing-2nd); */
 }
 
-.character-container.mirror {
-  max-width: none;
-  position: absolute;
-  left: 0;
-  z-index: 99;
-}
-
 @keyframes bounce {
   0% {
     translate: 0px 0px;

@@ -15,10 +15,6 @@
   height: 100dvh;
 }
 
-.container.mirror {
-  width: 100dvw;
-}
-
 @media (max-height: 864px) {
   .container.cardMode {
     height: 670px;

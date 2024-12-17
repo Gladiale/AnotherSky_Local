@@ -5,18 +5,16 @@ import Content from "../Content/Content";
 import Control from "../Control/Control";
 import Information from "../Information/Information";
 import { HoverProvider } from "../../context/HoverContext";
-import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { FilterProvider } from "../../context/FilterContext";
 import { useScreenMode } from "../../context/ScreenContext";
-import { ImageListProvider } from "../../context/ImageListState";
-import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { RotateYProvider } from "../../context/RotateYContext";
+import { ImageListProvider } from "../../context/ImageListState";
 import { MediaStateProvider } from "../../context/MediaStateContext";
+import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 
 const Container = () => {
-  const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
   const { screenMode } = useScreenMode();
-  const { effectState } = useEffectState();
+  const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
 
   useLayoutEffect(() => {
     if (mediaInfo.file.character[1] === "") {
@@ -27,7 +25,6 @@ const Container = () => {
   return (
     <div
       className={`${styles.container}
-      ${effectState.mirrorEffect && styles.mirror}
       ${screenMode === "cardMode" && styles.cardMode}
       ${screenMode === "cgMode" && styles.cgMode}`}
     >
