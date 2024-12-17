@@ -21,7 +21,7 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
   const [hasVocal, setHasVocal] = useState<boolean>(false);
 
   const { urlConfig } = useUrlConfig();
-  const { rotateYState } = useRotateY();
+  const { rotateYState, rotateYDispatch } = useRotateY();
   const { effectState } = useEffectState();
   const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
@@ -63,6 +63,10 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
   return (
     <div
       onClick={handleVocal}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        rotateYDispatch({ type: "cg", payload: { isTachie: true } });
+      }}
       onWheel={changeStandImage}
       className={styles["character-box"]}
       style={{ transform: `rotateY(${rotateYState.character ? 180 : 0}deg)` }}
