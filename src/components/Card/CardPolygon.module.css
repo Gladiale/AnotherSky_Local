@@ -23,9 +23,9 @@
   display: flex;
   justify-content: center;
   transition: 0.6s;
+  /* transition-delay: 0.6s; */
 }
 .clip.clipHover span {
-  font-family: var(--font-main);
   font-size: 0;
   filter: blur(1rem);
 }

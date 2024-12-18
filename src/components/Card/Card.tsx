@@ -1,7 +1,5 @@
 import styles from "./Card.module.css";
-
 import CardPolygon from "./CardPolygon";
-
 import { useHover } from "../../context/HoverContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { useScreenMode } from "../../context/ScreenContext";
