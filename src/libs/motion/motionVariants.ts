@@ -1,25 +1,23 @@
 const cardRefresh = (rotateY: boolean) => ({
-  hidden: { scale: 0, rotate: 360, rotateY: rotateY ? -180 : -360 },
+  hidden: { scale: 0, rotateZ: 540, rotateY: rotateY ? 180 : 0 },
   visible: {
     scale: 1,
-    rotate: 0,
+    rotateZ: 0,
     rotateY: rotateY ? 180 : 0,
-    transition: { duration: 1, ease: "linear", type: "spring", restSpeed: 2 },
+    transition: {
+      type: "spring",
+      bounce: 0.6,
+      duration: 2.3,
+    },
   },
 });
 
-const cardBgRefresh = {
-  hidden: { scale: 3 },
+const cardImgRefresh = {
+  hidden: { x: 300, opacity: 0 },
   visible: {
-    scale: 1,
-    transition: {
-      delay: 0.1,
-      duration: 2,
-      ease: "linear",
-      type: "spring",
-      restSpeed: 2,
-      mass: 0.7,
-    },
+    x: 0,
+    opacity: 1,
+    transition: { type: "spring", mass: 1.5 },
   },
 };
 
@@ -27,8 +25,8 @@ const flipBookRefresh = {
   hidden: { scale: 0 },
   visible: {
     scale: 1,
-    transition: { duration: 1, ease: "linear", type: "spring", restSpeed: 2, mass: 1.5 },
+    transition: { type: "spring", mass: 1.5 },
   },
 };
 
-export { cardRefresh, cardBgRefresh, flipBookRefresh };
+export { cardRefresh, cardImgRefresh, flipBookRefresh };

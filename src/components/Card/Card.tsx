@@ -8,8 +8,8 @@ import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useFilterData } from "../../hooks/useFilterData";
 import { useMouseControl } from "../../hooks/useMouseControl";
 // framer-motion
-import { motion } from "motion/react";
-import { cardBgRefresh, cardRefresh } from "../../libs/motion/motionVariants";
+import { AnimatePresence, motion } from "motion/react";
+import { cardImgRefresh, cardRefresh } from "../../libs/motion/motionVariants";
 // import { useEffect, useState } from "react";
 
 const Card = () => {
@@ -53,14 +53,17 @@ const Card = () => {
       onMouseLeave={() => hoverDispatch({ type: "card", payload: "leave" })}
     >
       {/* キャラクター */}
-      <motion.img
-        variants={cardBgRefresh}
-        initial="hidden"
-        animate="visible"
-        src={urlConfig.character}
-        alt="character"
-        className={styles["stand-img"]}
-      />
+      <AnimatePresence>
+        <motion.img
+          variants={cardImgRefresh}
+          initial="hidden"
+          animate="visible"
+          key={urlConfig.character}
+          src={urlConfig.character}
+          alt="character"
+          className={styles["stand-img"]}
+        />
+      </AnimatePresence>
 
       <CardPolygon />
     </motion.div>
