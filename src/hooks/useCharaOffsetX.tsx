@@ -33,7 +33,7 @@ const useCharaOffsetX = () => {
     setOffsetX(0);
   }, [contentWidth, mediaActive.doublePage, effectState.mirrorEffect]);
 
-  return { offsetX, contentWidth, handleContentWidth, handleOverLimit };
+  return { offsetX, handleContentWidth, handleOverLimit };
 };
 
 export { useCharaOffsetX };

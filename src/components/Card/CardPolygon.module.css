@@ -22,12 +22,13 @@
 
   display: flex;
   justify-content: center;
-  transition: 0.6s;
-  /* transition-delay: 0.6s; */
+  transition: 0.6s, filter 0s;
 }
 .clip.clipHover span {
   font-size: 0;
   filter: blur(1rem);
+  /* transition: filter duration delay */
+  transition: 0.6s, filter 0.5s 0.5s;
 }
 
 .clip span:nth-child(1) {

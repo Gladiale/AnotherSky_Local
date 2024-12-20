@@ -18,18 +18,12 @@ const Content = () => {
   const { listSubState } = useImageList();
   const { mediaActive } = useMediaActive();
   const { effectState } = useEffectState();
-  const { offsetX, contentWidth, handleContentWidth, handleOverLimit } =
-    useCharaOffsetX();
+  const { offsetX, handleContentWidth, handleOverLimit } = useCharaOffsetX();
 
   return (
     <div
       className={`${styles.content} ${scene === "card" && styles.threeD}
       ${effectState.mirrorEffect && styles.mirror}`}
-      style={{
-        transform: effectState.mirrorEffect
-          ? `translateX(-${contentWidth / 2}px)`
-          : undefined,
-      }}
       // 子要素から親要素へとイベントが流れていく
       onLoad={handleContentWidth}
     >

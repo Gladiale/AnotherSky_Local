@@ -109,6 +109,10 @@
   .card.cgMode {
     max-width: 100dvw;
   }
+
+  .card.cardHover.mirror:hover {
+    overflow: hidden;
+  }
 }
 
 @keyframes rotate-magic-circle {

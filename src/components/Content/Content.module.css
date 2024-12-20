@@ -9,10 +9,19 @@
 
 .content.mirror {
   -webkit-box-reflect: right 0;
+  justify-content: flex-end;
+  position: absolute;
+  right: 0;
 }
 
 .content.threeD {
   /* cardの3D化 */
   transform-style: preserve-3d;
   perspective: 1200px;
+}
+
+@media (max-width: 768px) {
+  .content.mirror.threeD {
+    max-width: 50dvw;
+  }
 }

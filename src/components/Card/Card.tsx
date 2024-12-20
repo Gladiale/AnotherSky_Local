@@ -41,6 +41,7 @@ const Card = () => {
       initial="hidden"
       animate="visible"
       className={`${styles.card} ${screenMode === "cgMode" && styles.cgMode}
+      ${effectState.mirrorEffect && styles.mirror}
       ${hoverState.card && styles.cardHover}`}
       style={{
         filter: filterData,
