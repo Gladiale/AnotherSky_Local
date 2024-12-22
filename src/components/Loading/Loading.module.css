@@ -1,11 +1,11 @@
-:root {
+.load-box {
   --loading-font-color: #f79cff;
   --loader-color-out: #631b5a;
   --loader-color-inner: #ffb7fd;
 }
 
 /* from: https://css-loaders.com/flipping/ */
-.wrapper {
+.load-box {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -20,12 +20,12 @@
   z-index: 999;
 }
 
-.wrapper .waiting {
+.load-box .waiting {
   color: var(--loading-font-color);
   font-size: 1.2rem;
 }
 
-.wrapper .failed {
+.load-box .failed {
   color: var(--loading-font-color);
   font-size: 1.2rem;
 }

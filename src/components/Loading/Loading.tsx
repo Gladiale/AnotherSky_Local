@@ -9,7 +9,7 @@ type LoadingProps = {
 const Loading = ({ kind, loadStyle, loadStatus }: LoadingProps) => {
   return (
     <div
-      className={styles.wrapper}
+      className={styles["load-box"]}
       style={{
         display: loadStatus === "success" ? "none" : undefined,
         ...loadStyle,
