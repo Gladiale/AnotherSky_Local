@@ -114,7 +114,6 @@
   width: 75px;
   aspect-ratio: 1;
   border-radius: 50%;
-  overflow: hidden;
   outline: 7px solid var(--loader-color-out);
   outline-offset: -1px;
   animation: l3-0 4s linear infinite;
