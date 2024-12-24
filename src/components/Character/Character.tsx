@@ -21,13 +21,12 @@ const Character = ({ containerStyle, handleOverLimit }: PropsType) => {
       className={styles["character-container"]}
       style={{
         filter: filterData,
-        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
+        imageRendering:
+          effectState.pixel && effectState.target.character ? "pixelated" : undefined,
         display:
-          effectState.filterEffect.targetCharacter && filterState.opacity === 0
-            ? "none"
-            : undefined,
-        maxWidth: mediaActive.doublePage || effectState.mirrorEffect ? "none" : undefined,
-        zIndex: mediaActive.doublePage || effectState.mirrorEffect ? 99 : undefined,
+          effectState.target.character && filterState.opacity === 0 ? "none" : undefined,
+        maxWidth: mediaActive.doublePage || effectState.mirror ? "none" : undefined,
+        zIndex: mediaActive.doublePage || effectState.mirror ? 99 : undefined,
         ...containerStyle,
       }}
     >

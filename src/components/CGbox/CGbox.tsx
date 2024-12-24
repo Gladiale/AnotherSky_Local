@@ -32,9 +32,9 @@ const CGbox = () => {
     useMediaControl({ initialScale: 1.5, target: "image" });
 
   const shakeCondition = {
-    low: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "low",
-    normal: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "normal",
-    high: effectState.shakeEffect.active && effectState.shakeEffect.heavy === "high",
+    low: effectState.shake.active && effectState.shake.heavy === "low",
+    normal: effectState.shake.active && effectState.shake.heavy === "normal",
+    high: effectState.shake.active && effectState.shake.heavy === "high",
   };
 
   const [isLocked, setIsLocked] = useState<boolean>(false);
@@ -64,13 +64,12 @@ const CGbox = () => {
       `}
       style={{
         filter: filterData,
-        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
+        imageRendering:
+          effectState.pixel && effectState.target.cg ? "pixelated" : undefined,
         // width:
-        //   mediaState["image"].isEditMode && effectState.mirrorEffect ? "100%" : undefined,
+        //   mediaState["image"].isEditMode && effectState.mirror ? "100%" : undefined,
         overflow:
-          mediaState["image"].isEditMode && effectState.mirrorEffect
-            ? "hidden"
-            : undefined,
+          mediaState["image"].isEditMode && effectState.mirror ? "hidden" : undefined,
       }}
       onWheel={changeMedia}
       onContextMenu={handleContextMenu}
@@ -94,10 +93,10 @@ const CGbox = () => {
         onTouchMove={handleTouchMove}
       >
         <CG className="cg-img" />
-        {effectState.blendCG.active && effectState.filterEffect.targetCard && (
-          <CG className="texture-img" />
+        {effectState.cgMix.active && effectState.target.cg && (
+          <CG className="texture-img" mixBlendMode={effectState.cgMix.mixMode} />
         )}
-        {effectState.imageEF.activeImage && <EffectImage />}
+        {effectState.image.active && <EffectImage />}
       </div>
 
       <ControlParts isLocked={isLocked} setIsLocked={setIsLocked} />

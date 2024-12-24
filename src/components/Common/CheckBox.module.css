@@ -20,13 +20,13 @@
   user-select: none;
   color: var(--label-color);
 }
-
 .check-box label:hover {
   color: var(--label-color-hover);
 }
 
 /* チェックボックスカスタマイズ */
 .check-box label input[type="checkbox"] {
+  -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
   border: 1px solid var(--unchecked-color);

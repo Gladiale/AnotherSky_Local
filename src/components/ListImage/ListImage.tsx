@@ -66,7 +66,7 @@ const ListImage = () => {
       className={styles["list-container"]}
       style={{
         transform: `rotateY(${rotateYState.listImg ? 180 : 0}deg)`,
-        filter: effectState.filterEffect.targetCard
+        filter: effectState.target.cg
           ? `opacity(${filterState.opacity}%) brightness(${filterState.brightness}%) contrast(${filterState.contrast}%) grayscale(${filterState.grayscale}%) hue-rotate(${filterState.hueRotate}deg) invert(${filterState.invert}%) saturate(${filterState.saturate}%) sepia(${filterState.sepia}%)`
           : undefined,
       }}
@@ -78,7 +78,7 @@ const ListImage = () => {
           key={index}
           className={`${styles["list-card"]}
             ${listState.random ? styles.againAni : styles.ani}
-            ${effectState.shakeEffect.active ? styles.shake : ""}
+            ${effectState.shake.active ? styles.shake : ""}
             `}
           style={{ ["--i" as any]: index - 4 }}
           data-text={`${item[0][1]}-${item[1][1]}`}

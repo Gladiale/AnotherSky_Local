@@ -95,7 +95,7 @@ const Video = () => {
           src={urlConfig.video}
         ></video>
         <Loading kind="1st" loadStatus={loadStatus} />
-        {effectState.imageEF.activeImage && <EffectImage />}
+        {effectState.image.active && <EffectImage />}
       </div>
 
       <VideoControl

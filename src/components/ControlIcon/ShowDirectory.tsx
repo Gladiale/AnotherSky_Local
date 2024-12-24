@@ -36,16 +36,22 @@ const ShowDirectory = () => {
         <RadioBox
           responsive={true}
           radioName="directory"
-          radioSpanList={["画像", "立ち絵", "動画"]}
-          radioCheckList={[
-            directoryTarget === "cg",
-            directoryTarget === "character",
-            directoryTarget === "video",
-          ]}
-          radioChangeFuncList={[
-            () => changeTarget("cg"),
-            () => changeTarget("character"),
-            () => changeTarget("video"),
+          radioList={[
+            {
+              text: "画像",
+              state: directoryTarget === "cg",
+              onChange: () => changeTarget("cg"),
+            },
+            {
+              text: "立ち絵",
+              state: directoryTarget === "character",
+              onChange: () => changeTarget("character"),
+            },
+            {
+              text: "動画",
+              state: directoryTarget === "video",
+              onChange: () => changeTarget("video"),
+            },
           ]}
         />
       </div>

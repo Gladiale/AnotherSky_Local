@@ -4,22 +4,13 @@
   justify-content: center;
   align-items: center;
   line-height: 1rem;
+  user-select: none;
   gap: 0.1rem;
 }
 
-.parts-box label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  cursor: pointer;
-  user-select: none;
-  color: #ff84fb;
-  transition: 0.25s;
-}
-
-.parts-box label:hover {
-  color: #d9ff2f;
+.parts-box .title {
+  color: #ff81f0;
+  font-size: 1rem;
 }
 
 .parts-box .control {
@@ -31,13 +22,14 @@
 .parts-box .control p {
   font-size: 1.05rem;
   line-height: 1rem;
-  width: 6rem;
+  width: 7rem;
   text-align: center;
   padding: 1px 3px;
   color: #b90097;
   background-color: #f6afff;
   border: 1px dashed #ec60ff;
-  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
   transition: 0.25s;
 }
 
@@ -47,31 +39,6 @@
   background-color: #89ffd4;
   border: 1px dashed #ffa9ec;
   animation: 0.2s linear 0s flashAni;
-}
-
-/* checkboxカスタマイズ */
-.parts-box input[type="checkbox"] {
-  appearance: none;
-  cursor: pointer;
-  width: 0.8rem;
-  height: 0.8rem;
-  border: 1px solid #ed8be9;
-  transition: all 0.12s, border-color 0.08s;
-  position: relative;
-}
-
-.parts-box input[type="checkbox"]:checked {
-  width: 0.4rem;
-  top: -0.2rem;
-  left: 0.2rem;
-  border-color: #93ffeb;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  transform: rotate(45deg);
-}
-
-.parts-box label:hover input[type="checkbox"]:not(:checked) {
-  border-color: #09ff00;
 }
 
 @keyframes flashAni {

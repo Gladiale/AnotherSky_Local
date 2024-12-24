@@ -36,7 +36,8 @@ const FlipBook = () => {
       className={`${styles["flip-book"]} ${appOption.dropShadow.cg && styles.shadow}`}
       style={{
         filter: filterData,
-        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
+        imageRendering:
+          effectState.pixel && effectState.target.cg ? "pixelated" : undefined,
       }}
     >
       {layerState.active === "1st" && (
@@ -61,7 +62,7 @@ const FlipBook = () => {
         />
       )}
 
-      {effectState.imageEF.activeImage && <EffectImage />}
+      {effectState.image.active && <EffectImage />}
 
       <FlipControl setIsReversing={setIsReversing} />
     </motion.div>

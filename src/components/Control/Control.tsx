@@ -10,7 +10,7 @@ import ToFirst from "../ControlIcon/ToFirst";
 import ToLast from "../ControlIcon/ToLast";
 import VoiceControl from "../ControlIcon/VoiceControl";
 import ScreenControl from "../ControlIcon/ScreenControl";
-import FilterControl from "../ControlIcon/FilterControl";
+import EffectControl from "../ControlIcon/EffectControl/EffectControl";
 import MirrorEffectControl from "../ControlIcon/MirrorEffectControl";
 import AutoNext from "../ControlIcon/AutoNext";
 import ImageEffectControl from "../ControlIcon/ImageEffectControl";
@@ -86,7 +86,7 @@ const Control = () => {
           <RandomControl />
           <AutoNext />
           <RotateYControl />
-          <FilterControl />
+          <EffectControl />
           <ImageEffectControl />
         </div>
 

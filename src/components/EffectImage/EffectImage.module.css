@@ -8,26 +8,6 @@
   justify-content: center;
 }
 
-.effect-box.topLeft {
-  top: 0;
-  left: 0;
-}
-
-.effect-box.topRight {
-  top: 0;
-  right: 0;
-}
-
-.effect-box.bottomLeft {
-  bottom: 0;
-  left: 0;
-}
-
-.effect-box.bottomRight {
-  bottom: 0;
-  right: 0;
-}
-
 .effect-box .effect-img {
   touch-action: none;
   transition: 0.5s;

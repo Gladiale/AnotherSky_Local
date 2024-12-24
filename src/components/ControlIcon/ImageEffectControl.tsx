@@ -2,10 +2,8 @@ import styles from "./ImageEffectControl.module.css";
 import { GiPrism } from "react-icons/gi";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import { EffectStateType } from "../../context/EffectStateContext/effectStateInit";
 import { useMediaControl } from "../../hooks/useMediaControl";
 import PartsBox from "../Common/PartsBox";
-import EffectBox from "../Common/EffectBox";
 import CheckBox from "../Common/CheckBox";
 import RadioBox from "../Common/RadioBox";
 import IconDefault from "../Common/IconDefault";
@@ -15,86 +13,58 @@ const ImageEffectControl = () => {
   const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
   const { triggerEditMode } = useMediaControl({ initialScale: 1, target: "effect" });
 
-  const condition: boolean =
-    effectState.imageEF.activeImage ||
-    effectState.imageEF.activeBlend ||
-    effectState.pixelEffect ||
-    effectState.shakeEffect.active;
-
-  const containState = {
-    radioSpanList: effectState.imageEF.maxHeightFull
-      ? ["左", "中", "右"]
-      : ["上", "中", "下"],
-    checkedState: effectState.imageEF.maxHeightFull ? true : false,
-  };
-
   const openCloseImgEF = (e: React.MouseEvent<HTMLDivElement>) => {
-    condition
-      ? (effectStateDispatch({ type: "imgEfMultiActive", payload: "closeAll" }),
+    effectState.image.active
+      ? (effectStateDispatch({ type: "active", payload: "image" }),
         triggerEditMode(e, true))
-      : effectStateDispatch({ type: "imgEfMultiActive", payload: "openAll" });
-  };
-
-  const radioPosiChecked = {
-    topRight: effectState.imageEF.position === "top-right",
-    topLeft: effectState.imageEF.position === "top-left",
-    center: effectState.imageEF.position === "center",
-    bottomLeft: effectState.imageEF.position === "bottom-left",
-    bottomRight: effectState.imageEF.position === "bottom-right",
+      : effectStateDispatch({ type: "active", payload: "image" });
   };
 
   const radioSizeChecked = {
-    contain: effectState.imageEF.size === "contain",
-    none: effectState.imageEF.size === "none",
-    cover: effectState.imageEF.size === "cover",
-  };
-
-  const changeImgEfPosi = (posi: EffectStateType["imageEF"]["position"]) => {
-    effectStateDispatch({ type: "imgEfPosi", payload: posi });
-  };
-
-  const changeImgEfSize = (size: EffectStateType["imageEF"]["size"]) => {
-    effectStateDispatch({ type: "imgEfSize", payload: size });
+    contain: effectState.image.size === "contain",
+    none: effectState.image.size === "none",
+    cover: effectState.image.size === "cover",
   };
 
   return (
     <div className={styles["EF-container"]}>
-      {condition && (
+      {effectState.image.active && (
         <div className={styles["EF-wrapper"]}>
-          <EffectBox />
           <PartsBox
-            name2nd="blendEF"
-            part2nd={true}
-            message={effectState.imageEF.blendKind}
-            active={effectState.imageEF.activeBlend}
-            activeFunc={() =>
+            title="MixEffect"
+            message={effectState.image.mixMode}
+            onPrevClick={() =>
               effectStateDispatch({
-                type: "imgEfSingleActive",
-                payload: "blendActive",
+                type: "mix",
+                payload: {
+                  target: "image",
+                  changeKey: "prev",
+                },
               })
             }
-            prevValFunc={() =>
-              effectStateDispatch({ type: "imgEfKind", payload: "prev" })
+            onNextClick={() =>
+              effectStateDispatch({
+                type: "mix",
+                payload: {
+                  target: "image",
+                  changeKey: "next",
+                },
+              })
             }
-            nextValFunc={() =>
-              effectStateDispatch({ type: "imgEfKind", payload: "next" })
-            }
+            onBoxClick={() => {
+              effectStateDispatch({
+                type: "mixSpecific",
+                payload: "image",
+              });
+            }}
           />
           <PartsBox
-            name2nd="imageEF"
-            part2nd={true}
+            title="EffectFile"
             message={mediaInfo.folder.effect[1]}
-            active={effectState.imageEF.activeImage}
-            activeFunc={() =>
-              effectStateDispatch({
-                type: "imgEfSingleActive",
-                payload: "imageActive",
-              })
-            }
-            prevValFunc={() => mediaInfoDispatch({ type: "effectPrev" })}
-            nextValFunc={() => mediaInfoDispatch({ type: "effectNext" })}
-            folderNext={() => mediaInfoDispatch({ type: "effectFolderNext" })}
-            folderPrev={() => mediaInfoDispatch({ type: "effectFolderPrev" })}
+            onPrevClick={() => mediaInfoDispatch({ type: "effectPrev" })}
+            onNextClick={() => mediaInfoDispatch({ type: "effectNext" })}
+            onBoxClick={() => mediaInfoDispatch({ type: "effectFolderNext" })}
+            onBoxContextMenu={() => mediaInfoDispatch({ type: "effectFolderPrev" })}
           />
 
           <div className={styles["radio-content"]}>
@@ -108,67 +78,45 @@ const ImageEffectControl = () => {
                   checkBoxList={[
                     {
                       text: "高さ100%",
-                      state: containState.checkedState,
-                      onChange: () => effectStateDispatch({ type: "imgEfMaxHeight" }),
+                      state: effectState.image.maxHeightFull,
+                      onChange: () => effectStateDispatch({ type: "imageMaxHeight" }),
                     },
-                  ]}
-                />
-                <RadioBox
-                  radioName="position"
-                  radioSpanList={containState.radioSpanList}
-                  radioCheckList={[
-                    radioPosiChecked.topLeft,
-                    radioPosiChecked.center,
-                    radioPosiChecked.bottomRight,
-                  ]}
-                  radioChangeFuncList={[
-                    () => changeImgEfPosi("top-left"),
-                    () => changeImgEfPosi("center"),
-                    () => changeImgEfPosi("bottom-right"),
                   ]}
                 />
               </div>
             )}
-            {radioSizeChecked.none && (
-              <RadioBox
-                radioName="position"
-                radioSpanList={["左下", "左上", "中", "右上", "右下"]}
-                radioCheckList={[
-                  radioPosiChecked.bottomLeft,
-                  radioPosiChecked.topLeft,
-                  radioPosiChecked.center,
-                  radioPosiChecked.topRight,
-                  radioPosiChecked.bottomRight,
-                ]}
-                radioChangeFuncList={[
-                  () => changeImgEfPosi("bottom-left"),
-                  () => changeImgEfPosi("top-left"),
-                  () => changeImgEfPosi("center"),
-                  () => changeImgEfPosi("top-right"),
-                  () => changeImgEfPosi("bottom-right"),
-                ]}
-              />
-            )}
             <RadioBox
               // ここにsize書いちゃうと上手くレンダリングできなくなる
               radioName="sizeRadio"
-              radioSpanList={["コンテイン", "オリジン", "カバー"]}
-              radioCheckList={[
-                radioSizeChecked.contain,
-                radioSizeChecked.none,
-                radioSizeChecked.cover,
-              ]}
-              radioChangeFuncList={[
-                () => changeImgEfSize("contain"),
-                () => changeImgEfSize("none"),
-                () => changeImgEfSize("cover"),
+              radioList={[
+                {
+                  text: "コンテイン",
+                  state: radioSizeChecked.contain,
+                  onChange: () =>
+                    effectStateDispatch({ type: "imageSize", payload: "contain" }),
+                },
+                {
+                  text: "オリジン",
+                  state: radioSizeChecked.none,
+                  onChange: () =>
+                    effectStateDispatch({ type: "imageSize", payload: "none" }),
+                },
+                {
+                  text: "カバー",
+                  state: radioSizeChecked.cover,
+                  onChange: () =>
+                    effectStateDispatch({ type: "imageSize", payload: "cover" }),
+                },
               ]}
             />
           </div>
         </div>
       )}
 
-      <IconDefault anime={condition && "anime-color"} onClick={openCloseImgEF}>
+      <IconDefault
+        anime={effectState.image.active && "anime-color"}
+        onClick={openCloseImgEF}
+      >
         <GiPrism />
       </IconDefault>
     </div>

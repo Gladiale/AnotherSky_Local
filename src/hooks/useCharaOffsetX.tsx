@@ -26,12 +26,12 @@ const useCharaOffsetX = () => {
         ? setOffsetX((contentWidth - window.innerWidth) / 2 - offsetLimit)
         : setOffsetX(0);
     }
-    if (effectState.mirrorEffect) {
+    if (effectState.mirror) {
       const offset = contentWidth - window.innerWidth / 2;
       return offset > 0 ? setOffsetX(offset - offsetLimit) : setOffsetX(0);
     }
     setOffsetX(0);
-  }, [contentWidth, mediaActive.doublePage, effectState.mirrorEffect]);
+  }, [contentWidth, mediaActive.doublePage, effectState.mirror]);
 
   return { offsetX, handleContentWidth, handleOverLimit };
 };

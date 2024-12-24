@@ -21,7 +21,7 @@
 
 .EF-container:hover .EF-wrapper {
   /* scale: 1; */
-  transform: translateY(-60%);
+  transform: translateY(-68%);
 }
 
 .EF-container:hover .EF-wrapper .radio-content {
@@ -42,9 +42,9 @@
 
 @media (max-width: 768px) {
   .EF-container .EF-wrapper {
-    transform: translateY(170%) translateX(-60%);
+    transform: translateY(210%) translateX(-45%);
   }
   .EF-container:hover .EF-wrapper {
-    transform: translateY(-37%) translateX(-60%);
+    transform: translateY(-10%) translateX(-45%);
   }
 }

@@ -1,0 +1,162 @@
+.effect-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.effect-box {
+  position: absolute;
+  font-size: 1rem;
+  color: #ff84fb;
+  width: 11rem;
+  user-select: none;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  transition: 0.5s;
+
+  scale: 0;
+  transform: translateY(var(--translateY));
+}
+
+.effect-container:hover .effect-box {
+  scale: 1;
+}
+
+/* 猫 Icon */
+.effect-box .inner-icon {
+  margin-bottom: -0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: #ffa9ec;
+  font-size: 1.7rem;
+  transition: 0.25s;
+}
+.effect-box .inner-icon:hover {
+  color: #7bffbf;
+  scale: 0.95;
+}
+.effect-box .inner-icon:active {
+  color: #ffa9ec;
+  scale: 0.8;
+}
+
+/* ボタン */
+.effect-box .filterButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.effect-box .filterButton::after {
+  content: attr(data-message);
+  outline: 1px dashed #fe62f9;
+  position: absolute;
+  color: #fe62f9;
+  bottom: -110%;
+  left: 0;
+  transition: 0.5s;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.effect-box .filterButton:has(:first-of-type:hover):after {
+  display: block;
+  animation: purun 0.8s linear 0s 1;
+}
+
+.effect-box .filterButton input[type="button"] {
+  text-align: center;
+  cursor: pointer;
+  background: #ff66ff;
+  color: #ffffff;
+  padding: 1px;
+  box-shadow: 3px 5px 2px #666666;
+  border: 2px solid #ff66ff;
+  transition: 0.3s;
+  font-size: 0.85rem;
+  min-width: 49%;
+}
+
+.effect-box .filterButton input[type="button"]:hover {
+  box-shadow: none;
+  color: #ff66ff;
+  background: #ffffff;
+}
+
+.effect-box .filterButton input[type="button"]:active {
+  background-color: #8b1361;
+}
+
+@media (max-width: 768px) {
+  .effect-box {
+    transform: translateY(-10%) translateX(-65%);
+  }
+}
+
+@keyframes purun {
+  0% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+  15% {
+    transform: scale(0.9, 0.9) translate(0%, 5%);
+  }
+  30% {
+    transform: scale(1.3, 0.8) translate(0%, 10%);
+  }
+  50% {
+    transform: scale(0.8, 1.3) translate(0%, -10%);
+  }
+  70% {
+    transform: scale(1.1, 0.9) translate(0%, 5%);
+  }
+  100% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+}
+
+@keyframes korokoro {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  5% {
+    transform: translate(10%, 0%) rotate(10deg);
+  }
+  25% {
+    transform: translate(20%, 0%) rotate(20deg);
+  }
+  30% {
+    transform: translate(-10%, 0%) rotate(-10deg);
+  }
+  35% {
+    transform: translate(-15%, 0%) rotate(-15deg);
+  }
+  45% {
+    transform: translate(10%, 0%) rotate(10deg);
+  }
+  50% {
+    transform: translate(15%, 0%) rotate(15deg);
+  }
+  60% {
+    transform: translate(-5%, 0%) rotate(-5deg);
+  }
+  65% {
+    transform: translate(-7%, 0%) rotate(-7deg);
+  }
+  75% {
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+}

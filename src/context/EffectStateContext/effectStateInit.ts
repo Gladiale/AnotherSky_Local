@@ -1,6 +1,7 @@
 // 配列から型を生成
 // 参考 https://zenn.dev/kazuwombat/articles/885794faa6b3c9
-const blendKindList = [
+const mixBlendModeList = [
+  "normal",
   "multiply",
   "color-burn",
   "soft-light",
@@ -14,62 +15,80 @@ const blendKindList = [
   "difference",
 ] as const;
 
-const imgPositionList = [
-  "center",
-  "top-left",
-  "top-right",
-  "bottom-left",
-  "bottom-right",
-] as const;
+type MixBlendModeType = (typeof mixBlendModeList)[number];
 
 type EffectStateType = {
-  blendCG: {
-    active: boolean;
+  target: {
+    cg: boolean;
+    character: boolean;
+    video: boolean;
   };
-  imageEF: {
-    activeImage: boolean;
-    activeBlend: boolean;
-    size: "contain" | "none" | "cover";
-    position: (typeof imgPositionList)[number];
-    blendKind: (typeof blendKindList)[number];
-    maxHeightFull: boolean;
-  };
-  mirrorEffect: boolean;
-  filterEffect: {
-    targetCard: boolean;
-    targetCharacter: boolean;
-    targetVideo: boolean;
-  };
-  pixelEffect: boolean;
-  shakeEffect: {
+
+  pixel: boolean;
+  mirror: boolean;
+
+  shake: {
     active: boolean;
     heavy: "low" | "normal" | "high";
+  };
+
+  cgMix: {
+    active: boolean;
+    mixMode: MixBlendModeType;
+  };
+
+  image: {
+    active: boolean;
+    zIndex: number;
+    maxHeightFull: boolean;
+    size: "contain" | "none" | "cover";
+    mixMode: MixBlendModeType;
+  };
+
+  equip: {
+    active: boolean;
+    zIndex: number;
+    filter: boolean;
+    anime: string;
+    mixMode: MixBlendModeType;
   };
 };
 
 const effectSateInit: EffectStateType = {
-  blendCG: {
-    active: false,
+  target: {
+    cg: false,
+    character: false,
+    video: false,
   },
-  imageEF: {
-    activeImage: false,
-    activeBlend: false,
-    size: "contain",
-    position: "center",
-    blendKind: "hard-light",
-    maxHeightFull: false,
-  },
-  mirrorEffect: false,
-  filterEffect: {
-    targetCard: false,
-    targetCharacter: false,
-    targetVideo: false,
-  },
-  pixelEffect: false,
-  shakeEffect: {
+
+  pixel: false,
+  mirror: false,
+
+  shake: {
     active: false,
     heavy: "low",
   },
+
+  cgMix: {
+    active: false,
+    mixMode: "normal",
+  },
+
+  image: {
+    active: false,
+    zIndex: 0,
+    maxHeightFull: false,
+    size: "contain",
+    mixMode: "normal",
+  },
+
+  equip: {
+    active: false,
+    zIndex: 0,
+    filter: false,
+    anime: "",
+    mixMode: "normal",
+  },
 };
 
-export { type EffectStateType, effectSateInit, blendKindList };
+export { type EffectStateType, type MixBlendModeType, effectSateInit, mixBlendModeList };

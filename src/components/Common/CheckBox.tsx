@@ -2,7 +2,6 @@ import styles from "./CheckBox.module.css";
 
 type PropsType = {
   kind: "1st" | "2nd";
-  responsive?: boolean;
   gap: {
     outerGap: string;
     innerGap: string;
@@ -15,10 +14,13 @@ type PropsType = {
     state: boolean;
     onChange: () => void;
   }[];
+  responsive?: boolean;
+  containerStyle?: React.CSSProperties;
 };
 
 const CheckBox = (props: PropsType) => {
-  const { kind, gap, fontSize, responsive, checkBoxSize, checkBoxList } = props;
+  const { kind, gap, fontSize, responsive, checkBoxSize, checkBoxList, containerStyle } =
+    props;
 
   return (
     <div
@@ -26,6 +28,7 @@ const CheckBox = (props: PropsType) => {
       style={{
         ["--outer-gap" as any]: gap.outerGap,
         ["--responsive-gap" as any]: gap.responsiveGap,
+        ...containerStyle,
       }}
     >
       {checkBoxList.map((item, index) => (

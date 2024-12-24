@@ -1,105 +1,74 @@
-import {
-  FilterTargetType,
-  filterTargetSelect,
-} from "./effectStateFunc/filterTargetSelect";
-import { imgEfKindChange } from "./effectStateFunc/imgEfKindChange";
-import { imgEfMultiActive } from "./effectStateFunc/imgEfMultiActive";
-import { imgEfPosiChange } from "./effectStateFunc/imgEfPosiChange";
-import { imgEfSingleActive } from "./effectStateFunc/imgEfSingleActive";
-import { imgEfSizeChange } from "./effectStateFunc/imgEfSizeChange";
-import { shakeHeavyChange } from "./effectStateFunc/shakeHeavyChange";
-import { EffectStateType } from "./effectStateInit";
+import { changeActive } from "./effectStateFunc/changeActive";
+import { changeImageSize } from "./effectStateFunc/changeImageSize";
+import { changeMaxHeight } from "./effectStateFunc/changeMaxHeight";
+import { changeShakeHeavy } from "./effectStateFunc/changeShakeHeavy";
+import { changeMixModeSpecific } from "./effectStateFunc/changeMixModeSpecific";
+import { changeMixMode, type MixPayloadType } from "./effectStateFunc/changeMixMode";
+import { changeTarget, type effectTargetType } from "./effectStateFunc/changeTarget";
+import { type EffectStateType } from "./effectStateInit";
 
-type ActionBasicType = {
-  type: "imgEfMaxHeight" | "blendCgActive" | "mirror" | "pixel" | "shake";
+type ActionTargetType = {
+  type: "target";
+  payload: effectTargetType;
 };
 
-type ActionImageEffectType1 = {
-  type: "imgEfSingleActive";
-  payload: "imageActive" | "blendActive";
+type ActionActiveType = {
+  type: "active";
+  payload: keyof Omit<EffectStateType, "target">;
 };
 
-type ActionImageEffectType2 = {
-  type: "imgEfKind";
-  payload: "prev" | "next";
+type ActionMixModeType = {
+  type: "mix";
+  payload: MixPayloadType;
 };
 
-type ActionImageEffectType3 = {
-  type: "imgEfPosi";
-  payload: EffectStateType["imageEF"]["position"];
+type ActionMixModeSpecificType = {
+  type: "mixSpecific";
+  payload: "cgMix" | "image" | "equip";
 };
 
-type ActionImageEffectType4 = {
-  type: "imgEfSize";
-  payload: EffectStateType["imageEF"]["size"];
+type ActionImageSizeType = {
+  type: "imageSize";
+  payload: EffectStateType["image"]["size"];
 };
 
-type ActionImageEffectType5 = {
-  type: "imgEfMultiActive";
-  payload: "openAll" | "closeAll";
-};
-
-type ActionFilterType = {
-  type: "filter";
-  payload: FilterTargetType;
+type ActionImageMaxHightType = {
+  type: "imageMaxHeight";
 };
 
 type ActionShakeType = {
   type: "shakeHeavy";
-  payload: EffectStateType["shakeEffect"]["heavy"];
+  payload: EffectStateType["shake"]["heavy"];
 };
 
 type EFStateActionType =
-  | ActionBasicType
-  | ActionFilterType
-  | ActionShakeType
-  | ActionImageEffectType1
-  | ActionImageEffectType2
-  | ActionImageEffectType3
-  | ActionImageEffectType4
-  | ActionImageEffectType5;
+  | ActionTargetType
+  | ActionActiveType
+  | ActionMixModeType
+  | ActionMixModeSpecificType
+  | ActionImageSizeType
+  | ActionImageMaxHightType
+  | ActionShakeType;
 
-const effectStateReducer = (state: EffectStateType, action: EFStateActionType) => {
+const effectStateReducer = (
+  state: EffectStateType,
+  action: EFStateActionType
+): EffectStateType => {
   switch (action.type) {
-    case "blendCgActive":
-      return {
-        ...state,
-        blendCG: { ...state.blendCG, active: !state.blendCG.active },
-      };
-    case "imgEfSingleActive":
-      return imgEfSingleActive(state, action.payload);
-    case "imgEfMultiActive":
-      return imgEfMultiActive(state, action.payload);
-    case "imgEfKind":
-      return imgEfKindChange(state, action.payload);
-    case "imgEfPosi":
-      return imgEfPosiChange(state, action.payload);
-    case "imgEfSize":
-      return imgEfSizeChange(state, action.payload);
-    case "imgEfMaxHeight":
-      return {
-        ...state,
-        imageEF: {
-          ...state.imageEF,
-          maxHeightFull: !state.imageEF.maxHeightFull,
-        },
-      };
-    case "mirror":
-      return { ...state, mirrorEffect: !state.mirrorEffect };
-    case "filter":
-      return filterTargetSelect(state, action.payload);
-    case "pixel":
-      return { ...state, pixelEffect: !state.pixelEffect };
-    case "shake":
-      return {
-        ...state,
-        shakeEffect: {
-          ...state.shakeEffect,
-          active: !state.shakeEffect.active,
-        },
-      };
+    case "target":
+      return changeTarget(state, action.payload);
+    case "active":
+      return changeActive(state, action.payload);
+    case "mix":
+      return changeMixMode(state, action.payload);
+    case "mixSpecific":
+      return changeMixModeSpecific(state, action.payload);
+    case "imageSize":
+      return changeImageSize(state, action.payload);
+    case "imageMaxHeight":
+      return changeMaxHeight(state);
     case "shakeHeavy":
-      return shakeHeavyChange(state, action.payload);
+      return changeShakeHeavy(state, action.payload);
     default:
       throw new Error("不明なactionです");
   }

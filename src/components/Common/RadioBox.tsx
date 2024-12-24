@@ -3,26 +3,27 @@ import styles from "./RadioBox.module.css";
 type PropsType = {
   responsive?: boolean;
   radioName: string;
-  radioSpanList: string[];
-  radioCheckList: boolean[];
-  radioChangeFuncList: (() => void)[];
+  radioList: {
+    text: string;
+    state: boolean;
+    onChange: () => void;
+  }[];
 };
 
 const RadioBox = (props: PropsType) => {
-  const { radioName, radioSpanList, radioCheckList, radioChangeFuncList, responsive } =
-    props;
+  const { responsive, radioName, radioList } = props;
 
   return (
     <div className={`${styles["radio-box"]} ${responsive && styles.responsive}`}>
-      {radioSpanList.map((radioSpan, index) => (
+      {radioList.map((radio, index) => (
         <label key={index}>
           <input
             type="radio"
             name={radioName}
-            checked={radioCheckList[index]}
-            onChange={radioChangeFuncList[index]}
+            checked={radio.state}
+            onChange={radio.onChange}
           />
-          <span>{radioSpan}</span>
+          <span>{radio.text}</span>
         </label>
       ))}
     </div>

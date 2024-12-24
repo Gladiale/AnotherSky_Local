@@ -106,7 +106,6 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  mix-blend-mode: exclusion;
 }
 
 @media (max-width: 768px) {

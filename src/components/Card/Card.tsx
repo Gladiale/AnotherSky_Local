@@ -41,11 +41,12 @@ const Card = () => {
       initial="hidden"
       animate="visible"
       className={`${styles.card} ${screenMode === "cgMode" && styles.cgMode}
-      ${effectState.mirrorEffect && styles.mirror}
+      ${effectState.mirror && styles.mirror}
       ${hoverState.card && styles.cardHover}`}
       style={{
         filter: filterData,
-        imageRendering: effectState.pixelEffect ? "pixelated" : undefined,
+        imageRendering:
+          effectState.pixel && effectState.target.character ? "pixelated" : undefined,
       }}
       onClick={changeScene}
       onContextMenu={resetScene}

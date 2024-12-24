@@ -1,53 +1,69 @@
-import IconSmall from "./IconSmall";
 import styles from "./PartsBox.module.css";
+import CheckBox from "./CheckBox";
+import IconSmall from "./IconSmall";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 type PropsType = {
-  part2nd?: boolean;
-  name2nd?: string;
-  active?: boolean;
-  activeFunc?: () => void;
+  title?: string;
   message: string;
-  prevValFunc: () => void;
-  nextValFunc: () => void;
-  folderNext?: () => void;
-  folderPrev?: () => void;
+  onPrevClick: () => void;
+  onNextClick: () => void;
+  onBoxClick?: () => void;
+  onBoxContextMenu?: () => void;
+  checkBox?: {
+    text: string;
+    state: boolean;
+    onChange: () => void;
+  };
 };
 
 const PartsBox = (props: PropsType) => {
   const {
-    part2nd,
-    name2nd,
-    active,
-    activeFunc,
+    title,
     message,
-    prevValFunc,
-    nextValFunc,
-    folderNext,
-    folderPrev,
+    onPrevClick,
+    onNextClick,
+    onBoxClick,
+    onBoxContextMenu,
+    checkBox,
   } = props;
 
   return (
     <div className={styles["parts-box"]}>
+      {title && <p className={styles.title}>{title}</p>}
+
       <div className={styles["control"]}>
-        <IconSmall children={<BsChevronLeft />} onClick={prevValFunc} />
+        <IconSmall children={<BsChevronLeft />} onClick={onPrevClick} />
         <p
-          className={folderNext && styles.ani}
-          onClick={folderNext}
+          className={onBoxClick && styles.ani}
+          onClick={onBoxClick}
           onContextMenu={(e) => {
             e.preventDefault();
-            folderPrev && folderPrev();
+            onBoxContextMenu && onBoxContextMenu();
           }}
         >
           {message}
         </p>
-        <IconSmall children={<BsChevronRight />} onClick={nextValFunc} />
+        <IconSmall children={<BsChevronRight />} onClick={onNextClick} />
       </div>
-      {part2nd && (
-        <label>
-          <span>{name2nd}</span>
-          <input type="checkbox" checked={active} onChange={activeFunc} />
-        </label>
+
+      {checkBox && (
+        <CheckBox
+          kind="2nd"
+          fontSize={1}
+          checkBoxSize={0.8}
+          gap={{
+            outerGap: "0",
+            innerGap: "0.3rem",
+          }}
+          checkBoxList={[
+            {
+              text: checkBox.text,
+              state: checkBox.state,
+              onChange: checkBox.onChange,
+            },
+          ]}
+        />
       )}
     </div>
   );

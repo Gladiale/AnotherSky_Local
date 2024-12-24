@@ -80,11 +80,14 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
 
       <Loading kind="3rd" loadStatus={loadStatus} />
 
-      {effectState.blendCG.active && effectState.filterEffect.targetCharacter && (
+      {effectState.cgMix && effectState.target.character && (
         <img
           src={urlConfig.character}
           className={`${styles["character-img"]} ${styles.texture}`}
-          style={{ display: loadStatus === "success" ? undefined : "none" }}
+          style={{
+            mixBlendMode: effectState.cgMix.mixMode,
+            display: loadStatus === "success" ? undefined : "none",
+          }}
         />
       )}
 

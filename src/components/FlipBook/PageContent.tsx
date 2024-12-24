@@ -43,7 +43,7 @@ const PageContent = ({ className, style, imgUrl, onClick }: PropsType) => {
           onMouseMove={appOption.parallax ? changeTransform3d : undefined}
           onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
         />
-        {effectState.blendCG.active && effectState.filterEffect.targetCard && (
+        {effectState.cgMix.active && effectState.target.cg && (
           <img
             alt="画像"
             src={imgUrl}

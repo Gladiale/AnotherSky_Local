@@ -23,7 +23,7 @@ const Content = () => {
   return (
     <div
       className={`${styles.content} ${scene === "card" && styles.threeD}
-      ${effectState.mirrorEffect && styles.mirror}`}
+      ${effectState.mirror && styles.mirror}`}
       // 子要素から親要素へとイベントが流れていく
       onLoad={handleContentWidth}
     >
@@ -43,7 +43,7 @@ const Content = () => {
       {scene === "directoryMode" && <Directory />}
       {scene === "listImg" && !listSubState.mode2 && <ListImage />}
       {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}
-      {scene != "card" && !effectState.mirrorEffect && (
+      {scene != "card" && !effectState.mirror && (
         <Character
           handleOverLimit={handleOverLimit}
           containerStyle={{ transform: `rotateY(180deg) translateX(${offsetX}px)` }}

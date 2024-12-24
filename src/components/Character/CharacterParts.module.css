@@ -19,7 +19,6 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  mix-blend-mode: exclusion;
 }
 
 @keyframes character_show {

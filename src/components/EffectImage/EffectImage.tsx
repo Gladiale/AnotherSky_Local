@@ -38,7 +38,7 @@ const EffectImage = () => {
   let imgWidth: "auto" | "100%",
     imgHeight: "auto" | "100%",
     divHeight: "auto" | "100%" | "120%";
-  switch (effectState.imageEF.size) {
+  switch (effectState.image.size) {
     case "none":
       imgWidth = "auto";
       imgHeight = "auto";
@@ -50,26 +50,20 @@ const EffectImage = () => {
       divHeight = "100%";
       break;
     default:
-      effectState.imageEF.maxHeightFull
+      effectState.image.maxHeightFull
         ? ((imgWidth = "auto"), (imgHeight = "100%"), (divHeight = "100%"))
         : ((imgWidth = "100%"), (imgHeight = "100%"), (divHeight = "120%"));
   }
 
   return (
     <div
-      className={`${styles["effect-box"]}
-      ${effectState.imageEF.position === "top-left" && styles.topLeft}
-      ${effectState.imageEF.position === "top-right" && styles.topRight}
-      ${effectState.imageEF.position === "bottom-left" && styles.bottomLeft}
-      ${effectState.imageEF.position === "bottom-right" && styles.bottomRight}`}
+      className={styles["effect-box"]}
       style={{
         width: imgWidth,
         height: divHeight,
         scale: String(mediaState["effect"].scale),
         transform: `translate(${mediaState["effect"].position.x}px, ${mediaState["effect"].position.y}px)`,
-        mixBlendMode: effectState.imageEF.activeBlend
-          ? effectState.imageEF.blendKind
-          : undefined,
+        mixBlendMode: effectState.image.mixMode,
       }}
     >
       <img
@@ -77,7 +71,7 @@ const EffectImage = () => {
         ${(mediaState["effect"].isEditMode || isTouched) && styles.isEditing}`}
         src={urlConfig.effect}
         style={{
-          objectFit: effectState.imageEF.size,
+          objectFit: effectState.image.size,
           width: imgWidth,
           height: imgHeight,
           transform: rotateYState.effect

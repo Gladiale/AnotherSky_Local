@@ -12,11 +12,11 @@ const useFilterData = (target: "card" | "cg" | "character" | "video") => {
 
   let filterData: string | undefined;
   if (target === "card") {
-    filterData = effectState.filterEffect.targetCard ? filterNoShadow : undefined;
+    filterData = effectState.target.character ? filterNoShadow : undefined;
   }
 
   if (target === "character") {
-    filterData = effectState.filterEffect.targetCharacter
+    filterData = effectState.target.character
       ? appOption.dropShadow.character
         ? filterShadow + filterNoShadow
         : filterNoShadow
@@ -26,7 +26,7 @@ const useFilterData = (target: "card" | "cg" | "character" | "video") => {
   }
 
   if (target === "cg") {
-    filterData = effectState.filterEffect.targetCard
+    filterData = effectState.target.cg
       ? appOption.dropShadow.cg
         ? filterShadow + filterNoShadow
         : filterNoShadow
@@ -36,7 +36,7 @@ const useFilterData = (target: "card" | "cg" | "character" | "video") => {
   }
 
   if (target === "video") {
-    filterData = effectState.filterEffect.targetVideo
+    filterData = effectState.target.video
       ? appOption.dropShadow.video
         ? filterShadow + filterNoShadow
         : filterNoShadow

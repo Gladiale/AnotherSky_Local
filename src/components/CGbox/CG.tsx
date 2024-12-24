@@ -5,13 +5,15 @@ import { useTransform3d } from "../../hooks/useTransform3d";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
+import { type MixBlendModeType } from "../../context/EffectStateContext/effectStateInit";
 import Loading from "../Loading/Loading";
 
 type PropsType = {
   className: "cg-img" | "texture-img";
+  mixBlendMode?: MixBlendModeType;
 };
 
-const CG = ({ className }: PropsType) => {
+const CG = ({ className, mixBlendMode }: PropsType) => {
   // コンテキスト
   const { appOption } = useAppOption();
   const { mediaActive } = useMediaActive();
@@ -39,6 +41,7 @@ const CG = ({ className }: PropsType) => {
           maxWidth: mediaSizeData.maxWidth,
           display: loadStatus === "success" ? undefined : "none",
           transform: appOption.parallax ? transform3d : undefined,
+          mixBlendMode: mixBlendMode,
         }}
         onLoad={showTarget}
         onStalled={showError}

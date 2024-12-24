@@ -21,7 +21,8 @@ const RotateYControl = () => {
           responsive={true}
           fontSize={0.8}
           checkBoxSize={0.8}
-          gap={{ outerGap: "0.4rem", innerGap: "0.1rem", responsiveGap: "0.2rem" }}
+          gap={{ outerGap: "0.4rem", innerGap: "0.1rem", responsiveGap: "0.3rem" }}
+          containerStyle={{ lineHeight: "100%" }}
           checkBoxList={[
             {
               text: "立ち絵",

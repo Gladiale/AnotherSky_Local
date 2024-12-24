@@ -8,12 +8,14 @@ import { type RandomTargetType } from "../../../../components/ControlIcon/Random
 type FolderType = {
   cg?: [number, string];
   character?: [number, string];
+  anotherCharacter?: [number, string];
   video?: [number, string];
 };
 
 type FileType = {
   cg?: [number, string, number];
   character?: [number, string, number];
+  anotherCharacter?: [number, string, number];
   video?: [number, string, number];
 };
 
@@ -30,6 +32,9 @@ const toMediaRandomWithParam = (
       const cgData = getRandomFolderFile(CGDataObj);
       folder.cg = cgData.folder;
       file.cg = cgData.file;
+      const anotherCharacterData = getRandomFolderFile(CharacterDataObj);
+      folder.anotherCharacter = anotherCharacterData.folder;
+      file.anotherCharacter = anotherCharacterData.file;
     }
     if (randomTarget.character) {
       const characterData = getRandomFolderFile(CharacterDataObj);
@@ -50,6 +55,10 @@ const toMediaRandomWithParam = (
   // folderがターゲット外の時実行
   if (randomTarget.cg) {
     file.cg = getRandomFile(CGDataObj, state.folder.cg[1]);
+    file.anotherCharacter = getRandomFile(
+      CharacterDataObj,
+      state.folder.anotherCharacter[1]
+    );
   }
   if (randomTarget.character) {
     file.character = getRandomFile(CharacterDataObj, state.folder.character[1]);

@@ -1,0 +1,16 @@
+.packing-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #00ff80;
+  gap: 0.5rem;
+
+  width: 100%;
+  line-height: 1rem;
+  padding: 0.2rem 0.1rem;
+  color: #ff84fb;
+
+  transition: 0.3s;
+  overflow: hidden;
+}
