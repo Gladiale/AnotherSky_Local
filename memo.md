@@ -26,3 +26,4 @@
 <GiCrownedExplosion />
 <GiIronCross />
 <GiClockwork />
+<GiCampfire /> 
