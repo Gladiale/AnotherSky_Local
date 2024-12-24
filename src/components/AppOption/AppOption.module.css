@@ -44,33 +44,39 @@
   aspect-ratio: 1 / 3;
 }
 
-.app-option .option-panel > label {
+.app-option .option-panel .control-box-1st {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+}
+
+.app-option .option-panel .control-box-1st > label {
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   user-select: none;
-  gap: 0.1rem;
+  gap: 0rem;
   color: var(--label-color);
   white-space: nowrap;
   transition: 0.5s;
 }
-
-.app-option .option-panel > label:hover {
+.app-option .option-panel .control-box-1st > label:hover {
   color: #f0d1ff;
 }
 
-.app-option .option-panel > label .icon {
+.app-option .option-panel .control-box-1st > label .icon {
   font-size: 1.3rem;
   transition: scale 0.3s;
 }
-
-.app-option .option-panel > label:hover .icon {
+.app-option .option-panel .control-box-1st > label:hover .icon {
   scale: 1.1;
 }
 
-.app-option .option-panel > label .icon.checked {
+.app-option .option-panel .control-box-1st > label .icon.checked {
   color: #b1ff57;
   filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
 }

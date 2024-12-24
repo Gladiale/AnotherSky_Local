@@ -10,7 +10,7 @@ import { useMouseControl } from "../../hooks/useMouseControl";
 import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
 // GSAP
 import gsap from "gsap";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 
 import CG from "./CG";
@@ -37,10 +37,9 @@ const CGbox = () => {
     high: effectState.shake.active && effectState.shake.heavy === "high",
   };
 
-  const [isLocked, setIsLocked] = useState<boolean>(false);
   const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    isLocked
+    appOption.rotateYIsRightCLick
       ? rotateYDispatch({ type: "cg", payload: {} })
       : (resetScene(e), triggerEditMode(e, true));
   };
@@ -99,7 +98,7 @@ const CGbox = () => {
         {effectState.image.active && <EffectImage />}
       </div>
 
-      <ControlParts isLocked={isLocked} setIsLocked={setIsLocked} />
+      <ControlParts />
     </div>
   );
 };

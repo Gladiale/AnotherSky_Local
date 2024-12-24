@@ -1,6 +1,7 @@
 type AppOptionType = {
   loadingAnime: boolean;
   parallax: boolean;
+  rotateYIsRightCLick: boolean;
 
   lastingAnime: {
     cg: boolean;
@@ -18,6 +19,7 @@ type AppOptionType = {
 const appOptionInit: AppOptionType = {
   loadingAnime: true,
   parallax: true,
+  rotateYIsRightCLick: false,
 
   lastingAnime: {
     cg: true,

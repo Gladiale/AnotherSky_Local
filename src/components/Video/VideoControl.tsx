@@ -1,15 +1,13 @@
 import styles from "./Video.module.css";
-import { GiCampfire, GiCyberEye } from "react-icons/gi";
+import { GiCyberEye } from "react-icons/gi";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import IconSpecial from "../Common/IconSpecial";
 
 type PropsType = {
-  isLocked: boolean;
   setHasControl: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsLocked: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const VideoControl = ({ isLocked, setHasControl, setIsLocked }: PropsType) => {
+const VideoControl = ({ setHasControl }: PropsType) => {
   const { appOption } = useAppOption();
 
   const changeControl = (e: React.MouseEvent) => {
@@ -21,13 +19,8 @@ const VideoControl = ({ isLocked, setHasControl, setIsLocked }: PropsType) => {
     <div className={styles["control-box"]}>
       <IconSpecial
         effect={appOption.dropShadow.video ? false : appOption.dropShadow.icon}
-        children={isLocked ? <GiCampfire /> : <GiCyberEye />}
+        children={<GiCyberEye />}
         onClick={changeControl}
-        onContextMenu={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setIsLocked((prev) => !prev);
-        }}
       />
     </div>
   );

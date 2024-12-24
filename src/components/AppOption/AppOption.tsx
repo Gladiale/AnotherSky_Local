@@ -9,9 +9,13 @@ import CheckBox from "../Common/CheckBox";
 import icon01 from "../../assets/icon/icon-01.png";
 import icon02 from "../../assets/icon/icon-02.png";
 
-const optionConfig: { target: "loadingAnime" | "parallax"; text: string }[] = [
+const optionConfig: {
+  target: "loadingAnime" | "parallax" | "rotateYIsRightCLick";
+  text: string;
+}[] = [
   { target: "loadingAnime", text: "Loading動画" },
   { target: "parallax", text: "Parallax効果" },
+  { target: "rotateYIsRightCLick", text: "右クリックをRotateYに変更" },
 ];
 
 const AppOption = () => {
@@ -41,18 +45,20 @@ const AppOption = () => {
         className={styles["option-panel"]}
         style={{ right: showPanel ? "0" : "calc(-100dvh / 3)" }}
       >
-        {optionConfig.map((option, index) => (
-          <label
-            key={index}
-            onClick={() => appOptionDispatch({ type: "basic", payload: option.target })}
-          >
-            <GiHollowCat
-              className={`${styles["icon"]} 
+        <div className={styles["control-box-1st"]}>
+          {optionConfig.map((option, index) => (
+            <label
+              key={index}
+              onClick={() => appOptionDispatch({ type: "basic", payload: option.target })}
+            >
+              <GiHollowCat
+                className={`${styles["icon"]} 
             ${appOption[option.target] && styles["checked"]}`}
-            />
-            <p>{option.text}</p>
-          </label>
-        ))}
+              />
+              <p>{option.text}</p>
+            </label>
+          ))}
+        </div>
 
         <div className={styles["control-box"]}>
           <div className={styles["item-left"]}>
