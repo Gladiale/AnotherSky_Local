@@ -12,7 +12,7 @@ import Loading from "../Loading/Loading";
 const EffectImage = () => {
   const { urlConfig } = useUrlConfig();
   const { effectState } = useEffectState();
-  const { rotateYState } = useRotateY();
+  const { rotateYState, rotateYDispatch } = useRotateY();
   const { mediaState } = useMediaState();
 
   const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaDirect } =
@@ -32,6 +32,14 @@ const EffectImage = () => {
     handleTouchStart(e);
     if (mediaState.touchMode !== "closed") {
       setIsTouched(true);
+    }
+  };
+
+  const handleContextMenu = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (mediaState.effect.isEditMode) {
+      e.preventDefault();
+      e.stopPropagation();
+      rotateYDispatch({ type: "cg", payload: { isEffect: true } });
     }
   };
 
@@ -61,9 +69,11 @@ const EffectImage = () => {
       style={{
         width: imgWidth,
         height: divHeight,
-        scale: String(mediaState["effect"].scale),
-        transform: `translate(${mediaState["effect"].position.x}px, ${mediaState["effect"].position.y}px)`,
         mixBlendMode: effectState.image.mixMode,
+        transform: `
+        scale(${String(mediaState["effect"].scale)})
+        translate(${mediaState["effect"].position.x}px,
+        ${mediaState["effect"].position.y}px)`,
       }}
     >
       <img
@@ -74,15 +84,15 @@ const EffectImage = () => {
           objectFit: effectState.image.size,
           width: imgWidth,
           height: imgHeight,
-          transform: rotateYState.effect
-            ? `rotateY(180deg) rotate(${mediaState["effect"].deg}deg)`
-            : `rotate(${mediaState["effect"].deg}deg)`,
+          transform: `rotate(${mediaState["effect"].deg}deg)
+          rotateY(${rotateYState.effect ? 180 : 0}deg)`,
           display: loadStatus === "success" ? undefined : "none",
         }}
         onClick={changeMediaDeg}
+        onWheel={changeMediaScale}
         onMouseDown={triggerEditMode}
         onMouseMove={moveMediaDirect}
-        onWheel={changeMediaScale}
+        onContextMenu={handleContextMenu}
         onTouchStart={touchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={() => setIsTouched(false)}
