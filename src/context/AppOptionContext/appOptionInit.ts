@@ -27,8 +27,8 @@ const appOptionInit: AppOptionType = {
   },
 
   dropShadow: {
-    cg: true,
-    video: true,
+    cg: false,
+    video: false,
     icon: true,
     character: false,
   },
