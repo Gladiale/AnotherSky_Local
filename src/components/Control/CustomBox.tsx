@@ -11,14 +11,14 @@ type PropsType = {
 const CustomBox = ({ className, style }: PropsType) => {
   const { scene } = useScene();
 
-  return scene === "cg" ? (
-    <div style={style} className={`${styles["custom-box"]} ${styles[className]}`}>
-      {/* 違うシーンに応じて中身変更 */}
-      <ShowFlipBook />
-      <ToHome />
-    </div>
-  ) : (
-    <></>
+  return (
+    (scene === "cg" || scene === "video") && (
+      <div style={style} className={`${styles["custom-box"]} ${styles[className]}`}>
+        {/* 違うシーンに応じて中身変更 */}
+        <ShowFlipBook />
+        <ToHome />
+      </div>
+    )
   );
 };
 
