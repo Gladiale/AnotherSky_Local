@@ -67,12 +67,7 @@ const EffectBox = () => {
   };
 
   return (
-    <div
-      className={styles["effect-box"]}
-      style={{
-        ["--translateY" as any]: partsActive ? "-64%" : "-60%",
-      }}
-    >
+    <div className={`${styles["effect-box"]} ${partsActive && styles["parts-2nd"]}`}>
       <div
         className={styles["inner-icon"]}
         onClick={() => setPartsActive((prev) => !prev)}

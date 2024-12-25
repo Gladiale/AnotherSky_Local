@@ -20,7 +20,10 @@
   transition: 0.5s;
 
   scale: 0;
-  transform: translateY(var(--translateY));
+  transform: translateY(60%);
+}
+.effect-box.parts-2nd {
+  transform: translateY(64%);
 }
 
 .effect-container:hover .effect-box {
@@ -100,7 +103,10 @@
 
 @media (max-width: 768px) {
   .effect-box {
-    transform: translateY(-10%) translateX(-65%);
+    transform: translateY(-25%) translateX(-65%);
+  }
+  .effect-box.parts-2nd {
+    transform: translateY(-15%) translateX(-65%);
   }
 }
 
