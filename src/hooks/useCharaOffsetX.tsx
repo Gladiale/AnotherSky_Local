@@ -22,13 +22,18 @@ const useCharaOffsetX = () => {
 
   useEffect(() => {
     if (mediaActive.doublePage) {
-      return contentWidth > window.innerWidth
-        ? setOffsetX((contentWidth - window.innerWidth) / 2 - offsetLimit)
+      const offsetToSide = (contentWidth - window.innerWidth) / 2;
+      const haveSpace: boolean = contentWidth - offsetToSide + offsetLimit > contentWidth;
+      return offsetToSide > 0 && !haveSpace
+        ? setOffsetX(offsetToSide - offsetLimit)
         : setOffsetX(0);
     }
     if (effectState.mirror) {
-      const offset = contentWidth - window.innerWidth / 2;
-      return offset > 0 ? setOffsetX(offset - offsetLimit) : setOffsetX(0);
+      const offsetToSide = contentWidth - window.innerWidth / 2;
+      const haveSpace: boolean = contentWidth - offsetToSide + offsetLimit > contentWidth;
+      return offsetToSide > 0 && !haveSpace
+        ? setOffsetX(offsetToSide - offsetLimit)
+        : setOffsetX(0);
     }
     setOffsetX(0);
   }, [contentWidth, mediaActive.doublePage, effectState.mirror]);
