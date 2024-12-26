@@ -1,5 +1,7 @@
 import styles from "./Control.module.css";
 import { useEffect, useState } from "react";
+import { useScene } from "../../context/SceneContext";
+import { useScreenMode } from "../../context/ScreenContext";
 import { useHover } from "../../context/HoverContext";
 import { useWindowState } from "../../hooks/useWindowState";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
@@ -27,41 +29,59 @@ import CustomBox from "./CustomBox";
 import Unknown from "../ControlIcon/Unknown";
 
 const Control = () => {
-  const { hoverDispatch } = useHover();
+  const { scene } = useScene();
+  const { screenMode } = useScreenMode();
   const { appOption } = useAppOption();
+  const { hoverDispatch } = useHover();
   const { isMobileSize } = useWindowState();
-  const [deskIconState, setDeskIconState] = useState({ deskBox: true, desk1st: true });
-  const [isMobile1stHidden, setIsMobile1stHidden] = useState<boolean>(false);
+  const [deskBoxState, setDeskBoxState] = useState({ box: true, item1st: true });
+  const [mobileBoxState, setMobileBoxState] = useState({ box: true, item1st: true });
 
   const handleIconStorage = () => {
-    setDeskIconState((prev) => ({ ...prev, deskBox: !prev["deskBox"] }));
+    setDeskBoxState((prev) => ({ ...prev, box: !prev["box"] }));
   };
 
   const handleIconDesk = () => {
-    setDeskIconState((prev) => ({ ...prev, desk1st: !prev["desk1st"] }));
+    setDeskBoxState((prev) => ({ ...prev, item1st: !prev["item1st"] }));
   };
 
   const handleIconMobile = () => {
-    setIsMobile1stHidden((prev) => !prev);
+    setMobileBoxState((prev) => ({ ...prev, item1st: !prev["item1st"] }));
   };
 
   useEffect(() => {
     isMobileSize
-      ? setDeskIconState((prev) => ({ ...prev, desk1st: false }))
-      : setDeskIconState((prev) => ({ ...prev, deskBox: true, desk1st: true }));
+      ? setDeskBoxState((prev) => ({ ...prev, box: true, item1st: false }))
+      : setDeskBoxState((prev) => ({ ...prev, box: true, item1st: true }));
   }, [isMobileSize]);
+
+  useEffect(() => {
+    if (isMobileSize && scene === "directoryMode" && screenMode === "cgMode") {
+      setMobileBoxState((prev) => ({ ...prev, box: false }));
+    }
+
+    if (!isMobileSize && scene === "directoryMode") {
+      setDeskBoxState((prev) => ({ ...prev, box: false }));
+      setMobileBoxState((prev) => ({ ...prev, box: false }));
+    }
+
+    if (scene !== "directoryMode") {
+      setDeskBoxState((prev) => ({ ...prev, box: true }));
+      setMobileBoxState((prev) => ({ ...prev, box: true }));
+    }
+  }, [scene]);
 
   return (
     <>
       {/* desk icon */}
       <div
-        className={`${styles["desk-box"]} ${appOption.dropShadow.icon && styles.shadow}
-        ${!deskIconState.deskBox && styles.hidden}`}
+        className={`${styles["desk-box"]} ${!deskBoxState.box && styles.hidden}
+        ${appOption.dropShadow.icon && styles.shadow}`}
         onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
         onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
       >
         <div
-          className={`${styles["desk-1st"]} ${!deskIconState.desk1st && styles.hidden}`}
+          className={`${styles["desk-1st"]} ${!deskBoxState.item1st && styles.hidden}`}
         >
           <ToFirst />
           <ToPrev />
@@ -70,9 +90,7 @@ const Control = () => {
           <ToLast />
         </div>
 
-        <div
-          className={`${styles["desk-2nd"]} ${deskIconState.desk1st && styles.hidden}`}
-        >
+        <div className={`${styles["desk-2nd"]} ${deskBoxState.item1st && styles.hidden}`}>
           <ScreenControl />
           <MirrorEffectControl />
           <Unknown />
@@ -90,52 +108,42 @@ const Control = () => {
           <ImageEffectControl />
         </div>
 
-        {/* deskのCustomBox */}
         <CustomBox
           className={"desk"}
-          style={deskIconState.desk1st ? {} : { opacity: 0, scale: 0 }}
+          style={deskBoxState.item1st ? undefined : { opacity: 0, scale: 0 }}
         />
       </div>
 
-      {/* mobileのCustomBox */}
-      <CustomBox
-        className={"mobile"}
-        style={
-          deskIconState.deskBox && !isMobile1stHidden
-            ? {
-                filter: appOption.dropShadow.icon
-                  ? "var(--drop-shadow-hover)"
-                  : undefined,
-              }
-            : { opacity: 0, scale: 0 }
-        }
-      />
-
       {/* mobile icon */}
       <div
-        className={`${styles["mobile-box-1st"]}
-        ${appOption.dropShadow.icon && styles.shadow}
-        ${isMobile1stHidden && styles.hidden}`}
+        className={`${styles["mobile-box"]} ${!mobileBoxState.box && styles.hidden}
+        ${appOption.dropShadow.icon && styles.shadow}`}
         onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
         onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
       >
-        <ToFirst active="onlyMobile" />
-        <ToPrev active="onlyMobile" />
-        <IconListTriggerMobile boxKey="1st" handleListTrigger={handleIconMobile} />
-        <ToNext active="onlyMobile" />
-        <ToLast active="onlyMobile" />
-      </div>
+        <div
+          className={`${styles["mobile-1st"]} 
+          ${!mobileBoxState.item1st && styles.hidden}`}
+        >
+          <ToFirst active="onlyMobile" />
+          <ToPrev active="onlyMobile" />
+          <IconListTriggerMobile boxKey="1st" handleListTrigger={handleIconMobile} />
+          <ToNext active="onlyMobile" />
+          <ToLast active="onlyMobile" />
+        </div>
 
-      <div
-        className={`${styles["mobile-box-2nd"]}
-        ${appOption.dropShadow.icon && styles.shadow}
-        ${!isMobile1stHidden && styles.hidden}`}
-        onMouseEnter={() => hoverDispatch({ type: "icon", payload: "enter" })}
-        onMouseLeave={() => hoverDispatch({ type: "icon", payload: "leave" })}
-      >
-        <MobilePositionControl />
-        <IconListTriggerMobile boxKey="2nd" handleListTrigger={handleIconMobile} />
-        <MobileScaleControl />
+        <div
+          className={`${styles["mobile-2nd"]} ${mobileBoxState.item1st && styles.hidden}`}
+        >
+          <MobilePositionControl />
+          <IconListTriggerMobile boxKey="2nd" handleListTrigger={handleIconMobile} />
+          <MobileScaleControl />
+        </div>
+
+        <CustomBox
+          className={"mobile"}
+          style={mobileBoxState.item1st ? undefined : { opacity: 0, scale: 0 }}
+        />
       </div>
 
       {/* 単独 icon */}

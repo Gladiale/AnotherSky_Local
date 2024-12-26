@@ -5,7 +5,7 @@ import ShowFlipBook from "../ControlIcon/ShowFlipBook";
 
 type PropsType = {
   className: "desk" | "mobile";
-  style: React.CSSProperties;
+  style: React.CSSProperties | undefined;
 };
 
 const CustomBox = ({ className, style }: PropsType) => {

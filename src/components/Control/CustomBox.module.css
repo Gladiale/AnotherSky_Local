@@ -12,11 +12,9 @@
 }
 
 .custom-box.mobile {
-  position: fixed;
-  bottom: 0.3rem;
+  position: absolute;
   gap: 20rem;
   display: none;
-  z-index: 99;
   transition: 0.8s;
 }
 
