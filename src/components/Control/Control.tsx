@@ -69,7 +69,7 @@ const Control = () => {
       setDeskBoxState((prev) => ({ ...prev, box: true }));
       setMobileBoxState((prev) => ({ ...prev, box: true }));
     }
-  }, [scene]);
+  }, [scene, screenMode]);
 
   return (
     <>
