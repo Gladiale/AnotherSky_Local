@@ -31,6 +31,11 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
     target: "character",
   });
 
+  const isMixMode =
+    effectState.cgMix &&
+    effectState.target.character &&
+    effectState.cgMix.mixMode !== "normal";
+
   const handleVocal = (e: React.MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
     // ランダムなボイスを取得
@@ -80,7 +85,7 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
 
       <Loading kind="3rd" loadStatus={loadStatus} />
 
-      {effectState.cgMix && effectState.target.character && (
+      {isMixMode && (
         <img
           src={urlConfig.character}
           className={`${styles["character-img"]} ${styles.texture}`}

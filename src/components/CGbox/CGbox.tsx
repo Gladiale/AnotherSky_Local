@@ -31,6 +31,9 @@ const CGbox = () => {
   const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaReverse } =
     useMediaControl({ initialScale: 1.5, target: "image" });
 
+  const isMixMode =
+    effectState.cgMix && effectState.target.cg && effectState.cgMix.mixMode !== "normal";
+
   const shakeCondition = {
     low: effectState.shake.active && effectState.shake.heavy === "low",
     normal: effectState.shake.active && effectState.shake.heavy === "normal",
@@ -92,7 +95,7 @@ const CGbox = () => {
         onTouchMove={handleTouchMove}
       >
         <CG className="cg-img" />
-        {effectState.cgMix.active && effectState.target.cg && (
+        {isMixMode && (
           <CG className="texture-img" mixBlendMode={effectState.cgMix.mixMode} />
         )}
         {effectState.image.active && <EffectImage />}
