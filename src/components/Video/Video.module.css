@@ -59,7 +59,7 @@
   /* videoの縦方向を中央寄せ */
   display: grid;
   place-items: center;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 @keyframes bounce_video {
