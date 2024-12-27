@@ -62,12 +62,12 @@ const Control = () => {
 
     if (!isMobileSize && scene === "directoryMode") {
       setDeskBoxState((prev) => ({ ...prev, box: false }));
-      setMobileBoxState((prev) => ({ ...prev, box: false }));
     }
 
     if (scene !== "directoryMode") {
-      setDeskBoxState((prev) => ({ ...prev, box: true }));
-      setMobileBoxState((prev) => ({ ...prev, box: true }));
+      isMobileSize
+        ? setMobileBoxState((prev) => ({ ...prev, box: true }))
+        : setDeskBoxState((prev) => ({ ...prev, box: true }));
     }
   }, [scene, screenMode]);
 
