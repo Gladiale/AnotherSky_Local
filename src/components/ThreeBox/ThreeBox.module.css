@@ -8,5 +8,8 @@
 .three-container .three-model {
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.2s;
 }
