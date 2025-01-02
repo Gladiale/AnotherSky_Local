@@ -1,7 +1,7 @@
 import styles from "./CustomBox.module.css";
 import { useScene } from "../../context/SceneContext";
 import ToHome from "../ControlIcon/ToHome";
-import ShowFlipBook from "../ControlIcon/ShowFlipBook";
+import OpenFlipBook from "../ControlIcon/OpenFlipBook";
 
 type PropsType = {
   className: "desk" | "mobile";
@@ -15,7 +15,7 @@ const CustomBox = ({ className, style }: PropsType) => {
     (scene === "cg" || scene === "video") && (
       <div style={style} className={`${styles["custom-box"]} ${styles[className]}`}>
         {/* 違うシーンに応じて中身変更 */}
-        <ShowFlipBook />
+        <OpenFlipBook />
         <ToHome />
       </div>
     )

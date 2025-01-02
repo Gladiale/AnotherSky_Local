@@ -3,7 +3,7 @@ import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext"
 import { GiBlackBook } from "react-icons/gi";
 import IconDefault from "../Common/IconDefault";
 
-const ShowFlipBook = () => {
+const OpenFlipBook = () => {
   const { setMediaActive } = useMediaActive();
   const { rotateYDispatch } = useRotateY();
 
@@ -19,4 +19,4 @@ const ShowFlipBook = () => {
   );
 };
 
-export default ShowFlipBook;
+export default OpenFlipBook;

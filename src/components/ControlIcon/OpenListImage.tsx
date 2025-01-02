@@ -1,4 +1,4 @@
-import styles from "./ShowListImage.module.css";
+import styles from "./OpenListImage.module.css";
 import { GiNewBorn } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
 import {
@@ -8,7 +8,7 @@ import {
 } from "../../context/ImageListState";
 import IconDefault from "../Common/IconDefault";
 
-const ShowListImage = () => {
+const OpenListImage = () => {
   const { listState, setListState, listSubState, setListSubState } = useImageList();
   const { scene, setScene } = useScene();
 
@@ -90,4 +90,4 @@ const ShowListImage = () => {
   );
 };
 
-export default ShowListImage;
+export default OpenListImage;

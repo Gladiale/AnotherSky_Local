@@ -1,4 +1,4 @@
-import styles from "./ShowDirectory.module.css";
+import styles from "./OpenDirectory.module.css";
 import { useState } from "react";
 import { GiAtom } from "react-icons/gi";
 import {
@@ -10,7 +10,7 @@ import {
 import IconDefault from "../Common/IconDefault";
 import RadioBox from "../Common/RadioBox";
 
-const ShowDirectory = () => {
+const OpenDirectory = () => {
   const { scene, setScene } = useScene();
   const { directoryTarget, setDirectoryTarget, setPageIndex } = useDirectoryInfo();
 
@@ -60,4 +60,4 @@ const ShowDirectory = () => {
   );
 };
 
-export default ShowDirectory;
+export default OpenDirectory;
