@@ -1,0 +1,1 @@
+export const MmdDataObj = {"model":["XB2-Mythra/Mythra (Dark Costume)_1.00.pmx","XB2-Mythra/Mythra (Pyra Costume)_1.00.pmx","XB2-Mythra/Mythra_1.00.pmx"],"motion":["IVE - ELEVEN - WolfMuzzle PART01.vmd","galaxias.vmd"],"pose":["T-POSE.vpd"],"texture":["ldem_3_8bit.jpg"]}
