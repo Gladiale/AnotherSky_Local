@@ -3,6 +3,7 @@ import { ScreenProvider } from "./context/ScreenContext";
 import { AppOptionProvider } from "./context/AppOptionContext/AppOptionContext";
 import { MediaInfoProvider } from "./context/MediaInfoContext/MediaInfoContext";
 import { EffectStateProvider } from "./context/EffectStateContext/EffectStateContext";
+import { ThreeProvider } from "./context/ThreeContext/ThreeContext";
 import Container from "./components/Container/Container";
 import AppOption from "./components/AppOption/AppOption";
 
@@ -21,10 +22,12 @@ function App() {
       <ScreenProvider>
         <EffectStateProvider>
           <MediaInfoProvider>
-            <AppOptionProvider>
-              <Container />
-              <AppOption />
-            </AppOptionProvider>
+            <ThreeProvider>
+              <AppOptionProvider>
+                <Container />
+                <AppOption />
+              </AppOptionProvider>
+            </ThreeProvider>
           </MediaInfoProvider>
         </EffectStateProvider>
       </ScreenProvider>

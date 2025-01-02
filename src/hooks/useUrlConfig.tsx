@@ -1,6 +1,8 @@
 import { useMediaInfo } from "../context/MediaInfoContext/MediaInfoContext";
+import { useThreeInfo } from "../context/ThreeContext/ThreeContext";
 
 const useUrlConfig = () => {
+  const { threeInfo } = useThreeInfo();
   const { mediaInfo } = useMediaInfo();
 
   const urlConfig = {
@@ -10,6 +12,11 @@ const useUrlConfig = () => {
     video: `/video/${mediaInfo.folder.video[1]}/${mediaInfo.file.video[1]}`,
     effect: `/effect/${mediaInfo.folder.effect[1]}/${mediaInfo.file.effect[1]}`,
     voice: `/voice/${mediaInfo.folder.voice[1]}/${mediaInfo.file.voice[1]}`,
+    mmd: {
+      model: `/mmd/model/${threeInfo.model[1]}`,
+      motion: `/mmd/motion/${threeInfo.motion[1]}`,
+      pose: `/mmd/pose/${threeInfo.pose[1]}`,
+    },
   };
 
   return { urlConfig };

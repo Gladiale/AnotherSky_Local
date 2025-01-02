@@ -1,0 +1,42 @@
+.iconSmall {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  font-size: 0.9rem;
+  border: 2px solid transparent;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  color: #ff57b6;
+  background-color: #37fffc;
+}
+.iconSmall:hover {
+  color: #e57dff;
+  background-color: #89ffd4;
+  animation: 0.2s linear 0s flashAni;
+}
+
+.iconSmall.theme-2nd {
+  color: #d258c4;
+  background-color: #e4adf0;
+}
+.iconSmall.theme-2nd:hover {
+  color: #bc59d5;
+  background-color: #89ffd4;
+}
+
+@keyframes flashAni {
+  0%,
+  35%,
+  50%,
+  85% {
+    opacity: 0;
+  }
+  20%,
+  65%,
+  100% {
+    opacity: 1;
+  }
+}

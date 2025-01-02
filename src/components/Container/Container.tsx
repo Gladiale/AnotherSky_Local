@@ -10,15 +10,20 @@ import { useScreenMode } from "../../context/ScreenContext";
 import { RotateYProvider } from "../../context/RotateYContext";
 import { ImageListProvider } from "../../context/ImageListState";
 import { MediaStateProvider } from "../../context/MediaStateContext";
+import { useThreeInfo } from "../../context/ThreeContext/ThreeContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 
 const Container = () => {
   const { screenMode } = useScreenMode();
+  const { threeInfo, threeInfoDispatch } = useThreeInfo();
   const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
 
   useLayoutEffect(() => {
     if (mediaInfo.file.character[1] === "") {
       mediaInfoDispatch({ type: "random" });
+    }
+    if (threeInfo.model[1] === "") {
+      threeInfoDispatch({ type: "random", payload: "all" });
     }
   }, []);
 

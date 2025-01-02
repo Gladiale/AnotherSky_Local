@@ -12,7 +12,7 @@ type PropsType = {
   checkBoxList: {
     text: string;
     state: boolean;
-    onChange: () => void;
+    onChange: (() => void) | ((e: React.ChangeEvent<HTMLInputElement>) => void);
   }[];
   responsive?: boolean;
   containerStyle?: React.CSSProperties;

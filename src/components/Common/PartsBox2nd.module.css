@@ -1,0 +1,57 @@
+.parts-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1rem;
+  user-select: none;
+  gap: 0.1rem;
+}
+
+.parts-box .title {
+  color: #f9a1ff;
+  font-size: 1rem;
+}
+
+.parts-box .control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parts-box .control p {
+  font-size: 1.2rem;
+  line-height: 1;
+  margin: 0px 0.5rem;
+  padding: 1px 4px;
+  width: 20rem;
+  text-align: center;
+  color: #aa008a;
+  background-color: #ffb7f8;
+  border: 1px dashed #ec60ff;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.parts-box .control p.ani:hover {
+  cursor: pointer;
+  color: #8300a7;
+  background-color: #f6afff;
+  border: 1px dashed #971bafd8;
+  animation: 0.2s linear 0s flashAni;
+}
+
+@keyframes flashAni {
+  0%,
+  35%,
+  50%,
+  85% {
+    opacity: 0;
+  }
+  20%,
+  65%,
+  100% {
+    opacity: 1;
+  }
+}

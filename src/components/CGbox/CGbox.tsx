@@ -2,6 +2,7 @@ import styles from "./CGbox.module.css";
 import { useRotateY } from "../../context/RotateYContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useMediaState } from "../../context/MediaStateContext";
+import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useFilterData } from "../../hooks/useFilterData";
@@ -16,14 +17,16 @@ import { useGSAP } from "@gsap/react";
 import CG from "./CG";
 import ControlParts from "./ControlParts";
 import EffectImage from "../EffectImage/EffectImage";
+import ThreeBox from "../ThreeBox/ThreeBox";
 
 const CGbox = () => {
   // コンテキスト
-  const { rotateYState, rotateYDispatch } = useRotateY();
-  const { screenMode } = useScreenMode();
   const { appOption } = useAppOption();
+  const { screenMode } = useScreenMode();
   const { mediaState } = useMediaState();
   const { effectState } = useEffectState();
+  const { threeState } = useThreeState();
+  const { rotateYState, rotateYDispatch } = useRotateY();
   // カスタムフック
   const { filterData } = useFilterData("cg");
   const { resetScene, changeMedia } = useMouseControl("cg");
@@ -98,6 +101,7 @@ const CGbox = () => {
         {isMixMode && (
           <CG className="texture-img" mixBlendMode={effectState.cgMix.mixMode} />
         )}
+        {threeState.active.threeD && <ThreeBox />}
         {effectState.image.active && <EffectImage />}
       </div>
 

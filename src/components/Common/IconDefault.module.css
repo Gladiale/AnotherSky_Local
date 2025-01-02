@@ -35,29 +35,12 @@
   animation: change-color-2nd 1s linear infinite alternate;
 }
 
+.iconDefault.anime-color-3rd {
+  animation: change-color-3rd 1s linear infinite alternate;
+}
+
 .iconDefault.anime-scale {
   animation: change-scale 1s linear infinite alternate;
-}
-
-.iconSmall {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-  font-size: 0.9rem;
-  border: 2px solid transparent;
-  margin-left: 0.3rem;
-  margin-right: 0.3rem;
-  border-radius: 50%;
-  color: #ff57b6;
-  background-color: #37fffc;
-}
-
-.iconSmall:hover {
-  color: #e57dff;
-  background-color: #89ffd4;
-  animation: 0.2s linear 0s flashAni;
 }
 
 .iconDefault.onlyMobile {
@@ -106,6 +89,15 @@
   }
   100% {
     color: #5aff8c;
+  }
+}
+
+@keyframes change-color-3rd {
+  0% {
+    color: #63dcfd;
+  }
+  100% {
+    color: #82ffd1;
   }
 }
 

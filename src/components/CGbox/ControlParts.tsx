@@ -1,20 +1,22 @@
 import styles from "./CGbox.module.css";
-import { GiCrenelCrown } from "react-icons/gi";
+import { GiCrenelCrown, GiSharpCrown } from "react-icons/gi";
 import { useScene } from "../../context/SceneContext";
+import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
-import { useInformation } from "../../hooks/useInformation";
 import {
   useMediaInfo,
   useMediaActive,
 } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useInformation } from "../../hooks/useInformation";
 import IconSpecial from "../Common/IconSpecial";
 
 const ControlParts = () => {
   const { setScene } = useScene();
   const { appOption } = useAppOption();
-  const { mediaInfoDispatch } = useMediaInfo();
   const { infoActive } = useInformation();
+  const { mediaInfoDispatch } = useMediaInfo();
   const { mediaActive, setMediaActive } = useMediaActive();
+  const { threeState, threeStateDispatch } = useThreeState();
 
   const changeContent = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -33,8 +35,12 @@ const ControlParts = () => {
     >
       <IconSpecial
         effect={appOption.dropShadow.cg ? false : appOption.dropShadow.icon}
-        children={<GiCrenelCrown />}
-        onClick={changeContent}
+        children={threeState.active.threeD ? <GiSharpCrown /> : <GiCrenelCrown />}
+        onClick={
+          threeState.active.threeD
+            ? () => threeStateDispatch({ type: "active", payload: "controlPanel" })
+            : changeContent
+        }
       />
     </div>
   );

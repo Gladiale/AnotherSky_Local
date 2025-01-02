@@ -3,6 +3,7 @@ import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useTransform3d } from "../../hooks/useTransform3d";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
+import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
 import { type MixBlendModeType } from "../../context/EffectStateContext/effectStateInit";
@@ -16,6 +17,7 @@ type PropsType = {
 const CG = ({ className, mixBlendMode }: PropsType) => {
   // コンテキスト
   const { appOption } = useAppOption();
+  const { threeState } = useThreeState();
   const { mediaActive } = useMediaActive();
   // カスタムフック
   const { urlConfig } = useUrlConfig();
@@ -23,7 +25,7 @@ const CG = ({ className, mixBlendMode }: PropsType) => {
   const { transform3d, changeTransform3d, resetTransform3d } = useTransform3d();
 
   const imgUrl = mediaActive.anotherCharacter ? urlConfig.anotherCharacter : urlConfig.cg;
-  const { loadStatus, showTarget, showError } = useLoading({
+  const { loadStatus, showTarget } = useLoading({
     trigger: [mediaActive.anotherCharacter, imgUrl],
     target: "cg",
   });
@@ -42,9 +44,10 @@ const CG = ({ className, mixBlendMode }: PropsType) => {
           display: loadStatus === "success" ? undefined : "none",
           transform: appOption.parallax ? transform3d : undefined,
           mixBlendMode: mixBlendMode,
+          opacity:
+            threeState.active.threeD && !threeState.active.background ? 0 : undefined,
         }}
         onLoad={showTarget}
-        onStalled={showError}
         onMouseMove={appOption.parallax ? changeTransform3d : undefined}
         onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
       />
