@@ -17,8 +17,9 @@ import MirrorEffectControl from "../ControlIcon/MirrorEffectControl";
 import AutoNext from "../ControlIcon/AutoNext";
 import ImageEffectControl from "../ControlIcon/ImageEffectControl";
 import RandomControl from "../ControlIcon/RandomControl";
-import ShowDirectory from "../ControlIcon/ShowDirectory";
-import ShowListImage from "../ControlIcon/ShowListImage";
+import OpenThreeD from "../ControlIcon/OpenThreeD";
+import OpenListImage from "../ControlIcon/OpenListImage";
+import OpenDirectory from "../ControlIcon/OpenDirectory";
 import RotateYControl from "../ControlIcon/RotateYControl";
 import MobilePositionControl from "../ControlIcon/MobilePositionControl";
 import MobileScaleControl from "../ControlIcon/MobileScaleControl";
@@ -26,7 +27,6 @@ import IconStorage from "../ControlIcon/IconStorage";
 import IconListTriggerMobile from "../ControlIcon/IconListTriggerMobile";
 import IconListTriggerDesk from "../ControlIcon/IconListTriggerDesk";
 import CustomBox from "./CustomBox";
-import Unknown from "../ControlIcon/Unknown";
 
 const Control = () => {
   const { scene } = useScene();
@@ -93,11 +93,11 @@ const Control = () => {
         <div className={`${styles["desk-2nd"]} ${deskBoxState.item1st && styles.hidden}`}>
           <ScreenControl />
           <MirrorEffectControl />
-          <Unknown />
+          <OpenThreeD />
           <VoiceControl />
-          <ShowListImage />
+          <OpenListImage />
           {isMobileSize ? (
-            <ShowDirectory />
+            <OpenDirectory />
           ) : (
             <IconListTriggerDesk boxKey="2nd" handleListTrigger={handleIconDesk} />
           )}
@@ -156,7 +156,7 @@ const Control = () => {
         {isMobileSize ? (
           <IconStorage handleIconStorage={handleIconStorage} />
         ) : (
-          <ShowDirectory />
+          <OpenDirectory />
         )}
       </div>
     </>
