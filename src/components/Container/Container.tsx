@@ -3,18 +3,20 @@ import { useLayoutEffect } from "react";
 
 import Content from "../Content/Content";
 import Control from "../Control/Control";
+import ThreeControl from "../ThreeBox/ThreeControl";
 import Information from "../Information/Information";
 import { HoverProvider } from "../../context/HoverContext";
 import { FilterProvider } from "../../context/FilterContext";
-import { useScreenMode } from "../../context/ScreenContext";
 import { RotateYProvider } from "../../context/RotateYContext";
 import { ImageListProvider } from "../../context/ImageListState";
 import { MediaStateProvider } from "../../context/MediaStateContext";
-import { useThreeInfo } from "../../context/ThreeContext/ThreeContext";
+import { useScreenMode } from "../../context/ScreenContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+import { useThreeInfo, useThreeState } from "../../context/ThreeContext/ThreeContext";
 
 const Container = () => {
   const { screenMode } = useScreenMode();
+  const { threeState } = useThreeState();
   const { threeInfo, threeInfoDispatch } = useThreeInfo();
   const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
 
@@ -39,6 +41,7 @@ const Container = () => {
             <ImageListProvider>
               <MediaStateProvider>
                 <Content />
+                {threeState.active.threeD && <ThreeControl />}
                 <Control />
                 <Information />
               </MediaStateProvider>

@@ -1,4 +1,5 @@
 import { changeActive } from "../funcs/threeState/changeActive";
+import { changeMotionSpeed } from "../funcs/threeState/changeMotionSpeed";
 import { type ThreeStateType } from "../threeInit";
 
 type ActiveActionType = {
@@ -11,7 +12,12 @@ type ActionModeType = {
   payload: "motion" | "pose" | "none";
 };
 
-type ThreeStateActionType = ActiveActionType | ActionModeType;
+type MotionSpeedType = {
+  type: "motionSpeed";
+  payload: "prev" | "next" | "reset";
+};
+
+type ThreeStateActionType = ActiveActionType | ActionModeType | MotionSpeedType;
 
 function threeStateReducer(state: ThreeStateType, action: ThreeStateActionType) {
   switch (action.type) {
@@ -22,6 +28,8 @@ function threeStateReducer(state: ThreeStateType, action: ThreeStateActionType) 
         ...state,
         actionMode: action.payload,
       };
+    case "motionSpeed":
+      return changeMotionSpeed(state, action.payload);
     default:
       throw new Error("不明なActionです");
   }

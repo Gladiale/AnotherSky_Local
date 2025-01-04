@@ -1,10 +1,9 @@
 import styles from "./ThreeBox.module.css";
 import { useTransform3d } from "../../hooks/useTransform3d";
+import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 // components
 import Camera3D from "./Camera3D";
-import ThreeControl from "./ThreeControl";
-import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 
 const ThreeBox = () => {
   // コンテキスト
@@ -15,7 +14,10 @@ const ThreeBox = () => {
   return (
     <div
       className={styles["three-container"]}
+      style={{ transform: appOption.parallax ? transform3d : undefined }}
       onWheel={(e) => e.stopPropagation()}
+      onMouseMove={appOption.parallax ? changeTransform3d : undefined}
+      onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
       onClick={(e) => {
         !threeState.active.rotate && e.stopPropagation();
       }}
@@ -24,16 +26,7 @@ const ThreeBox = () => {
         e.stopPropagation();
       }}
     >
-      <div
-        className={styles["three-model"]}
-        style={{ transform: appOption.parallax ? transform3d : undefined }}
-        onMouseMove={appOption.parallax ? changeTransform3d : undefined}
-        onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
-      >
-        <Camera3D />
-      </div>
-
-      <ThreeControl />
+      <Camera3D />
     </div>
   );
 };

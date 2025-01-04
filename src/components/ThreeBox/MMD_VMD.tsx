@@ -25,7 +25,7 @@ const MMD_VMD = () => {
   const mesh = useLoader(MMDLoader, mmdUrl.model);
 
   useFrame(() => {
-    threeState.actionMode === "motion" && mmdHelper.update(0.03);
+    threeState.actionMode === "motion" && mmdHelper.update(threeState.motionSpeed);
   });
 
   useLayoutEffect(() => {

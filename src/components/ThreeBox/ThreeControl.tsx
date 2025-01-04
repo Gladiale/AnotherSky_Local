@@ -1,24 +1,21 @@
-import { useScreenMode } from "../../context/ScreenContext";
+import styles from "./ThreeControl.module.css";
+import { useScene } from "../../context/SceneContext";
 import { useThreeInfo, useThreeState } from "../../context/ThreeContext/ThreeContext";
-import { useWindowState } from "../../hooks/useWindowState";
+// components
 import CheckBox from "../Common/CheckBox";
+import PartsBox from "../Common/PartsBox";
 import PartsBox2nd from "../Common/PartsBox2nd";
 import RadioBox from "../Common/RadioBox";
-import styles from "./ThreeControl.module.css";
 
 const ThreeControl = () => {
-  const { screenMode } = useScreenMode();
-  const { isMobileSize } = useWindowState();
+  const { scene } = useScene();
   const { threeInfo, threeInfoDispatch } = useThreeInfo();
   const { threeState, threeStateDispatch } = useThreeState();
 
   return (
     <div
       className={`${styles["three-control"]} 
-      ${!threeState.active.controlPanel && styles.hidden}`}
-      style={{
-        paddingBottom: isMobileSize && screenMode === "cardMode" ? "0" : "2.4rem",
-      }}
+      ${(!threeState.active.controlPanel || scene !== "cg") && styles.hidden}`}
       onClick={(e) => e.stopPropagation()}
     >
       <PartsBox2nd
@@ -102,7 +99,7 @@ const ThreeControl = () => {
         <CheckBox
           kind="1st"
           fontSize={1.1}
-          checkBoxSize={0.9}
+          checkBoxSize={0.95}
           gap={{ outerGap: "2rem", innerGap: "0.2rem" }}
           containerStyle={{ lineHeight: "100%" }}
           checkBoxList={[
@@ -111,6 +108,21 @@ const ThreeControl = () => {
               state: threeState.active.rotate,
               onChange: () => threeStateDispatch({ type: "active", payload: "rotate" }),
             },
+          ]}
+        />
+        <PartsBox
+          message={`speed: ${threeState.motionSpeed}`}
+          onPrevClick={() => threeStateDispatch({ type: "motionSpeed", payload: "prev" })}
+          onNextClick={() => threeStateDispatch({ type: "motionSpeed", payload: "next" })}
+          onBoxClick={() => threeStateDispatch({ type: "motionSpeed", payload: "reset" })}
+        />
+        <CheckBox
+          kind="2nd"
+          fontSize={1.1}
+          checkBoxSize={0.95}
+          gap={{ outerGap: "2rem", innerGap: "0.2rem" }}
+          containerStyle={{ lineHeight: "100%" }}
+          checkBoxList={[
             {
               text: "背景",
               state: threeState.active.background,

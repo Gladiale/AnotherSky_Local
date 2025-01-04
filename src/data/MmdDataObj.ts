@@ -1,1 +1,1 @@
-export const MmdDataObj = {"model":null,"motion":null,"pose":null}
+export const MmdDataObj = {"model":null,"motion":[".gitkeep"],"pose":["T-POSE-削除不可.vpd"]}

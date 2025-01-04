@@ -3,11 +3,7 @@
   width: 100%;
   position: absolute;
   z-index: 99;
-}
 
-.three-container .three-model {
-  height: 100%;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

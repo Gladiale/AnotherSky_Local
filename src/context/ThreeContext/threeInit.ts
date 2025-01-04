@@ -14,6 +14,7 @@ type ThreeStateType = {
     controlPanel: boolean;
   };
   actionMode: "motion" | "pose" | "none";
+  motionSpeed: number;
 };
 
 const threeInfoInit: ThreeInfoType = {
@@ -26,10 +27,11 @@ const threeStateInit: ThreeStateType = {
   active: {
     threeD: false,
     rotate: false,
-    background: true,
+    background: false,
     controlPanel: false,
   },
   actionMode: "none",
+  motionSpeed: 0.03,
 };
 
 export { threeInfoInit, threeStateInit, type ThreeInfoType, type ThreeStateType };
