@@ -13,8 +13,12 @@ func CreateData(target string) map[string][]string {
 			fileList := GetMmdModelList(targetPath)
 			data[folder] = fileList
 		} else {
-			fileList := GetFileList(targetPath)
-			data[folder] = fileList
+			if IsRecursive(folder) {
+				GetRecursiveFileList(targetPath, folder, data)
+			} else {
+				fileList := GetFileList(targetPath)
+				data[folder] = fileList
+			}
 		}
 	}
 
