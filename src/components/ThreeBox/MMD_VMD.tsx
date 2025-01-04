@@ -33,13 +33,13 @@ const MMD_VMD = () => {
     const helper = new MMDAnimationHelper();
 
     // 毎回T-Poseに復元
-    loader.loadVPD(
-      threeState.actionMode === "pose" ? mmdUrl.pose : mmdUrl.tPose,
-      true,
-      (pose) => {
-        helper.pose(mesh, pose, { resetPose: true });
-      }
-    );
+    threeState.actionMode === "pose"
+      ? loader.loadVPD(mmdUrl.pose, true, (pose) => {
+          helper.pose(mesh, pose);
+        })
+      : loader.loadVPD(mmdUrl.tPose, true, (pose) => {
+          helper.pose(mesh, pose, { resetPose: true });
+        });
 
     // モーション
     loader.loadAnimation(mmdUrl.motion, mesh, (motion) => {

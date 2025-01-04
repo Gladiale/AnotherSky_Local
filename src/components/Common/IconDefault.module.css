@@ -94,10 +94,12 @@
 
 @keyframes change-color-3rd {
   0% {
-    color: #63dcfd;
+    color: #82ffd1;
+    scale: 0.9;
   }
   100% {
-    color: #82ffd1;
+    color: #63dcfd;
+    scale: 1.1;
   }
 }
 
