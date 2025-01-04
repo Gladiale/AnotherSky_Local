@@ -18,7 +18,7 @@ const MMD_VMD = () => {
     model: urlConfig.mmd.model,
     motion: urlConfig.mmd.motion,
     pose: urlConfig.mmd.pose,
-    tPose: "/mmd/pose/T-POSE.vpd",
+    tPose: "/mmd/pose/T-POSE-削除不可.vpd",
   };
 
   const [mmdHelper, setMmdHelper] = useState<MMDAnimationHelper>(null!);
