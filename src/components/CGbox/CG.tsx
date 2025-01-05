@@ -1,28 +1,24 @@
-import styles from "./CGbox.module.css";
+import styles from "./Transform3dBox.module.css";
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
-import { useTransform3d } from "../../hooks/useTransform3d";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useThreeState } from "../../context/ThreeContext/ThreeContext";
-import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
 import { type MixBlendModeType } from "../../context/EffectStateContext/effectStateInit";
 import Loading from "../Loading/Loading";
 
 type PropsType = {
-  className: "cg-img" | "texture-img";
+  className?: "texture-img";
   mixBlendMode?: MixBlendModeType;
 };
 
 const CG = ({ className, mixBlendMode }: PropsType) => {
   // コンテキスト
-  const { appOption } = useAppOption();
   const { threeState } = useThreeState();
   const { mediaActive } = useMediaActive();
   // カスタムフック
   const { urlConfig } = useUrlConfig();
   const { mediaSizeData } = useMediaSizeData();
-  const { transform3d, changeTransform3d, resetTransform3d } = useTransform3d();
 
   const imgUrl = mediaActive.anotherCharacter ? urlConfig.anotherCharacter : urlConfig.cg;
   const { loadStatus, showTarget } = useLoading({
@@ -33,28 +29,26 @@ const CG = ({ className, mixBlendMode }: PropsType) => {
   return (
     <>
       <img
-        className={styles[className]}
+        className={className ? styles[className] : undefined}
         src={imgUrl}
         style={{
+          transition: "0.3s",
           objectFit: mediaSizeData.objectFit,
           height: mediaSizeData.height,
           width: mediaSizeData.width,
           maxHeight: mediaSizeData.maxHeight,
           maxWidth: mediaSizeData.maxWidth,
           display: loadStatus === "success" ? undefined : "none",
-          transform: appOption.parallax ? transform3d : undefined,
           mixBlendMode: mixBlendMode,
           opacity:
             threeState.active.threeD && !threeState.active.background ? 0 : undefined,
         }}
         onLoad={showTarget}
-        onMouseMove={appOption.parallax ? changeTransform3d : undefined}
-        onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
       />
       <Loading
         kind="1st"
         loadStatus={loadStatus}
-        loadStyle={{ position: className === "cg-img" ? "relative" : "absolute" }}
+        loadStyle={{ position: className === "texture-img" ? "absolute" : "relative" }}
       />
     </>
   );
