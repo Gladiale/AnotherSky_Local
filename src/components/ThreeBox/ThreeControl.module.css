@@ -19,14 +19,14 @@
   justify-content: center;
   gap: 1rem;
   /* transition: property duration delay */
-  transition: bottom 0.5s 0.1s, opacity 0.2s 0s, scale 0.2s 0s;
+  transition: 0.5s, opacity 0.2s 0s, scale 0.2s 0s;
 }
 
 .three-control.hidden {
   bottom: -13.5rem;
   opacity: 0;
   scale: 0;
-  transition: 0.5s, opacity 0.2s 0.3s, scale 0.2s 0.5s;
+  transition: 0.5s, opacity 0.2s 0.3s, scale 0.2s 0.4s;
 }
 
 .three-control .multi-box {

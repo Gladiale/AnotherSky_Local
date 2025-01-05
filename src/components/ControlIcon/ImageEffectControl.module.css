@@ -14,14 +14,16 @@
   justify-content: center;
   align-items: center;
   gap: 0.55rem;
-  transform: translateY(200%);
+  transform: translateY(15dvh);
+  visibility: hidden;
+  opacity: 0;
   transition: 0.5s;
-  /* scale: 0; */
 }
 
 .EF-container:hover .EF-wrapper {
-  /* scale: 1; */
   transform: translateY(-68%);
+  visibility: visible;
+  opacity: 1;
 }
 
 .EF-container:hover .EF-wrapper .radio-content {
@@ -42,7 +44,7 @@
 
 @media (max-width: 768px) {
   .EF-container .EF-wrapper {
-    transform: translateY(210%) translateX(-45%);
+    transform: translateY(25dvh) translateX(-45%);
   }
   .EF-container:hover .EF-wrapper {
     transform: translateY(-10%) translateX(-45%);
