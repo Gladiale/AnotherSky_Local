@@ -9,7 +9,7 @@ const Texture3D = ({
   // メインテクスチャがmap
   const imageTexture = useTexture({
     map: urlConfig.cg,
-    displacementMap: "/mmd/pose/texture/ldem_3_8bit.jpg",
+    displacementMap: "/mmd/texture/ldem_3_8bit.jpg",
   });
 
   return (

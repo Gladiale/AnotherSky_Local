@@ -32,7 +32,7 @@ const CG = ({ className, mixBlendMode }: PropsType) => {
         className={className ? styles[className] : undefined}
         src={imgUrl}
         style={{
-          transition: "0.3s",
+          transition: "0.2s",
           objectFit: mediaSizeData.objectFit,
           height: mediaSizeData.height,
           width: mediaSizeData.width,
