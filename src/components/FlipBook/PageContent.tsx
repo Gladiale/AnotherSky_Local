@@ -48,7 +48,10 @@ const PageContent = ({ className, style, imgUrl, onClick }: PropsType) => {
             alt="画像"
             src={imgUrl}
             className={`${styles["element"]} ${styles["texture"]}`}
-            style={{ transform: appOption.parallax ? transform3d : undefined }}
+            style={{
+              transform: appOption.parallax ? transform3d : undefined,
+              mixBlendMode: effectState.cgMix.mixMode,
+            }}
             onClick={onClick}
             onContextMenu={changeElementRotate}
             onMouseMove={appOption.parallax ? changeTransform3d : undefined}

@@ -12,6 +12,8 @@
 
 .transform-3d-box .texture-img {
   position: absolute;
+  inset: 0;
+  margin: auto;
 }
 
 @media (max-width: 768px) {
