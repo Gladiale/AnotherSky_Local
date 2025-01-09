@@ -18,21 +18,62 @@ const ThreeControl = () => {
       ${(!threeState.active.controlPanel || scene !== "cg") && styles.hidden}`}
       onClick={(e) => e.stopPropagation()}
     >
-      <PartsBox2nd
-        title="モデル"
-        message={threeInfo.model[1].split("/").slice(-1)[0]}
-        onNextClick={() => threeInfoDispatch({ type: "next", payload: "model" })}
-        onPrevClick={() => threeInfoDispatch({ type: "prev", payload: "model" })}
-        onLastClick={() => threeInfoDispatch({ type: "last", payload: "model" })}
-        onFirstClick={() => {
-          threeInfoDispatch({ type: "first", payload: "model" });
-        }}
-        onBoxClick={() => {
-          threeInfoDispatch({ type: "random", payload: "model" });
-        }}
-      />
+      <div className={styles["item-box"]}>
+        <RadioBox
+          radioName="modelInfo"
+          radioList={[
+            {
+              text: "model",
+              state: !threeState.active.matCap,
+              onChange: () => threeStateDispatch({ type: "active", payload: "matCap" }),
+            },
+            {
+              text: "matCap",
+              state: threeState.active.matCap,
+              onChange: () => threeStateDispatch({ type: "active", payload: "matCap" }),
+            },
+          ]}
+        />
+        <PartsBox2nd
+          message={
+            threeState.active.matCap
+              ? threeInfo.matCap[1]
+              : threeInfo.model[1].split("/").slice(-1)[0]
+          }
+          onNextClick={() =>
+            threeInfoDispatch({
+              type: "next",
+              payload: threeState.active.matCap ? "matCap" : "model",
+            })
+          }
+          onPrevClick={() =>
+            threeInfoDispatch({
+              type: "prev",
+              payload: threeState.active.matCap ? "matCap" : "model",
+            })
+          }
+          onLastClick={() =>
+            threeInfoDispatch({
+              type: "last",
+              payload: threeState.active.matCap ? "matCap" : "model",
+            })
+          }
+          onFirstClick={() => {
+            threeInfoDispatch({
+              type: "first",
+              payload: threeState.active.matCap ? "matCap" : "model",
+            });
+          }}
+          onBoxClick={() => {
+            threeInfoDispatch({
+              type: "random",
+              payload: threeState.active.matCap ? "matCap" : "model",
+            });
+          }}
+        />
+      </div>
 
-      <div className={styles["motion-box"]}>
+      <div className={styles["item-box"]}>
         <RadioBox
           radioName="actionMode"
           radioList={[
@@ -60,7 +101,7 @@ const ThreeControl = () => {
               ? threeInfo.motion[1]
               : threeState.actionMode === "pose"
               ? threeInfo.pose[1]
-              : "空"
+              : "Default"
           }
           onNextClick={() =>
             threeInfoDispatch({

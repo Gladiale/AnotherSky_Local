@@ -1,6 +1,7 @@
 type ThreeInfoType = {
   // index, url, length
   model: [number, string, number];
+  matCap: [number, string, number];
   motion: [number, string, number];
   pose: [number, string, number];
 };
@@ -9,6 +10,7 @@ type ThreeStateType = {
   // modelType: "mmd";
   active: {
     threeD: boolean;
+    matCap: boolean;
     rotate: boolean;
     background: boolean;
     controlPanel: boolean;
@@ -19,6 +21,7 @@ type ThreeStateType = {
 
 const threeInfoInit: ThreeInfoType = {
   model: [0, "", 0],
+  matCap: [0, "", 0],
   motion: [0, "", 0],
   pose: [0, "", 0],
 };
@@ -26,6 +29,7 @@ const threeInfoInit: ThreeInfoType = {
 const threeStateInit: ThreeStateType = {
   active: {
     threeD: false,
+    matCap: false,
     rotate: false,
     background: false,
     controlPanel: false,

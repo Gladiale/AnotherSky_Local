@@ -10,9 +10,11 @@ const getRandomThreeFile = (
     const model = getRandomFile(MmdDataObj, "model");
     const motion = getRandomFile(MmdDataObj, "motion");
     const pose = getRandomFile(MmdDataObj, "pose");
+    const matCap = getRandomFile(MmdDataObj, "matCap");
 
     return {
       model: model,
+      matCap: matCap,
       motion: motion,
       pose: pose,
     };

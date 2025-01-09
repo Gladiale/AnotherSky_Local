@@ -14,6 +14,7 @@ const useUrlConfig = () => {
     voice: `/voice/${mediaInfo.folder.voice[1]}/${mediaInfo.file.voice[1]}`,
     mmd: {
       model: `/mmd/model/${threeInfo.model[1]}`,
+      matCap: `/mmd/matCap/${threeInfo.matCap[1]}`,
       motion: `/mmd/motion/${threeInfo.motion[1]}`,
       pose: `/mmd/pose/${threeInfo.pose[1]}`,
     },

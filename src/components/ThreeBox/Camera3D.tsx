@@ -5,15 +5,19 @@ import { OrbitControls } from "@react-three/drei";
 import MMD_VMD from "./MMD_VMD";
 import Loading from "../Loading/Loading";
 
+// 参考
+// https://gmo-miyazaki-creators.com/coding/three-js-01/
+
 const Camera3D = () => {
   return (
     <Suspense fallback={<Loading kind={"1st"} loadStatus="waiting" />}>
       <Canvas
         shadows
         dpr={window.devicePixelRatio}
-        camera={{ fov: 50, position: [0, 0, -24] }}
+        camera={{ fov: 50, position: [0, 0, 24] }}
       >
         {/* 光 */}
+        {/* <ambientLight intensity={3} color="white" /> */}
         <hemisphereLight intensity={4} color="white" groundColor="black" />
 
         {/* モデル主体 */}

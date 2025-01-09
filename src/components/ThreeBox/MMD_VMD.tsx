@@ -1,28 +1,23 @@
 import { useLayoutEffect, useState } from "react";
-import { ContactShadows } from "@react-three/drei";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 // three js
 import { useFrame, useLoader } from "@react-three/fiber";
+import { ContactShadows, useTexture } from "@react-three/drei";
 import { MMDAnimationHelper, MMDLoader } from "three/examples/jsm/Addons.js";
 import { type AnimationClip } from "three";
 
 // 参考
 // https://github.com/pmndrs/react-three-fiber/discussions/1054
+// https://zenn.dev/raihara3/articles/20220505_threejs_material
 
 const MMD_VMD = () => {
   const { threeState } = useThreeState();
   const { urlConfig } = useUrlConfig();
-
-  const mmdUrl = {
-    model: urlConfig.mmd.model,
-    motion: urlConfig.mmd.motion,
-    pose: urlConfig.mmd.pose,
-    tPose: "/mmd/pose/T-POSE-削除不可.vpd",
-  };
-
   const [mmdHelper, setMmdHelper] = useState<MMDAnimationHelper>(null!);
-  const mesh = useLoader(MMDLoader, mmdUrl.model);
+
+  const mesh = useLoader(MMDLoader, urlConfig.mmd.model);
+  const matCap = useTexture(urlConfig.mmd.matCap);
 
   useFrame(() => {
     threeState.actionMode === "motion" && mmdHelper.update(threeState.motionSpeed);
@@ -32,17 +27,17 @@ const MMD_VMD = () => {
     const loader = new MMDLoader();
     const helper = new MMDAnimationHelper();
 
-    // 毎回T-Poseに復元
+    // 毎回デフォルトPoseに復元 (loadVPDの第二引数をtrueにすれば, poseのデータが読み込めないので、デフォルトの姿に戻れます)
     threeState.actionMode === "pose"
-      ? loader.loadVPD(mmdUrl.pose, true, (pose) => {
+      ? loader.loadVPD(urlConfig.mmd.pose, false, (pose) => {
           helper.pose(mesh, pose);
         })
-      : loader.loadVPD(mmdUrl.tPose, true, (pose) => {
+      : loader.loadVPD(urlConfig.mmd.pose, true, (pose) => {
           helper.pose(mesh, pose, { resetPose: true });
         });
 
     // モーション
-    loader.loadAnimation(mmdUrl.motion, mesh, (motion) => {
+    loader.loadAnimation(urlConfig.mmd.motion, mesh, (motion) => {
       helper.add(mesh, {
         animation: motion as AnimationClip,
         physics: true,
@@ -51,7 +46,7 @@ const MMD_VMD = () => {
     });
 
     setMmdHelper(helper);
-  }, [threeState.actionMode, mmdUrl.motion]);
+  }, [threeState.actionMode, urlConfig.mmd.motion, urlConfig.mmd.pose]);
 
   return (
     <>
@@ -63,7 +58,7 @@ const MMD_VMD = () => {
         castShadow
         receiveShadow
       >
-        {/* <meshStandardMaterial metalness={0} roughness={0} map={imageTexture} /> */}
+        {threeState.active.matCap && <meshMatcapMaterial matcap={matCap} />}
       </primitive>
 
       {/* 影 */}
