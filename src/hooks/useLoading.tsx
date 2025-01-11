@@ -39,9 +39,10 @@ const useLoading = ({ trigger, target }: ParamsType) => {
 
   const showTarget = () => {
     if (appOption.loadingAnime) {
-      setTimeout(() => {
-        setLoadStatus("success");
-      }, loadingTime.delay[target]);
+      setLoadStatus("success");
+      // setTimeout(() => {
+      //   setLoadStatus("success");
+      // }, loadingTime.delay[target]);
     }
   };
 
