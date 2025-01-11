@@ -34,9 +34,8 @@ const Video = () => {
 
   const { handleTouchStart, handleTouchMove } = useMediaTouchControl({ target: "video" });
 
-  const { loadStatus, showTarget, showError } = useLoading({
+  const { loadStatus, showTarget } = useLoading({
     trigger: [urlConfig.video],
-    target: "video",
   });
 
   const [hasControl, setHasControl] = useState<boolean>(false);
@@ -88,7 +87,6 @@ const Video = () => {
             transform: appOption.parallax ? transform3d : undefined,
           }}
           onLoadedData={showTarget}
-          onStalled={showError}
           onMouseMove={appOption.parallax ? changeTransform3d : undefined}
           onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
           src={urlConfig.video}

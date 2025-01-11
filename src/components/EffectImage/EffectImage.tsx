@@ -22,9 +22,8 @@ const EffectImage = () => {
     target: "effect",
   });
 
-  const { loadStatus, showTarget, showError } = useLoading({
+  const { loadStatus, showTarget } = useLoading({
     trigger: [urlConfig.effect],
-    target: "effect",
   });
 
   const [isTouched, setIsTouched] = useState<boolean>(false);
@@ -97,7 +96,6 @@ const EffectImage = () => {
         onTouchMove={handleTouchMove}
         onTouchEnd={() => setIsTouched(false)}
         onLoad={showTarget}
-        onStalled={showError}
       />
 
       <Loading kind="2nd" loadStatus={loadStatus} loadStyle={{ position: "absolute" }} />

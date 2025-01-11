@@ -23,7 +23,6 @@ const CG = ({ className, mixBlendMode }: PropsType) => {
   const imgUrl = mediaActive.anotherCharacter ? urlConfig.anotherCharacter : urlConfig.cg;
   const { loadStatus, showTarget } = useLoading({
     trigger: [mediaActive.anotherCharacter, imgUrl],
-    target: "cg",
   });
 
   return (

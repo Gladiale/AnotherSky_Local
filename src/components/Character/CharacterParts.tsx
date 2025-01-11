@@ -28,7 +28,6 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
 
   const { loadStatus, showTarget } = useLoading({
     trigger: [urlConfig.character],
-    target: "character",
   });
 
   const isMixMode =
