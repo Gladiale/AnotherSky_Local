@@ -1,9 +1,4 @@
 .app-option {
-  --img-bg: #ffa5ff;
-  --img-wrapper-bg: #a0ffea;
-}
-
-.app-option {
   position: fixed;
   top: 1rem;
   right: 1rem;
@@ -90,21 +85,28 @@
 }
 
 .app-option .option-panel .control-box .item-left {
-  width: 40%;
-  /* aspect-ratio: 1 / 1; */
-  padding: 3px;
-  background-color: var(--img-wrapper-bg);
+  width: 45%;
+  min-width: 45%;
+  aspect-ratio: 1 / 1.05;
+  padding: 5px;
+  background-image: url("../../assets/icon/frame.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .app-option .option-panel .control-box .item-left img {
   width: 100%;
-  object-fit: cover;
-  background-color: var(--img-bg);
   /* imgタグの謎の余白を消す */
   vertical-align: bottom;
 }
 
 .app-option .option-panel .control-box .item-right {
+  /* flex-grow: 1; */
   display: flex;
   flex-direction: column;
   justify-content: center;
