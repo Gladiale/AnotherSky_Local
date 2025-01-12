@@ -51,6 +51,7 @@ const Card = () => {
       onClick={changeScene}
       onContextMenu={resetScene}
       onWheel={changeMedia}
+      onTouchMove={() => hoverDispatch({ type: "card", payload: "enter" })}
       onMouseEnter={() => hoverDispatch({ type: "card", payload: "enter" })}
       onMouseLeave={() => hoverDispatch({ type: "card", payload: "leave" })}
     >
