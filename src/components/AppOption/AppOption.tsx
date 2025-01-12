@@ -1,13 +1,14 @@
 import styles from "./AppOption.module.css";
 import { useEffect, useState } from "react";
-import { GiDelighted, GiHollowCat } from "react-icons/gi";
+import { GiAzulFlake, GiDelighted } from "react-icons/gi";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 // components
-import IconDefault from "../Common/IconDefault";
+import Corner from "../Common/Corner";
 import CheckBox from "../Common/CheckBox";
+import IconDefault from "../Common/IconDefault";
 // 画像
-import icon01 from "../../assets/icon/icon-01.png";
-import icon02 from "../../assets/icon/icon-02.png";
+import icon01 from "../../assets/panel/icon-01.png";
+import icon02 from "../../assets/panel/icon-02.png";
 
 const optionConfig: {
   target: "loadingAnime" | "parallax" | "rotateYIsRightCLick";
@@ -15,7 +16,7 @@ const optionConfig: {
 }[] = [
   { target: "loadingAnime", text: "Loading動画" },
   { target: "parallax", text: "Parallax効果" },
-  { target: "rotateYIsRightCLick", text: "右クリックをRotateYに変更" },
+  { target: "rotateYIsRightCLick", text: "右ClickをY軸回転" },
 ];
 
 const AppOption = () => {
@@ -45,15 +46,17 @@ const AppOption = () => {
         className={styles["option-panel"]}
         style={{ right: showPanel ? "0" : "calc(-100dvh / 3)" }}
       >
+        <Corner singleConnerWidth="40%" />
+
         <div className={styles["control-box-1st"]}>
           {optionConfig.map((option, index) => (
             <label
               key={index}
               onClick={() => appOptionDispatch({ type: "basic", payload: option.target })}
             >
-              <GiHollowCat
+              <GiAzulFlake
                 className={`${styles["icon"]} 
-            ${appOption[option.target] && styles["checked"]}`}
+                ${appOption[option.target] && styles["checked"]}`}
               />
               <p>{option.text}</p>
             </label>

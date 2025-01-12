@@ -1,0 +1,39 @@
+.conner-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -99;
+}
+
+.conner-box .conner {
+  position: absolute;
+  width: var(--single-conner-width);
+  aspect-ratio: 1 / 1;
+
+  background-image: url("../../assets/images/corner-violet.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.conner-box .top-left {
+  top: 0;
+  left: 0;
+  transform: rotate(90deg);
+}
+
+.conner-box .top-right {
+  top: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.conner-box .bottom-left {
+  bottom: 0;
+  left: 0;
+}
+.conner-box .bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(-90deg);
+}
