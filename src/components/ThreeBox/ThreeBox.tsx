@@ -2,8 +2,9 @@ import styles from "./ThreeBox.module.css";
 import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 // components
 import Camera3D from "./Camera3D";
+import Loading from "../Loading/Loading";
 
-const ThreeBox = () => {
+const ThreeBox = ({ isTransitionEnd }: { isTransitionEnd: boolean }) => {
   // コンテキスト
   const { threeState } = useThreeState();
 
@@ -19,7 +20,11 @@ const ThreeBox = () => {
         e.stopPropagation();
       }}
     >
-      <Camera3D />
+      {isTransitionEnd ? (
+        <Camera3D />
+      ) : (
+        <Loading kind="1st" loadStatus="waiting" loadStyle={{ position: "absolute" }} />
+      )}
     </div>
   );
 };

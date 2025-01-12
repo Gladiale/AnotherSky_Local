@@ -11,7 +11,7 @@ import { useMouseControl } from "../../hooks/useMouseControl";
 import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
 // GSAP
 import gsap from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 // components
 import CG from "./CG";
@@ -57,6 +57,11 @@ const CGbox = () => {
     });
   }, []);
 
+  const [isTransitionEnd, setIsTransitionEnd] = useState<boolean>(false);
+  useEffect(() => {
+    return () => setIsTransitionEnd(false);
+  }, []);
+
   return (
     <div
       ref={cgBoxRef}
@@ -78,6 +83,7 @@ const CGbox = () => {
       }}
       onWheel={changeMedia}
       onContextMenu={handleContextMenu}
+      onTransitionEnd={() => setIsTransitionEnd(true)}
     >
       <div
         className={styles["mix-box"]}
@@ -101,7 +107,7 @@ const CGbox = () => {
         {isMixMode && (
           <CG className="texture-img" mixBlendMode={effectState.cgMix.mixMode} />
         )}
-        {threeState.active.threeD && <ThreeBox />}
+        {threeState.active.threeD && <ThreeBox isTransitionEnd={isTransitionEnd} />}
         {effectState.image.active && <EffectImage />}
       </div>
 
