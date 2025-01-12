@@ -5,12 +5,18 @@
   z-index: -99;
 }
 
+.conner-box.violet .conner {
+  background-image: url("../../assets/images/corner-violet.png");
+}
+.conner-box.gold .conner {
+  background-image: url("../../assets/images/corner-yellow.png");
+}
+
 .conner-box .conner {
   position: absolute;
   width: var(--single-conner-width);
   aspect-ratio: 1 / 1;
 
-  background-image: url("../../assets/images/corner-violet.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

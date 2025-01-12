@@ -1,13 +1,14 @@
 import styles from "./Corner.module.css";
 
 type PropsType = {
+  theme: "gold" | "violet";
   singleConnerWidth: `${string}%`;
 };
 
-const Corner = ({ singleConnerWidth }: PropsType) => {
+const Corner = ({ theme, singleConnerWidth }: PropsType) => {
   return (
     <div
-      className={styles["conner-box"]}
+      className={`${styles["conner-box"]} ${styles[theme]}`}
       style={{
         ["--single-conner-width" as any]: singleConnerWidth,
       }}

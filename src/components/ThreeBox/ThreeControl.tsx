@@ -2,10 +2,11 @@ import styles from "./ThreeControl.module.css";
 import { useScene } from "../../context/SceneContext";
 import { useThreeInfo, useThreeState } from "../../context/ThreeContext/ThreeContext";
 // components
+import Corner from "../Common/Corner";
 import CheckBox from "../Common/CheckBox";
+import RadioBox from "../Common/RadioBox";
 import PartsBox from "../Common/PartsBox";
 import PartsBox2nd from "../Common/PartsBox2nd";
-import RadioBox from "../Common/RadioBox";
 
 const ThreeControl = () => {
   const { scene } = useScene();
@@ -18,6 +19,8 @@ const ThreeControl = () => {
       ${(!threeState.active.controlPanel || scene !== "cg") && styles.hidden}`}
       onClick={(e) => e.stopPropagation()}
     >
+      <Corner theme="violet" singleConnerWidth="17%" />
+
       <div className={styles["item-box"]}>
         <RadioBox
           radioName="modelInfo"

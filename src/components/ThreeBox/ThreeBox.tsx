@@ -2,6 +2,7 @@ import styles from "./ThreeBox.module.css";
 import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 // components
 import Camera3D from "./Camera3D";
+import Corner from "../Common/Corner";
 import Loading from "../Loading/Loading";
 
 const ThreeBox = ({ isTransitionEnd }: { isTransitionEnd: boolean }) => {
@@ -25,6 +26,8 @@ const ThreeBox = ({ isTransitionEnd }: { isTransitionEnd: boolean }) => {
       ) : (
         <Loading kind="1st" loadStatus="waiting" loadStyle={{ position: "absolute" }} />
       )}
+
+      <Corner theme="gold" singleConnerWidth="15%" />
     </div>
   );
 };

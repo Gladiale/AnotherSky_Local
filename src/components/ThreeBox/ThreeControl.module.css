@@ -1,7 +1,6 @@
 .three-control {
   position: absolute;
   bottom: 0;
-  padding-bottom: 2.4rem;
   z-index: 99;
   clip-path: polygon(0 10%, 10% 0%, 90% 0%, 100% 10%, 100% 100%, 0 100%);
 
@@ -36,9 +35,12 @@
   gap: 1rem;
 }
 
+.three-control .multi-box {
+  margin-bottom: 2.1rem;
+}
+
 @media (max-width: 768px) {
   .three-control {
     position: fixed;
-    padding-bottom: 2.1rem;
   }
 }

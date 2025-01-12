@@ -46,7 +46,7 @@ const AppOption = () => {
         className={styles["option-panel"]}
         style={{ right: showPanel ? "0" : "calc(-100dvh / 3)" }}
       >
-        <Corner singleConnerWidth="40%" />
+        <Corner theme="violet" singleConnerWidth="40%" />
 
         <div className={styles["control-box-1st"]}>
           {optionConfig.map((option, index) => (
