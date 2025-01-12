@@ -1,6 +1,8 @@
 import styles from "./CGbox.module.css";
 import { useRotateY } from "../../context/RotateYContext";
+import { useScreenMode } from "../../context/ScreenContext";
 import { useMediaState } from "../../context/MediaStateContext";
+import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useFilterData } from "../../hooks/useFilterData";
@@ -12,12 +14,16 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 // components
+import CG from "./CG";
 import ControlParts from "./ControlParts";
-import Transform3dBox from "./Transform3dBox";
+import ThreeBox from "../ThreeBox/ThreeBox";
+import EffectImage from "../EffectImage/EffectImage";
 
 const CGbox = () => {
   // コンテキスト
   const { appOption } = useAppOption();
+  const { screenMode } = useScreenMode();
+  const { threeState } = useThreeState();
   const { mediaState } = useMediaState();
   const { effectState } = useEffectState();
   const { rotateYState, rotateYDispatch } = useRotateY();
@@ -27,6 +33,9 @@ const CGbox = () => {
   const { handleTouchStart, handleTouchMove } = useMediaTouchControl({ target: "image" });
   const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaReverse } =
     useMediaControl({ initialScale: 1.5, target: "image" });
+
+  const isMixMode =
+    effectState.cgMix && effectState.target.cg && effectState.cgMix.mixMode !== "normal";
 
   const shakeCondition = {
     low: effectState.shake.active && effectState.shake.heavy === "low",
@@ -73,6 +82,7 @@ const CGbox = () => {
       <div
         className={styles["mix-box"]}
         style={{
+          height: screenMode === "cardMode" ? "100%" : undefined,
           transform: `
           scale(${String(mediaState["image"].scale)})
           rotate(${mediaState["image"].deg}deg)
@@ -87,7 +97,12 @@ const CGbox = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
       >
-        <Transform3dBox />
+        <CG />
+        {isMixMode && (
+          <CG className="texture-img" mixBlendMode={effectState.cgMix.mixMode} />
+        )}
+        {threeState.active.threeD && <ThreeBox />}
+        {effectState.image.active && <EffectImage />}
       </div>
 
       <ControlParts />
