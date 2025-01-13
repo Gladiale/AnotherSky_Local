@@ -1,5 +1,5 @@
-import { getRandomFile } from "../../../../helper/dataObjControl";
 import { MmdDataObj } from "../../../../data/MmdDataObj";
+import { getRandomFile } from "../../../../libs/utils/dataObjControl";
 import { type ThreeInfoType } from "../../threeInit";
 
 const getRandomThreeFile = (

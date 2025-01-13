@@ -7,7 +7,7 @@ import { type SpecificPayloadType } from "../context/MediaInfoContext/MediaInfoF
 // Data
 import { CGDataObj } from "../data/CGDataObj";
 import { CharacterDataObj } from "../data/CharacterDataObj";
-import { getTargetList } from "../helper/getTargetList";
+import { getTargetList } from "../libs/utils/getTargetList";
 
 const useUrlList = () => {
   const { mediaInfo } = useMediaInfo();

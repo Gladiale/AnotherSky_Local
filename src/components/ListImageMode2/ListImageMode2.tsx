@@ -4,11 +4,11 @@ import { useFilter } from "../../context/FilterContext";
 import { useImageList } from "../../context/ImageListState";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useScene } from "../../context/SceneContext";
-import { createRandomImg } from "../../helper/createRandomImg";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
-import { SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
+import { createRandomImg } from "../../libs/utils/createRandomImg";
+import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
 
 const ListImageMode2 = () => {
   const { listState, listSubState, setListState } = useImageList();

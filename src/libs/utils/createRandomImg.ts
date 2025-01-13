@@ -1,8 +1,8 @@
-import { type ImageListType } from "../context/ImageListState";
-import { type MediaInfoType } from "../context/MediaInfoContext/mediaInfo";
-import { CGDataObj } from "../data/CGDataObj";
-import { CharacterDataObj } from "../data/CharacterDataObj";
+import { CGDataObj } from "../../data/CGDataObj";
+import { CharacterDataObj } from "../../data/CharacterDataObj";
 import { getRandomFile, getRandomFolderFile } from "./dataObjControl";
+import { type ImageListType } from "../../context/ImageListState";
+import { type MediaInfoType } from "../../context/MediaInfoContext/mediaInfo";
 
 const createRandomImg = (
   imageInfoList: [[number, string], [number, string, number]][],

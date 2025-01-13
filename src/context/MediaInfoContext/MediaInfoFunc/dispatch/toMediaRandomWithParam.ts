@@ -1,7 +1,10 @@
 import { CGDataObj } from "../../../../data/CGDataObj";
 import { CharacterDataObj } from "../../../../data/CharacterDataObj";
 import { VideoDataObj } from "../../../../data/VideoDataObj";
-import { getRandomFile, getRandomFolderFile } from "../../../../helper/dataObjControl";
+import {
+  getRandomFile,
+  getRandomFolderFile,
+} from "../../../../libs/utils/dataObjControl";
 import { type MediaInfoType } from "../../mediaInfo";
 import { type RandomTargetType } from "../../../../components/ControlIcon/RandomControl";
 

@@ -1,5 +1,5 @@
-import { getFileList, getFolderList } from "../../../../helper/dataObjControl";
 import { getTargetFunc } from "./getTargetFunc";
+import { getFileList, getFolderList } from "../../../../libs/utils/dataObjControl";
 import { type MediaOriginType, type MediaInfoType } from "../../mediaInfo";
 
 const folderFirstFunc = (

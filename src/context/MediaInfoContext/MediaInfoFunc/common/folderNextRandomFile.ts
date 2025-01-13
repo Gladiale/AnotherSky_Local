@@ -1,5 +1,5 @@
-import { getFolderList, getRandomFile } from "../../../../helper/dataObjControl";
 import { getTargetFunc } from "./getTargetFunc";
+import { getFolderList, getRandomFile } from "../../../../libs/utils/dataObjControl";
 import { type MediaOriginType, type MediaInfoType } from "../../mediaInfo";
 
 const folderNextRandomFile = (

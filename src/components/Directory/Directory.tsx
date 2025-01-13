@@ -2,7 +2,7 @@ import styles from "./Directory.module.css";
 import { CGDataObj } from "../../data/CGDataObj";
 import { VideoDataObj } from "../../data/VideoDataObj";
 import { CharacterDataObj } from "../../data/CharacterDataObj";
-import { getDirectoryData } from "../../helper/dataObjControl";
+import { getDirectoryData } from "../../libs/utils/dataObjControl";
 
 import {
   type DirectoryTargetType,

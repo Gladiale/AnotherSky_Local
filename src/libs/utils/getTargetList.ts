@@ -1,6 +1,6 @@
 import { getNextFile, getPrevFile } from "./dataObjControl";
-import { type MediaInfoType } from "../context/MediaInfoContext/mediaInfo";
-import { type SpecificPayloadType } from "../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
+import { type MediaInfoType } from "../../context/MediaInfoContext/mediaInfo";
+import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
 
 // FlipBook用
 const getTargetList = (

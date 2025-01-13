@@ -2,11 +2,11 @@ import styles from "./ListImage.module.css";
 import { useLayoutEffect, useState } from "react";
 import { useImageList } from "../../context/ImageListState";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
-import { createRandomImg } from "../../helper/createRandomImg";
 import { useScene } from "../../context/SceneContext";
 import { useFilter } from "../../context/FilterContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useRotateY } from "../../context/RotateYContext";
+import { createRandomImg } from "../../libs/utils/createRandomImg";
 import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
 
 const ListImage = () => {

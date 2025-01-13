@@ -1,5 +1,5 @@
-import { getFileList } from "../../../../helper/dataObjControl";
 import { getTargetFunc } from "./getTargetFunc";
+import { getFileList } from "../../../../libs/utils/dataObjControl";
 import { type MediaOriginType, type MediaInfoType } from "../../mediaInfo";
 
 const filePrevFunc = (state: MediaInfoType, target: MediaOriginType): MediaInfoType => {

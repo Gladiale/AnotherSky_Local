@@ -3,7 +3,7 @@ import { CharacterDataObj } from "../../../../data/CharacterDataObj";
 import { EffectDataObj } from "../../../../data/EffectDataObj";
 import { VideoDataObj } from "../../../../data/VideoDataObj";
 import { VoiceDataObj } from "../../../../data/VoiceDataObj";
-import { getRandomFolderFile } from "../../../../helper/dataObjControl";
+import { getRandomFolderFile } from "../../../../libs/utils/dataObjControl";
 import { type MediaInfoType } from "../../mediaInfo";
 
 const toMediaRandom = (): MediaInfoType => {
