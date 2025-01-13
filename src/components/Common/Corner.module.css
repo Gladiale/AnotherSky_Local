@@ -1,18 +1,18 @@
-.conner-box {
+.corner-box {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: -99;
 }
 
-.conner-box.violet .conner {
+.corner-box.violet .corner {
   background-image: url("../../assets/images/corner-violet.png");
 }
-.conner-box.gold .conner {
+.corner-box.gold .corner {
   background-image: url("../../assets/images/corner-yellow.png");
 }
 
-.conner-box .conner {
+.corner-box .corner {
   position: absolute;
   width: var(--single-conner-width);
   aspect-ratio: 1 / 1;
@@ -22,23 +22,24 @@
   background-repeat: no-repeat;
 }
 
-.conner-box .top-left {
+.corner-box .top-left {
   top: 0;
   left: 0;
   transform: rotate(90deg);
 }
 
-.conner-box .top-right {
+.corner-box .top-right {
   top: 0;
   right: 0;
   transform: rotate(180deg);
 }
 
-.conner-box .bottom-left {
+.corner-box .bottom-left {
   bottom: 0;
   left: 0;
 }
-.conner-box .bottom-right {
+
+.corner-box .bottom-right {
   bottom: 0;
   right: 0;
   transform: rotate(-90deg);
