@@ -32,6 +32,16 @@
   white-space: nowrap;
   overflow: hidden;
   transition: 0.5s;
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 20%,
+    100% 80%,
+    90% 100%,
+    10% 100%,
+    0% 80%,
+    0% 20%
+  );
 }
 
 .parts-box .control p.ani:hover {

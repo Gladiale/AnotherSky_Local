@@ -11,6 +11,10 @@
 
   background-color: rgba(107, 59, 99, 0.36);
   backdrop-filter: blur(1.1rem);
+  background-image: url("../../assets/images/AliceInWonderland.png");
+  background-size: contain;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 
   display: flex;
   flex-direction: column;
