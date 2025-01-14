@@ -38,7 +38,7 @@
   }
   & .icon.checked {
     color: #b1ff57;
-    filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+    filter: var(--drop-shadow-hover);
   }
 }
 
