@@ -1,0 +1,91 @@
+.control-box-type-1st {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+
+  width: 96%;
+  aspect-ratio: 1 / 1.13;
+
+  background-image: url("../../assets/panel/frame-01.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.control-box-type-1st > label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  gap: 0.3rem;
+  color: var(--label-color);
+  white-space: nowrap;
+  transition: 0.5s;
+
+  &:hover {
+    color: #f0d1ff;
+  }
+  &:hover .icon {
+    scale: 1.1;
+  }
+
+  & .icon {
+    font-size: 1.3rem;
+    transition: scale 0.3s;
+  }
+  & .icon.checked {
+    color: #b1ff57;
+    filter: drop-shadow(0 0 5px #86fff3) drop-shadow(0 0 15px #fc3eff);
+  }
+}
+
+.control-box-type-2nd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  width: 98%;
+  aspect-ratio: 1 / 0.76;
+
+  background-image: url("../../assets/panel/frame-02.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.control-box-type-2nd .item-left {
+  width: 36%;
+  min-width: 36%;
+  aspect-ratio: 1 / 1.05;
+  padding: 3px;
+  background-image: url("../../assets/panel/frame-icon.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & img {
+    width: 100%;
+    border-radius: 5%;
+    z-index: -1;
+    /* imgタグの謎の余白を消す */
+    vertical-align: bottom;
+  }
+}
+
+.control-box-type-2nd .item-right {
+  /* flex-grow: 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--label-color);
+}
