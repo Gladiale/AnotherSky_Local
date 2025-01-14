@@ -1,5 +1,6 @@
 import styles from "./Card.module.css";
 import CardPolygon from "./CardPolygon";
+import { useEffect } from "react";
 import { useHover } from "../../context/HoverContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { useScreenMode } from "../../context/ScreenContext";
@@ -10,7 +11,7 @@ import { useMouseControl } from "../../hooks/useMouseControl";
 // framer-motion
 import { AnimatePresence, motion } from "motion/react";
 import { cardImgRefresh, cardRefresh } from "../../libs/motion/motionVariants";
-// import { useEffect, useState } from "react";
+import CardDecoration from "./CardDecoration";
 
 const Card = () => {
   // コンテキスト
@@ -23,17 +24,10 @@ const Card = () => {
   const { filterData } = useFilterData("card");
   const { changeScene, resetScene, changeMedia } = useMouseControl("card");
 
-  // const [isColorActive, setIsColorActive] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   setIsColorActive(true);
-
-  //   const timeOutId = setTimeout(() => {
-  //     setIsColorActive(false);
-  //   }, 1500);
-
-  //   return () => clearTimeout(timeOutId);
-  // }, [urlConfig.character]);
+  useEffect(() => {
+    // 開発者modeは二回発動のため、その付けにreturnの内容も一回発動されてしまいます
+    return () => hoverDispatch({ type: "special" });
+  }, []);
 
   return (
     <motion.div
@@ -41,8 +35,10 @@ const Card = () => {
       initial="hidden"
       animate="visible"
       className={`${styles.card} ${screenMode === "cgMode" && styles.cgMode}
-      ${effectState.mirror && styles.mirror}
-      ${hoverState.card && styles.cardHover}`}
+        ${effectState.mirror && styles.mirror}
+        ${hoverState.icon && styles.iconHover}
+        ${hoverState.card && styles.cardHover}
+        ${hoverState.special && styles.special}`}
       style={{
         filter: filterData,
         imageRendering:
@@ -55,6 +51,8 @@ const Card = () => {
       onMouseEnter={() => hoverDispatch({ type: "card", payload: "enter" })}
       onMouseLeave={() => hoverDispatch({ type: "card", payload: "leave" })}
     >
+      <CardDecoration />
+
       {/* キャラクター */}
       <AnimatePresence>
         <motion.img
@@ -64,7 +62,7 @@ const Card = () => {
           key={urlConfig.character}
           src={urlConfig.character}
           alt="character"
-          className={styles["stand-img"]}
+          className={styles["chara-img"]}
         />
       </AnimatePresence>
 

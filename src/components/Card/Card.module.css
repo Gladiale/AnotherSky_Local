@@ -23,93 +23,41 @@
     border 0.15s;
 }
 
-.card.cardHover {
+.card.iconHover {
   background-color: var(--clr2);
   box-shadow: 0 0 30px var(--clr2);
 }
 
-.card::before {
-  content: "";
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  position: absolute;
-  background-image: url("../../assets/images/magic-circle.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  animation: rotate-magic-circle 6s infinite linear;
-  transition: opacity 0.7s, z-index 0.3s;
-  opacity: 0.3;
-  z-index: 999;
-  transition-delay: 0.3s;
-}
-.card.cardHover:before {
-  opacity: 1;
-  z-index: 0;
-  transition-delay: 0s;
-}
-
-.card::after {
-  content: "";
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  position: absolute;
-  background-image: url("../../assets/images/angel.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  mix-blend-mode: color-dodge;
-  opacity: 0.9;
-  z-index: 990;
-  transition: opacity 0.7s 0.5s, z-index 0.3s 0.3s, background-image 0.3s;
-}
-.card.cardHover:after {
-  opacity: 0;
-  z-index: 0;
-  transition-delay: 0s;
-}
-
-.card .stand-img {
-  transition: height 0.5s, background-image 0.5s;
-  z-index: 9;
-  height: 0;
-}
-.card.cardHover .stand-img {
-  height: 100%;
-}
-
-/* hover */
-.card.cardHover:hover {
+.card.cardHover {
   background-color: transparent;
   box-shadow: none;
   border: 0px solid;
   overflow: unset;
-  /* filter: var(--drop-shadow-hover); */
-}
-.card.cardHover:hover > div:last-child {
-  box-shadow: 0 0 0 2px transparent;
-}
-.card.cardHover:hover > div:last-child > span {
-  background-color: transparent;
+
+  & > div:last-child {
+    box-shadow: 0 0 0 2px transparent;
+  }
+  & > div:last-child > span {
+    background-color: transparent;
+  }
 }
 
-.card.cardHover:hover::before {
-  bottom: 0;
-  animation: rotate-magic-circle3D 6s infinite linear;
-  background-image: url("../../assets/images/magic-circle-2.png");
-  /* border-radius: unset; */
-  /* background-color: var(--clr3); */
+.card.special {
+  background-color: var(--clr3);
+  box-shadow: 0 0 30px var(--clr3);
+
+  & > div:last-child > span {
+    background-color: transparent;
+  }
 }
 
-.card.cardHover:hover::after {
-  aspect-ratio: 1/1;
-  top: 0;
-  opacity: 1;
-  filter: drop-shadow(0 0 5px #fff760) drop-shadow(0 0 15px #ffff02);
-  animation: rotate-magic-circle 8s infinite linear;
-  background-image: url("../../assets/images/light.png");
-  animation-delay: 0.2s;
+.card .chara-img {
+  z-index: 9;
+  height: 0;
+  transition: height 0.5s;
+}
+.card:is(.iconHover, .cardHover, .special) .chara-img {
+  height: 100%;
 }
 
 @media (max-width: 768px) {
@@ -121,25 +69,8 @@
     max-width: 100dvw;
   }
 
-  .card.cardHover.mirror:hover {
+  .card.mirror:hover {
     overflow: hidden;
-  }
-}
-
-@keyframes rotate-magic-circle {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotate-magic-circle3D {
-  0% {
-    transform: perspective(900px) translateY(40%) translateZ(0px) rotateX(90deg)
-      rotateY(0deg) rotateZ(0deg);
-  }
-  100% {
-    transform: perspective(900px) translateY(40%) translateZ(0px) rotateX(90deg)
-      rotateY(0deg) rotateZ(360deg);
   }
 }
 

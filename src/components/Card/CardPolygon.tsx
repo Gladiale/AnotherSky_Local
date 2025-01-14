@@ -6,7 +6,10 @@ const CardPolygon = () => {
   const { hoverState } = useHover();
 
   return (
-    <div className={hoverState.card ? `${styles.clip} ${styles.clipHover}` : styles.clip}>
+    <div
+      className={`${styles.clip} 
+        ${(hoverState.card || hoverState.icon) && styles.clipHover}`}
+    >
       <span>{letterConfig.fourth}</span>
       <span>{letterConfig.first}</span>
       <span>{letterConfig.second}</span>
