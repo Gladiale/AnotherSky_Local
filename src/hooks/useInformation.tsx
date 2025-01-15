@@ -10,7 +10,8 @@ const useInformation = () => {
   const [infoActive, setInfoActive] = useState<boolean>(false);
 
   const infoData = {
-    voice: `サウンド「${mediaInfo.file.voice[1].split(".")[0]}」`,
+    voice: `サウンド「${mediaInfo.file.voice[0] + 1}/${mediaInfo.file.voice[2]} | 
+    ${mediaInfo.file.voice[1].split(".")[0]}」`,
     cg: `画像「${mediaInfo.file.cg[0] + 1}/${mediaInfo.file.cg[2]}」`,
     character: `立ち絵「${mediaInfo.file.character[0] + 1}/${
       mediaInfo.file.character[2]
