@@ -37,12 +37,6 @@ const CGbox = () => {
   const isMixMode =
     effectState.cgMix && effectState.target.cg && effectState.cgMix.mixMode !== "normal";
 
-  const shakeCondition = {
-    low: effectState.shake.active && effectState.shake.heavy === "low",
-    normal: effectState.shake.active && effectState.shake.heavy === "normal",
-    high: effectState.shake.active && effectState.shake.heavy === "high",
-  };
-
   const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     appOption.rotateYIsRightCLick
@@ -68,10 +62,7 @@ const CGbox = () => {
       className={`${styles["cg-box"]}
       ${appOption.lastingAnime.cg && styles.swing}
       ${appOption.dropShadow.cg && styles.shadow}
-      ${shakeCondition.low && styles.shakeLow}
-      ${shakeCondition.normal && styles.shakeNormal}
-      ${shakeCondition.high && styles.shakeHigh}
-      `}
+      ${effectState.shake.active && styles[`shake-${effectState.shake.heavy}`]}`}
       style={{
         filter: filterData,
         imageRendering:

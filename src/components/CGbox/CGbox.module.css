@@ -21,21 +21,20 @@
 
 .cg-box.shadow {
   filter: var(--drop-shadow);
+  &:hover {
+    filter: var(--drop-shadow-hover);
+  }
 }
-.cg-box.shadow:hover {
-  filter: var(--drop-shadow-hover);
-}
-
 .cg-box.swing {
   animation: cg_swing 7.5s linear infinite;
 }
-.cg-box.shakeLow {
+.cg-box.shake-low {
   animation: shakeLowAni 0.1s linear infinite;
 }
-.cg-box.shakeNormal {
+.cg-box.shake-normal {
   animation: shakeNormalAni 0.12s linear infinite;
 }
-.cg-box.shakeHigh {
+.cg-box.shake-high {
   animation: shakeHighAni 0.15s linear infinite;
 }
 
