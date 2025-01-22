@@ -55,6 +55,13 @@ func main() {
 		modules.InitialData("mmd", "MmdDataObj")
 	}()
 
+	// ornamentフォルダをイニシャル
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		modules.InitialData("ornament", "OrnamentDataObj")
+	}()
+
 	// すべてのゴルーチンが完了するのを待つ
 	wg.Wait()
 
