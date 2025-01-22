@@ -57,24 +57,13 @@ const RangeBox = () => {
       </label>
 
       <label>
-        <span>hue-rotate</span>
-        <input
-          type="range"
-          min="0"
-          max="360"
-          value={filterState.hueRotate}
-          onChange={(e) => handleEffect(e, "hueRotate")}
-        />
-      </label>
-
-      <label>
-        <span>invert</span>
+        <span>sepia</span>
         <input
           type="range"
           min="0"
           max="100"
-          value={filterState.invert}
-          onChange={(e) => handleEffect(e, "invert")}
+          value={filterState.sepia}
+          onChange={(e) => handleEffect(e, "sepia")}
         />
       </label>
 
@@ -90,13 +79,24 @@ const RangeBox = () => {
       </label>
 
       <label>
-        <span>sepia</span>
+        <span>invert</span>
         <input
           type="range"
           min="0"
           max="100"
-          value={filterState.sepia}
-          onChange={(e) => handleEffect(e, "sepia")}
+          value={filterState.invert}
+          onChange={(e) => handleEffect(e, "invert")}
+        />
+      </label>
+
+      <label>
+        <span>hue-rotate</span>
+        <input
+          type="range"
+          min="0"
+          max="360"
+          value={filterState.hueRotate}
+          onChange={(e) => handleEffect(e, "hueRotate")}
         />
       </label>
     </div>

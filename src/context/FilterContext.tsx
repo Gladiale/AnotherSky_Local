@@ -12,10 +12,10 @@ const filterDataInit: FilterDataType = {
   brightness: 100,
   contrast: 100,
   grayscale: 0,
-  hueRotate: 0,
-  invert: 0,
-  saturate: 100,
   sepia: 0,
+  saturate: 100,
+  invert: 0,
+  hueRotate: 0,
 };
 
 type ContextType = {
