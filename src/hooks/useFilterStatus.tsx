@@ -9,28 +9,35 @@ type MessageType = {
 const useFilterStatus = () => {
   const { filterState, filterDispatch } = useFilter();
 
-  const [filterStatusNumber, setFilterStatusNumber] = useState<number>(0);
   const [message, setMessage] = useState<MessageType>({
     copy: "データ取得",
     apply: "データ適応",
   });
+  const [timeoutId, setTimeoutId] = useState<number | null>(null);
+  const [filterStatusNumber, setFilterStatusNumber] = useState<number>(0);
 
-  const changeMessage = (
-    target: keyof MessageType,
-    text: MessageType[typeof target],
-    textRest: MessageType[typeof target]
+  const changeMessage = <T extends keyof MessageType>(
+    target: T,
+    text: MessageType[T],
+    textRest: MessageType[T]
   ) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
     setMessage((prev) => ({
       ...prev,
       [target]: text,
     }));
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setMessage((prev) => ({
         ...prev,
         [target]: textRest,
       }));
     }, 1000);
+
+    setTimeoutId(timeout);
   };
 
   const copyFilterStatus = () => {
