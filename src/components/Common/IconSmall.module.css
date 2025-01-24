@@ -2,25 +2,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-  font-size: 0.9rem;
   border: 2px solid transparent;
-  margin-left: 0.3rem;
-  margin-right: 0.3rem;
+  &:hover {
+    animation: 0.2s linear 0s flashAni;
+  }
+}
+
+.iconSmall.circle {
+  font-size: 0.9rem;
   border-radius: 50%;
   color: #ff57b6;
   background-color: #37fffc;
-}
-.iconSmall:hover {
-  color: #e57dff;
-  background-color: #89ffd4;
-  animation: 0.2s linear 0s flashAni;
+
+  &:hover {
+    color: #e57dff;
+    background-color: #89ffd4;
+  }
 }
 
-.iconSmall.theme-2nd {
+.iconSmall.rabbet {
   font-size: 1rem;
-  border-radius: unset;
   clip-path: polygon(
     0% 15%,
     15% 15%,
@@ -37,10 +39,23 @@
   );
   color: #d258c4;
   background-color: #e4adf0;
+
+  &:hover {
+    color: #bc59d5;
+    background-color: #89ffd4;
+  }
 }
-.iconSmall.theme-2nd:hover {
-  color: #bc59d5;
-  background-color: #89ffd4;
+
+.iconSmall.rhombus {
+  font-size: 1.1rem;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  color: #d258c4;
+  background-color: #e4adf0;
+
+  &:hover {
+    color: #bc59d5;
+    background-color: #89ffd4;
+  }
 }
 
 @keyframes flashAni {

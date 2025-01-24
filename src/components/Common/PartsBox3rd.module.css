@@ -1,0 +1,75 @@
+.parts-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1rem;
+  user-select: none;
+  gap: 0.1rem;
+
+  & .title {
+    color: #f9a1ff;
+    font-size: 1rem;
+  }
+
+  & .control {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+  }
+
+  & .control .icon-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & .item-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+  }
+
+  & .control .message {
+    width: 100%;
+    line-height: 1;
+    font-size: 1.2rem;
+    margin: 0 0.1rem;
+    padding: 0px 3px;
+    text-align: center;
+    color: #aa008a;
+    background-color: #ffb7f8;
+    border: 1px dashed #ec60ff;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.5s;
+
+    &.ani:hover {
+      cursor: pointer;
+      color: #0067a7;
+      background-color: #ccff67;
+      border: 1px dashed #971bafd8;
+      animation: 0.2s linear 0s flashAni;
+    }
+  }
+}
+
+@keyframes flashAni {
+  0%,
+  35%,
+  50%,
+  85% {
+    opacity: 0;
+  }
+  20%,
+  65%,
+  100% {
+    opacity: 1;
+  }
+}

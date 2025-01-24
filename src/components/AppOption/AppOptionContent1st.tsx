@@ -25,6 +25,7 @@ const AppOptionContent1st = () => {
         {optionConfig.map((option, index) => (
           <label
             key={index}
+            className={styles["option-label"]}
             onClick={() => appOptionDispatch({ type: "basic", payload: option.target })}
           >
             <GiAzulFlake

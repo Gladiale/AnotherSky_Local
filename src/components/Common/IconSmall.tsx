@@ -1,16 +1,16 @@
 import styles from "./IconSmall.module.css";
 
 type IconSmallProps = {
-  theme?: "theme-2nd";
+  shape: "circle" | "rabbet" | "rhombus";
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onContextMenu?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-const IconSmall = ({ theme, children, onClick, onContextMenu }: IconSmallProps) => {
+const IconSmall = ({ shape, children, onClick, onContextMenu }: IconSmallProps) => {
   return (
     <div
-      className={`${styles.iconSmall} ${theme && styles[theme]}`}
+      className={`${styles.iconSmall} ${styles[shape]}`}
       onClick={onClick}
       onContextMenu={onContextMenu}
     >

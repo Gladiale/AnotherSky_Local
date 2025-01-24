@@ -84,11 +84,19 @@ const AutoNext = () => {
       </IconDefault>
 
       <div className={styles["autoMatic-options"]}>
-        <IconSmall children={<BsDashLg />} onClick={() => handleAutoSpeed("minus")} />
+        <IconSmall
+          shape="circle"
+          children={<BsDashLg />}
+          onClick={() => handleAutoSpeed("minus")}
+        />
         <p onClick={() => handleAutoSpeed("ani")}>
           {autoSpeed === 40 ? "Anime" : autoSpeed + "ms"}
         </p>
-        <IconSmall children={<BsPlusLg />} onClick={() => handleAutoSpeed("plus")} />
+        <IconSmall
+          shape="circle"
+          children={<BsPlusLg />}
+          onClick={() => handleAutoSpeed("plus")}
+        />
       </div>
     </div>
   );

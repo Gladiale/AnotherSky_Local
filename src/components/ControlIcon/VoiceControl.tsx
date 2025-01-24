@@ -27,10 +27,12 @@ const VoiceControl = () => {
         <div className={styles["voice-box"]}>
           <div className={styles["voice-control"]}>
             <IconSmall
+              shape="circle"
               children={<BiFirstPage />}
               onClick={() => mediaInfoDispatch({ type: "voiceFirst" })}
             />
             <IconSmall
+              shape="circle"
               children={<BsChevronLeft />}
               onClick={() => mediaInfoDispatch({ type: "voicePrev" })}
             />
@@ -44,10 +46,12 @@ const VoiceControl = () => {
               {mediaInfo.folder.voice[1]}
             </p>
             <IconSmall
+              shape="circle"
               children={<BsChevronRight />}
               onClick={() => mediaInfoDispatch({ type: "voiceNext" })}
             />
             <IconSmall
+              shape="circle"
               children={<BiLastPage />}
               onClick={() => mediaInfoDispatch({ type: "voiceLast" })}
             />

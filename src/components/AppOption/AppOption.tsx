@@ -1,5 +1,6 @@
 import styles from "./AppOption.module.css";
 import { useEffect, useState } from "react";
+import { useHover } from "../../context/HoverContext";
 import { GiDelighted, GiForwardField } from "react-icons/gi";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 // components
@@ -9,6 +10,7 @@ import AppOptionContent1st from "./AppOptionContent1st";
 import AppOptionContent2nd from "./AppOptionContent2nd";
 
 const AppOption = () => {
+  const { hoverDispatch } = useHover();
   const { appOption, saveStorageData } = useAppOption();
   const [showPanel, setShowPanel] = useState<boolean>(false);
   const [isContent2nd, setIsContent2nd] = useState<boolean>(false);
@@ -16,8 +18,11 @@ const AppOption = () => {
   useEffect(() => {
     if (showPanel) {
       saveStorageData();
+      hoverDispatch({ type: "card", payload: "enter" });
+    } else {
+      hoverDispatch({ type: "card", payload: "leave" });
     }
-  }, [appOption]);
+  }, [showPanel]);
 
   return (
     <div className={styles["app-option"]}>

@@ -6,23 +6,24 @@
   line-height: 1rem;
   user-select: none;
   gap: 0.1rem;
-}
 
-.parts-box .title {
-  color: #f9a1ff;
-  font-size: 1rem;
+  & .title {
+    color: #f9a1ff;
+    font-size: 1rem;
+  }
 }
 
 .parts-box .control {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.6rem;
 }
 
-.parts-box .control p {
+.parts-box .control .message {
   font-size: 1.2rem;
   line-height: 1;
-  margin: 0px 0.5rem;
+  margin: 0px 0.2rem;
   padding: 1px 4px;
   width: 20rem;
   text-align: center;
@@ -42,14 +43,14 @@
     0% 80%,
     0% 20%
   );
-}
 
-.parts-box .control p.ani:hover {
-  cursor: pointer;
-  color: #8300a7;
-  background-color: #f6afff;
-  border: 1px dashed #971bafd8;
-  animation: 0.2s linear 0s flashAni;
+  &.ani:hover {
+    cursor: pointer;
+    color: #0067a7;
+    background-color: #afffdc;
+    border: 1px dashed #971bafd8;
+    animation: 0.2s linear 0s flashAni;
+  }
 }
 
 @keyframes flashAni {

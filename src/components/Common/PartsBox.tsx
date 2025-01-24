@@ -33,7 +33,7 @@ const PartsBox = (props: PropsType) => {
       {title && <p className={styles.title}>{title}</p>}
 
       <div className={styles["control"]}>
-        <IconSmall children={<BsChevronLeft />} onClick={onPrevClick} />
+        <IconSmall shape="circle" children={<BsChevronLeft />} onClick={onPrevClick} />
         <p
           className={onBoxClick && styles.ani}
           onClick={onBoxClick}
@@ -44,7 +44,7 @@ const PartsBox = (props: PropsType) => {
         >
           {message}
         </p>
-        <IconSmall children={<BsChevronRight />} onClick={onNextClick} />
+        <IconSmall shape="circle" children={<BsChevronRight />} onClick={onNextClick} />
       </div>
 
       {checkBox && (

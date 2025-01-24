@@ -48,16 +48,15 @@
 
 .decoration-box:is(.iconHover, .cardHover) .back-light {
   opacity: 0;
-  z-index: 0;
+  z-index: 1;
   transition-delay: 0s;
 }
 .decoration-box.cardHover .back-light {
   aspect-ratio: 1/1;
   top: 0;
   opacity: 1;
-  filter: drop-shadow(0 0 5px #fff760) drop-shadow(0 0 15px #ffff02);
   animation: rotate-magic-circle 8s infinite linear;
-  background-image: url("../../assets/images/light.png");
+  /* background-image: url(); */
   animation-delay: 0.2s;
 }
 
@@ -65,9 +64,8 @@
   content: "";
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 50%;
   position: absolute;
-  background-image: url("../../assets/images/magic-circle.png");
+  /* background-image: url(); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -86,7 +84,7 @@
 .decoration-box.cardHover .magic-circle {
   bottom: 0;
   animation: rotate-magic-circle3D 6s infinite linear;
-  background-image: url("../../assets/images/magic-circle-2.png");
+  /* background-image: url(); */
 }
 
 @keyframes rotate-magic-circle {

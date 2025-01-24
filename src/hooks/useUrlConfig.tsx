@@ -1,9 +1,11 @@
 import { useMediaInfo } from "../context/MediaInfoContext/MediaInfoContext";
+import { useOrnamentInfo } from "../context/OrnamentContext/OrnamentContext";
 import { useThreeInfo } from "../context/ThreeContext/ThreeContext";
 
 const useUrlConfig = () => {
   const { threeInfo } = useThreeInfo();
   const { mediaInfo } = useMediaInfo();
+  const { ornamentInfo } = useOrnamentInfo();
 
   const urlConfig = {
     cg: `/cg/${mediaInfo.folder.cg[1]}/${mediaInfo.file.cg[1]}`,
@@ -17,6 +19,11 @@ const useUrlConfig = () => {
       matCap: `/mmd/matCap/${threeInfo.matCap[1]}`,
       motion: `/mmd/motion/${threeInfo.motion[1]}`,
       pose: `/mmd/pose/${threeInfo.pose[1]}`,
+    },
+    ornament: {
+      backLight: `/ornament/back-light/${ornamentInfo.backLight[1]}`,
+      magicCircle1st: `/ornament/magic-circle/${ornamentInfo.magicCircle1st[1]}`,
+      magicCircle2nd: `/ornament/magic-circle/${ornamentInfo.magicCircle2nd[1]}`,
     },
   };
 

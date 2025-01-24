@@ -14,7 +14,7 @@
   background-size: contain;
 }
 
-.control-box-type-1st > label {
+.control-box-type-1st > .option-label {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -88,4 +88,61 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--label-color);
+}
+
+.color-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+
+  & .reset-button {
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: inline-block;
+    background: linear-gradient(to right, #00bfff 0%, #7fffd4 45%, #fffacd 100%);
+    background-size: 200% auto;
+    color: #fff;
+    border-radius: 20px;
+    padding: 0.3rem 2rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.5s;
+
+    &:hover {
+      color: #9a0a9a;
+      background-position: right center;
+    }
+    &:active {
+      scale: 0.95 1;
+      transition: 0.2s;
+    }
+  }
+
+  & .color-label {
+    width: 40%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    & img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+    }
+
+    & input[type="color"] {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+    }
+  }
 }
