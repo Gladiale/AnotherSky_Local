@@ -51,37 +51,36 @@
   align-items: center;
   cursor: pointer;
   overflow: hidden;
-  transition: 0.5s;
-}
+  transition: box-shadow 0.3s;
 
-.directory-container .gird-box .item:hover {
-  filter: drop-shadow(0 0 0.3rem #86fff3) drop-shadow(0 0 0.6rem #fc3eff);
-}
+  &:hover {
+    box-shadow: 0 0 15px #f698ff;
+  }
 
-.directory-container .gird-box .item img {
-  width: 100%;
-  height: 100%;
-  transition: 0.5s;
-  object-fit: cover;
+  & img {
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    object-fit: cover;
+  }
+  &:hover img {
+    scale: 1.2;
+  }
+
+  & p {
+    position: absolute;
+    top: 0;
+    font-size: 1rem;
+    color: #6f0649;
+    transition: 0.5s;
+  }
 }
 
 .directory-container .gird-box.character .item img {
   object-fit: contain;
 }
-
-.directory-container .gird-box .item:hover img {
-  scale: 1.2;
-}
 .directory-container .gird-box.character .item:hover img {
   scale: 1.05;
-}
-
-.directory-container .gird-box .item p {
-  position: absolute;
-  top: 0;
-  font-size: 1rem;
-  color: #6f0649;
-  transition: 0.5s;
 }
 
 .directory-container .gird-box.video .item {
@@ -90,7 +89,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .directory-container .gird-box.video .item p {
   position: relative;
   font-size: 2rem;
@@ -115,23 +113,23 @@
   border: 1px solid #f9bbff;
   cursor: pointer;
   text-align: center;
-}
 
-.directory-container .pageNav .pageButton p {
-  width: 100%;
-  height: 100%;
-  color: #ff84fb;
-  transition: 0.25s;
-  /* 縦方向の中央寄せ */
-  align-content: center;
-}
+  & p {
+    width: 100%;
+    height: 100%;
+    color: #ff84fb;
+    transition: 0.25s;
+    /* 縦方向の中央寄せ */
+    align-content: center;
+  }
 
-.directory-container .pageNav .pageButton:hover p {
-  color: #980093;
-  background-color: #f694ff;
-}
+  &:hover p {
+    color: #980093;
+    background-color: #f694ff;
+  }
 
-.directory-container .pageNav .pageButton.active p {
-  color: #980093;
-  background-color: #f9bbff;
+  &.active p {
+    color: #980093;
+    background-color: #f9bbff;
+  }
 }

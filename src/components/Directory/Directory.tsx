@@ -3,7 +3,6 @@ import { CGDataObj } from "../../data/CGDataObj";
 import { VideoDataObj } from "../../data/VideoDataObj";
 import { CharacterDataObj } from "../../data/CharacterDataObj";
 import { getDirectoryData } from "../../libs/utils/dataObjControl";
-
 import {
   type DirectoryTargetType,
   useScene,
@@ -11,6 +10,9 @@ import {
 } from "../../context/SceneContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
+// framer-motion
+import { AnimatePresence, motion } from "motion/react";
+import { staggerAnimation } from "../../libs/motion/motionVariants";
 
 const getTargetData = (target: DirectoryTargetType) => {
   switch (target) {
@@ -72,14 +74,26 @@ const Directory = () => {
         ${directoryTarget === "video" && styles.video}`}
       >
         {directorySliced[pageIndex].map((directory, index) => (
-          <div key={index} className={styles.item} onClick={() => setDirectory(index)}>
-            {directoryTarget != "video" && (
-              <img src={`/${directoryTarget}/${directory[0][1]}/${directory[1][1]}`} />
-            )}
-            <p>{directory[0][1]}</p>
-          </div>
+          <AnimatePresence key={index}>
+            <motion.div
+              className={styles.item}
+              onClick={() => setDirectory(index)}
+              // framer-motion用
+              custom={index}
+              key={directory[1][1]}
+              variants={staggerAnimation}
+              initial="initial"
+              animate="visible"
+            >
+              {directoryTarget != "video" && (
+                <img src={`/${directoryTarget}/${directory[0][1]}/${directory[1][1]}`} />
+              )}
+              <p>{directory[0][1]}</p>
+            </motion.div>
+          </AnimatePresence>
         ))}
       </div>
+
       <div className={styles.pageNav}>
         {directorySliced.map((_, index) => (
           <div

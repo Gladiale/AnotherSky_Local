@@ -59,6 +59,7 @@ const Card = () => {
           variants={cardImgRefresh}
           initial="hidden"
           animate="visible"
+          exit="exit"
           key={urlConfig.character}
           src={urlConfig.character}
           alt="character"

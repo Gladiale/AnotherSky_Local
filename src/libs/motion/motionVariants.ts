@@ -42,6 +42,11 @@ const cardImgRefresh: Variants = {
       },
     },
   },
+  exit: {
+    // opacity: 0,
+    // scale: 0,
+    // x: "-100%",
+  },
 };
 
 const flipBookRefresh: Variants = {
@@ -68,4 +73,18 @@ const fadeInUpSpring = (delay: number, duration: number): Variants => ({
   },
 });
 
-export { cardRefresh, cardImgRefresh, flipBookRefresh, fadeInUpSpring };
+const staggerAnimation: Variants = {
+  initial: {
+    opacity: 0,
+    y: 60,
+  },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.08 * index,
+    },
+  }),
+};
+
+export { cardRefresh, cardImgRefresh, flipBookRefresh, fadeInUpSpring, staggerAnimation };
