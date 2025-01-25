@@ -52,4 +52,20 @@ const flipBookRefresh: Variants = {
   },
 };
 
-export { cardRefresh, cardImgRefresh, flipBookRefresh };
+const fadeInUpSpring = (delay: number, duration: number): Variants => ({
+  hidden: { y: 60, opacity: 0, scale: 0.8 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: delay,
+      duration: duration,
+      ease: [0.6, -0.05, 0.01, 0.99],
+      type: "spring",
+      stiffness: 100,
+    },
+  },
+});
+
+export { cardRefresh, cardImgRefresh, flipBookRefresh, fadeInUpSpring };

@@ -8,6 +8,9 @@ import {
 import { type OrnamentInfoType } from "../../context/OrnamentContext/ornamentInit";
 import { useLoading } from "../../hooks/useLoading";
 import { useClickPosition } from "../../hooks/useClickPosition";
+// framer-motion
+import { motion } from "motion/react";
+import { fadeInUpSpring } from "../../libs/motion/motionVariants";
 // components
 import Loading from "../Loading/Loading";
 import RadioBox from "../Common/RadioBox";
@@ -60,13 +63,40 @@ const AppOptionContent2nd = () => {
     }, 200);
   };
 
+  const handleColorClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    let value: string;
+    if (colorTarget === "backLight") {
+      if (clickPosition === "left") {
+        value = ornamentState.color.backLight[0];
+      } else {
+        value = ornamentState.color.backLight[1];
+      }
+    } else {
+      value =
+        ornamentState.color.magicCircle === "transparent"
+          ? "#000000"
+          : ornamentState.color.magicCircle;
+    }
+    e.currentTarget.value = value;
+  };
+
   return (
     <>
-      <div className={styles["control-box-type-1st"]}>
-        <p style={{ color: "violet", fontSize: "1.1rem" }}>カード設置</p>
-      </div>
+      <motion.div
+        variants={fadeInUpSpring(0, 0.4)}
+        initial="hidden"
+        animate="visible"
+        className={`${styles["control-box-type-1st"]} ${styles.decoration}`}
+      >
+        <p style={{ color: "#ff84fb", fontSize: "1.1rem" }}>カード設置</p>
+      </motion.div>
 
-      <div className={styles["control-box-type-2nd"]}>
+      <motion.div
+        variants={fadeInUpSpring(0.2, 0.4)}
+        initial="hidden"
+        animate="visible"
+        className={styles["control-box-type-2nd"]}
+      >
         <div style={{ width: "100%" }}>
           <RadioBox
             radioName="ornament"
@@ -104,9 +134,14 @@ const AppOptionContent2nd = () => {
             }
           />
         </div>
-      </div>
+      </motion.div>
 
-      <div className={styles["control-box-type-2nd"]}>
+      <motion.div
+        variants={fadeInUpSpring(0.4, 0.4)}
+        initial="hidden"
+        animate="visible"
+        className={styles["control-box-type-2nd"]}
+      >
         <div className={styles["color-box"]}>
           <button
             className={styles["reset-button"]}
@@ -134,7 +169,7 @@ const AppOptionContent2nd = () => {
               }}
               onLoad={showTarget}
             />
-            <input type="color" onChange={handleColorChange} />
+            <input type="color" onClick={handleColorClick} onChange={handleColorChange} />
             <Loading
               kind="1st"
               loadStatus={loadStatus}
@@ -142,7 +177,7 @@ const AppOptionContent2nd = () => {
             />
           </label>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

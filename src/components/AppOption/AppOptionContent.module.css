@@ -12,6 +12,11 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+
+  &.decoration {
+    background-image: url("../../assets/panel/frame-01.png"),
+      url("../../assets/images/house.png");
+  }
 }
 
 .control-box-type-1st > .option-label {
@@ -107,7 +112,7 @@
     background: linear-gradient(to right, #00bfff 0%, #7fffd4 45%, #fffacd 100%);
     background-size: 200% auto;
     color: #fff;
-    border-radius: 20px;
+    border-radius: calc(infinity * 1px);
     padding: 0.3rem 2rem;
     text-decoration: none;
     font-size: 1rem;
