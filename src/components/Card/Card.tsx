@@ -22,7 +22,7 @@ const Card = () => {
   // カスタムフック
   const { urlConfig } = useUrlConfig();
   const { filterData } = useFilterData("card");
-  const { changeScene, resetScene, changeMedia } = useMouseControl("card");
+  const { isNext, changeScene, resetScene, changeMedia } = useMouseControl("card");
 
   useEffect(() => {
     // 開発者modeは二回発動のため、その付けにreturnの内容も一回発動されてしまいます
@@ -56,7 +56,7 @@ const Card = () => {
       {/* キャラクター */}
       <AnimatePresence>
         <motion.img
-          variants={cardImgRefresh}
+          variants={cardImgRefresh(isNext)}
           initial="hidden"
           animate="visible"
           exit="exit"

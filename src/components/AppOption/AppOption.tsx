@@ -10,7 +10,7 @@ import AppOptionContent1st from "./AppOptionContent1st";
 import AppOptionContent2nd from "./AppOptionContent2nd";
 
 const AppOption = () => {
-  const { hoverDispatch } = useHover();
+  const { hoverState, hoverDispatch } = useHover();
   const { appOption, saveStorageData } = useAppOption();
   const [showPanel, setShowPanel] = useState<boolean>(false);
   const [isContent2nd, setIsContent2nd] = useState<boolean>(false);
@@ -25,10 +25,8 @@ const AppOption = () => {
   }, [showPanel]);
 
   useEffect(() => {
-    if (isContent2nd) {
+    if (isContent2nd && !hoverState.card) {
       hoverDispatch({ type: "card", payload: "enter" });
-    } else {
-      hoverDispatch({ type: "card", payload: "leave" });
     }
   }, [isContent2nd]);
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useScene } from "../context/SceneContext";
 import {
   useMediaInfo,
@@ -8,6 +9,7 @@ const useMouseControl = (target: "cg" | "card" | "video") => {
   const { scene, setScene } = useScene();
   const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
+  const [isNext, setIsNext] = useState<boolean>(true);
 
   // Targetにマウスの左クリック
   const changeScene = () => {
@@ -24,11 +26,13 @@ const useMouseControl = (target: "cg" | "card" | "video") => {
   const changeMedia = (e: React.WheelEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.deltaY > 0
-      ? mediaInfoDispatch({ type: "next", payload: { scene, mediaActive } })
-      : mediaInfoDispatch({ type: "prev", payload: { scene, mediaActive } });
+      ? (setIsNext(true),
+        mediaInfoDispatch({ type: "next", payload: { scene, mediaActive } }))
+      : (setIsNext(false),
+        mediaInfoDispatch({ type: "prev", payload: { scene, mediaActive } }));
   };
 
-  return { changeScene, resetScene, changeMedia };
+  return { isNext, changeScene, resetScene, changeMedia };
 };
 
 export { useMouseControl };

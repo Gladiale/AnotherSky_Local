@@ -27,8 +27,8 @@ const cardRefresh = (rotateY: boolean): Variants => ({
   },
 });
 
-const cardImgRefresh: Variants = {
-  hidden: { x: "100%", opacity: 0 },
+const cardImgRefresh = (isNext: boolean): Variants => ({
+  hidden: { x: isNext ? "100%" : "-100%", opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
@@ -38,16 +38,21 @@ const cardImgRefresh: Variants = {
         mass: 1.5,
       },
       opacity: {
-        ease: "linear",
+        duration: 0.4,
+        ease: "easeOut",
       },
     },
   },
   exit: {
-    // opacity: 0,
-    // scale: 0,
-    // x: "-100%",
+    position: "absolute",
+    opacity: 0,
+    x: isNext ? "-100%" : "100%",
+    transition: {
+      duration: 0.5,
+      ease: "easeIn",
+    },
   },
-};
+});
 
 const flipBookRefresh: Variants = {
   hidden: { scale: 0 },
