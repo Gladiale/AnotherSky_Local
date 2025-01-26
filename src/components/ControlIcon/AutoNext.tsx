@@ -1,14 +1,14 @@
 import styles from "./AutoNext.module.css";
 import { useEffect, useState } from "react";
 import { GiHeartBattery } from "react-icons/gi";
+import { BsDashLg, BsPlusLg } from "react-icons/bs";
+import { useScene } from "../../context/SceneContext";
 import {
   useMediaActive,
   useMediaInfo,
 } from "../../context/MediaInfoContext/MediaInfoContext";
-import { useScene } from "../../context/SceneContext";
-import { BsDashLg, BsPlusLg } from "react-icons/bs";
-import IconDefault from "../Common/IconDefault";
 import IconSmall from "../Common/IconSmall";
+import IconDefault from "../Common/IconDefault";
 
 const AutoNext = () => {
   // 自動画像変換
@@ -29,7 +29,14 @@ const AutoNext = () => {
         setAutoSpeed((prev) => prev - 15);
         break;
       default:
-        setAutoSpeed(40);
+        switch (autoSpeed) {
+          case 40:
+            return setAutoSpeed(475);
+          case 475:
+            return setAutoSpeed(950);
+          default:
+            setAutoSpeed(40);
+        }
     }
   };
 
