@@ -19,7 +19,7 @@ const useFilterStatus = () => {
   const changeMessage = <T extends keyof MessageType>(
     target: T,
     text: MessageType[T],
-    textRest: MessageType[T]
+    textReset: MessageType[T]
   ) => {
     if (timeoutId) {
       clearTimeout(timeoutId);
@@ -33,7 +33,7 @@ const useFilterStatus = () => {
     const timeout = setTimeout(() => {
       setMessage((prev) => ({
         ...prev,
-        [target]: textRest,
+        [target]: textReset,
       }));
     }, 1000);
 
