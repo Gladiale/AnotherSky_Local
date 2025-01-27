@@ -102,6 +102,10 @@ const Directory = () => {
               (prev) => (prev - 1 + directorySliced.length) % directorySliced.length
             )
           }
+          onContextMenu={(e) => {
+            e.preventDefault();
+            setPageIndex(0);
+          }}
         >
           Prev
         </button>
@@ -111,14 +115,28 @@ const Directory = () => {
             key={index}
             onClick={() => setPageIndex(index)}
             className={`${styles["page-btn"]} ${pageIndex === index && styles.active}`}
+            style={{
+              display:
+                (index > pageIndex + 3 && index > 6) ||
+                (index < pageIndex - 3 && index < directorySliced.length - 7)
+                  ? "none"
+                  : "inline-block",
+            }}
           >
-            {index + 1}
+            {(index > pageIndex + 2 && index > 5) ||
+            (index < pageIndex - 2 && index < directorySliced.length - 6)
+              ? "..."
+              : index + 1}
           </button>
         ))}
 
         <button
           className={styles["next-btn"]}
           onClick={() => setPageIndex((prev) => (prev + 1) % directorySliced.length)}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            setPageIndex(directorySliced.length - 1);
+          }}
         >
           Next
         </button>
