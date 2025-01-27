@@ -1,15 +1,15 @@
-import { useState } from "react";
 import { useScene } from "../context/SceneContext";
+import { useDirection } from "../context/OtherContext";
 import {
   useMediaInfo,
   useMediaActive,
 } from "../context/MediaInfoContext/MediaInfoContext";
 
 const useMouseControl = (target: "cg" | "card" | "video") => {
+  const { setIsNext } = useDirection();
   const { scene, setScene } = useScene();
   const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
-  const [isNext, setIsNext] = useState<boolean>(true);
 
   // Targetにマウスの左クリック
   const changeScene = () => {
@@ -32,7 +32,7 @@ const useMouseControl = (target: "cg" | "card" | "video") => {
         mediaInfoDispatch({ type: "prev", payload: { scene, mediaActive } }));
   };
 
-  return { isNext, changeScene, resetScene, changeMedia };
+  return { changeScene, resetScene, changeMedia };
 };
 
 export { useMouseControl };

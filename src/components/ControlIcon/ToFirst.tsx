@@ -1,9 +1,10 @@
 import { BiFirstPage } from "react-icons/bi";
+import { useScene } from "../../context/SceneContext";
+import { useDirection } from "../../context/OtherContext";
 import {
   useMediaActive,
   useMediaInfo,
 } from "../../context/MediaInfoContext/MediaInfoContext";
-import { useScene } from "../../context/SceneContext";
 import IconDefault from "../Common/IconDefault";
 
 type PropsType = {
@@ -12,15 +13,17 @@ type PropsType = {
 
 const ToFirst = ({ active }: PropsType) => {
   const { scene } = useScene();
+  const { setIsNext } = useDirection();
   const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
 
   return (
     <IconDefault
       active={active}
-      onClick={() =>
-        mediaInfoDispatch({ type: "first", payload: { scene, mediaActive } })
-      }
+      onClick={() => {
+        setIsNext(false);
+        mediaInfoDispatch({ type: "first", payload: { scene, mediaActive } });
+      }}
     >
       <BiFirstPage />
     </IconDefault>

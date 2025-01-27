@@ -2,6 +2,7 @@ import styles from "./Card.module.css";
 import CardPolygon from "./CardPolygon";
 import { useEffect } from "react";
 import { useHover } from "../../context/HoverContext";
+import { useDirection } from "../../context/OtherContext";
 import { useRotateY } from "../../context/RotateYContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
@@ -15,6 +16,7 @@ import CardDecoration from "./CardDecoration";
 
 const Card = () => {
   // コンテキスト
+  const { isNext } = useDirection();
   const { rotateYState } = useRotateY();
   const { screenMode } = useScreenMode();
   const { effectState } = useEffectState();
@@ -22,7 +24,7 @@ const Card = () => {
   // カスタムフック
   const { urlConfig } = useUrlConfig();
   const { filterData } = useFilterData("card");
-  const { isNext, changeScene, resetScene, changeMedia } = useMouseControl("card");
+  const { changeScene, resetScene, changeMedia } = useMouseControl("card");
 
   useEffect(() => {
     // 開発者modeは二回発動のため、その付けにreturnの内容も一回発動されてしまいます
