@@ -37,6 +37,7 @@ type EffectStateType = {
     mixMode: MixBlendModeType;
   };
 
+  // image-effect
   image: {
     active: boolean;
     zIndex: number;
@@ -45,6 +46,7 @@ type EffectStateType = {
     mixMode: MixBlendModeType;
   };
 
+  // 使ってない
   equip: {
     active: boolean;
     zIndex: number;
