@@ -80,7 +80,7 @@ const Directory = () => {
               onClick={() => setDirectory(index)}
               // framer-motion用
               custom={index}
-              key={directory[1][1]}
+              key={directory[0][0]}
               variants={staggerAnimation}
               initial="initial"
               animate="visible"
@@ -94,16 +94,34 @@ const Directory = () => {
         ))}
       </div>
 
-      <div className={styles.pageNav}>
+      <div className={styles["nav-box"]}>
+        <button
+          className={styles["prev-btn"]}
+          onClick={() =>
+            setPageIndex(
+              (prev) => (prev - 1 + directorySliced.length) % directorySliced.length
+            )
+          }
+        >
+          Prev
+        </button>
+
         {directorySliced.map((_, index) => (
-          <div
+          <button
             key={index}
             onClick={() => setPageIndex(index)}
-            className={`${styles.pageButton} ${pageIndex === index && styles.active}`}
+            className={`${styles["page-btn"]} ${pageIndex === index && styles.active}`}
           >
-            <p>{index + 1}</p>
-          </div>
+            {index + 1}
+          </button>
         ))}
+
+        <button
+          className={styles["next-btn"]}
+          onClick={() => setPageIndex((prev) => (prev + 1) % directorySliced.length)}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

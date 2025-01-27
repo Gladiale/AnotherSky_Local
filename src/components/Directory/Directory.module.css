@@ -1,3 +1,7 @@
+.directory-container {
+  --filter: drop-shadow(0 0 0.2rem #86fff3) drop-shadow(0 0 0.4rem #fc3eff);
+}
+
 /* 参考 https://knmts.com/as-a-engineer-219/ */
 .directory-container {
   position: relative;
@@ -51,7 +55,7 @@
   align-items: center;
   cursor: pointer;
   overflow: hidden;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, filter 0.5s;
 
   &:hover {
     box-shadow: 0 0 15px #f698ff;
@@ -76,11 +80,14 @@
   }
 }
 
-.directory-container .gird-box.character .item img {
-  object-fit: contain;
-}
-.directory-container .gird-box.character .item:hover img {
-  scale: 1.05;
+.directory-container .gird-box.character .item {
+  & img {
+    object-fit: contain;
+  }
+
+  &:hover img {
+    scale: 1.05;
+  }
 }
 
 .directory-container .gird-box.video .item {
@@ -88,48 +95,71 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.directory-container .gird-box.video .item p {
-  position: relative;
-  font-size: 2rem;
-}
-.directory-container .gird-box.video .item:hover p {
-  scale: 1.3;
+
+  &:hover {
+    box-shadow: none;
+    filter: var(--filter);
+  }
+
+  & p {
+    position: relative;
+    font-size: 2rem;
+  }
+
+  &:hover p {
+    scale: 1.3;
+  }
 }
 
-.directory-container .pageNav {
+.directory-container .nav-box {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-
   padding-top: 0.1rem;
   z-index: 9;
-}
 
-.directory-container .pageNav .pageButton {
-  width: 2rem;
-  height: 1.6rem;
-  border: 1px solid #f9bbff;
-  cursor: pointer;
-  text-align: center;
-
-  & p {
-    width: 100%;
-    height: 100%;
-    color: #ff84fb;
+  & button {
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    user-select: none;
     transition: 0.25s;
+
+    width: 2rem;
+    height: 1.6rem;
+    font-size: 1rem;
+    border: 1px solid #f9bbff;
+    text-align: center;
+    color: #ff84fb;
     /* 縦方向の中央寄せ */
-    align-content: center;
+    /* align-content: center; */
   }
 
-  &:hover p {
-    color: #980093;
-    background-color: #f694ff;
+  & button.page-btn {
+    &:hover {
+      color: #980093;
+      background-color: #f694ff;
+    }
+
+    &.active {
+      color: #980093;
+      background-color: #f9bbff;
+    }
   }
 
-  &.active p {
-    color: #980093;
-    background-color: #f9bbff;
+  & button:is(.prev-btn, .next-btn) {
+    width: 4rem;
+    &:hover {
+      filter: var(--filter);
+    }
+  }
+
+  & button.prev-btn {
+    margin-right: 1rem;
+  }
+  & button.next-btn {
+    margin-left: 1rem;
   }
 }
