@@ -1,4 +1,5 @@
 import styles from "./Directory.module.css";
+import { useMemo } from "react";
 import { CGDataObj } from "../../data/CGDataObj";
 import { VideoDataObj } from "../../data/VideoDataObj";
 import { CharacterDataObj } from "../../data/CharacterDataObj";
@@ -45,7 +46,8 @@ const Directory = () => {
   const { mediaInfoDispatch } = useMediaInfo();
   const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
 
-  const directoryData = getTargetData(directoryTarget);
+  // メモ化
+  const directoryData = useMemo(() => getTargetData(directoryTarget), [directoryTarget]);
   // console.log("directoryData:", directoryData);
   const directorySliced = sliceListByNum(directoryData, 9);
   // console.log("sliced:", directorySliced);
