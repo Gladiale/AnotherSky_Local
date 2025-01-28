@@ -26,7 +26,7 @@ type ExtraActionType = {
 
 type HoverActionType = NormalActionType | ExtraActionType;
 
-function hoverReducer(state: HoverStateType, action: HoverActionType) {
+function hoverReducer(state: HoverStateType, action: HoverActionType): HoverStateType {
   switch (action.type) {
     case "card":
       return action.payload === "enter"

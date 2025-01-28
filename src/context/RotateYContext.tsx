@@ -26,7 +26,7 @@ type RotateYActionType = {
   payload: { isTachie?: boolean; isEffect?: boolean; isReset?: boolean };
 };
 
-function reducer(state: rotateYType, action: RotateYActionType) {
+function reducer(state: rotateYType, action: RotateYActionType): rotateYType {
   let newState: rotateYType;
 
   switch (action.type) {

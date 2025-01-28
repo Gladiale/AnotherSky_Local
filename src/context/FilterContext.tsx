@@ -28,7 +28,7 @@ type FilterActionType = {
   payload: { effectData: number; allEffect?: FilterDataType };
 };
 
-function reducer(state: FilterDataType, action: FilterActionType) {
+function reducer(state: FilterDataType, action: FilterActionType): FilterDataType {
   switch (action.type) {
     case "opacity":
       return { ...state, opacity: action.payload.effectData };
