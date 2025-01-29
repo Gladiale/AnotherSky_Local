@@ -141,13 +141,5 @@
       width: 100%;
       aspect-ratio: 1 / 1;
     }
-
-    & input[type="color"] {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      position: absolute;
-      opacity: 0;
-      z-index: -1;
-    }
   }
 }

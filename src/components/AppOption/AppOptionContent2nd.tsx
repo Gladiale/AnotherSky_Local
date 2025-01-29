@@ -1,13 +1,13 @@
 import styles from "./AppOptionContent.module.css";
 import { useState } from "react";
+import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
+import { useClickPosition } from "../../hooks/useClickPosition";
 import {
   useOrnamentInfo,
   useOrnamentState,
 } from "../../context/OrnamentContext/OrnamentContext";
 import { type OrnamentInfoType } from "../../context/OrnamentContext/ornamentInit";
-import { useLoading } from "../../hooks/useLoading";
-import { useClickPosition } from "../../hooks/useClickPosition";
 // framer-motion
 import { motion } from "motion/react";
 import { fadeInUpSpring } from "../../libs/motion/motionVariants";
@@ -15,12 +15,15 @@ import { fadeInUpSpring } from "../../libs/motion/motionVariants";
 import Loading from "../Loading/Loading";
 import RadioBox from "../Common/RadioBox";
 import PartsBox3rd from "../Common/PartsBox3rd";
+import SwatchesPicker from "../SwatchesPicker/SwatchesPicker";
 
 const AppOptionContent2nd = () => {
   const { urlConfig } = useUrlConfig();
   const { clickPosition, handleClickPosition } = useClickPosition();
   const { ornamentInfo, ornamentInfoDispatch } = useOrnamentInfo();
   const { ornamentState, ornamentStateDispatch } = useOrnamentState();
+
+  const [hasColorPicker, setHasColorPicker] = useState<boolean>(false);
   const [picTarget, setPicTarget] = useState<keyof OrnamentInfoType>("backLight");
 
   const { loadStatus, showTarget } = useLoading({
@@ -32,52 +35,12 @@ const AppOptionContent2nd = () => {
   });
 
   const colorTarget = picTarget === "backLight" ? "backLight" : "magicCircle";
-  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleColorClick = (e: React.MouseEvent<HTMLLabelElement>) => {
     if (colorTarget === "backLight") {
-      let value: [string, string];
-      if (clickPosition === "left") {
-        value = [e.target.value, ornamentState["color"]["backLight"][1]];
-      } else {
-        value = [ornamentState["color"]["backLight"][0], e.target.value];
-      }
-
-      return setTimeout(() => {
-        ornamentStateDispatch({
-          type: "changeColor",
-          payload: {
-            target: colorTarget,
-            value: value,
-          },
-        });
-      }, 200);
+      handleClickPosition(e);
     }
-
-    setTimeout(() => {
-      ornamentStateDispatch({
-        type: "changeColor",
-        payload: {
-          target: colorTarget,
-          value: e.target.value,
-        },
-      });
-    }, 200);
-  };
-
-  const handleColorClick = (e: React.MouseEvent<HTMLInputElement>) => {
-    let value: string;
-    if (colorTarget === "backLight") {
-      if (clickPosition === "left") {
-        value = ornamentState.color.backLight[0];
-      } else {
-        value = ornamentState.color.backLight[1];
-      }
-    } else {
-      value =
-        ornamentState.color.magicCircle === "transparent"
-          ? "#000000"
-          : ornamentState.color.magicCircle;
-    }
-    e.currentTarget.value = value;
+    setHasColorPicker(true);
   };
 
   return (
@@ -159,7 +122,7 @@ const AppOptionContent2nd = () => {
                   ? `linear-gradient(to right, ${ornamentState.color.magicCircle} 50%, ${ornamentState.color.magicCircle} 50%)`
                   : `linear-gradient(to right, ${ornamentState.color.backLight[0]} 50%, ${ornamentState.color.backLight[1]} 50%)`,
             }}
-            onClick={colorTarget === "backLight" ? handleClickPosition : undefined}
+            onClick={handleColorClick}
           >
             <img
               alt="魔法陣2nd"
@@ -169,7 +132,13 @@ const AppOptionContent2nd = () => {
               }}
               onLoad={showTarget}
             />
-            <input type="color" onClick={handleColorClick} onChange={handleColorChange} />
+            {hasColorPicker && (
+              <SwatchesPicker
+                target={colorTarget}
+                clickPosition={clickPosition}
+                closePicker={() => setHasColorPicker(false)}
+              />
+            )}
             <Loading
               kind="1st"
               loadStatus={loadStatus}
