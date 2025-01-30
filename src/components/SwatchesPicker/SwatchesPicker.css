@@ -72,6 +72,11 @@
     aspect-ratio: 1 / 1;
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
     cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      clip-path: polygon(50% 0%, 100% 100%, 50% 65%, 0 100%);
+    }
   }
 }
 
