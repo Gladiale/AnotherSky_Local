@@ -76,16 +76,11 @@
 }
 
 .close-button {
-  appearance: none;
-  text-decoration: none;
-  border: none;
-  outline: none;
   cursor: pointer;
-  display: inline-block;
   background: linear-gradient(to right, #00bfff 0%, #7fffd4 45%, #fffacd 100%);
   background-size: 200% auto;
-  color: #fff;
   border-radius: calc(infinity * 1px);
+  color: #fff;
   padding: 0.3rem 2rem;
   font-size: 1rem;
   transition: 0.5s;

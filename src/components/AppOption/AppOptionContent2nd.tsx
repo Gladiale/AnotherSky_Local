@@ -60,7 +60,7 @@ const AppOptionContent2nd = () => {
         animate="visible"
         className={styles["control-box-type-2nd"]}
       >
-        <div style={{ width: "100%" }}>
+        <div className={styles["mix-box"]}>
           <RadioBox
             radioName="ornament"
             radioList={[
