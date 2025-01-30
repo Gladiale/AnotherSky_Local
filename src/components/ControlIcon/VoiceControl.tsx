@@ -57,6 +57,7 @@ const VoiceControl = () => {
             />
           </div>
           <audio
+            controlsList="nodownload"
             controls
             autoPlay
             loop={isLoop}

@@ -48,6 +48,8 @@
     line-height: 1;
     min-width: 6rem;
     text-align: center;
+    text-wrap: nowrap;
+    overflow: hidden;
     border: 1px dashed #ffa9ec;
     color: #900075;
     background-color: #78ffed;
