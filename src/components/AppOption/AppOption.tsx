@@ -19,16 +19,13 @@ const AppOption = () => {
     if (showPanel) {
       saveStorageData();
     }
-    if (isContent2nd && showPanel) {
-      hoverDispatch({ type: "card", payload: "enter" });
-    }
-  }, [showPanel]);
+  }, [appOption]);
 
   useEffect(() => {
     if (isContent2nd && !hoverState.card) {
       hoverDispatch({ type: "card", payload: "enter" });
     }
-  }, [isContent2nd]);
+  }, [isContent2nd, showPanel]);
 
   return (
     <div className={styles["app-option"]}>
