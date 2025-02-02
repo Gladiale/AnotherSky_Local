@@ -5,7 +5,7 @@ const useClickPosition = () => {
     undefined
   );
 
-  const handleClickPosition = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
+  const handleClickPosition = (e: React.MouseEvent<HTMLDivElement>) => {
     const clientWidth = e.currentTarget.clientWidth;
     const offsetX = e.nativeEvent.offsetX;
 

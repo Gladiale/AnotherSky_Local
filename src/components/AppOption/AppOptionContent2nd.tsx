@@ -36,7 +36,7 @@ const AppOptionContent2nd = () => {
 
   const colorTarget = picTarget === "backLight" ? "backLight" : "magicCircle";
 
-  const handleColorClick = (e: React.MouseEvent<HTMLLabelElement>) => {
+  const handleColorClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (colorTarget === "backLight") {
       handleClickPosition(e);
     }
@@ -114,7 +114,7 @@ const AppOptionContent2nd = () => {
           >
             Reset
           </button>
-          <label
+          <div
             className={styles["color-label"]}
             style={{
               backgroundImage:
@@ -144,7 +144,7 @@ const AppOptionContent2nd = () => {
               loadStatus={loadStatus}
               loadStyle={{ aspectRatio: "1/1", gap: 0, position: "absolute" }}
             />
-          </label>
+          </div>
         </div>
       </motion.div>
     </>
