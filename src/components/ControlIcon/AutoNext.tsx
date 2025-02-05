@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GiHeartBattery } from "react-icons/gi";
 import { BsDashLg, BsPlusLg } from "react-icons/bs";
 import { useScene } from "../../context/SceneContext";
+import { useDirection } from "../../context/OtherContext";
 import {
   useMediaActive,
   useMediaInfo,
@@ -17,6 +18,7 @@ const AutoNext = () => {
   const [autoSpeed, setAutoSpeed] = useState<number>(450);
 
   const { scene } = useScene();
+  const { isNext } = useDirection();
   const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
 
@@ -59,7 +61,10 @@ const AutoNext = () => {
       // console.log("time start");
       intervalId = window.setInterval(() => {
         // console.log("interval running");
-        mediaInfoDispatch({ type: "next", payload: { scene, mediaActive } });
+        mediaInfoDispatch({
+          type: isNext ? "next" : "prev",
+          payload: { scene, mediaActive },
+        });
       }, autoSpeed);
     }
     return () => {
@@ -72,7 +77,7 @@ const AutoNext = () => {
     let intervalId: number | undefined;
     if (isAutoEff) {
       intervalId = window.setInterval(() => {
-        mediaInfoDispatch({ type: "effectNext" });
+        mediaInfoDispatch({ type: isNext ? "effectNext" : "effectPrev" });
       }, autoSpeed);
     }
     return () => {

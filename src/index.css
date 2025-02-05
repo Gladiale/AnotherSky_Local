@@ -6,6 +6,9 @@
 /* css変数 グローバル変数 */
 /* 参照: https://skillhub.jp/blogs/391 */
 :root {
+  /* サイズがautoの時もtransition可能に */
+  interpolate-size: allow-keywords;
+
   --font-main: "Aboreto", "M PLUS 1", system-ui;
   --font-special: "Allura", cursive;
 
@@ -143,4 +146,11 @@ html {
   min-height: 100dvh;
   background: #000000;
   overflow: hidden;
+
+  & :is(input[type="radio"], input[type="checkbox"], input[type="range"], button) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+  }
 }
