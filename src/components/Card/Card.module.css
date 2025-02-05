@@ -60,6 +60,12 @@
   height: 100%;
 }
 
+@media (max-height: 864px) {
+  .card {
+    border: 3px solid var(--border-clr);
+  }
+}
+
 @media (max-width: 768px) {
   .card {
     border: 3px solid var(--border-clr);
