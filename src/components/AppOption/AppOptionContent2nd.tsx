@@ -107,6 +107,7 @@ const AppOptionContent2nd = () => {
       >
         <div className={styles["color-box"]}>
           <button
+            type="button"
             className={styles["reset-button"]}
             onClick={() =>
               ornamentStateDispatch({ type: "resetColor", payload: colorTarget })

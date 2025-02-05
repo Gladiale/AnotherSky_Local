@@ -98,6 +98,7 @@ const Directory = () => {
 
       <div className={styles["nav-box"]}>
         <button
+          type="button"
           className={styles["prev-btn"]}
           onClick={() =>
             setPageIndex(
@@ -116,6 +117,7 @@ const Directory = () => {
           <button
             key={index}
             onClick={() => setPageIndex(index)}
+            type="button"
             className={`${styles["page-btn"]} ${pageIndex === index && styles.active}`}
             style={{
               display:
@@ -133,6 +135,7 @@ const Directory = () => {
         ))}
 
         <button
+          type="button"
           className={styles["next-btn"]}
           onClick={() => setPageIndex((prev) => (prev + 1) % directorySliced.length)}
           onContextMenu={(e) => {

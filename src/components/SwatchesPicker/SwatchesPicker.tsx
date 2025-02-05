@@ -65,10 +65,9 @@ const SwatchesPicker = ({ target, clickPosition, closePicker }: PropsType) => {
       className="color-box"
       onClick={(e) => e.stopPropagation()}
     >
-      {/* buttonにするとコンポーネントがレンダリングされた時にonClickの関数が発動のbugが発生します、原因は不明 */}
-      <div className="close-button" onClick={closePicker}>
+      <button type="button" className="close-button" onClick={closePicker}>
         Close
-      </div>
+      </button>
 
       <HexAlphaColorPicker color={currentColor} onChange={handleColorChange} />
 

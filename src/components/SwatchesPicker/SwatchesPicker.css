@@ -81,7 +81,11 @@
 }
 
 .close-button {
+  appearance: none;
+  border: none;
+  outline: none;
   cursor: pointer;
+  display: inline-block;
   background: linear-gradient(to right, #00bfff 0%, #7fffd4 45%, #fffacd 100%);
   background-size: 200% auto;
   border-radius: calc(infinity * 1px);
