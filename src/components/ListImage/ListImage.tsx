@@ -15,7 +15,7 @@ const ListImage = () => {
   const { rotateYState } = useRotateY();
   const { effectState } = useEffectState();
   const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
-  const { listState, listSubState, setListState } = useImageList();
+  const { listState, setListState } = useImageList();
 
   const [imageInfoList, setImageInfoList] = useState<
     [[number, string], [number, string, number]][]
@@ -33,7 +33,7 @@ const ListImage = () => {
   };
 
   let target: SpecificPayloadType["target"];
-  if (listState.cg) {
+  if (listState.target === "cg") {
     target = "cg";
   } else {
     target = "character";
@@ -43,7 +43,7 @@ const ListImage = () => {
   useLayoutEffect(() => {
     const imageList: [[number, string], [number, string, number]][] = [];
 
-    if (listState.cg) {
+    if (listState.target === "cg") {
       target = "cg";
     } else {
       target = "character";
@@ -79,8 +79,8 @@ const ListImage = () => {
           data-text={`${item[0][1]}-${item[1][1]}`}
         >
           <img
-            className={`${listState.stand ? styles.isStand : styles.isCG} ${
-              listSubState.heightAuto ? styles.heightAuto : ""
+            className={`${listState.target === "chara" ? styles.isChara : styles.isCG} ${
+              listState.heightAuto ? styles.heightAuto : ""
             }`}
             src={`/${target}/${item[0][1]}/${item[1][1]}`}
             onClick={() => changeCardCg(target, index)}

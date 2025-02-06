@@ -11,7 +11,7 @@ import { createRandomImg } from "../../libs/utils/createRandomImg";
 import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
 
 const ListImageMode2 = () => {
-  const { listState, listSubState, setListState } = useImageList();
+  const { listState, setListState } = useImageList();
   const { mediaInfo, mediaInfoDispatch } = useMediaInfo();
   const { setScene } = useScene();
   const { rotateYState } = useRotateY();
@@ -47,7 +47,7 @@ const ListImageMode2 = () => {
   };
 
   let target: SpecificPayloadType["target"];
-  if (listState.cg) {
+  if (listState.target === "cg") {
     target = "cg";
   } else {
     target = "character";
@@ -55,7 +55,7 @@ const ListImageMode2 = () => {
 
   useLayoutEffect(() => {
     const imageList: [[number, string], [number, string, number]][] = [];
-    if (listState.cg) {
+    if (listState.target === "cg") {
       target = "cg";
     } else {
       target = "character";
@@ -124,7 +124,7 @@ const ListImageMode2 = () => {
               className={`${styles.item} ${effectState.shake.active ? styles.shake : ""}`}
               style={{
                 ["--img" as any]: `url(/${target}/${item[0][1]}/${item[1][1]})`,
-                backgroundSize: listSubState.heightAuto ? "cover" : "contain",
+                backgroundSize: listState.heightAuto ? "cover" : "contain",
                 backgroundPosition: target === "character" ? "center" : "unset",
               }}
               onClick={() => changeCardCg(target, index)}
@@ -142,7 +142,7 @@ const ListImageMode2 = () => {
               className={`${styles.item} ${effectState.shake.active ? styles.shake : ""}`}
               style={{
                 ["--img" as any]: `url(/${target}/${item[0][1]}/${item[1][1]})`,
-                backgroundSize: listSubState.heightAuto ? "cover" : "contain",
+                backgroundSize: listState.heightAuto ? "cover" : "contain",
                 backgroundPosition: target === "character" ? "center" : "unset",
               }}
               onClick={() => changeCardCg(target, index)}
@@ -160,7 +160,7 @@ const ListImageMode2 = () => {
               className={`${styles.item} ${effectState.shake.active ? styles.shake : ""}`}
               style={{
                 ["--img" as any]: `url(/${target}/${item[0][1]}/${item[1][1]})`,
-                backgroundSize: listSubState.heightAuto ? "cover" : "contain",
+                backgroundSize: listState.heightAuto ? "cover" : "contain",
                 backgroundPosition: target === "character" ? "center" : "unset",
               }}
               onClick={() => changeCardCg(target, index)}

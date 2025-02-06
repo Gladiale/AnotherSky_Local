@@ -2,24 +2,16 @@ import { createContext, useContext, useState } from "react";
 
 export type ImageListType = {
   folder: boolean;
-  cg: boolean;
-  stand: boolean;
+  target: "cg" | "chara";
   random: boolean;
-};
-
-export type ImageListSubType = {
   heightAuto: boolean;
   mode2: boolean;
 };
 
-const listStateInit = {
+const listStateInit: ImageListType = {
   folder: true,
-  cg: true,
-  stand: false,
+  target: "cg",
   random: false,
-};
-
-const listSubStateInit = {
   heightAuto: false,
   mode2: false,
 };
@@ -27,21 +19,15 @@ const listSubStateInit = {
 type ContextType = {
   listState: ImageListType;
   setListState: React.Dispatch<React.SetStateAction<ImageListType>>;
-  listSubState: ImageListSubType;
-  setListSubState: React.Dispatch<React.SetStateAction<ImageListSubType>>;
 };
 
 const ImageListContext = createContext({} as ContextType);
 
 const ImageListProvider = ({ children }: { children: React.ReactNode }) => {
   const [listState, setListState] = useState<ImageListType>(listStateInit);
-  const [listSubState, setListSubState] =
-    useState<ImageListSubType>(listSubStateInit);
 
   return (
-    <ImageListContext.Provider
-      value={{ listState, setListState, listSubState, setListSubState }}
-    >
+    <ImageListContext.Provider value={{ listState, setListState }}>
       {children}
     </ImageListContext.Provider>
   );

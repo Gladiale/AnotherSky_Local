@@ -6,10 +6,10 @@
   align-items: center;
   user-select: none;
   transition: 0.5s;
-}
 
-.list-container:has(.list-card:hover) {
-  z-index: 9;
+  &:has(.list-card:hover) {
+    z-index: 9;
+  }
 }
 
 .list-container .list-card {
@@ -22,19 +22,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: rotate(calc(var(--i) * 5deg)) translate(calc(var(--i) * 8rem), -4.5rem);
 
-  transform: rotate(calc(var(--i) * 5deg))
-    translate(calc(var(--i) * 8rem), -4.5rem);
-}
-
-.list-container .list-card.ani {
-  animation: list-card-ani 0.5s linear;
-  animation-iteration-count: 1;
-}
-
-.list-container .list-card.againAni {
-  animation: list-card-ani2 0.5s linear;
-  animation-iteration-count: 1;
+  &.ani {
+    animation: list-card-ani 0.5s linear;
+    animation-iteration-count: 1;
+  }
+  &.againAni {
+    animation: list-card-ani2 0.5s linear;
+    animation-iteration-count: 1;
+  }
 }
 
 @keyframes list-card-ani {
@@ -42,8 +39,7 @@
     transform: rotate(0) translate(0);
   }
   100% {
-    transform: rotate(calc(var(--i) * 5deg))
-      translate(calc(var(--i) * 8rem), -4.5rem);
+    transform: rotate(calc(var(--i) * 5deg)) translate(calc(var(--i) * 8rem), -4.5rem);
   }
 }
 
@@ -52,8 +48,7 @@
     transform: rotate(0) translate(0);
   }
   100% {
-    transform: rotate(calc(var(--i) * 5deg))
-      translate(calc(var(--i) * 8rem), -4.5rem);
+    transform: rotate(calc(var(--i) * 5deg)) translate(calc(var(--i) * 8rem), -4.5rem);
   }
 }
 
@@ -65,39 +60,35 @@
   height: 100%;
   border-radius: 0.5rem;
   transition: 0.5s;
-
   filter: drop-shadow(0 0 2px #86fff3) drop-shadow(0 0 5px #fc3eff);
-}
 
-.list-container .list-card img.heightAuto {
-  height: auto;
-}
+  &.heightAuto {
+    height: auto;
+  }
 
-.list-container .list-card img.isCG {
-  object-fit: cover;
-  /* box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25); */
-}
-
-.list-container .list-card img.isStand {
-  object-fit: contain;
+  &.isCG {
+    object-fit: cover;
+  }
+  &.isChara {
+    object-fit: contain;
+  }
 }
 
 .list-container .list-card.shake:hover img {
   animation: hoverShake 0.15s linear infinite;
 }
 
-.list-container .list-card:hover img:active {
-  animation: img_active 0.15s 0s;
-}
-
-.list-container .list-card:hover img.isStand {
-  scale: 1.2;
-}
-
 .list-container .list-card:hover {
-  /* translate: calc(var(--i) * 20px) -50px; */
   translate: calc(var(--i) * 1.5rem) -6rem;
   z-index: 100;
+
+  & img:active {
+    animation: img_active 0.15s 0s;
+  }
+
+  & img.isChara {
+    scale: 1.2;
+  }
 }
 
 .list-container .list-card::before {

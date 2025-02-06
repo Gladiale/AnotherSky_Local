@@ -13,7 +13,7 @@ const createRandomImg = (
   let file: [number, string, number];
 
   if (listState.folder) {
-    if (listState.cg) {
+    if (listState.target === "cg") {
       const cgData = getRandomFolderFile(CGDataObj);
       folder = cgData.folder;
       file = cgData.file;
@@ -25,7 +25,7 @@ const createRandomImg = (
     return imageInfoList.push([folder, file]);
   }
 
-  if (listState.cg) {
+  if (listState.target === "cg") {
     folder = mediaState.folder.cg;
     const cgData = getRandomFile(CGDataObj, folder[1]);
     file = cgData;
