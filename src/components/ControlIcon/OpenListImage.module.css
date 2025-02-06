@@ -6,130 +6,40 @@
   align-items: center;
   white-space: nowrap;
   transition: 0.5s;
+
+  &:hover .target-box {
+    scale: 1;
+  }
 }
 
 .showList-container .target-box {
+  position: absolute;
+  transform: translateY(-87%);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.1rem;
-
-  position: absolute;
-  transform: translateY(-85%);
-
-  font-size: 1rem;
+  gap: 0.2rem;
   color: #ff84fb;
 
   scale: 0;
   transition: 0.5s;
   z-index: -1;
-}
 
-.showList-container:hover .target-box {
-  scale: 1;
-}
+  & .otherAction {
+    opacity: 0;
+    transition: 0.5s;
+  }
 
-.showList-container .target-box .folderCheck {
-  font-size: 0.9rem;
-}
-
-.showList-container .target-box .otherAction {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 0.9rem;
-  line-height: 1rem;
-  gap: 0.4rem;
-
-  opacity: 0;
-  transition: 0.5s;
-
-  /* padding: 0.2rem; */
-  /* border: 1px solid #f493ff; */
-}
-
-.showList-container .target-box:hover .otherAction {
-  opacity: 1;
-}
-
-.showList-container .target-box .targetSelect {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 0.8rem;
-  gap: 0.4rem;
-}
-
-.showList-container .target-box label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-}
-
-.showList-container .target-box label > span {
-  user-select: none;
-}
-
-/* checkboxカスタマイズ */
-.showList-container .target-box label input[type="checkbox"] {
-  appearance: none;
-  cursor: pointer;
-
-  width: 0.8rem;
-  height: 0.8rem;
-  border: 1px solid #ed8be9;
-  transition: all 0.12s, border-color 0.08s;
-
-  position: relative;
-}
-
-.showList-container .target-box label input[type="checkbox"]:checked {
-  width: 0.4rem;
-  top: -0.2rem;
-  left: 0.2rem;
-  border-color: #93ffeb;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  transform: rotate(45deg);
-}
-
-/* radioカスタマイズ */
-.showList-container .target-box label input[type="radio"] {
-  appearance: none;
-  cursor: pointer;
-
-  width: 0.8rem;
-  height: 0.8rem;
-  border: 1px solid #ed8be9;
-  border-radius: 50%;
-  transition: all 0.12s;
-
-  position: relative;
-}
-
-/* .showList-container .target-box label input[type="radio"]:checked {
-  border-color: #7bffbb;
-} */
-
-.showList-container .target-box label input[type="radio"]:checked::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: #ed8be9;
+  &:hover .otherAction {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
   .showList-container .target-box {
-    transform: translateY(-8%) translateX(-46%);
+    transform: translateY(-10%) translateX(-42%);
   }
   .showList-container .target-box .otherAction {
     opacity: 1;
