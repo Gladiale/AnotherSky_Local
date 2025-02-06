@@ -15,7 +15,7 @@ import ListImageMode2 from "../ListImageMode2/ListImageMode2";
 
 const Content = () => {
   const { scene } = useScene();
-  const { listSubState } = useImageList();
+  const { listState } = useImageList();
   const { mediaActive } = useMediaActive();
   const { effectState } = useEffectState();
   const { offsetX, handleContentWidth, handleOverLimit } = useCharaOffsetX();
@@ -41,8 +41,8 @@ const Content = () => {
       )}
       {scene === "video" && <Video />}
       {scene === "directoryMode" && <Directory />}
-      {scene === "listImg" && !listSubState.mode2 && <ListImage />}
-      {scene === "listImg" && listSubState.mode2 && <ListImageMode2 />}
+      {scene === "listImg" && !listState.mode2 && <ListImage />}
+      {scene === "listImg" && listState.mode2 && <ListImageMode2 />}
       {scene != "card" && !effectState.mirror && (
         <Character
           handleOverLimit={handleOverLimit}
