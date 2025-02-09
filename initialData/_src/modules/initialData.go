@@ -8,7 +8,7 @@ import (
 
 func InitialData(folderList []string) {
 	var exportData = make(map[string]interface{})
-	exportPath := Path["export"] + "data" + ".json"
+	exportPath := Path["export"] + "folderData" + ".json"
 
 	for _, folder := range folderList {
 		data := CreateData(folder)
