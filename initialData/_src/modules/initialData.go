@@ -7,12 +7,12 @@ import (
 )
 
 func InitialData(folderList []string) {
-	var exportData []DataType
+	var exportData = make(map[string]interface{})
 	exportPath := Path["export"] + "data" + ".json"
 
 	for _, folder := range folderList {
 		data := CreateData(folder)
-		exportData = append(exportData, data)
+		exportData[folder+"Data"] = data
 		// 文字列をスペース埋め　参考: https://orebibou.com/ja/home/201706/20170612_001/
 		fmt.Printf("-> %-10s フォルダー初期化完了\n", folder)
 	}

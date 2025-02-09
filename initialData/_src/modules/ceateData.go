@@ -1,7 +1,9 @@
 package modules
 
+type DataType map[string][]string
+
 func CreateData(target string) DataType {
-	data := make(map[string][]string)
+	data := make(DataType)
 	targetPath := Path["target"] + target
 
 	folderList := GetFolderList(targetPath)
@@ -22,5 +24,5 @@ func CreateData(target string) DataType {
 		}
 	}
 
-	return DataType{target + "Data": data}
+	return data
 }
