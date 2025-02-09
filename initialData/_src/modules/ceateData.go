@@ -1,6 +1,6 @@
 package modules
 
-func CreateData(target string) map[string][]string {
+func CreateData(target string) DataType {
 	data := make(map[string][]string)
 	targetPath := Path["target"] + target
 
@@ -22,5 +22,5 @@ func CreateData(target string) map[string][]string {
 		}
 	}
 
-	return data
+	return DataType{target + "Data": data}
 }
