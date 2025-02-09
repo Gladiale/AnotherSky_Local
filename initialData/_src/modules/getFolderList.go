@@ -1,9 +1,12 @@
 package modules
 
 import (
+	"fmt"
 	modules "initialData/modules/sort"
 	"log"
 	"os"
+	"strings"
+	"time"
 )
 
 func GetFolderList(path string) []string {
@@ -12,6 +15,10 @@ func GetFolderList(path string) []string {
 	// フォルダ内データを取得
 	entries, err := os.ReadDir(path)
 	if err != nil {
+		strList := strings.Split(path, "/")
+		target := strList[len(strList)-1]
+		fmt.Printf("Error: %s フォルダーが見つかりません！\n", target)
+		time.Sleep(3 * time.Second)
 		log.Fatal(err)
 	}
 

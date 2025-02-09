@@ -8,6 +8,8 @@ import (
 )
 
 func main() {
+	modules.SelectEnv()
+
 	folders := []string{"cg", "character", "effect", "mmd", "ornament", "video", "voice"}
 	modules.InitialData(folders)
 
