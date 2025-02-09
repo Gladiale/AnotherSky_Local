@@ -5,7 +5,7 @@ import type { FolderDataType } from "./types";
 
 async function fetchFolderData() {
   try {
-    const response = await fetch("/data.json");
+    const response = await fetch("/folderData.json");
     const data = (await response.json()) as FolderDataType;
     return data;
   } catch (error) {
