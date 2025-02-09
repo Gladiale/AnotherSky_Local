@@ -1,6 +1,4 @@
-import { CGDataObj } from "../../../../data/CGDataObj";
-import { CharacterDataObj } from "../../../../data/CharacterDataObj";
-import { VideoDataObj } from "../../../../data/VideoDataObj";
+import { folderData } from "../../../../App";
 import {
   getRandomFile,
   getRandomFolderFile,
@@ -32,20 +30,20 @@ const toMediaRandomWithParam = (
   // folderがターゲットの時実行
   if (randomTarget.folder) {
     if (randomTarget.cg) {
-      const cgData = getRandomFolderFile(CGDataObj);
+      const cgData = getRandomFolderFile(folderData.cgData);
       folder.cg = cgData.folder;
       file.cg = cgData.file;
-      const anotherCharacterData = getRandomFolderFile(CharacterDataObj);
+      const anotherCharacterData = getRandomFolderFile(folderData.characterData);
       folder.anotherCharacter = anotherCharacterData.folder;
       file.anotherCharacter = anotherCharacterData.file;
     }
     if (randomTarget.character) {
-      const characterData = getRandomFolderFile(CharacterDataObj);
+      const characterData = getRandomFolderFile(folderData.characterData);
       folder.character = characterData.folder;
       file.character = characterData.file;
     }
     if (randomTarget.video) {
-      const videoData = getRandomFolderFile(VideoDataObj);
+      const videoData = getRandomFolderFile(folderData.videoData);
       folder.video = videoData.folder;
       file.video = videoData.file;
     }
@@ -57,17 +55,17 @@ const toMediaRandomWithParam = (
 
   // folderがターゲット外の時実行
   if (randomTarget.cg) {
-    file.cg = getRandomFile(CGDataObj, state.folder.cg[1]);
+    file.cg = getRandomFile(folderData.cgData, state.folder.cg[1]);
     file.anotherCharacter = getRandomFile(
-      CharacterDataObj,
+      folderData.characterData,
       state.folder.anotherCharacter[1]
     );
   }
   if (randomTarget.character) {
-    file.character = getRandomFile(CharacterDataObj, state.folder.character[1]);
+    file.character = getRandomFile(folderData.characterData, state.folder.character[1]);
   }
   if (randomTarget.video) {
-    file.video = getRandomFile(VideoDataObj, state.folder.video[1]);
+    file.video = getRandomFile(folderData.videoData, state.folder.video[1]);
   }
   return { ...state, file: { ...state.file, ...file } };
 };

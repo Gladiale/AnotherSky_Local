@@ -1,4 +1,4 @@
-import { MmdDataObj } from "../../../../data/MmdDataObj";
+import { folderData } from "../../../../App";
 import { getRandomFile } from "../../../../libs/utils/dataObjControl";
 import { type ThreeInfoType } from "../../threeInit";
 
@@ -7,10 +7,10 @@ const getRandomThreeFile = (
   target: keyof ThreeInfoType | "all"
 ): ThreeInfoType => {
   if (target === "all") {
-    const model = getRandomFile(MmdDataObj, "model");
-    const motion = getRandomFile(MmdDataObj, "motion");
-    const pose = getRandomFile(MmdDataObj, "pose");
-    const matCap = getRandomFile(MmdDataObj, "matCap");
+    const model = getRandomFile(folderData.mmdData, "model");
+    const motion = getRandomFile(folderData.mmdData, "motion");
+    const pose = getRandomFile(folderData.mmdData, "pose");
+    const matCap = getRandomFile(folderData.mmdData, "matCap");
 
     return {
       model: model,
@@ -20,7 +20,7 @@ const getRandomThreeFile = (
     };
   }
 
-  const targetData = getRandomFile(MmdDataObj, target);
+  const targetData = getRandomFile(folderData.mmdData, target);
   return {
     ...state,
     [target]: targetData,

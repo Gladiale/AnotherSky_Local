@@ -1,18 +1,14 @@
-import { CGDataObj } from "../../../../data/CGDataObj";
-import { CharacterDataObj } from "../../../../data/CharacterDataObj";
-import { EffectDataObj } from "../../../../data/EffectDataObj";
-import { VideoDataObj } from "../../../../data/VideoDataObj";
-import { VoiceDataObj } from "../../../../data/VoiceDataObj";
+import { folderData } from "../../../../App";
 import { getRandomFolderFile } from "../../../../libs/utils/dataObjControl";
 import { type MediaInfoType } from "../../mediaInfo";
 
 const toMediaRandom = (): MediaInfoType => {
-  const cgData = getRandomFolderFile(CGDataObj);
-  const characterData = getRandomFolderFile(CharacterDataObj);
-  const anotherCharacterData = getRandomFolderFile(CharacterDataObj);
-  const videoData = getRandomFolderFile(VideoDataObj);
-  const voiceData = getRandomFolderFile(VoiceDataObj);
-  const effectData = getRandomFolderFile(EffectDataObj);
+  const cgData = getRandomFolderFile(folderData.cgData);
+  const characterData = getRandomFolderFile(folderData.characterData);
+  const anotherCharacterData = getRandomFolderFile(folderData.characterData);
+  const videoData = getRandomFolderFile(folderData.videoData);
+  const voiceData = getRandomFolderFile(folderData.voiceData);
+  const effectData = getRandomFolderFile(folderData.effectData);
 
   const folder = {
     cg: cgData.folder,

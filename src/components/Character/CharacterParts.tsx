@@ -8,8 +8,8 @@ import {
   useMediaInfo,
 } from "../../context/MediaInfoContext/MediaInfoContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
+import { folderData } from "../../App";
 import { getRandomFolderFile } from "../../libs/utils/dataObjControl";
-import { VoiceDataObj } from "../../data/VoiceDataObj";
 import Loading from "../Loading/Loading";
 
 type PropsType = {
@@ -38,7 +38,7 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
   const handleVocal = (e: React.MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
     // ランダムなボイスを取得
-    const voiceData = getRandomFolderFile(VoiceDataObj);
+    const voiceData = getRandomFolderFile(folderData.voiceData);
     setVocal(`/voice/${voiceData.folder[1]}/${voiceData.file[1]}`);
     setHasVocal(true);
   };
@@ -46,7 +46,7 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
   // const handleVocal = (e: React.MouseEvent<HTMLImageElement>) => {
   //   e.stopPropagation();
   //   // 特定のボイスを取得
-  //   const voiceData = getRandomFile(VoiceDataObj, "sound");
+  //   const voiceData = getRandomFile(folderData.voiceData, "sound");
   //   setVocal(`/voice/sound/${voiceData[1]}`);
   //   setHasVocal(true);
   // };

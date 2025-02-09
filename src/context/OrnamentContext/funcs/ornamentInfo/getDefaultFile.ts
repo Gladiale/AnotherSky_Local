@@ -1,7 +1,7 @@
-import { OrnamentDataObj } from "../../../../data/OrnamentDataObj";
+import { folderData } from "../../../../App";
 import { getFileList } from "../../../../libs/utils/dataObjControl";
-import { type OrnamentInfoType } from "../../ornamentInit";
 import { fixOrnamentTarget } from "./fixOrnamentTarget";
+import { type OrnamentInfoType } from "../../ornamentInit";
 
 type KeywordType = "default" | "default1st" | "default2nd";
 
@@ -32,7 +32,7 @@ const getDefaultFile = (
 
   targetList.forEach((t) => {
     const ornamentTarget = fixOrnamentTarget(t);
-    const fileList: string[] = getFileList(OrnamentDataObj, ornamentTarget);
+    const fileList: string[] = getFileList(folderData.ornamentData, ornamentTarget);
     const defaultIndex = findTargetIndex(fileList, getKeyword(t));
 
     newState[t] = [defaultIndex, fileList[defaultIndex], fileList.length];

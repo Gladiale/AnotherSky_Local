@@ -1,8 +1,6 @@
 import styles from "./Directory.module.css";
 import { useMemo } from "react";
-import { CGDataObj } from "../../data/CGDataObj";
-import { VideoDataObj } from "../../data/VideoDataObj";
-import { CharacterDataObj } from "../../data/CharacterDataObj";
+import { folderData } from "../../App";
 import { getDirectoryData } from "../../libs/utils/dataObjControl";
 import {
   type DirectoryTargetType,
@@ -18,11 +16,11 @@ import { staggerAnimation } from "../../libs/motion/motionVariants";
 const getTargetData = (target: DirectoryTargetType) => {
   switch (target) {
     case "cg":
-      return getDirectoryData(CGDataObj);
+      return getDirectoryData(folderData.cgData);
     case "character":
-      return getDirectoryData(CharacterDataObj);
+      return getDirectoryData(folderData.characterData);
     default:
-      return getDirectoryData(VideoDataObj);
+      return getDirectoryData(folderData.videoData);
   }
 };
 

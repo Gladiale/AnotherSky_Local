@@ -1,4 +1,4 @@
-import { OrnamentDataObj } from "../../../../data/OrnamentDataObj";
+import { folderData } from "../../../../App";
 import { getFileList } from "../../../../libs/utils/dataObjControl";
 import { fixOrnamentTarget } from "./fixOrnamentTarget";
 import { type OrnamentInfoType } from "../../ornamentInit";
@@ -9,7 +9,7 @@ const getLastFile = (
 ): OrnamentInfoType => {
   const ornamentTarget = fixOrnamentTarget(target);
 
-  const fileList: string[] = getFileList(OrnamentDataObj, ornamentTarget);
+  const fileList: string[] = getFileList(folderData.ornamentData, ornamentTarget);
   const lastIndex = fileList.length - 1;
 
   return {

@@ -1,3 +1,15 @@
+import { string } from "three/tsl";
+
+type FolderListType =
+  | "cgData"
+  | "characterData"
+  | "effectData"
+  | "mmdData"
+  | "ornamentData"
+  | "videoData"
+  | "voiceData";
+type FolderDataType = Record<FolderListType, { [key: string]: string[] }>;
+
 type FilterDataType = {
   opacity: number;
   brightness: number;
@@ -33,4 +45,4 @@ type MediaStateType = {
   touchMode: "scaleMode" | "positionMode" | "rotateMod" | "closed";
 };
 
-export type { FilterDataType, MediaStateType };
+export type { FolderDataType, FilterDataType, MediaStateType };

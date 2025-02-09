@@ -1,8 +1,4 @@
-import { CGDataObj } from "../../../../data/CGDataObj";
-import { CharacterDataObj } from "../../../../data/CharacterDataObj";
-import { EffectDataObj } from "../../../../data/EffectDataObj";
-import { VideoDataObj } from "../../../../data/VideoDataObj";
-import { VoiceDataObj } from "../../../../data/VoiceDataObj";
+import { folderData } from "../../../../App";
 import { type MediaOriginType } from "../../mediaInfo";
 
 type TargetObjType = Record<string, string[]>;
@@ -10,17 +6,17 @@ type TargetObjType = Record<string, string[]>;
 const getTargetFunc = (target: MediaOriginType): TargetObjType => {
   switch (target) {
     case "cg":
-      return CGDataObj;
+      return folderData.cgData;
     case "character":
-      return CharacterDataObj;
+      return folderData.characterData;
     case "anotherCharacter":
-      return CharacterDataObj;
+      return folderData.characterData;
     case "video":
-      return VideoDataObj;
+      return folderData.videoData;
     case "voice":
-      return VoiceDataObj;
+      return folderData.voiceData;
     case "effect":
-      return EffectDataObj;
+      return folderData.effectData;
     default:
       throw new Error("不明なactionです");
   }

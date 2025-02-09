@@ -5,8 +5,7 @@ import {
 } from "../context/MediaInfoContext/MediaInfoContext";
 import { type SpecificPayloadType } from "../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
 // Data
-import { CGDataObj } from "../data/CGDataObj";
-import { CharacterDataObj } from "../data/CharacterDataObj";
+import { folderData } from "../App";
 import { getTargetList } from "../libs/utils/getTargetList";
 
 const useUrlList = () => {
@@ -25,7 +24,7 @@ const useUrlList = () => {
   useLayoutEffect(() => {
     const { targetFileList, firstFileInfo, lastFileInfo } = getTargetList(
       target,
-      target === "cg" ? CGDataObj : CharacterDataObj,
+      target === "cg" ? folderData.cgData : folderData.characterData,
       mediaInfo
     );
     setTargetList(targetFileList);

@@ -1,1 +1,0 @@
-export const VoiceDataObj = {"Song":["Another Sky.mp3"],"久遠寺森羅":["sin_0116.ogg","sin_0159.ogg","sin_0418.ogg","sin_1137.ogg","sin_1230.ogg"]}

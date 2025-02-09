@@ -1,4 +1,4 @@
-import { OrnamentDataObj } from "../../../../data/OrnamentDataObj";
+import { folderData } from "../../../../App";
 import { getRandomFile } from "../../../../libs/utils/dataObjControl";
 import { fixOrnamentTarget } from "./fixOrnamentTarget";
 import { type OrnamentInfoType } from "../../ornamentInit";
@@ -8,9 +8,9 @@ const getRandomOrnamentFile = (
   target: keyof OrnamentInfoType | "all"
 ): OrnamentInfoType => {
   if (target === "all") {
-    const backLight = getRandomFile(OrnamentDataObj, "back-light");
-    const magicCircle1 = getRandomFile(OrnamentDataObj, "magic-circle");
-    const magicCircle2 = getRandomFile(OrnamentDataObj, "magic-circle");
+    const backLight = getRandomFile(folderData.ornamentData, "back-light");
+    const magicCircle1 = getRandomFile(folderData.ornamentData, "magic-circle");
+    const magicCircle2 = getRandomFile(folderData.ornamentData, "magic-circle");
 
     return {
       backLight: backLight,
@@ -20,7 +20,7 @@ const getRandomOrnamentFile = (
   }
 
   const ornamentTarget = fixOrnamentTarget(target);
-  const targetData = getRandomFile(OrnamentDataObj, ornamentTarget);
+  const targetData = getRandomFile(folderData.ornamentData, ornamentTarget);
   return {
     ...state,
     [target]: targetData,
