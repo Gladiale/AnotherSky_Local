@@ -1,5 +1,3 @@
-import { string } from "three/tsl";
-
 type FolderListType =
   | "cgData"
   | "characterData"

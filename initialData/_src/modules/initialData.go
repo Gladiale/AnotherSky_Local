@@ -17,7 +17,7 @@ func InitialData(folderList []string) {
 		fmt.Printf("-> %-10s フォルダー初期化完了\n", folder)
 	}
 
-	// []DataTypeをbytesに変換
+	// mapをbytesに変換
 	bytes, err := json.Marshal(exportData)
 	if err != nil {
 		fmt.Println("JSON marshal error: ", err)
