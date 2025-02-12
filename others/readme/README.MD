@@ -1,5 +1,3 @@
-# 実行ディレクトリはmodules/config.go内に設置
-
 # アイコンを埋め込む方法
 https://zenn.dev/yuta28/articles/go-winres-introduced
 
