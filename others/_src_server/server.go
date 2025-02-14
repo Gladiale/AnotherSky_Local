@@ -12,7 +12,7 @@ import (
 )
 
 var appConfig = map[string]string{
-	"port":    "7139",
+	"port":    "7395",
 	"appName": "another-sky-local v1.0.1",
 }
 
@@ -38,18 +38,36 @@ func exportMessage() {
 // 参照
 // https://docs.gofiber.io/next/middleware/static/#spa-single-page-application
 // https://docs.gofiber.io/next/api/fiber#server-listening
+// https://docs.gofiber.io/next/middleware/cache
 func main() {
 	app := fiber.New(fiber.Config{
 		AppName: appConfig["appName"],
 	})
 
-	app.Use("/", static.New("", static.Config{
-		FS: os.DirFS("dist"),
-	}))
-
-	app.Get("/*", func(c fiber.Ctx) error {
+	// GetのrootとUseのrootを被せないように注意、Getの中身が実行されなくなるのを発見
+	app.Get("/", func(c fiber.Ctx) error {
+		// index.htmlをno-storeにする
+		c.Set("Cache-Control", "no-store")
 		return c.SendFile("dist/index.html")
 	})
+
+	app.Get("/folderData.json", func(c fiber.Ctx) error {
+		c.Set("Cache-Control", "no-store")
+		return c.SendFile("dist/folderData.json")
+	})
+
+	app.Get("/filterData.json", func(c fiber.Ctx) error {
+		c.Set("Cache-Control", "no-store")
+		return c.SendFile("dist/filterData.json")
+	})
+
+	// staticにrootを設置されるとキャッシュの更新ができなくなる、原因は不明
+	app.Use(static.New("", static.Config{
+		FS:            os.DirFS("dist"),
+		IndexNames:    []string{"index.html"},
+		CacheDuration: -1,
+		MaxAge:        0,
+	}))
 
 	// サーバーを起動
 	go func() {
@@ -69,21 +87,4 @@ func main() {
 
 	// アプリケーションが終了しないように待機する
 	select {}
-
-	/*
-		// app.Shutdown() アプリケーション側serverを閉じる
-
-		// シグナルを受け取るチャネル
-		sigs := make(chan os.Signal, 1)
-		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM) // Ctrl+C または kill シグナルを捕まえる
-
-		// サーバーが終了するまで待機
-		sigReceived := <-sigs // シグナルを受け取ったら
-
-		// シグナルを受け取った後にサーバーをシャットダウン
-		fmt.Printf("Received %s signal, shutting down...\n", sigReceived)
-		if err := app.Shutdown(); err != nil {
-			fmt.Println("Server Shutdown Failed:", err)
-		}
-	*/
 }
