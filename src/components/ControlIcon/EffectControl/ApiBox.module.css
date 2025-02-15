@@ -1,0 +1,41 @@
+.api-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.3rem;
+}
+
+.api-box .btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.api-box .btn-box button {
+  min-width: 32%;
+  text-align: center;
+  cursor: pointer;
+  background: #ff66ff;
+  color: #ffffff;
+
+  padding: 2px;
+  box-shadow: 3px 5px 2px #666666;
+  border: 2px solid #ff66ff;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: none;
+    color: #ff66ff;
+    background: #ffffff;
+  }
+
+  &:active {
+    background-color: #8b1361;
+  }
+}

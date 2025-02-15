@@ -3,6 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover .effect-box {
+    scale: 1;
+  }
 }
 
 .effect-box {
@@ -20,14 +24,11 @@
   transition: 0.5s;
 
   scale: 0;
-  transform: translateY(-60%);
-}
-.effect-box.parts-2nd {
-  transform: translateY(-64%);
-}
+  transform: translateY(-59%);
 
-.effect-container:hover .effect-box {
-  scale: 1;
+  &.parts-2nd {
+    transform: translateY(-62%);
+  }
 }
 
 /* 猫 Icon */
@@ -42,22 +43,23 @@
   color: #ffa9ec;
   font-size: 1.7rem;
   transition: 0.25s;
-}
-.effect-box .inner-icon:hover {
-  color: #7bffbf;
-  scale: 0.95;
-}
-.effect-box .inner-icon:active {
-  color: #ffa9ec;
-  scale: 0.8;
+
+  &:hover {
+    color: #7bffbf;
+    scale: 0.95;
+  }
+  &:active {
+    color: #ffa9ec;
+    scale: 0.8;
+  }
 }
 
 @media (max-width: 768px) {
   .effect-box {
-    transform: translateY(-25%) translateX(-65%);
+    transform: translateY(-28%) translateX(-65%);
   }
   .effect-box.parts-2nd {
-    transform: translateY(-15%) translateX(-65%);
+    transform: translateY(-20%) translateX(-65%);
   }
 }
 

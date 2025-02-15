@@ -6,7 +6,7 @@ import { useEffectState } from "../../../context/EffectStateContext/EffectStateC
 import CheckBox from "../../Common/CheckBox";
 import PackingBox from "./PackingBox";
 import RangeBox from "./RangeBox";
-import FilterButton from "./backup/FilterButton";
+import ApiBox from "./ApiBox";
 
 const EffectBox = () => {
   const { effectState, effectStateDispatch } = useEffectState();
@@ -24,7 +24,6 @@ const EffectBox = () => {
 
       {partsActive ? <PackingBox /> : <RangeBox />}
 
-      {/* 元CSS margin-top: 0.2rem; */}
       <CheckBox
         kind="1st"
         fontSize={1}
@@ -35,7 +34,7 @@ const EffectBox = () => {
         }}
         containerStyle={{
           lineHeight: "100%",
-          padding: "0.3rem 0",
+          padding: "0.2rem 0",
         }}
         checkBoxList={[
           {
@@ -56,7 +55,7 @@ const EffectBox = () => {
         ]}
       />
 
-      <FilterButton />
+      <ApiBox />
     </div>
   );
 };
