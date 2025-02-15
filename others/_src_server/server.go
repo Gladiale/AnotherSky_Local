@@ -1,50 +1,28 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net"
 	"os"
-	"strings"
+	serverAction "server/server-action"
+	serverConfig "server/server-config"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/static"
 )
 
-var appConfig = map[string]string{
-	"port":    "7395",
-	"appName": "another-sky-local v1.0.1",
-}
-
-func exportMessage() {
-	str_local := fmt.Sprintf("%-14s", "  -  Local:")
-	str_network := fmt.Sprintf("%-14s", "  -  Network:")
-
-	fmt.Println("\n> " + appConfig["appName"] + "\n" + ">" + " server on\n")
-	fmt.Println(str_local + "http://localhost:" + appConfig["port"] + "/")
-
-	addrs, _ := net.InterfaceAddrs()
-	for _, addr := range addrs {
-		ipnet, ok := addr.(*net.IPNet) // コンマokイディオム
-		if ok {                        // ok が true の場合、型アサーションは成功
-			ip := ipnet.IP.String()
-			if strings.HasPrefix(ip, "192.168") {
-				fmt.Println(str_network + "http://" + ip + ":" + appConfig["port"] + "/")
-			}
-		}
-	}
-}
-
-// 参照
-// https://docs.gofiber.io/next/middleware/static/#spa-single-page-application
-// https://docs.gofiber.io/next/api/fiber#server-listening
-// https://docs.gofiber.io/next/middleware/cache
+/*
+参照
+https://docs.gofiber.io/next/middleware/static/#spa-single-page-application
+https://docs.gofiber.io/next/api/fiber#server-listening
+https://docs.gofiber.io/next/middleware/cache
+https://docs.gofiber.io/next/guide/grouping
+*/
 func main() {
 	app := fiber.New(fiber.Config{
-		AppName: appConfig["appName"],
+		AppName: serverConfig.AppConfig["appName"],
 	})
 
-	// GetのrootとUseのrootを被せないように注意、Getの中身が実行されなくなるのを発見
+	// GetをUse(static)の前に書くに注意、後ろに書くとGetの中身が実行されなくなるのを発見
 	app.Get("/", func(c fiber.Ctx) error {
 		// index.htmlをno-storeにする
 		c.Set("Cache-Control", "no-store")
@@ -61,10 +39,14 @@ func main() {
 		return c.SendFile("dist/filterData.json")
 	})
 
-	// staticにrootを設置されるとキャッシュの更新ができなくなる、原因は不明
-	app.Use(static.New("", static.Config{
-		FS:            os.DirFS("dist"),
-		IndexNames:    []string{"index.html"},
+	app.Post("/api/filter", serverAction.HandleFilterPost)
+	app.Put("/api/filter/:index", serverAction.HandleFilterUpdate)
+	app.Delete("/api/filter/:index", serverAction.HandleFilterDelete)
+
+	app.Use("/", static.New("", static.Config{
+		FS:         os.DirFS("dist"),
+		IndexNames: []string{"index.html"},
+		// 多分CacheDurationは少し長めに設置しても大丈夫
 		CacheDuration: -1,
 		MaxAge:        0,
 	}))
@@ -72,7 +54,7 @@ func main() {
 	// サーバーを起動
 	go func() {
 		// 0.0.0.0 でリッスンすることで、外部から接続できるようになります
-		err := app.Listen("0.0.0.0:"+appConfig["port"], fiber.ListenConfig{
+		err := app.Listen("0.0.0.0:"+serverConfig.AppConfig["port"], fiber.ListenConfig{
 			DisableStartupMessage: true,
 		})
 
@@ -83,7 +65,7 @@ func main() {
 	}()
 
 	// サーバーが起動した後に表示するメッセージ
-	exportMessage()
+	serverConfig.ExportMessage()
 
 	// アプリケーションが終了しないように待機する
 	select {}
