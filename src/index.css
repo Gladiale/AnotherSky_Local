@@ -148,7 +148,14 @@ html {
   background: #000000;
   overflow: hidden;
 
-  & :is(input[type="radio"], input[type="checkbox"], input[type="range"], button) {
+  &
+    :is(
+      input[type="radio"],
+      input[type="checkbox"],
+      input[type="range"],
+      input[type="button"],
+      button
+    ) {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
