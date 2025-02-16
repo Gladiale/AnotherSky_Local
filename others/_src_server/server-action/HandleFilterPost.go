@@ -29,5 +29,7 @@ func HandleFilterPost(c fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusBadRequest, "Failed Write filterData.json")
 	}
 
-	return c.SendFile("dist/filterData.json")
+	// c.Set("Cache-Control", "no-store")
+	// return c.SendFile("dist/filterData.json")
+	return nil
 }
