@@ -15,6 +15,7 @@ type PropsType = {
     state: boolean;
     onChange: () => void;
   };
+  messageStyle?: React.CSSProperties;
 };
 
 const PartsBox = (props: PropsType) => {
@@ -26,6 +27,7 @@ const PartsBox = (props: PropsType) => {
     onBoxClick,
     onBoxContextMenu,
     checkBox,
+    messageStyle,
   } = props;
 
   return (
@@ -36,6 +38,7 @@ const PartsBox = (props: PropsType) => {
         <IconSmall shape="circle" children={<BsChevronLeft />} onClick={onPrevClick} />
         <p
           className={onBoxClick && styles.ani}
+          style={messageStyle}
           onClick={onBoxClick}
           onContextMenu={(e) => {
             e.preventDefault();

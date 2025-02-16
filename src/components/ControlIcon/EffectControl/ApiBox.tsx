@@ -11,6 +11,10 @@ const ApiBox = () => {
       {/* boxに更新 */}
       <PartsBox
         message={message}
+        messageStyle={{
+          width: "8rem",
+          lineHeight: 1,
+        }}
         onPrevClick={() => applyFilterStatus("prev")}
         onNextClick={() => applyFilterStatus("next")}
         onBoxClick={() => applyFilterStatus("reset")}

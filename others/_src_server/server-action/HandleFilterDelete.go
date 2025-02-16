@@ -1,6 +1,7 @@
 package serverAction
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/gofiber/fiber/v3"
@@ -15,7 +16,7 @@ func HandleFilterDelete(c fiber.Ctx) error {
 
 	// 指定のデータを削除
 	index, err := strconv.Atoi(c.Params("index"))
-	if err != nil || index >= len(jsonData) {
+	if err != nil || index >= len(jsonData) || index < 0 {
 		return fiber.NewError(fiber.StatusBadRequest, "Invalid Filter ID")
 	}
 	jsonData = append(jsonData[:index], jsonData[index+1:]...)
@@ -26,7 +27,11 @@ func HandleFilterDelete(c fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusBadRequest, "Failed Write filterData.json")
 	}
 
-	// c.Set("Cache-Control", "no-store")
-	// return c.SendFile("dist/filterData.json")
-	return nil
+	// 構造体をJSONにシリアライズ (直接"dist/filterData.json"をreturnしたいが、うまくいかない)
+	responseJsonData, err := json.Marshal(jsonData)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "シリアライズ失敗")
+	}
+
+	return c.Send(responseJsonData)
 }

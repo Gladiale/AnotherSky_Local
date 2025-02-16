@@ -29,7 +29,11 @@ func HandleFilterPost(c fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusBadRequest, "Failed Write filterData.json")
 	}
 
-	// c.Set("Cache-Control", "no-store")
-	// return c.SendFile("dist/filterData.json")
-	return nil
+	// 構造体をJSONにシリアライズ (直接"dist/filterData.json"をreturnしたいが、うまくいかない)
+	responseJsonData, err := json.Marshal(jsonData)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "シリアライズ失敗")
+	}
+
+	return c.Send(responseJsonData)
 }

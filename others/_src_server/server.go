@@ -7,6 +7,7 @@ import (
 	serverConfig "server/server-config"
 
 	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/gofiber/fiber/v3/middleware/static"
 )
 
@@ -21,6 +22,9 @@ func main() {
 	app := fiber.New(fiber.Config{
 		AppName: serverConfig.AppConfig["appName"],
 	})
+
+	// CORSミドルウェアの設定 (https://docs.gofiber.io/next/middleware/cors)
+	app.Use(cors.New())
 
 	// GetをUse(static)の前に書くに注意、後ろに書くとGetの中身が実行されなくなるのを発見
 	app.Get("/", func(c fiber.Ctx) error {
