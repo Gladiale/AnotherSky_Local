@@ -4,6 +4,10 @@
 現状わかるバッグ
 - loading動画をopenの時、doublePageとmirrorEffectの立ち絵のoffset値が間違ってloading動画のサイズを使って計算してしまうの不具合が生じる
 
+```
+npm install -D vite@latest
+```
+
 <GiGothicCross />
 <GiQueenCrown />
 <GiChessQueen />
