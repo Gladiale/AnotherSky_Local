@@ -94,7 +94,7 @@ const CGbox = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
       >
-        <CG />
+        <CG loadingHeight={screenMode === "cardMode" ? "100%" : "100dvh"} />
         {isMixMode && (
           <CG className="texture-img" mixBlendMode={effectState.cgMix.mixMode} />
         )}
