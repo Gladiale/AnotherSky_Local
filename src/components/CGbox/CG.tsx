@@ -2,6 +2,7 @@ import styles from "./CGbox.module.css";
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
 import { useTransform3d } from "../../hooks/useTransform3d";
+import { useContentChange } from "../../hooks/useCharaOffsetX";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
@@ -30,6 +31,7 @@ const CG = ({ className, mixBlendMode, loadingHeight }: PropsType) => {
   const { loadStatus, showTarget } = useLoading({
     trigger: [mediaActive.anotherCharacter, imgUrl],
   });
+  const { targetRef, setLoadedTrue } = useContentChange(loadStatus, "imgEl", "main");
 
   return (
     <>
@@ -49,7 +51,8 @@ const CG = ({ className, mixBlendMode, loadingHeight }: PropsType) => {
           opacity:
             threeState.active.threeD && !threeState.active.background ? 0 : undefined,
         }}
-        onLoad={showTarget}
+        ref={targetRef as React.MutableRefObject<HTMLImageElement>}
+        onLoad={() => (showTarget(), setLoadedTrue())}
         onMouseMove={appOption.parallax ? changeTransform3d : undefined}
         onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
       />

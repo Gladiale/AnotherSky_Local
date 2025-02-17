@@ -2,6 +2,7 @@ import styles from "./CharacterParts.module.css";
 import { useState } from "react";
 import { useLoading } from "../../hooks/useLoading";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
+import { useContentChange } from "../../hooks/useCharaOffsetX";
 import { useRotateY } from "../../context/RotateYContext";
 import {
   useMediaActive,
@@ -12,11 +13,7 @@ import { folderData } from "../../App";
 import { getRandomFolderFile } from "../../libs/utils/dataObjControl";
 import Loading from "../Loading/Loading";
 
-type PropsType = {
-  handleOverLimit: (e: React.SyntheticEvent<HTMLImageElement>) => void;
-};
-
-const CharacterParts = ({ handleOverLimit }: PropsType) => {
+const CharacterParts = () => {
   const [vocal, setVocal] = useState<string>("");
   const [hasVocal, setHasVocal] = useState<boolean>(false);
 
@@ -29,6 +26,7 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
   const { loadStatus, showTarget } = useLoading({
     trigger: [urlConfig.character],
   });
+  const { targetRef, setLoadedTrue } = useContentChange(loadStatus, "imgEl", "chara");
 
   const isMixMode =
     effectState.cgMix &&
@@ -59,11 +57,6 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
     }
   };
 
-  const handleLoaded = (e: React.MouseEvent<HTMLImageElement>) => {
-    showTarget();
-    handleOverLimit(e);
-  };
-
   return (
     <div
       onClick={handleVocal}
@@ -76,7 +69,8 @@ const CharacterParts = ({ handleOverLimit }: PropsType) => {
       style={{ transform: `rotateY(${rotateYState.character ? 180 : 0}deg)` }}
     >
       <img
-        onLoad={handleLoaded}
+        ref={targetRef as React.MutableRefObject<HTMLImageElement>}
+        onLoad={() => (showTarget(), setLoadedTrue())}
         src={urlConfig.character}
         className={styles["character-img"]}
         style={{ display: loadStatus === "success" ? undefined : "none" }}

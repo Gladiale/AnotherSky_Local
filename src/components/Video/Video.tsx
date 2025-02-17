@@ -10,6 +10,7 @@ import { useFilterData } from "../../hooks/useFilterData";
 import { useTransform3d } from "../../hooks/useTransform3d";
 import { useMouseControl } from "../../hooks/useMouseControl";
 import { useMediaControl } from "../../hooks/useMediaControl";
+import { useContentChange } from "../../hooks/useCharaOffsetX";
 import { useMediaSizeData } from "../../hooks/useMediaSizeData";
 import { useMediaTouchControl } from "../../hooks/useMediaTouchControl";
 import EffectImage from "../EffectImage/EffectImage";
@@ -31,12 +32,12 @@ const Video = () => {
 
   const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaReverse } =
     useMediaControl({ initialScale: 1.5, target: "video" });
-
   const { handleTouchStart, handleTouchMove } = useMediaTouchControl({ target: "video" });
 
   const { loadStatus, showTarget } = useLoading({
     trigger: [urlConfig.video],
   });
+  const { targetRef, setLoadedTrue } = useContentChange(loadStatus, "videoEl", "main");
 
   const [hasControl, setHasControl] = useState<boolean>(false);
   const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -86,7 +87,8 @@ const Video = () => {
             display: loadStatus === "success" ? undefined : "none",
             transform: appOption.parallax ? transform3d : undefined,
           }}
-          onLoadedData={showTarget}
+          ref={targetRef as React.MutableRefObject<HTMLVideoElement>}
+          onLoadedData={() => (showTarget(), setLoadedTrue())}
           onMouseMove={appOption.parallax ? changeTransform3d : undefined}
           onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
           src={urlConfig.video}

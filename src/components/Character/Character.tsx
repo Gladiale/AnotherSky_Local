@@ -1,4 +1,5 @@
 import styles from "./Character.module.css";
+import { useScene } from "../../context/SceneContext";
 import { useFilter } from "../../context/FilterContext";
 import { useFilterData } from "../../hooks/useFilterData";
 import { useMediaActive } from "../../context/MediaInfoContext/MediaInfoContext";
@@ -7,14 +8,17 @@ import CharacterParts from "./CharacterParts";
 
 type PropsType = {
   containerStyle?: React.CSSProperties;
-  handleOverLimit: (e: React.SyntheticEvent<HTMLImageElement>) => void;
 };
 
-const Character = ({ containerStyle, handleOverLimit }: PropsType) => {
+const Character = ({ containerStyle }: PropsType) => {
+  const { scene } = useScene();
   const { filterState } = useFilter();
   const { mediaActive } = useMediaActive();
   const { effectState } = useEffectState();
   const { filterData } = useFilterData("character");
+
+  const isTopLevel: boolean =
+    mediaActive.doublePage || effectState.mirror || scene === "directoryMode";
 
   return (
     <div
@@ -25,12 +29,12 @@ const Character = ({ containerStyle, handleOverLimit }: PropsType) => {
           effectState.pixel && effectState.target.character ? "pixelated" : undefined,
         display:
           effectState.target.character && filterState.opacity === 0 ? "none" : undefined,
-        maxWidth: mediaActive.doublePage || effectState.mirror ? "none" : undefined,
-        zIndex: mediaActive.doublePage || effectState.mirror ? 99 : undefined,
+        maxWidth: isTopLevel ? "none" : undefined,
+        zIndex: isTopLevel ? 99 : undefined,
         ...containerStyle,
       }}
     >
-      <CharacterParts handleOverLimit={handleOverLimit} />
+      <CharacterParts />
     </div>
   );
 };

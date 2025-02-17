@@ -18,20 +18,15 @@ const Content = () => {
   const { listState } = useImageList();
   const { mediaActive } = useMediaActive();
   const { effectState } = useEffectState();
-  const { offsetX, handleContentWidth, handleOverLimit } = useCharaOffsetX();
+  const { offsetX } = useCharaOffsetX();
 
   return (
     <div
       className={`${styles.content} ${scene === "card" && styles.threeD}
       ${effectState.mirror && styles.mirror}`}
-      // 子要素から親要素へとイベントが流れていく
-      onLoad={handleContentWidth}
     >
       {scene != "card" && (
-        <Character
-          handleOverLimit={handleOverLimit}
-          containerStyle={{ transform: `translateX(${offsetX}px)` }}
-        />
+        <Character containerStyle={{ transform: `translateX(${offsetX}px)` }} />
       )}
       {scene === "card" && <Card />}
       {scene === "cg" && mediaActive.doublePage ? (
@@ -45,7 +40,6 @@ const Content = () => {
       {scene === "listImg" && listState.mode2 && <ListImageMode2 />}
       {scene != "card" && !effectState.mirror && (
         <Character
-          handleOverLimit={handleOverLimit}
           containerStyle={{ transform: `rotateY(180deg) translateX(${offsetX}px)` }}
         />
       )}

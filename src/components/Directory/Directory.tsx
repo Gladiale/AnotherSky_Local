@@ -1,5 +1,5 @@
 import styles from "./Directory.module.css";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { folderData } from "../../App";
 import { getDirectoryData } from "../../libs/utils/dataObjControl";
 import {
@@ -8,6 +8,7 @@ import {
   useDirectoryInfo,
 } from "../../context/SceneContext";
 import { useScreenMode } from "../../context/ScreenContext";
+import { useContentWidth } from "../../context/OtherContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 // framer-motion
 import { AnimatePresence, motion } from "motion/react";
@@ -42,7 +43,16 @@ const Directory = () => {
   const { setScene } = useScene();
   const { screenMode } = useScreenMode();
   const { mediaInfoDispatch } = useMediaInfo();
+  const { setContentWidth } = useContentWidth();
   const { directoryTarget, pageIndex, setPageIndex } = useDirectoryInfo();
+
+  const directoryRef = useRef<HTMLDivElement>(null!);
+  useEffect(() => {
+    setContentWidth((prev) => ({
+      ...prev,
+      main: directoryRef.current.offsetWidth,
+    }));
+  }, []);
 
   // メモ化
   const directoryData = useMemo(() => getTargetData(directoryTarget), [directoryTarget]);
@@ -65,6 +75,7 @@ const Directory = () => {
 
   return (
     <div
+      ref={directoryRef}
       className={`${styles["directory-container"]}
       ${screenMode === "cgMode" && styles.cgMode}`}
     >
