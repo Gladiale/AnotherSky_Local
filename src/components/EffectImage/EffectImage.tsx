@@ -18,7 +18,7 @@ const EffectImage = () => {
   const { triggerEditMode, changeMediaDeg, changeMediaScale, moveMediaDirect } =
     useMediaControl({ initialScale: 1, target: "effect" });
 
-  const { handleTouchStart, handleTouchMove } = useMediaTouchControl({
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useMediaTouchControl({
     target: "effect",
   });
 
@@ -94,7 +94,7 @@ const EffectImage = () => {
         onContextMenu={handleContextMenu}
         onTouchStart={touchStart}
         onTouchMove={handleTouchMove}
-        onTouchEnd={() => setIsTouched(false)}
+        onTouchEnd={(e) => (handleTouchEnd(e), setIsTouched(false))}
         onLoad={showTarget}
       />
 
