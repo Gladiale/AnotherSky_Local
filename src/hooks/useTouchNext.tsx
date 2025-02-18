@@ -20,9 +20,14 @@ const useTouchNext = (target: SceneType) => {
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     // console.log("終了-x:", e.changedTouches[0].clientX);
     const endX = e.changedTouches[0].clientX;
-    setIsNext(endX >= startX ? true : false);
+
+    if (target === "card" && endX === startX) {
+      return;
+    }
+
+    setIsNext(endX <= startX ? true : false);
     mediaInfoDispatch({
-      type: endX >= startX ? "next" : "prev",
+      type: endX <= startX ? "next" : "prev",
       payload: { scene: target, mediaActive },
     });
   };
