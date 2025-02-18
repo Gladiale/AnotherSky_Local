@@ -1,6 +1,5 @@
 import styles from "./CGbox.module.css";
 import { GiCrenelCrown, GiSharpCrown } from "react-icons/gi";
-import { useScene } from "../../context/SceneContext";
 import { useThreeState } from "../../context/ThreeContext/ThreeContext";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import {
@@ -11,7 +10,6 @@ import { useInformation } from "../../hooks/useInformation";
 import IconSpecial from "../Common/IconSpecial";
 
 const ControlParts = () => {
-  const { setScene } = useScene();
   const { appOption } = useAppOption();
   const { infoActive } = useInformation();
   const { mediaInfoDispatch } = useMediaInfo();
@@ -23,8 +21,6 @@ const ControlParts = () => {
     setMediaActive((prev) => ({ ...prev, anotherCharacter: !prev.anotherCharacter }));
     if (!mediaActive.anotherCharacter) {
       mediaInfoDispatch({ type: "initAnother" });
-    } else {
-      setScene("cg");
     }
   };
 
