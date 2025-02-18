@@ -7,6 +7,7 @@ import { useRotateY } from "../../context/RotateYContext";
 import { useScreenMode } from "../../context/ScreenContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
 import { useUrlConfig } from "../../hooks/useUrlConfig";
+import { useTouchNext } from "../../hooks/useTouchNext";
 import { useFilterData } from "../../hooks/useFilterData";
 import { useMouseControl } from "../../hooks/useMouseControl";
 // framer-motion
@@ -25,6 +26,7 @@ const Card = () => {
   const { urlConfig } = useUrlConfig();
   const { filterData } = useFilterData("card");
   const { changeScene, resetScene, changeMedia } = useMouseControl("card");
+  const { handleTouchStart, handleTouchEnd } = useTouchNext("card");
 
   useEffect(() => {
     // 開発者modeは二回発動のため、その付けにreturnの内容も一回発動されてしまいます
@@ -66,6 +68,8 @@ const Card = () => {
           src={urlConfig.character}
           alt="character"
           className={styles["chara-img"]}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         />
       </AnimatePresence>
 

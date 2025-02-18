@@ -2,8 +2,11 @@ import styles from "./FlipBook.module.css";
 import { useState } from "react";
 import { useUrlList } from "../../hooks/useUrlList";
 import { useFilterData } from "../../hooks/useFilterData";
+import { useWindowState } from "../../hooks/useWindowState";
+import { useContentChange } from "../../hooks/useCharaOffsetX";
 import { useAppOption } from "../../context/AppOptionContext/AppOptionContext";
 import { useEffectState } from "../../context/EffectStateContext/EffectStateContext";
+import TouchPage from "./TouchPage";
 import FlipLayer from "./FlipLayer";
 import FlipControl from "./FlipControl";
 import EffectImage from "../EffectImage/EffectImage";
@@ -16,8 +19,10 @@ const FlipBook = () => {
   const { appOption } = useAppOption();
   const { effectState } = useEffectState();
   // カスタムフック
+  const { isMobileSize } = useWindowState();
   const { filterData } = useFilterData("cg");
   const { urlList, firstLastInfo, target } = useUrlList();
+  const { targetRef, setLoadedTrue } = useContentChange("success", "divEl", "main");
 
   const [isReversing, setIsReversing] = useState<Boolean>(false);
   const [layerState, setLayerState] = useState<{
@@ -33,6 +38,8 @@ const FlipBook = () => {
       variants={flipBookRefresh}
       initial="hidden"
       animate="visible"
+      onLoad={setLoadedTrue}
+      ref={targetRef as React.MutableRefObject<HTMLDivElement>}
       className={`${styles["flip-book"]} ${appOption.dropShadow.cg && styles.shadow}`}
       style={{
         filter: filterData,
@@ -40,7 +47,9 @@ const FlipBook = () => {
           effectState.pixel && effectState.target.cg ? "pixelated" : undefined,
       }}
     >
-      {layerState.active === "1st" && (
+      {isMobileSize && <TouchPage />}
+
+      {layerState.active === "1st" && !isMobileSize && (
         <FlipLayer
           isReversing={isReversing}
           target={target}
@@ -51,7 +60,7 @@ const FlipBook = () => {
         />
       )}
 
-      {layerState.active === "2nd" && (
+      {layerState.active === "2nd" && !isMobileSize && (
         <FlipLayer
           isReversing={isReversing}
           target={target}
@@ -64,7 +73,7 @@ const FlipBook = () => {
 
       {effectState.image.active && <EffectImage />}
 
-      <FlipControl setIsReversing={setIsReversing} />
+      <FlipControl isMobileSize={isMobileSize} setIsReversing={setIsReversing} />
     </motion.div>
   );
 };

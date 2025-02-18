@@ -92,4 +92,32 @@ const staggerAnimation: Variants = {
   }),
 };
 
-export { cardRefresh, cardImgRefresh, flipBookRefresh, fadeInUpSpring, staggerAnimation };
+const touchPageMotion = (isNext: boolean): Variants => ({
+  hidden: { y: isNext ? "-100%" : "100%", opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+  exit: {
+    position: "absolute",
+    opacity: 0,
+    y: isNext ? "100%" : "-100%",
+    transition: {
+      duration: 0.5,
+      ease: "easeIn",
+    },
+  },
+});
+
+export {
+  cardRefresh,
+  cardImgRefresh,
+  flipBookRefresh,
+  fadeInUpSpring,
+  staggerAnimation,
+  touchPageMotion,
+};

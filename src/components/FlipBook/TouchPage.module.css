@@ -1,0 +1,34 @@
+.touch-box {
+  height: 100%;
+  /* 3D化 */
+  /* transform-style: preserve-3d;は要らない、画像がぼやけてしまいます */
+  perspective: 900px;
+  position: absolute;
+  touch-action: none;
+}
+
+.touch-box .item-box {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--spring-duration-2nd) var(--spring-easing-2nd);
+
+  & .element {
+    height: 100%;
+    transition: 0.2s;
+  }
+
+  & .element.texture {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+  }
+}
+
+.empty {
+  height: 100%;
+  aspect-ratio: var(--aspect-ratio);
+  position: relative;
+  /* background: blue; */
+}

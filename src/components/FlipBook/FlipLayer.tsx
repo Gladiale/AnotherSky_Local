@@ -1,7 +1,6 @@
 import styles from "./FlipBook.module.css";
 import { useEffect } from "react";
 import { usePageState } from "../../hooks/usePageState";
-import { useContentChange } from "../../hooks/useCharaOffsetX";
 import { useRotateY } from "../../context/RotateYContext";
 import { useMediaInfo } from "../../context/MediaInfoContext/MediaInfoContext";
 import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaInfoFunc/dispatch/toMediaSpecificFile";
@@ -34,8 +33,6 @@ const FlipLayer = (props: PropsType) => {
   const { rotateYState } = useRotateY();
   const { mediaInfoDispatch } = useMediaInfo();
   const { pageState, changePageRotateY } = usePageState();
-
-  const { targetRef, setLoadedTrue } = useContentChange("success", "divEl", "main");
 
   const changeBookPage = (e: React.WheelEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -86,8 +83,6 @@ const FlipLayer = (props: PropsType) => {
     <div
       className={styles["layer"]}
       onWheel={changeBookPage}
-      ref={targetRef as React.MutableRefObject<HTMLDivElement>}
-      onLoad={setLoadedTrue}
       style={{ transform: `rotateY(${rotateYState.cg ? 180 : 0}deg)` }}
     >
       <div className={styles["book-cover"]}>
