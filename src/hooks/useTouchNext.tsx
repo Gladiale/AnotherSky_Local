@@ -10,26 +10,44 @@ const useTouchNext = (target: SceneType) => {
   const { setIsNext } = useDirection();
   const { mediaActive } = useMediaActive();
   const { mediaInfoDispatch } = useMediaInfo();
-  const [startX, setStartX] = useState<number>(0);
+  const [startPoint, setStartPoint] = useState({ x: 0, y: 0 });
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     // console.log("開始-x:", e.touches[0].clientX);
-    setStartX(e.touches[0].clientX);
+    setStartPoint({
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    });
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     // console.log("終了-x:", e.changedTouches[0].clientX);
     const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
 
-    if (target === "card" && endX === startX) {
+    const isNextByX = endX <= startPoint.x;
+    const isNextByY = endY <= startPoint.y;
+
+    if (target === "card" && endX === startPoint.x) {
       return;
     }
 
-    setIsNext(endX <= startX ? true : false);
-    mediaInfoDispatch({
-      type: endX <= startX ? "next" : "prev",
-      payload: { scene: target, mediaActive },
-    });
+    switch (target) {
+      case "card":
+        setIsNext(isNextByX ? true : false);
+        return mediaInfoDispatch({
+          type: isNextByX ? "next" : "prev",
+          payload: { scene: target, mediaActive },
+        });
+      case "cg":
+        setIsNext(isNextByY ? true : false);
+        return mediaInfoDispatch({
+          type: isNextByY ? "next" : "prev",
+          payload: { scene: target, mediaActive },
+        });
+      default:
+        throw new Error("現在は決定されていません");
+    }
   };
 
   return { handleTouchStart, handleTouchEnd };
