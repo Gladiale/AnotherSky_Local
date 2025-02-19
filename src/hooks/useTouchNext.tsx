@@ -26,14 +26,11 @@ const useTouchNext = (target: SceneType) => {
     const endY = e.changedTouches[0].clientY;
 
     const isNextByX = endX <= startPoint.x;
-    const isNextByY = endY <= startPoint.y;
-
-    if (target === "card" && endX === startPoint.x) {
-      return;
-    }
+    const isNextByY = endY >= startPoint.y;
 
     switch (target) {
       case "card":
+        if (endX === startPoint.x) return;
         setIsNext(isNextByX ? true : false);
         return mediaInfoDispatch({
           type: isNextByX ? "next" : "prev",

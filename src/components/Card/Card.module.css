@@ -10,6 +10,7 @@
   height: 100%;
   aspect-ratio: var(--aspect-ratio);
   position: relative;
+  touch-action: none;
 
   display: flex;
   justify-content: center;
