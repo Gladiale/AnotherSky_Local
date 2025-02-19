@@ -98,7 +98,7 @@ const EffectImage = () => {
         onLoad={showTarget}
       />
 
-      <Loading kind="2nd" loadStatus={loadStatus} loadStyle={{ position: "absolute" }} />
+      <Loading kind="eff" loadStatus={loadStatus} loadStyle={{ position: "absolute" }} />
     </div>
   );
 };

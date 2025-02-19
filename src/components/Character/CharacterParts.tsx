@@ -76,7 +76,7 @@ const CharacterParts = () => {
         style={{ display: loadStatus === "success" ? undefined : "none" }}
       />
 
-      <Loading kind="3rd" loadStatus={loadStatus} />
+      <Loading kind="chara" loadStatus={loadStatus} />
 
       {isMixMode && (
         <img

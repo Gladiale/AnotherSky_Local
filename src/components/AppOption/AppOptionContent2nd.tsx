@@ -141,7 +141,7 @@ const AppOptionContent2nd = () => {
               />
             )}
             <Loading
-              kind="1st"
+              kind="extra"
               loadStatus={loadStatus}
               loadStyle={{ aspectRatio: "1/1", gap: 0, position: "absolute" }}
             />

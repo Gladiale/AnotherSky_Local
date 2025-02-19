@@ -93,7 +93,7 @@ const Video = () => {
           onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
           src={urlConfig.video}
         ></video>
-        <Loading kind="1st" loadStatus={loadStatus} />
+        <Loading kind="main" loadStatus={loadStatus} />
         {effectState.image.active && <EffectImage />}
       </div>
 

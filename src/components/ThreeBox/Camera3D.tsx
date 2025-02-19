@@ -10,7 +10,7 @@ import Loading from "../Loading/Loading";
 
 const Camera3D = () => {
   return (
-    <Suspense fallback={<Loading kind={"1st"} loadStatus="waiting" />}>
+    <Suspense fallback={<Loading kind={"main"} loadStatus="waiting" />}>
       <Canvas
         shadows
         dpr={window.devicePixelRatio}

@@ -14,10 +14,9 @@ import Loading from "../Loading/Loading";
 type PropsType = {
   className?: "texture-img";
   mixBlendMode?: MixBlendModeType;
-  loadingHeight?: "100%" | "100dvh";
 };
 
-const CG = ({ className, mixBlendMode, loadingHeight }: PropsType) => {
+const CG = ({ className, mixBlendMode }: PropsType) => {
   // コンテキスト
   const { appOption } = useAppOption();
   const { threeState } = useThreeState();
@@ -56,13 +55,7 @@ const CG = ({ className, mixBlendMode, loadingHeight }: PropsType) => {
         onMouseMove={appOption.parallax ? changeTransform3d : undefined}
         onMouseLeave={appOption.parallax ? resetTransform3d : undefined}
       />
-      {className !== "texture-img" && (
-        <Loading
-          kind="1st"
-          loadStatus={loadStatus}
-          loadStyle={{ height: loadingHeight }}
-        />
-      )}
+      {className !== "texture-img" && <Loading kind="main" loadStatus={loadStatus} />}
     </>
   );
 };

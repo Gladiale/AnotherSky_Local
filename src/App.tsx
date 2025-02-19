@@ -46,7 +46,7 @@ function App() {
           <AppOption />
         </>
       ) : (
-        <Loading kind="1st" loadStatus={dataStatus} />
+        <Loading kind="extra" loadStatus={dataStatus} />
       )}
     </Provider>
   );

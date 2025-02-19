@@ -24,7 +24,7 @@ const ThreeBox = ({ isTransitionEnd }: { isTransitionEnd: boolean }) => {
       {isTransitionEnd ? (
         <Camera3D />
       ) : (
-        <Loading kind="1st" loadStatus="waiting" loadStyle={{ position: "absolute" }} />
+        <Loading kind="main" loadStatus="waiting" loadStyle={{ position: "absolute" }} />
       )}
 
       <Corner theme="gold" singleConnerWidth="15%" />
