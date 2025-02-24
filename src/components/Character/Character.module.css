@@ -16,6 +16,21 @@
   /* animation-timing-function: var(--spring-easing-2nd); */
 }
 
+@media (max-width: 768px) {
+  /* clip-pathを使ってDirectoryコンポーネントのボタンが被せる問題を解消 */
+  .character-container.isDirMode {
+    /* background: red; */
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - 2rem),
+      calc(100% - 5rem) calc(100% - 2rem),
+      calc(100% - 5rem) 100%,
+      0 100%
+    );
+  }
+}
+
 @keyframes bounce {
   0% {
     translate: 0px 0px;

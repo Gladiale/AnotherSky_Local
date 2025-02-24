@@ -22,7 +22,8 @@ const Character = ({ containerStyle }: PropsType) => {
 
   return (
     <div
-      className={styles["character-container"]}
+      className={`${styles["character-container"]} 
+        ${scene === "directoryMode" && styles["isDirMode"]}`}
       style={{
         filter: filterData,
         imageRendering:
