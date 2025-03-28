@@ -55,22 +55,11 @@ func main() {
 		MaxAge:        0,
 	}))
 
-	// サーバーを起動
-	go func() {
-		// 0.0.0.0 でリッスンすることで、外部から接続できるようになります
-		err := app.Listen("0.0.0.0:"+serverConfig.AppConfig["port"], fiber.ListenConfig{
-			DisableStartupMessage: true,
-		})
-
-		// エラーが発生した場合にログを表示
-		if err != nil {
-			log.Fatalln(err)
-		}
-	}()
-
-	// サーバーが起動した後に表示するメッセージ
+	// サーバーが起動時表示のメッセージ
 	serverConfig.ExportMessage()
 
-	// アプリケーションが終了しないように待機する
-	select {}
+	// サーバーを起動 0.0.0.0 でリッスンすることで、外部から接続できるようになります
+	log.Fatal(app.Listen("0.0.0.0:"+serverConfig.AppConfig["port"], fiber.ListenConfig{
+		DisableStartupMessage: true,
+	}))
 }
