@@ -5,6 +5,8 @@ import (
 	"os"
 	serverAction "server/server-action"
 	serverConfig "server/server-config"
+	"slices"
+	"strings"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
@@ -26,26 +28,15 @@ func main() {
 	// CORSミドルウェアの設定 (https://docs.gofiber.io/next/middleware/cors)
 	app.Use(cors.New())
 
-	// GetをUse(static)の前に書くに注意、後ろに書くとGetの中身が実行されなくなるのを発見
-	app.Get("/", func(c fiber.Ctx) error {
-		// index.htmlをno-storeにする
-		c.Set("Cache-Control", "no-store")
-		return c.SendFile("dist/index.html")
+	// ここのUseはUse(static)の前に書くに注意、後ろに書くと今のの中身が実行されなくなる
+	app.Use("/", func(c fiber.Ctx) error {
+		// SPA (指定のファイルをno-storeにする。試した結果、Response Headersのno-storeの設定はミドルウェアしか行うことができない)
+		targets := []string{"/", "/favicon.png", "/folderData.json", "/filterData.json"}
+		if slices.Contains(targets, c.Path()) || strings.Contains(c.Path(), "/assets") {
+			c.Set("Cache-Control", "no-store")
+		}
+		return c.Next()
 	})
-
-	app.Get("/folderData.json", func(c fiber.Ctx) error {
-		c.Set("Cache-Control", "no-store")
-		return c.SendFile("dist/folderData.json")
-	})
-
-	app.Get("/filterData.json", func(c fiber.Ctx) error {
-		c.Set("Cache-Control", "no-store")
-		return c.SendFile("dist/filterData.json")
-	})
-
-	app.Post("/api/filter", serverAction.HandleFilterPost)
-	app.Put("/api/filter/:index", serverAction.HandleFilterUpdate)
-	app.Delete("/api/filter/:index", serverAction.HandleFilterDelete)
 
 	app.Use("/", static.New("", static.Config{
 		FS:         os.DirFS("dist"),
@@ -54,6 +45,12 @@ func main() {
 		CacheDuration: -1,
 		MaxAge:        0,
 	}))
+
+	// API
+	filterApi := app.Group("/api/filter")
+	filterApi.Post("/", serverAction.HandleFilterPost)
+	filterApi.Put("/:index", serverAction.HandleFilterUpdate)
+	filterApi.Delete("/:index", serverAction.HandleFilterDelete)
 
 	// サーバーが起動時表示のメッセージ
 	serverConfig.ExportMessage()
