@@ -8,7 +8,7 @@ import PageContent from "./PageContent";
 
 type PropsType = {
   isReversing: Boolean;
-  target: "cg" | "anotherCharacter";
+  target: "cg" | "anotherCharacter" | "video";
   urlList: string[];
   layerState: {
     active: "1st" | "2nd";
@@ -88,12 +88,12 @@ const FlipLayer = (props: PropsType) => {
       <div className={styles["book-cover"]}>
         <PageContent
           className={"cover-left"}
-          imgUrl={isReversing ? urlList[1] : urlList[0]}
+          url={isReversing ? urlList[1] : urlList[0]}
           onClick={() => changeLayerState("first")}
         />
         <PageContent
           className={"cover-right"}
-          imgUrl={isReversing ? urlList[4] : urlList[5]}
+          url={isReversing ? urlList[4] : urlList[5]}
           onClick={() => changeLayerState("last")}
         />
       </div>
@@ -109,14 +109,14 @@ const FlipLayer = (props: PropsType) => {
       >
         <PageContent
           className={"page-front"}
-          imgUrl={isReversing ? urlList[3] : urlList[2]}
+          url={isReversing ? urlList[3] : urlList[2]}
           style={{
             scale: String(pageState.left.frontSideScale),
           }}
         />
         <PageContent
           className={"page-back"}
-          imgUrl={isReversing ? urlList[0] : urlList[1]}
+          url={isReversing ? urlList[0] : urlList[1]}
           style={{
             zIndex: pageState.left.backSideZIndex,
             scale: String(pageState.left.backSideScale),
@@ -135,12 +135,12 @@ const FlipLayer = (props: PropsType) => {
       >
         <PageContent
           className={"page-front"}
-          imgUrl={isReversing ? urlList[2] : urlList[3]}
+          url={isReversing ? urlList[2] : urlList[3]}
           style={{ scale: String(pageState.right.frontSideScale) }}
         />
         <PageContent
           className={"page-back"}
-          imgUrl={isReversing ? urlList[5] : urlList[4]}
+          url={isReversing ? urlList[5] : urlList[4]}
           style={{
             zIndex: pageState.right.backSideZIndex,
             scale: String(pageState.right.backSideScale),

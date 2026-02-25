@@ -7,10 +7,12 @@ import { type SpecificPayloadType } from "../context/MediaInfoContext/MediaInfoF
 // Data
 import { folderData } from "../App";
 import { getTargetList } from "../libs/utils/getTargetList";
+import { useScene } from "../context/SceneContext";
 
 const useUrlList = () => {
   const { mediaInfo } = useMediaInfo();
   const { mediaActive } = useMediaActive();
+  const { scene } = useScene();
 
   const [targetList, setTargetList] = useState<string[]>([]);
   const [firstLastInfo, setFirstLastInfo] = useState<{
@@ -18,14 +20,22 @@ const useUrlList = () => {
     last: SpecificPayloadType["fileInfo"];
   }>(null!);
 
-  const target: "anotherCharacter" | "cg" = mediaActive.anotherCharacter
-    ? "anotherCharacter"
-    : "cg";
+  const target: "anotherCharacter" | "cg" | "video" =
+    scene === "video"
+      ? "video"
+      : mediaActive.anotherCharacter
+        ? "anotherCharacter"
+        : "cg";
+
   useLayoutEffect(() => {
     const { targetFileList, firstFileInfo, lastFileInfo } = getTargetList(
       target,
-      target === "cg" ? folderData.cgData : folderData.characterData,
-      mediaInfo
+      scene === "video"
+        ? folderData.videoData
+        : mediaActive.anotherCharacter
+          ? folderData.characterData
+          : folderData.cgData,
+      mediaInfo,
     );
     setTargetList(targetFileList);
     setFirstLastInfo({
@@ -36,7 +46,7 @@ const useUrlList = () => {
 
   const urlList = targetList.map(
     (item) =>
-      `/${target === "cg" ? "cg" : "character"}/${mediaInfo.folder[target][1]}/${item}`
+      `/${target === "anotherCharacter" ? "character" : target}/${mediaInfo.folder[target][1]}/${item}`,
   );
 
   return { urlList, firstLastInfo, target };

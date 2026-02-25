@@ -34,7 +34,12 @@ const Content = () => {
       ) : (
         scene === "cg" && <CGbox />
       )}
-      {scene === "video" && <Video />}
+
+      {scene === "video" && mediaActive.doublePage ? (
+        <FlipBook />
+      ) : (
+        scene === "video" && <Video />
+      )}
       {scene === "directoryMode" && <Directory />}
       {scene === "listImg" && !listState.mode2 && <ListImage />}
       {scene === "listImg" && listState.mode2 && <ListImageMode2 />}

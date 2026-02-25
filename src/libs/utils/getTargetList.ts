@@ -4,9 +4,9 @@ import { type SpecificPayloadType } from "../../context/MediaInfoContext/MediaIn
 
 // FlipBook用
 const getTargetList = (
-  target: "cg" | "character" | "anotherCharacter",
+  target: "cg" | "character" | "anotherCharacter" | "video",
   dataObj: Record<string, string[]>,
-  mediaInfo: MediaInfoType
+  mediaInfo: MediaInfoType,
 ) => {
   const targetIndex = mediaInfo.file[target][0];
 
@@ -14,7 +14,7 @@ const getTargetList = (
     const fileData = getPrevFile(
       dataObj,
       mediaInfo.folder[target][1],
-      targetIndex - 1 + index
+      targetIndex - 1 + index,
     );
     return fileData;
   });
@@ -23,7 +23,7 @@ const getTargetList = (
     const fileData = getNextFile(
       dataObj,
       mediaInfo.folder[target][1],
-      targetIndex + index
+      targetIndex + index,
     );
     return fileData;
   });
